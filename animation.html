@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>3D Animation — Vision For Xperiences</title>
+  <meta name="description" content="3D animation for artists, brands, events, and systems. From DJ visuals and stage worlds to cinematic shorts and explainer films." />
+  <meta name="keywords" content="3D animation studio, motion graphics, cinematic animation, stage visuals animation, product animation, Vision For Xperiences" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="assets/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="3D Animation — Vision For Xperiences" />
+  <meta property="og:description" content="3D animation for artists, brands, events, and systems — motion with purpose." />
+  <meta property="og:image" content="assets/animation.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <a href="index.html" data-nav>Home</a>
+    <a href="about.html" data-nav>About</a>
+    <a href="vfx.html" data-nav>VFX</a>
+    <a href="animation.html" data-nav>Animation</a>
+    <a href="visuals.html" data-nav>Visuals</a>
+    <a href="technology.html" data-nav>Technology</a>
+    <a href="droneoperator.html" data-nav>Drone Operator</a>
+    <a href="shop.html" data-nav>Shop</a>
+    <a href="contact.html" data-nav>Contact</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="right">
+        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/animation.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">Animation</div>
+          <h1>MOTION<br>WITH<br>PURPOSE.</h1>
+          <p class="sub">
+            Animation is not movement. It's intention over time.
+            Every curve, pause, and impact shapes how a story lands.
+          </p>
+        </div>
+      </div>
+      <a class="down" href="#story" aria-label="Scroll to next section">
+        Learn More
+        <span class="chev"></span>
+      </a>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" style="max-width:var(--maxw);margin:0 auto;padding:90px 22px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;">
+        <div>
+          <div class="kicker">What we animate</div>
+          <p class="sub">
+            From DJ visuals and stage worlds to explainer films for logistics,
+            architecture, and technology — we design motion that communicates.
+            If it needs to move, we can shape it.
+          </p>
+        </div>
+        <div>
+          <div class="kicker">Why it matters</div>
+          <p class="sub">
+            Animation controls attention. It guides the eye, sets rhythm,
+            and turns information into experience. Good motion feels inevitable.
+            Great motion feels alive.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         GRAPH EDITOR DEMO
+         Three.js spotlight scene + interactive bezier curve editor.
+         The logo drops from darkness into light — the curve shape
+         controls exactly how that motion feels.
+    ══════════════════════════════════════════════ -->
+    <section class="section" style="min-height:130svh;background:#000;">
+
+      <!-- Three.js logo scene fills the whole section -->
+      <div id="graphLogoMount" style="position:absolute;inset:0;z-index:2;"></div>
+
+      <!-- Left-side gradient so text stays legible -->
+      <div style="position:absolute;inset:0;z-index:3;pointer-events:none;
+                  background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.4) 55%,transparent 100%);"></div>
+
+      <div class="content" style="align-items:flex-start;z-index:4;">
+        <div class="copy">
+          <div class="kicker">Graph Editor</div>
+          <h1>CURVES<br>DRIVE<br>EMOTION.</h1>
+          <p class="sub" style="max-width:42ch;">
+            Every object in professional 3D animation is controlled by a curve.
+            The same logo drop feels robotic, cinematic, or elastic — purely by
+            changing the <em>shape</em> of that curve.
+          </p>
+
+          <div class="graph-controls">
+            <!-- Preset selector -->
+            <div class="graph-preset-row">
+              <div class="kicker">Preset</div>
+              <select id="curvePreset" class="graph-select" aria-label="Select animation curve preset">
+                <option value="ease">Ease In-Out — Cinematic</option>
+                <option value="linear">Linear — Mechanical</option>
+                <option value="overshoot">Overshoot — Elastic</option>
+              </select>
+            </div>
+            <p id="presetDesc" class="graph-desc">Slow start, fast middle, slow end — the industry standard.</p>
+
+            <!-- Bezier graph canvas -->
+            <div class="graph-canvas-wrap">
+              <canvas id="graphCanvas" aria-label="Bezier curve editor — drag the handles to reshape the animation curve"></canvas>
+            </div>
+            <p class="graph-hint">Drag the handles &bull; Watch the logo respond</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="section" id="final">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/Viewport.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">The final motion</div>
+          <h1>DESIGNED<br>TO<br>MOVE.</h1>
+          <p class="sub">
+            Every project becomes a language of motion — tuned for stage,
+            screen, product, or system. We don't animate objects.
+            We animate meaning.
+          </p>
+          <div class="actions">
+            <a class="btn" href="contact.html">Start a project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Vision For Xperiences" style="height:22px;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Drawer + smooth scroll -->
+  <script>
+  (function(){
+    const drawer   = document.getElementById("drawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    const ham      = document.getElementById("hamburger");
+    const close    = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); }
+    ham.addEventListener("click", open);
+    close.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(a => a.addEventListener("click", shut));
+    window.addEventListener("keydown", e => { if(e.key==="Escape") shut(); });
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        const t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+  })();
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+  import * as THREE from "three";
+  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
+  /* ─────────────────────────────────────────────────────────
+     THREE.JS — Dark spotlight scene
+     Logo flies from darkness (z = -4) forward into the light pool (z = 0)
+  ───────────────────────────────────────────────────────── */
+  const mount = document.getElementById("graphLogoMount");
+
+  const _mob = window.innerWidth < 768;
+  const renderer = new THREE.WebGLRenderer({ antialias: !_mob, alpha: false });
+  renderer.setPixelRatio(_mob ? 1 : Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(mount.clientWidth, mount.clientHeight);
+  renderer.setClearColor(0x000000, 1);
+  renderer.shadowMap.enabled = false;
+  mount.appendChild(renderer.domElement);
+  renderer.domElement.style.pointerEvents = "none";
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(48, mount.clientWidth / mount.clientHeight, 0.1, 100);
+  camera.position.set(0, 0.5, 7);
+
+  /* Single dramatic spotlight — tight beam from directly above */
+  const spot = new THREE.SpotLight(0xffffff, 55);
+  spot.position.set(0, 9, 0);
+  spot.angle     = Math.PI / 11;   // very tight beam
+  spot.penumbra  = 0.45;           // crisp but with soft edge
+  spot.decay     = 1.1;
+  scene.add(spot, spot.target);    // target stays at (0,0,0)
+
+  /* Barely-there cool ambient so the logo shape is a shadow in the dark */
+  scene.add(new THREE.AmbientLight(0x080814, 1.5));
+
+  /* Warm key fill from front-right — makes it feel cinematic */
+  const key = new THREE.DirectionalLight(0xfff0cc, 0.6);
+  key.position.set(3, 2, 6);
+  scene.add(key);
+
+  /* Strong blue rim from behind — punchy depth separation */
+  const rim = new THREE.DirectionalLight(0x3355cc, 0.8);
+  rim.position.set(-4, 2, -3);
+  scene.add(rim);
+
+  /* Load logo */
+  let logo = null;
+  new GLTFLoader().load("models/logo.glb", gltf => {
+    logo = gltf.scene;
+    logo.scale.setScalar(2.6);
+    logo.position.set(0, 0, -4); // start far back (in darkness, outside spotlight cone)
+
+    /* Replace materials with polished metal — catches the spotlight beam */
+    logo.traverse(child => {
+      if (!child.isMesh) return;
+      child.material = new THREE.MeshPhongMaterial({
+        color:    0xdddddd,
+        specular: 0xffffff,
+        shininess: 160,
+        reflectivity: 1
+      });
+    });
+
+    scene.add(logo);
+  });
+
+  window.addEventListener("resize", () => {
+    const w = mount.clientWidth, h = mount.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  });
+
+  /* ─────────────────────────────────────────────────────────
+     BEZIER GRAPH EDITOR
+  ───────────────────────────────────────────────────────── */
+  const GC  = document.getElementById("graphCanvas");
+  const gx  = GC.getContext("2d");
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  /* Init canvas buffer size from its CSS layout size */
+  function syncCanvasSize() {
+    const r = GC.getBoundingClientRect();
+    if (r.width === 0) return;
+    GC.width  = r.width  * DPR;
+    GC.height = r.height * DPR;
+  }
+  new ResizeObserver(syncCanvasSize).observe(GC);
+  syncCanvasSize();
+
+  /* Presets — cubic bezier P0=(0,0)…P3=(1,1), two inner handles */
+  const PRESETS = {
+    ease: {
+      p1: [0.42, 0.00], p2: [0.58, 1.00],
+      desc: "Slow start, fast middle, slow end — the cinematic standard."
+    },
+    linear: {
+      p1: [0.33, 0.33], p2: [0.67, 0.67],
+      desc: "Constant speed throughout. Mechanical, robotic, lifeless."
+    },
+    overshoot: {
+      p1: [0.20, -0.60], p2: [0.80, 1.60],
+      desc: "Overshoots the target and snaps back — full of energy."
+    }
+  };
+
+  /* Mutable handles */
+  let h1 = [...PRESETS.ease.p1];
+  let h2 = [...PRESETS.ease.p2];
+
+  /* Bezier evaluation: returns [x, y] at parameter t */
+  function bXY(p1, p2, t) {
+    const u = 1 - t;
+    return [
+      3*p1[0]*u*u*t + 3*p2[0]*u*t*t + t*t*t,
+      3*p1[1]*u*u*t + 3*p2[1]*u*t*t + t*t*t
+    ];
+  }
+
+  /* Evaluate the curve's Y value at a given X time (0→1).
+     Uses binary search since x(t) is monotone for valid handle x values. */
+  function evalY(x) {
+    let lo = 0, hi = 1, t = x;
+    for (let i = 0; i < 14; i++) {
+      const cx = bXY(h1, h2, t)[0];
+      if (Math.abs(cx - x) < 0.0001) break;
+      if (cx < x) lo = t; else hi = t;
+      t = (lo + hi) * 0.5;
+    }
+    return bXY(h1, h2, t)[1];
+  }
+
+  /* Canvas ↔ curve coordinate conversion
+     Y display range includes overshoot zone */
+  const PAD  = 26;
+  const YLO  = -0.65;   // show below 0 for overshoot
+  const YHI  =  1.65;   // show above 1 for overshoot
+
+  function cx(tx) {
+    const W = GC.width / DPR;
+    return PAD + tx * (W - 2*PAD);
+  }
+  function cy(vy) {
+    const H = GC.height / DPR;
+    return PAD + (1 - (vy - YLO) / (YHI - YLO)) * (H - 2*PAD);
+  }
+  function fromPos(px, py) {
+    const W = GC.width / DPR, H = GC.height / DPR;
+    return [
+      Math.max(0.01, Math.min(0.99, (px - PAD) / (W - 2*PAD))),
+      YLO + (1 - (py - PAD) / (H - 2*PAD)) * (YHI - YLO)
+    ];
+  }
+
+  /* Draw the graph */
+  function drawGraph(playhead) {
+    const W = GC.width / DPR, H = GC.height / DPR;
+    if (W < 10) return;
+
+    gx.save();
+    gx.scale(DPR, DPR);
+    gx.clearRect(0, 0, W, H);
+
+    /* Background */
+    gx.fillStyle = "rgba(3,3,5,1)";
+    gx.fillRect(0, 0, W, H);
+
+    /* Grid — horizontal at 0, 0.5, 1 */
+    gx.lineWidth = 0.5;
+    for (const v of [YLO, 0, 0.5, 1, YHI]) {
+      const isKey = v === 0 || v === 1;
+      gx.strokeStyle = isKey ? "rgba(255,255,255,.14)" : "rgba(255,255,255,.04)";
+      gx.beginPath(); gx.moveTo(PAD, cy(v)); gx.lineTo(W - PAD, cy(v)); gx.stroke();
+    }
+    /* Grid — vertical at 0, 0.5, 1 */
+    for (const t of [0, 0.5, 1]) {
+      gx.strokeStyle = "rgba(255,255,255,.10)";
+      gx.beginPath(); gx.moveTo(cx(t), PAD); gx.lineTo(cx(t), H - PAD); gx.stroke();
+    }
+
+    /* Axis labels */
+    gx.fillStyle = "rgba(240,240,250,.22)";
+    gx.font = `${9}px ui-monospace,SFMono-Regular,monospace`;
+    gx.fillText("0",     4, cy(0)   + 4);
+    gx.fillText("1",     4, cy(1)   + 4);
+    gx.fillText("TIME →", cx(0),    H - 7);
+
+    /* Dashed handle guide lines (P0→h1, P3→h2) */
+    gx.setLineDash([3, 4]);
+    gx.lineWidth = 0.8;
+    gx.strokeStyle = "rgba(255,255,255,.18)";
+    gx.beginPath(); gx.moveTo(cx(0), cy(0)); gx.lineTo(cx(h1[0]), cy(h1[1])); gx.stroke();
+    gx.beginPath(); gx.moveTo(cx(1), cy(1)); gx.lineTo(cx(h2[0]), cy(h2[1])); gx.stroke();
+    gx.setLineDash([]);
+
+    /* Bezier curve */
+    gx.strokeStyle = "rgba(240,240,250,.90)";
+    gx.lineWidth   = 1.6;
+    gx.beginPath();
+    for (let i = 0; i <= 80; i++) {
+      const [bx, by] = bXY(h1, h2, i / 80);
+      i === 0 ? gx.moveTo(cx(bx), cy(by)) : gx.lineTo(cx(bx), cy(by));
+    }
+    gx.stroke();
+
+    /* Playhead — vertical amber line + dot on the curve */
+    if (playhead >= 0 && playhead <= 1) {
+      const ey  = evalY(playhead);
+      const phx = cx(playhead);
+      const phy = cy(ey);
+
+      gx.strokeStyle = "rgba(255,190,60,.35)";
+      gx.lineWidth = 1;
+      gx.beginPath(); gx.moveTo(phx, PAD); gx.lineTo(phx, H - PAD); gx.stroke();
+
+      gx.fillStyle = "rgba(255,190,60,1)";
+      gx.beginPath(); gx.arc(phx, phy, 4, 0, Math.PI * 2); gx.fill();
+    }
+
+    /* Anchor dots at P0 and P3 */
+    for (const [x, y] of [[0, 0], [1, 1]]) {
+      gx.fillStyle = "rgba(240,240,250,.65)";
+      gx.beginPath(); gx.arc(cx(x), cy(y), 3.5, 0, Math.PI * 2); gx.fill();
+    }
+
+    /* Draggable control handles — blue (h1) and pink (h2) */
+    const colours = ["rgba(80,160,255,1)", "rgba(255,90,140,1)"];
+    for (const [i, h] of [[0, h1], [1, h2]]) {
+      gx.strokeStyle = colours[i];
+      gx.fillStyle   = colours[i].replace(",1)", ",.3)");
+      gx.lineWidth   = 1.5;
+      gx.beginPath(); gx.arc(cx(h[0]), cy(h[1]), 6, 0, Math.PI * 2);
+      gx.fill(); gx.stroke();
+    }
+
+    gx.restore();
+  }
+
+  /* ── Handle dragging ── */
+  let dragging = null;
+
+  function hitHandle(px, py) {
+    for (const [i, h] of [[0, h1], [1, h2]]) {
+      if (Math.hypot(px - cx(h[0]), py - cy(h[1])) < 14) return i;
+    }
+    return -1;
+  }
+  function evPos(e) {
+    const r = GC.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return [s.clientX - r.left, s.clientY - r.top];
+  }
+
+  GC.addEventListener("pointerdown", e => {
+    const [px, py] = evPos(e);
+    const hit = hitHandle(px, py);
+    if (hit !== -1) { dragging = hit; GC.setPointerCapture(e.pointerId); }
+  });
+  GC.addEventListener("pointermove", e => {
+    if (dragging === null) return;
+    const [px, py] = evPos(e);
+    const [nx, ny] = fromPos(px, py);
+    if (dragging === 0) h1 = [nx, Math.max(YLO, Math.min(YHI, ny))];
+    else                h2 = [nx, Math.max(YLO, Math.min(YHI, ny))];
+  });
+  GC.addEventListener("pointerup",  () => { dragging = null; });
+  GC.addEventListener("pointercancel", () => { dragging = null; });
+
+  /* Preset dropdown */
+  document.getElementById("curvePreset").addEventListener("change", e => {
+    const p = PRESETS[e.target.value];
+    h1 = [...p.p1];
+    h2 = [...p.p2];
+    document.getElementById("presetDesc").textContent = p.desc;
+  });
+
+  /* ─────────────────────────────────────────────────────────
+     ANIMATION LOOP
+     Logo ping-pongs: z = -4 (far/dark) → 0 (spotlight) → -4 (far/dark)
+     The bezier curve shapes exactly how this motion feels.
+  ───────────────────────────────────────────────────────── */
+  const clock = new THREE.Clock();
+  let animTime  = 0;
+  const CYCLE   = 3.2;   // seconds for one full drop-and-return
+
+  (function loop() {
+    requestAnimationFrame(loop);
+
+    const dt = Math.min(clock.getDelta(), 0.05); // cap dt for tab-switch jumps
+    animTime = (animTime + dt) % CYCLE;
+
+    /* Normalised 0→1 linear progress */
+    const raw = animTime / CYCLE;
+
+    /* Ping-pong: 0→1 (drop) then 1→0 (rise) */
+    const pingpong = raw < 0.5 ? raw * 2 : (1 - raw) * 2;
+
+    /* Apply the curve */
+    const eased = evalY(pingpong);
+
+    if (logo) {
+      /* Map eased [0,1] → z [-4, 0]; logo flies forward into the spotlight beam */
+      logo.position.z = -4 + eased * 4;
+      logo.rotation.y += dt * 0.35; // slow continuous spin
+    }
+
+    /* Draw graph with playhead at current ping-pong position */
+    drawGraph(pingpong);
+
+    renderer.render(scene, camera);
+  })();
+  </script>
+</body>
+</html>

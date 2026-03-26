@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Interactive Design &amp; Technology — Vision For Xperiences</title>
+  <meta name="description" content="Interactive art installations, educational devices, real-time experiences, and interactive media systems. Built to be robust in public environments." />
+  <meta name="keywords" content="interactive design, interactive installation, real-time experience, interactive media, educational device, interactive technology, Vision For Xperiences" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="assets/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="Interactive Design &amp; Technology — Vision For Xperiences" />
+  <meta property="og:description" content="Interactive art installations, educational devices, and real-time experiences built for public environments." />
+  <meta property="og:image" content="assets/technology.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <a href="index.html" data-nav>Home</a>
+    <a href="about.html" data-nav>About</a>
+    <a href="vfx.html" data-nav>VFX</a>
+    <a href="animation.html" data-nav>Animation</a>
+    <a href="visuals.html" data-nav>Visuals</a>
+    <a href="technology.html" data-nav>Technology</a>
+    <a href="droneoperator.html" data-nav>Drone Operator</a>
+    <a href="shop.html" data-nav>Shop</a>
+    <a href="contact.html" data-nav>Contact</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="right">
+        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/interactive_intro.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">Interactive Design</div>
+          <h1>ENGAGE.<br>CREATE.<br>INTERACT.</h1>
+          <p class="sub">
+            Interactive design isn't just about aesthetics — it's about creating an experience
+            that captivates and empowers users. We design with intent, making technology
+            accessible through innovative art, games, and interfaces.
+          </p>
+        </div>
+      </div>
+      <a class="down" href="#story" aria-label="Scroll to next section">
+        Learn More
+        <span class="chev"></span>
+      </a>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" style="max-width:var(--maxw);margin:0 auto;padding:90px 22px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;">
+        <div>
+          <div class="kicker">What we do</div>
+          <p class="sub">
+            From interactive art installations that encourage better health habits to
+            collaborating with tech companies to create games that raise cyber awareness —
+            we craft experiences that blend creativity with purpose. Websites, retrofitted
+            systems, or entirely new interactive tools: we prioritize user engagement.
+          </p>
+        </div>
+        <div>
+          <div class="kicker">Why it matters</div>
+          <p class="sub">
+            Interactive design transforms the way people perceive and interact with technology.
+            By creating immersive environments — through 3D interfaces, gaming, or artistic
+            installations — we provide meaningful interactions that make technology not just
+            functional, but memorable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CABLE WIRING DEMO -->
+    <section style="background:#07080f;" id="cableDemo">
+      <div style="max-width:var(--maxw);margin:0 auto;padding:72px 22px 28px;">
+        <div class="kicker">Interactive Demo — Signal Chain</div>
+        <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Wire it up.</h2>
+        <p class="sub" style="max-width:540px;margin-bottom:0;">
+          This is how interactive installations work — every device needs a signal path.
+          Drag cables from the output ports <span style="color:rgba(80,200,120,.9);font-weight:700;">(▶)</span> to the input ports <span style="color:rgba(80,160,255,.9);font-weight:700;">(◀)</span> to build the chain and activate the system.
+        </p>
+      </div>
+      <div style="position:relative;width:100%;height:58svh;min-height:340px;max-height:660px;overflow:hidden;">
+        <canvas id="cableCanvas" style="display:block;width:100%;height:100%;cursor:default;touch-action:none;"></canvas>
+        <div id="cableStatus" style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font:.68rem/1 'Courier New',monospace;letter-spacing:.09em;color:rgba(255,255,255,.35);pointer-events:none;white-space:nowrap;transition:color .4s;">
+          CONNECT ALL DEVICES TO ACTIVATE THE SYSTEM
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="section" id="final">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/tessaract.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">The impact</div>
+          <h1>THE<br>FINAL<br>EXPERIENCE.</h1>
+          <p class="sub">
+            Every interaction is designed to make an impact — transforming a display into
+            a 3D space, or a game that teaches important concepts. Every touchpoint leaves
+            the user more engaged and informed.
+          </p>
+          <div class="actions">
+            <a class="btn" href="contact.html">Build with us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Vision For Xperiences" style="height:22px;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    const drawer   = document.getElementById("drawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    const ham      = document.getElementById("hamburger");
+    const close    = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); }
+    ham.addEventListener("click", open);
+    close.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(a => a.addEventListener("click", shut));
+    window.addEventListener("keydown", e => { if(e.key==="Escape") shut(); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        const t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  /* ── Cable Wiring Interactive Demo ── */
+  (function () {
+    const canvas = document.getElementById("cableCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    let W = 600, H = 400;
+
+    /* ── Device & port definitions (positions are fractions of W/H) ── */
+    const DEVICES = [
+      {
+        id: "sensor",   label: "MOTION SENSOR",    sublabel: "Input Device",
+        color: "#0e2018", border: "#00cc66", textCol: "#00ff88",
+        rx: 0.08, ry: 0.30, rw: 0.19, rh: 0.40,
+        icon: "◈",
+        ports: [{ id: "out", side: "right", ty: 0.5, kind: "out", label: "DATA OUT" }]
+      },
+      {
+        id: "cpu",      label: "MICROCONTROLLER",  sublabel: "Processing Unit",
+        color: "#0c0c22", border: "#4488ff", textCol: "#88aaff",
+        rx: 0.40, ry: 0.22, rw: 0.20, rh: 0.56,
+        icon: "⬡",
+        ports: [
+          { id: "in",  side: "left",  ty: 0.38, kind: "in",  label: "SIGNAL IN"  },
+          { id: "out", side: "right", ty: 0.62, kind: "out", label: "SIGNAL OUT" }
+        ]
+      },
+      {
+        id: "output",   label: "LED PANEL",         sublabel: "Output Display",
+        color: "#1a0e04", border: "#ff8800", textCol: "#ffaa44",
+        rx: 0.73, ry: 0.18, rw: 0.19, rh: 0.64,
+        icon: "▣",
+        ports: [{ id: "in", side: "left", ty: 0.5, kind: "in", label: "DATA IN" }]
+      }
+    ];
+
+    /* ── Connection state ── */
+    const connections = []; // { fromDev, fromPort, toDev, toPort }
+    let dragging = null;    // { fromDev, fromPort, x, y (current mouse pos) }
+    let signalT  = 0;       // animated signal dot position (0→1 per connection)
+    let activated = false;
+    let pulseT = 0;
+
+    /* ── Layout helpers (re-compute on resize) ── */
+    function getPortPos(dev, port) {
+      const x = dev.rx * W, y = dev.ry * H;
+      const w = dev.rw * W, h = dev.rh * H;
+      const py = y + port.ty * h;
+      return {
+        x: port.side === "left" ? x : x + w,
+        y: py
+      };
+    }
+
+    function setup() {
+      const p = canvas.parentElement;
+      W = p.clientWidth  || window.innerWidth  || 600;
+      H = p.clientHeight || Math.round(window.innerHeight * 0.58) || 400;
+      canvas.width  = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    /* ── Check if a point is near a port ── */
+    function hitPort(px, py, maxDist) {
+      for (const dev of DEVICES) {
+        for (const port of dev.ports) {
+          const pp = getPortPos(dev, port);
+          const d  = Math.hypot(px - pp.x, py - pp.y);
+          if (d < maxDist) return { dev, port, pp };
+        }
+      }
+      return null;
+    }
+
+    /* ── Check if all required connections exist ── */
+    function checkActivated() {
+      const has = (fId, fPt, tId, tPt) =>
+        connections.some(c => c.fromDev.id === fId && c.fromPort.id === fPt
+                            && c.toDev.id   === tId && c.toPort.id   === tPt);
+      return has("sensor","out","cpu","in") && has("cpu","out","output","in");
+    }
+
+    /* ── Draw a bezier cable ── */
+    function drawCable(ax, ay, bx, by, col, alpha, lineW) {
+      const cpx = (ax + bx) / 2;
+      ctx.strokeStyle = col.replace(")", `,${alpha})`).replace("rgb","rgba");
+      ctx.lineWidth   = lineW;
+      ctx.lineCap     = "round";
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      /* Control points curve naturally left/right */
+      ctx.bezierCurveTo(cpx, ay, cpx, by, bx, by);
+      ctx.stroke();
+    }
+
+    /* ── Draw signal dot travelling along bezier ── */
+    function bezierPoint(ax, ay, bx, by, t) {
+      const cpx = (ax + bx) / 2;
+      const it  = 1 - t;
+      const x = it*it*it*ax + 3*it*it*t*cpx + 3*it*t*t*cpx + t*t*t*bx;
+      const y = it*it*it*ay + 3*it*it*t*ay  + 3*it*t*t*by  + t*t*t*by;
+      return { x, y };
+    }
+
+    /* ── Main draw ── */
+    function draw(ts) {
+      requestAnimationFrame(draw);
+
+      const dt = 0.016;
+      signalT = (signalT + dt * 0.6) % 1;
+      pulseT  = (pulseT  + dt)       % (Math.PI * 2);
+
+      ctx.clearRect(0, 0, W, H);
+
+      /* Background grid */
+      ctx.strokeStyle = "rgba(255,255,255,.03)";
+      ctx.lineWidth   = 0.5;
+      const gStep = 28;
+      for (let x = 0; x < W; x += gStep) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+      for (let y = 0; y < H; y += gStep) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+      /* ── Draw devices ── */
+      DEVICES.forEach(dev => {
+        const x = dev.rx*W, y = dev.ry*H, w = dev.rw*W, h = dev.rh*H;
+        const isActive = activated && (dev.id === "output" || dev.id === "cpu" || dev.id === "sensor");
+        const pulse = isActive ? (0.6 + Math.sin(pulseT * 1.8) * 0.4) : 1;
+
+        /* Device body */
+        ctx.fillStyle   = dev.color;
+        ctx.strokeStyle = isActive ? dev.border : dev.border + "88";
+        ctx.lineWidth   = isActive ? 1.8 : 1;
+        roundRect(x, y, w, h, 6);
+
+        /* Glow when active */
+        if (isActive) {
+          ctx.shadowColor = dev.border;
+          ctx.shadowBlur  = 18 * pulse;
+          roundRect(x, y, w, h, 6);
+          ctx.shadowBlur  = 0;
+        }
+
+        /* Icon */
+        ctx.fillStyle = (isActive ? dev.textCol : dev.textCol + "66");
+        ctx.font      = `bold ${Math.round(w * 0.28)}px monospace`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(dev.icon, x + w/2, y + h * 0.32);
+
+        /* Label */
+        ctx.font      = `bold ${Math.round(Math.min(w*0.13, 13))}px 'Courier New', monospace`;
+        ctx.fillStyle = isActive ? dev.textCol : "rgba(255,255,255,.55)";
+        ctx.fillText(dev.label, x + w/2, y + h * 0.62);
+
+        /* Sublabel */
+        ctx.font      = `${Math.round(Math.min(w*0.10, 10))}px 'Courier New', monospace`;
+        ctx.fillStyle = "rgba(255,255,255,.25)";
+        ctx.fillText(dev.sublabel, x + w/2, y + h * 0.75);
+
+        /* ── Draw ports ── */
+        dev.ports.forEach(port => {
+          const pp   = getPortPos(dev, port);
+          const isConnected = connections.some(c =>
+            (c.fromDev.id === dev.id && c.fromPort.id === port.id) ||
+            (c.toDev.id   === dev.id && c.toPort.id   === port.id)
+          );
+          const portCol = port.kind === "out" ? "#00cc66" : "#4488ff";
+          const portSymbol = port.kind === "out" ? "▶" : "◀";
+
+          /* Socket ring */
+          ctx.strokeStyle = isConnected ? portCol : portCol + "55";
+          ctx.lineWidth   = 1.5;
+          ctx.fillStyle   = isConnected ? portCol + "22" : "rgba(0,0,0,.4)";
+          ctx.beginPath(); ctx.arc(pp.x, pp.y, 7, 0, Math.PI*2);
+          ctx.fill(); ctx.stroke();
+
+          /* Arrow symbol */
+          ctx.fillStyle   = isConnected ? portCol : portCol + "66";
+          ctx.font        = "bold 8px monospace";
+          ctx.textAlign   = "center";
+          ctx.textBaseline= "middle";
+          ctx.fillText(portSymbol, pp.x, pp.y);
+
+          /* Port label */
+          ctx.font        = "9px 'Courier New', monospace";
+          ctx.fillStyle   = "rgba(255,255,255,.3)";
+          const labelOff  = port.side === "left" ? -14 : 14;
+          ctx.textAlign   = port.side === "left" ? "right" : "left";
+          ctx.fillText(port.label, pp.x + labelOff, pp.y);
+        });
+      });
+
+      /* ── Draw established connections ── */
+      connections.forEach((c, ci) => {
+        const a = getPortPos(c.fromDev, c.fromPort);
+        const b = getPortPos(c.toDev,   c.toPort);
+
+        /* Cable */
+        drawCable(a.x, a.y, b.x, b.y, "rgb(255,200,0)", 0.65, 2.5);
+        /* Cable highlight */
+        drawCable(a.x, a.y, b.x, b.y, "rgb(255,255,180)", 0.2, 1);
+
+        /* Animated signal dot */
+        if (activated) {
+          const st = (signalT + ci * 0.4) % 1;
+          const sp = bezierPoint(a.x, a.y, b.x, b.y, st);
+          const grd = ctx.createRadialGradient(sp.x, sp.y, 0, sp.x, sp.y, 8);
+          grd.addColorStop(0, "rgba(255,255,100,1)");
+          grd.addColorStop(1, "rgba(255,200,0,0)");
+          ctx.fillStyle = grd;
+          ctx.beginPath(); ctx.arc(sp.x, sp.y, 8, 0, Math.PI*2); ctx.fill();
+        }
+      });
+
+      /* ── Draw active drag cable ── */
+      if (dragging) {
+        const a = getPortPos(dragging.fromDev, dragging.fromPort);
+        drawCable(a.x, a.y, dragging.x, dragging.y, "rgb(255,200,0)", 0.4, 2);
+        /* Snap hint: highlight nearest compatible port */
+        const near = hitPort(dragging.x, dragging.y, 30);
+        if (near && near.port.kind !== dragging.fromPort.kind) {
+          ctx.strokeStyle = "rgba(255,255,100,.6)";
+          ctx.lineWidth   = 2;
+          ctx.beginPath(); ctx.arc(near.pp.x, near.pp.y, 11, 0, Math.PI*2); ctx.stroke();
+        }
+      }
+
+      /* ── Activation overlay on LED panel ── */
+      if (activated) {
+        const dev = DEVICES[2];
+        const x = dev.rx*W, y = dev.ry*H, w = dev.rw*W, h = dev.rh*H;
+        const alpha = 0.08 + Math.sin(pulseT * 2.2) * 0.06;
+        ctx.fillStyle = `rgba(255,160,40,${alpha})`;
+        ctx.fillRect(x+1, y+1, w-2, h-2);
+
+        /* "ACTIVE" text */
+        ctx.font        = `bold ${Math.round(w*0.14)}px 'Courier New', monospace`;
+        ctx.fillStyle   = `rgba(255,180,60,${0.5 + Math.sin(pulseT*2)*0.3})`;
+        ctx.textAlign   = "center";
+        ctx.textBaseline= "middle";
+        ctx.fillText("ACTIVE", x + w/2, y + h * 0.88);
+      }
+
+      /* Status bar */
+      const status = document.getElementById("cableStatus");
+      if (status) {
+        if (activated) {
+          status.textContent  = "✓  SYSTEM ACTIVE — ALL DEVICES CONNECTED";
+          status.style.color  = "rgba(80,255,140,.9)";
+        } else if (connections.length === 1) {
+          status.textContent  = "GOOD — NOW CONNECT THE MICROCONTROLLER TO THE LED PANEL";
+          status.style.color  = "rgba(255,200,60,.7)";
+        } else {
+          status.textContent  = "DRAG FROM ▶ OUTPUT PORTS TO ◀ INPUT PORTS";
+          status.style.color  = "rgba(255,255,255,.3)";
+        }
+      }
+    }
+
+    /* ── RoundRect helper ── */
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x+r, y);
+      ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y,   x+w, y+r);
+      ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+      ctx.lineTo(x+r, y+h);   ctx.quadraticCurveTo(x, y+h,   x, y+h-r);
+      ctx.lineTo(x, y+r);     ctx.quadraticCurveTo(x, y,     x+r, y);
+      ctx.closePath();
+      ctx.fill(); ctx.stroke();
+    }
+
+    /* ── Input helpers ── */
+    function evXY(e) {
+      const r = canvas.getBoundingClientRect();
+      const src = e.touches ? e.touches[0] : e;
+      return { x: src.clientX - r.left, y: src.clientY - r.top };
+    }
+
+    function onDown(e) {
+      const { x, y } = evXY(e);
+      const radius = e.touches ? 22 : 14; // larger target on touch
+      const hit = hitPort(x, y, radius);
+      if (!hit) return;
+      if (hit.port.kind !== "out") return; // can only drag from outputs
+      /* Remove existing connection from this port */
+      const idx = connections.findIndex(c => c.fromDev.id === hit.dev.id && c.fromPort.id === hit.port.id);
+      if (idx !== -1) connections.splice(idx, 1);
+      dragging = { fromDev: hit.dev, fromPort: hit.port, x, y };
+      canvas.style.cursor = "grabbing";
+    }
+
+    function onMove(e) {
+      if (!dragging) {
+        const { x, y } = evXY(e);
+        canvas.style.cursor = hitPort(x, y, 14) ? "grab" : "default";
+        return;
+      }
+      const { x, y } = evXY(e);
+      dragging.x = x;
+      dragging.y = y;
+    }
+
+    function onUp(e) {
+      if (!dragging) return;
+      const r = canvas.getBoundingClientRect();
+      const src = e.changedTouches ? e.changedTouches[0] : e;
+      const x = src.clientX - r.left, y = src.clientY - r.top;
+      const hit = hitPort(x, y, 22);
+      if (hit && hit.port.kind === "in" && hit.dev.id !== dragging.fromDev.id) {
+        /* Remove any existing connection to this input */
+        const ix = connections.findIndex(c => c.toDev.id === hit.dev.id && c.toPort.id === hit.port.id);
+        if (ix !== -1) connections.splice(ix, 1);
+        connections.push({ fromDev: dragging.fromDev, fromPort: dragging.fromPort,
+                           toDev: hit.dev,            toPort:  hit.port });
+        activated = checkActivated();
+      }
+      dragging = null;
+      canvas.style.cursor = "default";
+    }
+
+    canvas.addEventListener("mousedown",  onDown);
+    canvas.addEventListener("mousemove",  onMove);
+    canvas.addEventListener("mouseup",    onUp);
+    canvas.addEventListener("touchstart", onDown, { passive: true });
+    canvas.addEventListener("touchmove",  onMove, { passive: true });
+    canvas.addEventListener("touchend",   onUp);
+
+    /* Setup immediately (uses parent clientWidth which is always available),
+       then start the loop and re-run setup on window resize. */
+    setup();
+    requestAnimationFrame(draw);
+    window.addEventListener("resize", setup);
+  })();
+  </script>
+</body>
+</html>

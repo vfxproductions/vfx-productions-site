@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Drone Operator &amp; Aerial Cinematics — Vision For Xperiences</title>
+  <meta name="description" content="Licensed aerial capture and drone cinematics for events, commercials, real estate, and brand campaigns. Smooth flight paths, precise framing, and clean delivery." />
+  <meta name="keywords" content="drone operator, aerial cinematics, licensed drone pilot, aerial footage, event drone, drone videography Netherlands, Vision For Xperiences" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="assets/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="Drone Operator &amp; Aerial Cinematics — Vision For Xperiences" />
+  <meta property="og:description" content="Licensed aerial capture for events, commercials, real estate, and brand campaigns." />
+  <meta property="og:image" content="assets/technology.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <a href="index.html" data-nav>Home</a>
+    <a href="about.html" data-nav>About</a>
+    <a href="vfx.html" data-nav>VFX</a>
+    <a href="animation.html" data-nav>Animation</a>
+    <a href="visuals.html" data-nav>Visuals</a>
+    <a href="technology.html" data-nav>Technology</a>
+    <a href="droneoperator.html" data-nav>Drone Operator</a>
+    <a href="shop.html" data-nav>Shop</a>
+    <a href="contact.html" data-nav>Contact</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="right">
+        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/Droneoperator.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">Drone Operator</div>
+          <h1>PRECISION<br>FLIGHT<br>CAPTURE.</h1>
+          <p class="sub">
+            Licensed aerial operations for cinematic shots, real estate reels, brand campaigns, and live events.
+            We plan the airspace, map the story, and deliver clean, stabilized footage.
+          </p>
+        </div>
+      </div>
+      <a class="down" href="#story" aria-label="Scroll to next section">
+        Learn More
+        <span class="chev"></span>
+      </a>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" style="max-width:var(--maxw);margin:0 auto;padding:90px 22px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;">
+        <div>
+          <div class="kicker">What we deliver</div>
+          <p class="sub">
+            Aerial establishing shots, orbit reveals, chase sequences, and top-down geometry passes.
+            We capture in controlled flight paths and deliver graded footage ready for edit.
+          </p>
+        </div>
+        <div>
+          <div class="kicker">How we work</div>
+          <p class="sub">
+            Preflight planning, location scouting, safety checks, and redundant capture.
+            We coordinate on-site, minimise risk, and keep the visual language consistent
+            with your brand.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FPV DRONE SIM DEMO -->
+    <section style="background:#020305;" id="droneDemo">
+      <div style="max-width:var(--maxw);margin:0 auto;padding:72px 22px 28px;">
+        <div class="kicker">Interactive Demo — FPV Simulator</div>
+        <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Feel the difficulty.</h2>
+        <p class="sub" style="max-width:560px;margin-bottom:0;">
+          FPV racing drones fly at 140+ km/h, 2m above the ground, through gates the size of a doorway.
+          Move your mouse to steer. This is what the pilot sees — one mistake and it's over.
+        </p>
+      </div>
+
+      <!-- FPV viewport -->
+      <div id="droneMount" style="width:100%;height:62svh;min-height:360px;max-height:680px;position:relative;overflow:hidden;cursor:none;background:#020305;">
+        <!-- HUD — drawn on top of canvas -->
+        <canvas id="droneHudCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;"></canvas>
+
+        <!-- Vignette + scanline overlay -->
+        <div style="position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.7) 100%);"></div>
+        <div style="position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);"></div>
+      </div>
+    </section>
+
+    <!-- CAPTURE DETAILS -->
+    <section class="section">
+      <div class="media">
+        <img src="assets/technology.jpg" alt="Aerial operations planning and coordination for drone cinematics" loading="lazy" />
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">Flight Ready</div>
+          <h1>SAFE.<br>STABLE.<br>STRONG.</h1>
+          <p class="sub">
+            Every flight is logged, measured, and designed for repeatable results.
+            From wide reveals to tight passes, we keep motion smooth and framing intentional.
+          </p>
+          <div class="actions">
+            <a class="btn" href="contact.html">Book a flight</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Vision For Xperiences" style="height:22px;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    const drawer   = document.getElementById("drawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    const ham      = document.getElementById("hamburger");
+    const close    = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); }
+    ham.addEventListener("click", open);
+    close.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(a => a.addEventListener("click", shut));
+    window.addEventListener("keydown", e => { if(e.key==="Escape") shut(); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        const t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+  })();
+  </script>
+
+  <script type="module">
+  import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+  /* ═══════════════════════════════════════════════════════
+     FPV DRONE SIMULATOR
+     Low-altitude, noisy wireframe terrain, gate obstacles,
+     mouse steers like a real FPV stick.
+  ═══════════════════════════════════════════════════════ */
+  const mount = document.getElementById("droneMount");
+  if (!mount) throw new Error("no droneMount");
+
+  /* ── Renderer ── */
+  const renderer = new THREE.WebGLRenderer({ antialias: false }); // no AA for raw FPV look
+  renderer.setPixelRatio(1); // crisp pixels, no supersampling — FPV aesthetic
+  renderer.setSize(mount.clientWidth, mount.clientHeight);
+  renderer.setClearColor(0x020305, 1);
+  renderer.domElement.style.cssText = "position:absolute;inset:0;display:block;width:100%;height:100%;";
+  mount.insertBefore(renderer.domElement, mount.firstChild);
+
+  /* ── fBm Noise helper (no external library needed) ── */
+  function hash(x, z) {
+    const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453;
+    return n - Math.floor(n);
+  }
+  function smoothNoise(x, z) {
+    const ix = Math.floor(x), iz = Math.floor(z);
+    const fx = x - ix, fz = z - iz;
+    const ux = fx * fx * (3 - 2 * fx), uz = fz * fz * (3 - 2 * fz);
+    const a = hash(ix,   iz),   b = hash(ix+1, iz);
+    const c = hash(ix,   iz+1), d = hash(ix+1, iz+1);
+    return a + (b-a)*ux + (c-a)*uz + (d-a+a-b-c+b)*ux*uz;
+  }
+  function fbm(x, z) {
+    let h = 0, amp = 5.5, freq = 0.18;
+    for (let i = 0; i < 6; i++) {
+      h += (smoothNoise(x * freq, z * freq) - 0.5) * 2 * amp;
+      amp  *= 0.52;
+      freq *= 2.1;
+    }
+    return h;
+  }
+
+  /* ── Scene ── */
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x020305);
+  scene.fog = new THREE.FogExp2(0x020305, 0.028);
+
+  /* ── Camera (first-person, FPV forward tilt) ── */
+  const camera = new THREE.PerspectiveCamera(85, mount.clientWidth / mount.clientHeight, 0.05, 200);
+  camera.rotation.order = "YXZ";
+
+  /* ── Terrain — noisy wireframe ── */
+  const _isMob = window.innerWidth < 768;
+  const T_SIZE = 160, T_SEGS = _isMob ? 48 : 80;
+  const terrGeo = new THREE.PlaneGeometry(T_SIZE, T_SIZE, T_SEGS, T_SEGS);
+  terrGeo.rotateX(-Math.PI / 2);
+  const tPos = terrGeo.attributes.position;
+
+  /* Height lookup table for fast camera altitude tracking */
+  const hGrid = [];
+  for (let i = 0; i < tPos.count; i++) {
+    const x = tPos.getX(i), z = tPos.getZ(i);
+    const h = fbm(x, z);
+    tPos.setY(i, h);
+    hGrid.push({ x, z, h });
+  }
+  tPos.needsUpdate = true;
+  terrGeo.computeVertexNormals();
+
+  /* Solid dark underlay */
+  scene.add(new THREE.Mesh(terrGeo,
+    new THREE.MeshBasicMaterial({ color: 0x040810 })
+  ));
+
+  /* Bright wireframe overlay — the iconic FPV look */
+  const wireMat = new THREE.MeshBasicMaterial({
+    color: 0x00ff80, wireframe: true, transparent: true, opacity: 0.55
+  });
+  scene.add(new THREE.Mesh(terrGeo, wireMat));
+
+  /* ── FPV Race Gates ── */
+  function makeGate(x, z, ry, size) {
+    const g = new THREE.Group();
+    const barMat = new THREE.MeshBasicMaterial({ color: 0xff3300 });
+    const hBar = new THREE.Mesh(new THREE.BoxGeometry(size, 0.18, 0.18), barMat);
+    hBar.position.y = size * 0.55;
+    g.add(hBar);
+    const bBar = new THREE.Mesh(new THREE.BoxGeometry(size, 0.18, 0.18), barMat);
+    bBar.position.y = -size * 0.02;
+    g.add(bBar);
+    const lBar = new THREE.Mesh(new THREE.BoxGeometry(0.18, size * 0.6, 0.18), barMat);
+    lBar.position.set(-size * 0.5, size * 0.27, 0);
+    g.add(lBar);
+    const rBar = new THREE.Mesh(new THREE.BoxGeometry(0.18, size * 0.6, 0.18), barMat);
+    rBar.position.set( size * 0.5, size * 0.27, 0);
+    g.add(rBar);
+    /* Glow strips */
+    const gMat = new THREE.MeshBasicMaterial({ color: 0xff6600 });
+    for (const [ox, oy] of [[-size*.5, size*.55],[size*.5, size*.55],[-size*.5, 0],[size*.5, 0]]) {
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(0.25, 5, 5), gMat);
+      dot.position.set(ox, oy, 0);
+      g.add(dot);
+    }
+    const th = fbm(x, z);
+    g.position.set(x, th + size * 0.25, z);
+    g.rotation.y = ry;
+    return g;
+  }
+
+  const gates = [];
+  const gateConfigs = [
+    [0,   -30, 0,      4.5],
+    [20,  -15, 0.4,    4.0],
+    [30,   10, 0.9,    4.5],
+    [10,   30, 1.5,    3.8],
+    [-15,  20, 2.2,    4.2],
+    [-25,  -5, 2.8,    4.5],
+    [-10, -20, 3.4,    4.0],
+  ];
+  gateConfigs.forEach(([x, z, ry, s]) => {
+    const g = makeGate(x, z, ry, s);
+    scene.add(g);
+    gates.push({ group: g, x, z, passed: false });
+  });
+
+  /* ── Mouse / touch steering ── */
+  let steerX = 0, steerY = 0;  // -1 to +1
+  let currentBank  = 0;
+  let currentPitch = -0.35; // FPV forward lean angle
+  let currentYaw   = 0;
+
+  function updateSteer(nx, ny) {
+    steerX = (nx - 0.5) * 2;   // -1 left, +1 right
+    steerY = (ny - 0.5) * 2;   // -1 up,   +1 down
+  }
+  mount.addEventListener("mousemove", e => {
+    const r = mount.getBoundingClientRect();
+    updateSteer((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+  });
+  mount.addEventListener("mouseleave", () => { steerX = 0; steerY = 0; });
+  mount.addEventListener("touchmove", e => {
+    const r = mount.getBoundingClientRect();
+    updateSteer((e.touches[0].clientX - r.left) / r.width, (e.touches[0].clientY - r.top) / r.height);
+  }, { passive: true });
+  mount.addEventListener("touchend", () => { steerX = 0; steerY = 0; });
+
+  /* ── HUD canvas ── */
+  const hudCanvas = document.getElementById("droneHudCanvas");
+  const hctx = hudCanvas ? hudCanvas.getContext("2d") : null;
+  const DPR_H = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resizeHud() {
+    if (!hudCanvas) return;
+    hudCanvas.width  = mount.clientWidth  * DPR_H;
+    hudCanvas.height = mount.clientHeight * DPR_H;
+    hctx.setTransform(DPR_H, 0, 0, DPR_H, 0, 0);
+  }
+  resizeHud();
+
+  function drawHUD(speedKph, alt, bat, bank) {
+    if (!hctx) return;
+    const W = mount.clientWidth, H = mount.clientHeight;
+    hctx.clearRect(0, 0, W, H);
+    const C = "rgba(0,255,120,";
+
+    /* Corner brackets */
+    hctx.strokeStyle = C + ".7)"; hctx.lineWidth = 1.5;
+    [[0,0,1,1],[W,0,-1,1],[0,H,1,-1],[W,H,-1,-1]].forEach(([bx,by,sx,sy]) => {
+      hctx.beginPath();
+      hctx.moveTo(bx + sx*8, by); hctx.lineTo(bx + sx*26, by);
+      hctx.moveTo(bx, by + sy*8); hctx.lineTo(bx, by + sy*26);
+      hctx.stroke();
+    });
+
+    /* Artificial horizon — tilts with bank */
+    const cx = W / 2, cy = H / 2;
+    hctx.save();
+    hctx.translate(cx, cy);
+    hctx.rotate(bank);
+    hctx.strokeStyle = C + ".8)"; hctx.lineWidth = 1.5;
+    hctx.beginPath(); hctx.moveTo(-40, 0); hctx.lineTo(-15, 0); hctx.stroke();
+    hctx.beginPath(); hctx.moveTo( 15, 0); hctx.lineTo( 40, 0); hctx.stroke();
+    hctx.restore();
+
+    /* Centre dot */
+    hctx.fillStyle = C + ".9)";
+    hctx.beginPath(); hctx.arc(cx, cy, 2.5, 0, Math.PI*2); hctx.fill();
+    hctx.strokeStyle = C + ".5)"; hctx.lineWidth = 1;
+    hctx.beginPath(); hctx.arc(cx, cy, 7, 0, Math.PI*2); hctx.stroke();
+
+    /* Telemetry */
+    hctx.font = "bold 11px 'Courier New', monospace";
+    hctx.fillStyle = C + ".85)";
+    const lines_l = [`SPD  ${speedKph} km/h`, `ALT  ${alt.toFixed(1)} m`, `BAT  ${bat}%`];
+    lines_l.forEach((l, i) => hctx.fillText(l, 14, 22 + i * 17));
+
+    const lines_r = ["RFPV", "GPS LOCK", "SAT  12"];
+    lines_r.forEach((l, i) => {
+      const tw = hctx.measureText(l).width;
+      hctx.fillText(l, W - tw - 14, 22 + i * 17);
+    });
+
+    /* Gate cleared counter */
+    const cleared = gates.filter(g => g.passed).length;
+    hctx.fillStyle = cleared > 0 ? "rgba(255,200,0,.9)" : C + ".4)";
+    const gateStr = `GATES  ${cleared} / ${gates.length}`;
+    const tw = hctx.measureText(gateStr).width;
+    hctx.fillText(gateStr, (W - tw) / 2, H - 18);
+  }
+
+  /* ── Resize ── */
+  window.addEventListener("resize", () => {
+    const w = mount.clientWidth, h = mount.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    resizeHud();
+  });
+
+  /* ── Flight state ── */
+  const dronePos = new THREE.Vector3(0, 8, 5);
+  const droneVel = new THREE.Vector3(0, 0, -8); // start flying forward
+  let droneYaw   = 0;
+  let bat        = 91;
+  let lastGateCheck = 0;
+
+  function getTerrainHeight(x, z) {
+    return fbm(x, z);
+  }
+
+  /* ── Loop ── */
+  const clock = new THREE.Clock();
+  (function animate() {
+    requestAnimationFrame(animate);
+    const dt  = Math.min(clock.getDelta(), 0.05);
+    const t   = clock.getElapsedTime();
+
+    /* FPV physics: steerX banks and yaws, steerY pitches throttle */
+    const BANK_SPEED = 3.5, YAW_RATE = 1.8, PITCH_RATE = 2.0;
+    const FWD_SPEED  = 14; // base forward speed m/s
+
+    /* Smooth the bank angle toward steer input */
+    currentBank  += (-steerX * 0.65 - currentBank)  * 0.1;
+    currentPitch += (-0.35 - steerY * 0.30 - currentPitch) * 0.08;
+
+    /* Yaw the drone based on steer x (banking = turning in FPV) */
+    droneYaw -= steerX * YAW_RATE * dt;
+
+    /* Velocity: always forward in current yaw direction */
+    const speed = FWD_SPEED + Math.sin(t * 0.3) * 1.5; // slight speed variation
+    droneVel.x = Math.sin(droneYaw) * -speed;
+    droneVel.z = Math.cos(droneYaw) * -speed;
+    /* Altitude: drift up/down with pitch input, stay above terrain */
+    const groundH  = getTerrainHeight(dronePos.x, dronePos.z);
+    const minAlt   = groundH + 2.5;
+    const thrustY  = -steerY * 4;
+    droneVel.y     = thrustY + (minAlt - dronePos.y) * 2.5; // ground avoidance
+
+    dronePos.addScaledVector(droneVel, dt);
+    dronePos.y = Math.max(dronePos.y, minAlt);
+
+    /* Wrap position so drone stays over terrain */
+    const HALF = T_SIZE / 2 - 5;
+    if (dronePos.x >  HALF) dronePos.x -= T_SIZE - 10;
+    if (dronePos.x < -HALF) dronePos.x += T_SIZE - 10;
+    if (dronePos.z >  HALF) dronePos.z -= T_SIZE - 10;
+    if (dronePos.z < -HALF) dronePos.z += T_SIZE - 10;
+
+    /* Camera = drone position + look in yaw+pitch direction */
+    camera.position.copy(dronePos);
+    camera.rotation.set(currentPitch, droneYaw, currentBank);
+
+    /* ── Gate pass detection ── */
+    gates.forEach(g => {
+      if (g.passed) return;
+      const dx = dronePos.x - g.x;
+      const dz = dronePos.z - g.z;
+      if (Math.sqrt(dx*dx + dz*dz) < 3.5) {
+        g.passed = true;
+        /* Flash the gate green briefly */
+        g.group.traverse(c => {
+          if (c.isMesh) { c.material = new THREE.MeshBasicMaterial({ color: 0x00ff88 }); }
+        });
+        setTimeout(() => {
+          g.group.traverse(c => {
+            if (c.isMesh) { c.material = new THREE.MeshBasicMaterial({ color: 0xff3300 }); }
+          });
+        }, 400);
+      }
+    });
+
+    /* Wiggle gates gently */
+    gates.forEach((g, i) => {
+      g.group.rotation.y = g.group.userData.baseY || (g.group.userData.baseY = g.group.rotation.y);
+      g.group.rotation.y += Math.sin(t * 0.6 + i) * 0.002;
+    });
+
+    /* Battery drain */
+    bat = Math.max(0, bat - dt * 0.04);
+
+    /* Draw HUD */
+    const kph = Math.round(Math.sqrt(droneVel.x**2 + droneVel.z**2) * 3.6);
+    const alt = dronePos.y - getTerrainHeight(dronePos.x, dronePos.z);
+    drawHUD(kph, alt, Math.round(bat), currentBank);
+
+    renderer.render(scene, camera);
+  })();
+  </script>
+</body>
+</html>

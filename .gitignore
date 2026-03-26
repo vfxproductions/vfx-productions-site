@@ -1,0 +1,6 @@
+# Backup archives
+*.zip
+*.bak
+
+# Claude memory
+.claude/

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Visual Effects (VFX) — Vision For Xperiences</title>
+  <meta name="description" content="Film-grade visual effects: compositing, simulations, set extensions, tracking, and stylized looks. Built for music, brands, and experiences." />
+  <meta name="keywords" content="VFX studio, visual effects, compositing, film VFX, set extensions, motion graphics, visual effects Netherlands, Vision For Xperiences" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="assets/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="Visual Effects (VFX) — Vision For Xperiences" />
+  <meta property="og:description" content="Film-grade visual effects: compositing, simulations, set extensions, and stylized looks." />
+  <meta property="og:image" content="assets/about.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+    <a href="index.html" data-nav>Home</a>
+    <a href="about.html" data-nav>About</a>
+    <a href="vfx.html" data-nav>VFX</a>
+    <a href="animation.html" data-nav>Animation</a>
+    <a href="visuals.html" data-nav>Visuals</a>
+    <a href="technology.html" data-nav>Technology</a>
+    <a href="droneoperator.html" data-nav>Drone Operator</a>
+    <a href="shop.html" data-nav>Shop</a>
+    <a href="contact.html" data-nav>Contact</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="right">
+        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/breakdown.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">VFX</div>
+          <h1>COMPOSING<br>REALITY.</h1>
+          <p class="sub">
+            Visual effects are not about spectacle. They are about control.
+            Shaping what the audience sees, feels, and believes — frame by frame.
+          </p>
+        </div>
+      </div>
+      <a class="down" href="#story" aria-label="Scroll to next section">
+        Learn More
+        <span class="chev"></span>
+      </a>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" style="max-width:var(--maxw);margin:0 auto;padding:90px 22px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;">
+        <div>
+          <div class="kicker">What is VFX</div>
+          <p class="sub">
+            VFX is the art of combining reality with intention. Through compositing,
+            tracking, simulation, and digital construction, we extend what a camera
+            can capture. Sets become infinite. Products become cinematic. Ideas
+            become visible.
+          </p>
+        </div>
+        <div>
+          <div class="kicker">Where it applies</div>
+          <p class="sub">
+            Film, advertising, events, education, architecture, logistics, product
+            launches — any industry that needs to explain, persuade, or impress
+            can leverage VFX. If it can be imagined, it can be visualized.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPOSITING LAB -->
+    <section class="section" style="min-height:120svh;">
+      <div class="fade"></div>
+      <div class="three-mount" data-three="composite"></div>
+      <div class="content" style="align-items:flex-start;">
+        <div class="copy">
+          <div class="kicker">How VFX works</div>
+          <h1>LAYERS.<br>DEPTH.<br>CONTROL.</h1>
+          <p class="sub">
+            A single frame is rarely a single image. It's a stack of elements —
+            foreground, midground, background, light, atmosphere — each tuned
+            independently. Move the layers, and the world bends.
+          </p>
+          <div style="margin-top:32px;max-width:420px;">
+            <div class="slider-rail">
+              <span class="hint left">&lt;&lt;</span>
+              <input id="depthSlider" class="depth-slider" type="range" min="1" max="100" value="40" aria-label="Layer depth" />
+              <span class="hint right">&gt;&gt;</span>
+            </div>
+            <div class="kicker" style="margin-top:10px;">Try separating the layers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL RESULT -->
+    <section class="section" id="final">
+      <div class="media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/vfx.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="fade"></div>
+      <div class="content">
+        <div class="copy">
+          <div class="kicker">The final result</div>
+          <h1>THE<br>FINAL<br>RESULT.</h1>
+          <p class="sub">
+            Every layer has a purpose. Light, depth, motion, atmosphere, and detail are engineered
+            into a single frame that feels inevitable. You don't see the stack — you feel the impact.
+            That's what film-grade VFX delivers.
+          </p>
+          <div class="actions">
+            <a class="btn" href="contact.html">Start a project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Vision For Xperiences" style="height:22px;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="vfx.html">VFX</a>
+        <a href="animation.html">Animation</a>
+        <a href="visuals.html">Visuals</a>
+        <a href="technology.html">Technology</a>
+        <a href="droneoperator.html">Drone Operator</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    const drawer   = document.getElementById("drawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    const ham      = document.getElementById("hamburger");
+    const close    = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); }
+    ham.addEventListener("click", open);
+    close.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(a => a.addEventListener("click", shut));
+    window.addEventListener("keydown", e => { if(e.key==="Escape") shut(); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        const t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+  })();
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+  import * as THREE from "three";
+
+  const mount = document.querySelector('.three-mount[data-three="composite"]');
+  if (mount) {
+    const renderer = new THREE.WebGLRenderer({ alpha:true, antialias:true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    mount.appendChild(renderer.domElement);
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, mount.clientWidth / mount.clientHeight, 0.1, 100);
+    camera.position.set(-1, 0, 6);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1));
+
+    const loader  = new THREE.TextureLoader();
+    const layers  = [];
+    const urls    = ["assets/layer1.png","assets/layer2.png","assets/layer3.png","assets/layer4.png"];
+
+    urls.forEach((u, i) => {
+      const mesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(4, 2.5),
+        new THREE.MeshBasicMaterial({ map: loader.load(u), transparent: true })
+      );
+      mesh.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.PlaneGeometry(4, 2.5)),
+        new THREE.LineBasicMaterial({ color: 0x888888 })
+      ));
+      mesh.position.z = -i * 0.4;
+      scene.add(mesh);
+      layers.push(mesh);
+    });
+
+    const mouse  = { x:0, y:0 };
+    const slider = document.getElementById("depthSlider");
+
+    window.addEventListener("mousemove", e => {
+      const r = mount.getBoundingClientRect();
+      mouse.x = ((e.clientX - r.left) / r.width)  * 2 - 1;
+      mouse.y = ((e.clientY - r.top)  / r.height) * 2 - 1;
+    });
+
+    window.addEventListener("resize", () => {
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.updateProjectionMatrix();
+    });
+
+    (function animate(){
+      requestAnimationFrame(animate);
+      const depth = (slider.value / 100) * 2;
+      layers.forEach((m, i) => {
+        m.position.z = -i * depth;
+        m.rotation.y += (mouse.x * 0.25 - m.rotation.y) * 0.05;
+        m.rotation.x += (-mouse.y * 0.15 - m.rotation.x) * 0.05;
+      });
+      renderer.render(scene, camera);
+    })();
+  }
+  </script>
+</body>
+</html>
