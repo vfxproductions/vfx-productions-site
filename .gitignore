@@ -4,4 +4,7 @@
 
 # Claude memory
 .claude/
-*.glb filter=lfs diff=lfs merge=lfs -text
+
+# Large 3D model files (unused, exceed GitHub 100MB limit)
+models/festival_stage.glb
+models/people_model.glb

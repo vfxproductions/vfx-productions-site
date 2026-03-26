@@ -45,14 +45,14 @@
       <div class="drawer-title">Navigation</div>
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
     </div>
-    <a href="about.html" data-nav>About</a>
-    <a href="vfx.html" data-nav>VFX</a>
-    <a href="animation.html" data-nav>Animation</a>
-    <a href="visuals.html" data-nav>Visuals</a>
-    <a href="technology.html" data-nav>Technology</a>
-    <a href="droneoperator.html" data-nav>Drone Operator</a>
-    <a href="shop.html" data-nav>Shop</a>
-    <a href="contact.html" data-nav>Contact</a>
+    <a href="/about" data-nav>About</a>
+    <a href="/vfx" data-nav>VFX</a>
+    <a href="/animation" data-nav>Animation</a>
+    <a href="/visuals" data-nav>Visuals</a>
+    <a href="/technology" data-nav>Technology</a>
+    <a href="/droneoperator" data-nav>Drone Operator</a>
+    <a href="/shop" data-nav>Shop</a>
+    <a href="/contact" data-nav>Contact</a>
   </aside>
 
   <!-- Events modal -->
@@ -73,14 +73,14 @@
       </a>
 
       <div class="links" aria-label="Site links">
-        <a href="about.html">About</a>
-        <a href="vfx.html">VFX</a>
-        <a href="animation.html">Animation</a>
-        <a href="visuals.html">Visuals</a>
-        <a href="technology.html">Technology</a>
-        <a href="droneoperator.html">Drone Operator</a>
-        <a href="shop.html">Shop</a>
-        <a href="contact.html">Contact</a>
+        <a href="/about">About</a>
+        <a href="/vfx">VFX</a>
+        <a href="/animation">Animation</a>
+        <a href="/visuals">Visuals</a>
+        <a href="/technology">Technology</a>
+        <a href="/droneoperator">Drone Operator</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
       </div>
 
       <div class="right">
@@ -113,7 +113,7 @@
             From festival stages to corporate keynotes — you name it, we build it.
           </p>
           <div class="actions">
-            <a class="btn" href="contact.html">Get in touch</a>
+            <a class="btn" href="/contact">Get in touch</a>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
             real-time visuals, and interactive systems that keep audiences locked in.
           </p>
           <div class="actions">
-            <a class="btn" href="about.html">About us</a>
+            <a class="btn" href="/about">About us</a>
           </div>
         </div>
       </div>
@@ -166,7 +166,7 @@
             Built for music, brands, and experiences that need to feel unreal — but believable.
           </p>
           <div class="actions">
-            <a class="btn" href="vfx.html">Learn more →</a>
+            <a class="btn" href="/vfx">Learn more →</a>
           </div>
         </div>
       </div>
@@ -192,7 +192,7 @@
             Designed to communicate fast and land clean.
           </p>
           <div class="actions">
-            <a class="btn" href="animation.html">Take a ride</a>
+            <a class="btn" href="/animation">Take a ride</a>
           </div>
         </div>
       </div>
@@ -220,7 +220,7 @@
             If it needs energy, we ship it.
           </p>
           <div class="actions">
-            <a class="btn" href="visuals.html">Xperience in 3D</a>
+            <a class="btn" href="/visuals">Xperience in 3D</a>
           </div>
         </div>
       </div>
@@ -246,7 +246,7 @@
             Built to be robust in public environments and smooth for users.
           </p>
           <div class="actions">
-            <a class="btn" href="technology.html">Interact</a>
+            <a class="btn" href="/technology">Interact</a>
           </div>
         </div>
       </div>
@@ -274,7 +274,7 @@
             Smooth flight paths, precise framing, and data-backed previsualization for clean delivery.
           </p>
           <div class="actions">
-            <a class="btn" href="droneoperator.html">See from above</a>
+            <a class="btn" href="/droneoperator">See from above</a>
           </div>
         </div>
       </div>
@@ -301,7 +301,7 @@
             Presets, packs, templates, and one-off assets. Built for creators that want to move fast.
           </p>
           <div class="actions">
-            <a class="btn" href="shop.html">Shop</a>
+            <a class="btn" href="/shop">Shop</a>
           </div>
         </div>
       </div>
@@ -318,14 +318,14 @@
         <img src="assets/logo.png" alt="Vision For Xperiences" style="height:22px;object-fit:contain;opacity:.7;" />
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
-        <a href="about.html">About</a>
-        <a href="vfx.html">VFX</a>
-        <a href="animation.html">Animation</a>
-        <a href="visuals.html">Visuals</a>
-        <a href="technology.html">Technology</a>
-        <a href="droneoperator.html">Drone Operator</a>
-        <a href="shop.html">Shop</a>
-        <a href="contact.html">Contact</a>
+        <a href="/about">About</a>
+        <a href="/vfx">VFX</a>
+        <a href="/animation">Animation</a>
+        <a href="/visuals">Visuals</a>
+        <a href="/technology">Technology</a>
+        <a href="/droneoperator">Drone Operator</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
     </div>
@@ -458,6 +458,8 @@
     /* ========== SCROLL SNAP ========== */
     /* Each scroll input moves exactly one section. Nav links bypass this and jump directly. */
     (function(){
+      /* Scroll snap feels great on desktop but annoying on mobile — disable it there */
+      if (window.innerWidth < 980) return;
       const sections = Array.from(document.querySelectorAll("section.section"));
       if (sections.length < 2) return;
 
