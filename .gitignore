@@ -4,3 +4,4 @@
 
 # Claude memory
 .claude/
+*.glb filter=lfs diff=lfs merge=lfs -text
