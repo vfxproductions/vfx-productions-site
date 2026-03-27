@@ -286,6 +286,10 @@
       text-transform: uppercase;
       font-weight: 950;
     }
+    #hero h1{
+      color: transparent;
+      -webkit-text-stroke: 2px #fff;
+    }
     .sub{
       margin-top: 14px;
       max-width: 56ch;
