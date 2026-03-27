@@ -287,6 +287,9 @@
       font-weight: 950;
     }
     #hero h1{
+      color: #fff;
+    }
+    #hero h1 .h1-outline{
       color: transparent;
       -webkit-text-stroke: 2px #fff;
     }
