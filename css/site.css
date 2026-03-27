@@ -507,6 +507,7 @@
     @media (max-width: 480px){
       /* Slightly tighter headings so long titles don't overflow */
       h1{ font-size: clamp(1.85rem, 8.5vw, 2.5rem); line-height: 1.0; }
+      #hero h1{ -webkit-text-stroke-width: 1px; }
       /* More breathing room between kicker and headline */
       .kicker{ margin-bottom: 8px; }
       /* Stack actions buttons on phones */
