@@ -481,6 +481,10 @@
     @media (max-width: 640px){
       /* Phone: hide the events countdown — keeps nav clean (logo + hamburger only) */
       .events-widget{ display:none; }
+      /* Hamburger top-left, logo centered */
+      .nav{ position: relative; justify-content: flex-start; }
+      .brand{ position: absolute; left: 50%; transform: translateX(-50%); }
+      .right{ order: -1; }
     }
 
     @media (max-width: 560px){
