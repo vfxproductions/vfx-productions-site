@@ -15,55 +15,6 @@
   <meta property="og:image" content="/assets/about.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="/css/site.css" />
-  <style>
-    .stage-size-btn {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.15);
-      color: rgba(255,255,255,.65);
-      font: 700 .72rem/1 inherit;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 10px 22px;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background .2s, color .2s, border-color .2s;
-    }
-    .stage-size-btn:hover, .stage-size-btn.active {
-      background: rgba(255,255,255,.13);
-      border-color: rgba(255,255,255,.45);
-      color: #fff;
-    }
-    #stageModal {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.88); z-index: 900;
-      align-items: center; justify-content: center;
-    }
-    #stageModal.open { display: flex; }
-    .stage-modal-inner {
-      position: relative; background: #0c0c16;
-      border: 1px solid rgba(255,255,255,.1); border-radius: 3px;
-      padding: 28px; max-width: 820px; width: 92%;
-      max-height: 90svh; overflow: auto;
-    }
-    .stage-modal-close {
-      position: absolute; top: 12px; right: 16px;
-      background: none; border: none; color: rgba(255,255,255,.55);
-      font-size: 1.7rem; cursor: pointer; line-height: 1; padding: 0;
-    }
-    .stage-modal-close:hover { color: #fff; }
-    .stage-modal-label {
-      font-size: .68rem; letter-spacing: .1em;
-      text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 14px;
-    }
-    .stage-modal-video {
-      width: 100%; border-radius: 2px; display: block;
-      background: #000; max-height: 60svh;
-    }
-    .stage-modal-note {
-      font-size: .72rem; color: rgba(255,255,255,.28);
-      margin-top: 10px; letter-spacing: .04em;
-    }
-  </style>
 </head>
 
 <body>
@@ -165,31 +116,15 @@
       <div style="max-width:var(--maxw);margin:0 auto;padding:72px 22px 28px;">
         <div class="kicker">Interactive Demo</div>
         <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Feel the stage.</h2>
-        <p class="sub" style="max-width:520px;margin-bottom:28px;">
-          Drag to orbit around the venue. Switch between venue sizes. The LED wall plays our actual visuals.
-          Click the glowing crowd figures or the stage to learn more.
+        <p class="sub" style="max-width:520px;margin-bottom:0;">
+          Drag to orbit the venue. Scroll to zoom. The screen plays our actual visuals —
+          click the glowing crowd figures to see the experience from their perspective.
         </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="stage-size-btn" id="sizeClub">Club</button>
-          <button class="stage-size-btn active" id="sizeFestival">Festival</button>
-          <button class="stage-size-btn" id="sizeArena">Arena</button>
-        </div>
       </div>
-      <!-- Three.js canvas goes in here via JS, BEFORE the overlay divs -->
-      <div id="stageMount" style="width:100%;height:65svh;min-height:380px;max-height:700px;position:relative;overflow:hidden;cursor:grab;">
-        <!-- overlays injected after canvas by JS -->
+      <div id="stageMount" style="width:100%;height:65svh;min-height:380px;max-height:720px;position:relative;overflow:hidden;cursor:grab;">
+        <!-- canvas + overlays injected by JS -->
       </div>
     </section>
-
-    <!-- Crowd-view modal -->
-    <div id="stageModal">
-      <div class="stage-modal-inner">
-        <button class="stage-modal-close" id="modalClose" aria-label="Close">×</button>
-        <div class="stage-modal-label" id="modalTitle">Event footage</div>
-        <video class="stage-modal-video" id="modalVideo" muted loop playsinline controls></video>
-        <p class="stage-modal-note">Captured on location — this is what the crowd actually sees.</p>
-      </div>
-    </div>
 
     <!-- FINAL -->
     <section class="section" id="final">
@@ -276,59 +211,45 @@
   })();
   </script>
 
-  <!-- Three.js — same CDN as the working drone page -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <script type="module">
-  import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+  import * as THREE from "three";
+  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
   /* ═══════════════════════════════════════════════════════
-     3D FESTIVAL STAGE — Vision For Xperiences
-     No external controls lib — custom drag-orbit camera.
-     Same renderer setup as the working drone FPV sim.
+     3D CLUB STAGE — Vision For Xperiences
+     Loads Club.glb, applies video textures + custom materials.
+     No OrbitControls — custom drag-orbit camera.
   ═══════════════════════════════════════════════════════ */
 
   const mount = document.getElementById("stageMount");
   if (!mount) throw new Error("no stageMount");
 
-  /* ── Renderer — identical pattern to drone page ── */
-  const renderer = new THREE.WebGLRenderer({ antialias: false });
-  renderer.setPixelRatio(1);
+  /* ── Renderer ── */
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setSize(mount.clientWidth, mount.clientHeight);
   renderer.setClearColor(0x050508, 1);
-  renderer.domElement.style.cssText = "position:absolute;inset:0;display:block;width:100%;height:100%;";
+  renderer.shadowMap.enabled = false;
+  renderer.domElement.style.cssText = "position:absolute;inset:0;display:block;width:100%;height:100%;cursor:grab;";
   mount.insertBefore(renderer.domElement, mount.firstChild);
-
-  /* ── Overlay divs (injected after canvas so they sit on top) ── */
-  const hintDiv = Object.assign(document.createElement("div"), {
-    innerHTML: "DRAG TO ORBIT &middot; CLICK STAGE OR CROWD FIGURES",
-    style: "position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);font-size:.72rem;letter-spacing:.07em;padding:7px 16px;border-radius:20px;pointer-events:none;white-space:nowrap;z-index:5;"
-  });
-  mount.appendChild(hintDiv);
-
-  const anatomyDiv = Object.assign(document.createElement("div"), {
-    innerHTML: "<div style='color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.12em;margin-bottom:3px;'>STAGE ANATOMY</div><div>LED WALL — beat-reactive visuals</div><div>COLOUR LIGHTS — animated moving heads</div><div>48 CROWD FIGURES — drag to orbit</div><div style='margin-top:5px;color:rgba(255,255,255,.18);'>CLICK STAGE / GLOWING FIGURES</div>",
-    style: "position:absolute;top:16px;right:16px;font:.60rem/1.7 'Courier New',monospace;letter-spacing:.07em;color:rgba(255,255,255,.32);pointer-events:none;text-align:right;z-index:5;"
-  });
-  mount.appendChild(anatomyDiv);
-
-  const tooltipDiv = Object.assign(document.createElement("div"), {
-    style: "position:absolute;bottom:58px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.9);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font:.66rem/1.55 'Courier New',monospace;letter-spacing:.06em;padding:10px 18px;border-radius:2px;pointer-events:none;text-align:center;max-width:82%;opacity:0;transition:opacity .3s;z-index:6;white-space:normal;"
-  });
-  mount.appendChild(tooltipDiv);
 
   /* ── Scene ── */
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x050508);
-  scene.fog = new THREE.FogExp2(0x050508, 0.012);
+  scene.fog = new THREE.Fog(0x050508, 25, 65);
 
-  /* ── Camera ── */
-  const camera = new THREE.PerspectiveCamera(55, mount.clientWidth / mount.clientHeight, 0.1, 300);
-
-  /* ── Custom drag-orbit (no external lib needed) ── */
-  let camTheta  = 0.0;   // horizontal angle
-  let camPhi    = 1.1;   // vertical angle (radians from top)
-  let camRadius = 16;
-  const camTarget = new THREE.Vector3(0, 2.5, 0);
-
+  /* ── Camera — wide-ish FOV for immersive feel ── */
+  const camera = new THREE.PerspectiveCamera(78, mount.clientWidth / mount.clientHeight, 0.1, 100);
+  let camTheta = 1.05, camPhi = 1.1, camRadius = 15;
+  const camTarget = new THREE.Vector3(3, 1.5, 0);
   function syncCamera() {
     camera.position.set(
       camTarget.x + camRadius * Math.sin(camPhi) * Math.sin(camTheta),
@@ -339,353 +260,255 @@
   }
   syncCamera();
 
-  /* Venue presets */
-  function applySize(key) {
-    const C = {
-      club:     { theta:0, phi:1.1, radius:10,  ty:1.5 },
-      festival: { theta:0, phi:1.1, radius:16,  ty:2.5 },
-      arena:    { theta:0, phi:0.95,radius:30,  ty:3.0 },
-    }[key];
-    camTheta = C.theta; camPhi = C.phi; camRadius = C.radius;
-    camTarget.set(0, C.ty, 0);
-    syncCamera();
-    document.querySelectorAll(".stage-size-btn").forEach(b => b.classList.remove("active"));
-    document.getElementById({club:"sizeClub",festival:"sizeFestival",arena:"sizeArena"}[key]).classList.add("active");
+  /* ── Ambient ── */
+  scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+  /* ── Spotlights at venue fixture positions ── */
+  // Positions derived from Cylinder node locations in Club.glb
+  const spotDefs = [
+    { pos: [-0.55, 6.5, -2.0],  target: [5, 0, 2],   color: 0xffffff, intensity: 150, angle: 0.40 },
+    { pos: [ 0.62, 6.5, -2.0],  target: [4, 0, -1],  color: 0x3366ff, intensity: 100, angle: 0.42 },
+    { pos: [ 2.15, 7.0,  3.5],  target: [1, 0.5, 0], color: 0xff2255, intensity: 80,  angle: 0.50 },
+    { pos: [ 0.96, 6.0,  4.26], target: [0, 0.5, 0], color: 0xffffff, intensity: 70,  angle: 0.38 },
+    { pos: [ 8.0,  5.5,  2.0],  target: [4, 0, 0],   color: 0xcc44ff, intensity: 60,  angle: 0.55 },
+    { pos: [ 1.04, 5.5,  1.31], target: [4, 0, -2],  color: 0xff8800, intensity: 50,  angle: 0.60 },
+  ];
+  spotDefs.forEach(({ pos, target, color, intensity, angle }) => {
+    const spot = new THREE.SpotLight(color, intensity);
+    spot.position.set(...pos);
+    spot.angle   = angle;
+    spot.penumbra = 0.45;
+    spot.decay   = 2;
+    spot.distance = 35;
+    const tgt = new THREE.Object3D();
+    tgt.position.set(...target);
+    scene.add(tgt);
+    spot.target = tgt;
+    scene.add(spot);
+  });
+
+  /* ── Video helpers ── */
+  function makeVideo(src) {
+    const v = document.createElement("video");
+    v.src = src;
+    v.crossOrigin = "anonymous";
+    v.loop = v.muted = v.autoplay = v.playsInline = true;
+    v.play().catch(() => {});
+    const tex = new THREE.VideoTexture(v);
+    tex.minFilter = tex.magFilter = THREE.LinearFilter;
+    return { v, tex };
   }
-  document.getElementById("sizeClub").addEventListener("click",     () => applySize("club"));
-  document.getElementById("sizeFestival").addEventListener("click", () => applySize("festival"));
-  document.getElementById("sizeArena").addEventListener("click",    () => applySize("arena"));
+  const stageVid = makeVideo("/assets/crowdexperience1.mp4");
+  const vid1     = makeVideo("/assets/crowdexperience1.mp4");
+  const vid2     = makeVideo("/assets/crowdexperience2.mp4");
 
-  /* Mouse drag */
-  let dragging  = false;
-  let prevMX = 0, prevMY = 0;
-  let dragPixels = 0;
+  /* ── Shared materials ── */
+  const matDark  = new THREE.MeshStandardMaterial({ color: 0x080810, roughness: 0.88, metalness: 0.05 });
+  const matEmit  = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveIntensity: 3.5, roughness: 1, metalness: 0 });
+  const matStage = new THREE.MeshBasicMaterial({ map: stageVid.tex });
+  const matVid1  = new THREE.MeshBasicMaterial({ map: vid1.tex, side: THREE.DoubleSide });
+  const matVid2  = new THREE.MeshBasicMaterial({ map: vid2.tex, side: THREE.DoubleSide });
 
-  mount.addEventListener("mousedown", e => {
-    dragging = true; prevMX = e.clientX; prevMY = e.clientY; dragPixels = 0;
-    mount.style.cursor = "grabbing";
-  });
-  window.addEventListener("mouseup", () => { dragging = false; mount.style.cursor = "grab"; });
-  mount.addEventListener("mousemove", e => {
-    if (!dragging) return;
-    const dx = e.clientX - prevMX, dy = e.clientY - prevMY;
-    dragPixels += Math.abs(dx) + Math.abs(dy);
-    camTheta -= dx * 0.007;
-    camPhi = Math.max(0.18, Math.min(1.48, camPhi + dy * 0.006));
-    prevMX = e.clientX; prevMY = e.clientY;
-    syncCamera();
-  });
+  /* ── Video panels — 3D planes that float near each person ── */
+  // Positions hardcoded from GLB node translations (Person_001 & Person_002)
+  const panelGeo = new THREE.PlaneGeometry(2.6, 1.46);
 
-  /* Touch drag */
-  let prevTX = 0, prevTY = 0, touching = false;
-  mount.addEventListener("touchstart", e => {
-    touching = true; prevTX = e.touches[0].clientX; prevTY = e.touches[0].clientY; dragPixels = 0;
-  }, { passive: true });
-  mount.addEventListener("touchmove", e => {
-    if (!touching) return;
-    const dx = e.touches[0].clientX - prevTX, dy = e.touches[0].clientY - prevTY;
-    dragPixels += Math.abs(dx) + Math.abs(dy);
-    camTheta -= dx * 0.007;
-    camPhi = Math.max(0.18, Math.min(1.48, camPhi + dy * 0.006));
-    prevTX = e.touches[0].clientX; prevTY = e.touches[0].clientY;
-    syncCamera();
-  }, { passive: true });
-  mount.addEventListener("touchend", () => { touching = false; });
+  const panel1 = new THREE.Mesh(panelGeo, matVid1);
+  panel1.position.set(7.76, 2.6, -2.33);
+  panel1.visible = false;
+  scene.add(panel1);
 
-  /* Scroll to zoom */
-  mount.addEventListener("wheel", e => {
-    e.preventDefault();
-    camRadius = Math.max(5, Math.min(55, camRadius + e.deltaY * 0.05));
-    syncCamera();
-  }, { passive: false });
+  const panel2 = new THREE.Mesh(panelGeo, matVid2);
+  panel2.position.set(5.31, 2.9, 1.45);
+  panel2.visible = false;
+  scene.add(panel2);
 
-  /* ── Lighting — PointLights only, no shadows ── */
-  scene.add(new THREE.AmbientLight(0x111122, 5));
+  /* ── GLB ── */
+  const loader = new GLTFLoader();
 
-  const LIGHT_COLORS = [0xff2255, 0x3366ff, 0x22ddaa, 0xff8800, 0xaa44ff];
-  const animLights = [];
-  LIGHT_COLORS.forEach((col, i) => {
-    const angle = (i / LIGHT_COLORS.length) * Math.PI * 1.2 - 0.6;
-    const pl = new THREE.PointLight(col, 22, 30);
-    pl.position.set(Math.sin(angle) * 5.5, 9.2, -4.5);
-    scene.add(pl);
-    const hsl = {}; new THREE.Color(col).getHSL(hsl);
-    animLights.push({ pl, baseHue: hsl.h, off: i * 1.3 });
+  loader.load("/models/Club.glb", (gltf) => {
+    // Add to scene first so getWorldPosition resolves correctly
+    scene.add(gltf.scene);
 
-    /* Light fixture box */
-    const fix = new THREE.Mesh(
-      new THREE.BoxGeometry(0.35, 0.45, 0.35),
-      new THREE.MeshBasicMaterial({ color: col })
-    );
-    fix.position.copy(pl.position);
-    scene.add(fix);
-  });
+    gltf.scene.traverse(obj => {
+      if (!obj.isMesh) return;
 
-  /* ── Floor ── */
-  const floorMesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(150, 150),
-    new THREE.MeshStandardMaterial({ color: 0x080810, roughness: 1 })
-  );
-  floorMesh.rotation.x = -Math.PI / 2;
-  scene.add(floorMesh);
+      /* stagevisual gets the crowd-experience video texture */
+      if (obj.name === "stagevisual") {
+        obj.material = matStage;
+        return;
+      }
 
-  /* ── Stage platform ── */
-  const stageMat = new THREE.MeshStandardMaterial({ color: 0x181428, roughness: 0.9, metalness: 0.1 });
-  const stagePlatform = new THREE.Mesh(new THREE.BoxGeometry(14, 1.2, 5), stageMat);
-  stagePlatform.position.set(0, 0.6, -3);
-  stagePlatform.userData = {
-    type: "info",
-    info: "LIVE STAGE — Modular LED truss rig, 13 m wide. Beat-reactive visuals run live every set, synced frame-perfect to the BPM."
-  };
-  scene.add(stagePlatform);
+      /* Emission material — replace with real emissive + add point light */
+      if (obj.material && obj.material.name === "Emission") {
+        obj.material = matEmit.clone();
+        const pl = new THREE.PointLight(0xffffff, 5, 7);
+        const wp = new THREE.Vector3();
+        obj.getWorldPosition(wp);
+        pl.position.copy(wp);
+        scene.add(pl);
+        return;
+      }
 
-  /* Steps */
-  const stepMat = new THREE.MeshStandardMaterial({ color: 0x0e0c18, roughness: 0.9 });
-  for (let i = 0; i < 3; i++) {
-    const s = new THREE.Mesh(new THREE.BoxGeometry(4, 0.35, 0.65), stepMat);
-    s.position.set(0, 0.175 + i * 0.35, -0.08 + i * 0.6);
-    scene.add(s);
+      /* Everything else — flat dark material, no textures */
+      obj.material = matDark;
+    });
+
+    /* Update video panel positions to match actual person world positions */
+    const names = ["Person_001", "Person_002"];
+    const panels = [panel1, panel2];
+    names.forEach((name, i) => {
+      let found = null;
+      gltf.scene.traverse(o => { if (o.name === name && !found) found = o; });
+      if (found) {
+        const wp = new THREE.Vector3();
+        found.getWorldPosition(wp);
+        panels[i].position.set(wp.x, wp.y + 2.0, wp.z);
+      }
+    });
+
+  }, undefined, err => console.error("GLB load error:", err));
+
+  /* ── Overlays (appended after canvas so they layer on top) ── */
+  const hintDiv = document.createElement("div");
+  hintDiv.innerHTML = "DRAG to orbit &nbsp;&middot;&nbsp; SCROLL to zoom &nbsp;&middot;&nbsp; CLICK glowing figures";
+  hintDiv.style.cssText = "position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,250,.38);pointer-events:none;white-space:nowrap;z-index:5;";
+  mount.appendChild(hintDiv);
+
+  const tooltipDiv = document.createElement("div");
+  tooltipDiv.style.cssText = "position:absolute;top:16px;left:16px;font-size:.7rem;letter-spacing:.08em;color:#fff;background:rgba(5,5,12,.85);border-left:2px solid rgba(180,80,255,.9);padding:8px 14px;max-width:230px;line-height:1.55;pointer-events:none;display:none;z-index:5;";
+  mount.appendChild(tooltipDiv);
+
+  /* ── Raycasting — walk up parent chain to find named clickables ── */
+  const raycaster = new THREE.Raycaster();
+  const mouse2d   = new THREE.Vector2();
+
+  function getClickableName(obj) {
+    let o = obj;
+    while (o) {
+      if (o.name === "Person_001" || o.name === "Person_002") return o.name;
+      o = o.parent;
+    }
+    return null;
   }
 
-  /* ── Truss ── */
-  const trussMat = new THREE.MeshStandardMaterial({ color: 0x282828, metalness: 0.85, roughness: 0.3 });
+  function castRay(cx, cy) {
+    const r = mount.getBoundingClientRect();
+    mouse2d.set(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+    raycaster.setFromCamera(mouse2d, camera);
+    return raycaster.intersectObjects(scene.children, true);
+  }
 
-  const topBar = new THREE.Mesh(new THREE.BoxGeometry(16, 0.5, 0.5), trussMat);
-  topBar.position.set(0, 9.5, -4.8);
-  scene.add(topBar);
+  let hovered = null;
 
-  const midBar = new THREE.Mesh(new THREE.BoxGeometry(14, 0.3, 0.3), trussMat);
-  midBar.position.set(0, 6.8, -4.8);
-  scene.add(midBar);
+  function handleClick(cx, cy) {
+    const hits = castRay(cx, cy);
+    const name = hits.length ? getClickableName(hits[0].object) : null;
 
-  [-7.5, 7.5].forEach(x => {
-    const col = new THREE.Mesh(new THREE.BoxGeometry(0.5, 9.5, 0.5), trussMat);
-    col.position.set(x, 4.75, -4.8);
-    scene.add(col);
-  });
-
-  /* ── LED Screen (video texture) ── */
-  const screenVid = document.createElement("video");
-  screenVid.src = "/assets/maassilo.mp4";
-  screenVid.muted = true;
-  screenVid.loop  = true;
-  screenVid.playsInline = true;
-  screenVid.autoplay    = true;
-
-  const ledTex = new THREE.VideoTexture(screenVid);
-  const ledMat = new THREE.MeshBasicMaterial({ color: 0x330055 }); /* purple until video loads */
-  const ledScreen = new THREE.Mesh(new THREE.PlaneGeometry(13, 5.5), ledMat);
-  ledScreen.position.set(0, 5.5, -5.4);
-  ledScreen.userData = {
-    type: "info",
-    info: "LED VIDEO WALL — Maassilo, Rotterdam. Custom beat-reactive content designed and mapped live. Every colour and motion is coded by VFX."
-  };
-  scene.add(ledScreen);
-
-  /* Try to play; on success attach video texture */
-  screenVid.play().then(() => {
-    ledTex.colorSpace = THREE.SRGBColorSpace;
-    ledMat.map = ledTex;
-    ledMat.color.set(0xffffff);
-    ledMat.needsUpdate = true;
-  }).catch(() => { /* blocked — animated purple fallback keeps running */ });
-
-  /* Bezel around screen */
-  const bezelMat = new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 0.7 });
-  [[14, 0.3, 0, 8.3], [14, 0.3, 0, 2.65]].forEach(([w, h, x, y]) => {
-    const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.12), bezelMat);
-    b.position.set(x, y, -5.52);
-    scene.add(b);
-  });
-  [[-7, 5.9], [7, 5.9]].forEach(([x]) => {
-    const b = new THREE.Mesh(new THREE.BoxGeometry(0.28, 5.92, 0.12), bezelMat);
-    b.position.set(x, 5.5, -5.52);
-    scene.add(b);
-  });
-
-  /* ── Crowd — shared materials, individual meshes ── */
-  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x151525, roughness: 1 });
-  const headMat = new THREE.MeshStandardMaterial({ color: 0x1c1930, roughness: 0.9 });
-  const bodyGeo = new THREE.BoxGeometry(0.42, 1.0, 0.25);
-  const headGeo = new THREE.BoxGeometry(0.34, 0.30, 0.28);
-  const crowdData = [];
-
-  for (let row = 0; row < 4; row++) {
-    for (let col = 0; col < 12; col++) {
-      const x  = -5.5 + col * 1.0 + (Math.random() - 0.5) * 0.55;
-      const z  = 1.2  + row  * 1.6 + (Math.random() - 0.5) * 0.4;
-      const sy = 0.85 + Math.random() * 0.3;
-      const ph = Math.random() * Math.PI * 2;
-
-      const body = new THREE.Mesh(bodyGeo, bodyMat);
-      body.scale.y = sy;
-      body.position.set(x, 0.5 * sy, z);
-      body.rotation.y = (Math.random() - 0.5) * 0.5;
-      scene.add(body);
-
-      const head = new THREE.Mesh(headGeo, headMat);
-      head.position.set(x, sy + 0.18, z);
-      scene.add(head);
-
-      crowdData.push({ body, head, x, z, sy, ph });
+    if (name === "Person_001") {
+      panel1.visible = !panel1.visible;
+      panel2.visible = false; vid2.v.pause();
+      if (panel1.visible) {
+        vid1.v.play();
+        tooltipDiv.innerHTML = "CROWD POV &mdash; Figure 1<br><span style='color:rgba(255,255,255,.4);font-size:.62rem;'>Click figure again to close</span>";
+        tooltipDiv.style.display = "block";
+      } else {
+        vid1.v.pause();
+        tooltipDiv.style.display = "none";
+      }
+    } else if (name === "Person_002") {
+      panel2.visible = !panel2.visible;
+      panel1.visible = false; vid1.v.pause();
+      if (panel2.visible) {
+        vid2.v.play();
+        tooltipDiv.innerHTML = "CROWD POV &mdash; Figure 2<br><span style='color:rgba(255,255,255,.4);font-size:.62rem;'>Click figure again to close</span>";
+        tooltipDiv.style.display = "block";
+      } else {
+        vid2.v.pause();
+        tooltipDiv.style.display = "none";
+      }
+    } else {
+      tooltipDiv.style.display = "none";
     }
   }
 
-  /* ── Glowing phone-holder figures — clickable for crowd video ── */
-  const CROWD_PROJECTS = [
-    { title: "From the crowd — Festival floor", video: "/assets/crowdexperience1.mp4" },
-    { title: "Front row — Close to stage",      video: "/assets/crowdexperience2.mp4" },
-  ];
-  const clickables = [stagePlatform, ledScreen]; /* objects tested by raycaster */
-
-  CROWD_PROJECTS.forEach((proj, i) => {
-    const px = i === 0 ? -2.5 : 2.5;
-    const pz = 0.5;
-
-    const gBody = new THREE.Mesh(
-      new THREE.BoxGeometry(0.5, 1.3, 0.3),
-      new THREE.MeshStandardMaterial({ color: 0x1e0f35, emissive: new THREE.Color(0x6600cc), emissiveIntensity: 1.1, roughness: 0.7 })
-    );
-    gBody.position.set(px, 0.65, pz);
-    gBody.userData = { type: "crowd", project: proj };
-    scene.add(gBody);
-    clickables.push(gBody); /* glowing body is the click target */
-
-    const gHead = new THREE.Mesh(
-      new THREE.BoxGeometry(0.38, 0.34, 0.30),
-      new THREE.MeshStandardMaterial({ color: 0x251648, roughness: 0.9 })
-    );
-    gHead.position.set(px, 1.5, pz);
-    scene.add(gHead);
-
-    /* Phone screen */
-    const phone = new THREE.Mesh(
-      new THREE.BoxGeometry(0.13, 0.23, 0.025),
-      new THREE.MeshBasicMaterial({ color: 0xffffff })
-    );
-    phone.position.set(px + 0.17, 1.42, pz - 0.2);
-    phone.rotation.x = -0.28;
-    scene.add(phone);
-  });
-
-  /* ── Raycaster & click ── */
-  const raycaster = new THREE.Raycaster();
-  const mouseNDC = new THREE.Vector2();
-
-  function toNDC(cx, cy) {
-    const r = mount.getBoundingClientRect();
-    mouseNDC.x =  ((cx - r.left) / r.width)  * 2 - 1;
-    mouseNDC.y = -((cy - r.top)  / r.height) * 2 + 1;
-  }
-
-  mount.addEventListener("click", e => {
-    if (dragPixels > 8) return; /* was a drag */
-    toNDC(e.clientX, e.clientY);
-    raycaster.setFromCamera(mouseNDC, camera);
-    const hits = raycaster.intersectObjects(clickables);
-    if (!hits.length) return;
-    const ud = hits[0].object.userData;
-    if (ud.type === "crowd") openModal(ud.project);
-    else if (ud.type === "info") showTooltip(ud.info);
-  });
-
+  /* ── Hover cursor ── */
   mount.addEventListener("mousemove", e => {
     if (dragging) return;
-    toNDC(e.clientX, e.clientY);
-    raycaster.setFromCamera(mouseNDC, camera);
-    mount.style.cursor = raycaster.intersectObjects(clickables).length ? "pointer" : "grab";
+    const hits = castRay(e.clientX, e.clientY);
+    const name = hits.length ? getClickableName(hits[0].object) : null;
+    if (name !== hovered) {
+      hovered = name;
+      renderer.domElement.style.cursor = name ? "pointer" : "grab";
+    }
   });
 
-  /* Touch tap */
+  /* ── Drag orbit ── */
+  let dragging = false, dragPixels = 0, idleFrames = 0;
+
+  mount.addEventListener("mousedown", () => { dragging = true; dragPixels = 0; idleFrames = 0; renderer.domElement.style.cursor = "grabbing"; });
+  window.addEventListener("mouseup",  () => { dragging = false; renderer.domElement.style.cursor = hovered ? "pointer" : "grab"; });
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    dragPixels += Math.abs(e.movementX) + Math.abs(e.movementY);
+    camTheta -= e.movementX * 0.005;
+    camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi + e.movementY * 0.005));
+    syncCamera();
+  });
+  mount.addEventListener("wheel", e => {
+    camRadius = Math.max(4, Math.min(45, camRadius + e.deltaY * 0.03));
+    syncCamera();
+    e.preventDefault();
+  }, { passive: false });
+  mount.addEventListener("click", e => { if (dragPixels < 8) handleClick(e.clientX, e.clientY); });
+
+  /* Touch */
+  let tLast = null;
+  mount.addEventListener("touchstart", e => {
+    if (e.touches.length === 1) { tLast = e.touches[0]; dragPixels = 0; idleFrames = 0; }
+  }, { passive: true });
+  mount.addEventListener("touchmove", e => {
+    if (!tLast || e.touches.length !== 1) return;
+    const t = e.touches[0];
+    dragPixels += Math.abs(t.clientX - tLast.clientX) + Math.abs(t.clientY - tLast.clientY);
+    camTheta -= (t.clientX - tLast.clientX) * 0.005;
+    camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi + (t.clientY - tLast.clientY) * 0.005));
+    tLast = t; syncCamera();
+    e.preventDefault();
+  }, { passive: false });
   mount.addEventListener("touchend", e => {
-    if (dragPixels > 12) return;
-    const t = e.changedTouches[0];
-    toNDC(t.clientX, t.clientY);
-    raycaster.setFromCamera(mouseNDC, camera);
-    const hits = raycaster.intersectObjects(clickables);
-    if (!hits.length) return;
-    const ud = hits[0].object.userData;
-    if (ud.type === "crowd") openModal(ud.project);
-    else if (ud.type === "info") showTooltip(ud.info);
+    if (dragPixels < 8 && e.changedTouches.length) {
+      const t = e.changedTouches[0];
+      handleClick(t.clientX, t.clientY);
+    }
+    tLast = null;
   });
-
-  /* ── Tooltip ── */
-  let tipTimer;
-  function showTooltip(text) {
-    tooltipDiv.textContent = text;
-    tooltipDiv.style.opacity = "1";
-    clearTimeout(tipTimer);
-    tipTimer = setTimeout(() => { tooltipDiv.style.opacity = "0"; }, 5500);
-  }
-
-  /* ── Modal ── */
-  function openModal(proj) {
-    document.getElementById("modalTitle").textContent = proj.title;
-    const vid = document.getElementById("modalVideo");
-    vid.src = proj.video;
-    vid.play().catch(() => {});
-    document.getElementById("stageModal").classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-  function closeModal() {
-    const vid = document.getElementById("modalVideo");
-    vid.pause(); vid.src = "";
-    document.getElementById("stageModal").classList.remove("open");
-    document.body.style.overflow = "";
-  }
-  document.getElementById("modalClose").addEventListener("click", closeModal);
-  document.getElementById("stageModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeModal(); });
-  window.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
   /* ── Resize ── */
   window.addEventListener("resize", () => {
-    const w = mount.clientWidth, h = mount.clientHeight;
-    renderer.setSize(w, h);
-    camera.aspect = w / h;
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    camera.aspect = mount.clientWidth / mount.clientHeight;
     camera.updateProjectionMatrix();
   });
 
   /* ── Render loop ── */
-  const clock = new THREE.Clock();
-  let frame = 0;
-  const isMob = window.innerWidth < 768;
-
   (function animate() {
     requestAnimationFrame(animate);
-    frame++;
-    const t = clock.getElapsedTime();
 
-    /* Animate lights */
-    animLights.forEach(({ pl, baseHue, off }) => {
-      const pulse = 0.5 + Math.sin(t * 1.5 + off) * 0.5;
-      pl.intensity = 25 * pulse;
-      pl.color.setHSL((baseHue + t * 0.018 + off * 0.05) % 1, 1.0, 0.5);
-    });
-
-    /* Pulse LED screen if video not attached yet */
-    if (!ledMat.map) {
-      const g = 0.22 + 0.16 * Math.sin(t * 1.8);
-      ledMat.color.setRGB(g * 0.3, g * 0.08, g);
-    } else if (screenVid.readyState >= 2) {
-      ledTex.needsUpdate = true;
-    }
-
-    /* Crowd sway (skip every 2nd frame on mobile) */
-    if (!isMob || frame % 2 === 0) {
-      crowdData.forEach(({ body, head, x, z, sy, ph }) => {
-        const dx = Math.sin(t * 0.85 + ph) * 0.045;
-        const ry = Math.sin(t * 0.5  + ph) * 0.1;
-        body.position.x = x + dx;
-        body.rotation.y = ry;
-        head.position.x = x + dx;
-      });
-    }
+    /* Update video textures */
+    if (stageVid.v.readyState >= 2) stageVid.tex.needsUpdate = true;
+    if (vid1.v.readyState >= 2)     vid1.tex.needsUpdate = true;
+    if (vid2.v.readyState >= 2)     vid2.tex.needsUpdate = true;
 
     /* Slow auto-rotate when idle */
-    if (!dragging && !touching) {
-      camTheta += 0.00025;
-      syncCamera();
+    if (!dragging && !tLast) {
+      idleFrames++;
+      if (idleFrames > 220) { camTheta += 0.0006; syncCamera(); }
     }
+
+    /* Keep video panels facing camera */
+    if (panel1.visible) panel1.lookAt(camera.position);
+    if (panel2.visible) panel2.lookAt(camera.position);
 
     renderer.render(scene, camera);
   })();
