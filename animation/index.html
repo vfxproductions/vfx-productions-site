@@ -135,13 +135,21 @@
       </div>
     </section>
 
+    <!-- GRAPH EDITOR INTRO — shows above the demo on all screen sizes -->
+    <section style="max-width:var(--maxw);margin:0 auto;padding:80px 22px 32px;">
+      <div class="kicker">Graph Editor</div>
+      <h2 style="font-size:clamp(1.8rem,5vw,3.4rem);font-weight:900;letter-spacing:-.03em;text-transform:uppercase;margin:10px 0 20px;line-height:1.0;">CURVES<br>DRIVE<br>EMOTION.</h2>
+      <p class="sub" style="max-width:52ch;">
+        Every object in professional 3D animation is controlled by a curve.
+        The same logo drop feels robotic, cinematic, or elastic — purely by
+        changing the <em>shape</em> of that curve. Try the editor below.
+      </p>
+    </section>
+
     <!-- ══════════════════════════════════════════════
-         GRAPH EDITOR DEMO
-         Three.js spotlight scene + interactive bezier curve editor.
-         The logo drops from darkness into light — the curve shape
-         controls exactly how that motion feels.
+         GRAPH EDITOR DEMO — Three.js spotlight + interactive bezier canvas
     ══════════════════════════════════════════════ -->
-    <section id="graphDemoSection" class="section" style="min-height:130svh;background:#000;">
+    <section id="graphDemoSection" class="section" style="min-height:80svh;background:#000;">
 
       <!-- Three.js logo scene — right half only, styled via <style> block above -->
       <div id="graphLogoMount"></div>
@@ -152,14 +160,6 @@
 
       <div class="content" style="align-items:flex-start;z-index:4;">
         <div class="copy">
-          <div class="kicker">Graph Editor</div>
-          <h1>CURVES<br>DRIVE<br>EMOTION.</h1>
-          <p class="sub" style="max-width:42ch;">
-            Every object in professional 3D animation is controlled by a curve.
-            The same logo drop feels robotic, cinematic, or elastic — purely by
-            changing the <em>shape</em> of that curve.
-          </p>
-
           <div class="graph-controls">
             <!-- Preset selector -->
             <div class="graph-preset-row">

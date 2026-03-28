@@ -201,8 +201,15 @@
         </div>
       </div>
       <div id="stageMount" style="width:100%;height:65svh;min-height:380px;max-height:700px;position:relative;overflow:hidden;">
+        <div id="stageInfo" style="position:absolute;top:16px;right:16px;font:.60rem/1.7 'Courier New',monospace;letter-spacing:.07em;color:rgba(255,255,255,.32);pointer-events:none;text-align:right;z-index:5;">
+          <div style="color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.12em;margin-bottom:2px;">STAGE ANATOMY</div>
+          <div>LED WALL — beat-reactive visuals</div>
+          <div>MOVING HEADS — colour-chased spots</div>
+          <div>72 CROWD FIGURES — drag to orbit</div>
+          <div style="margin-top:5px;color:rgba(255,255,255,.18);">CLICK GLOWING FIGURES</div>
+        </div>
         <div id="phoneHint" style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);font-size:.72rem;letter-spacing:.07em;padding:7px 16px;border-radius:20px;pointer-events:none;white-space:nowrap;">
-          CLICK THE GLOWING FIGURES IN THE FRONT ROW
+          DRAG TO ORBIT · CLICK THE GLOWING CROWD FIGURES
         </div>
       </div>
     </section>
@@ -213,7 +220,7 @@
         <button class="stage-modal-close" id="modalClose" aria-label="Close">×</button>
         <div class="stage-modal-label" id="modalTitle">Event footage</div>
         <video class="stage-modal-video" id="modalVideo" muted loop playsinline controls></video>
-        <p class="stage-modal-note">Filmed on location by an attendee</p>
+        <p class="stage-modal-note">Captured on location — this is what the crowd actually sees.</p>
       </div>
     </div>
 
@@ -392,7 +399,7 @@
 
   /* ── LED Screen (VideoTexture) ── */
   const screenVid = document.createElement("video");
-  screenVid.src = "/assets/visuals.mp4";
+  screenVid.src = "/assets/maassilo.mp4";
   screenVid.muted = true;
   screenVid.loop = true;
   screenVid.playsInline = true;
@@ -485,11 +492,10 @@
 
   /* ── Phone Holders — 3 highlighted figures at the very front ── */
   const PROJECTS = [
-    { title: "Festival Stage — ADE 2025",       video: "assets/tessaract.mp4"  },
-    { title: "Motion Reel — Studio Highlights", video: "assets/animation.mp4" },
-    { title: "Live Set — Club Night 2024",      video: "assets/visuals.mp4"   },
+    { title: "From the crowd — Festival floor",  video: "/assets/crowdexperience1.mp4" },
+    { title: "Front row — Close to stage",       video: "/assets/crowdexperience2.mp4" },
   ];
-  const PH_POS = [[-3.3, 0, 0.5], [0, 0, 0.3], [3.3, 0, 0.5]];
+  const PH_POS = [[-2.8, 0, 0.4], [2.8, 0, 0.4]];
   const hitboxes = [];
 
   PH_POS.forEach(([px, , pz], i) => {
