@@ -25,13 +25,13 @@
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
     </div>
     <a href="/" data-nav>Home</a>
-    <a href="/about" data-nav>About</a>
     <div class="drawer-section">Xperiences</div>
     <a href="/vfx" data-nav class="drawer-sub">VFX</a>
     <a href="/animation" data-nav class="drawer-sub">Animation</a>
     <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
     <a href="/technology" data-nav class="drawer-sub">Technology</a>
     <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
+    <a href="/about" data-nav>About</a>
     <a href="/shop" data-nav>Shop</a>
     <a href="/contact" data-nav>Contact</a>
   </aside>
@@ -43,7 +43,6 @@
       </a>
       <div class="links" aria-label="Site links">
         <a href="/">Home</a>
-        <a href="/about">About</a>
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">▾</span></button>
           <div class="nav-dropdown-menu">
@@ -54,6 +53,7 @@
             <a href="/droneoperator">Drone Operator</a>
           </div>
         </div>
+        <a href="/about">About</a>
         <a href="/shop">Shop</a>
         <a href="/contact">Contact</a>
       </div>
@@ -353,7 +353,8 @@
        Tilt more forward (higher beta) = pitch down, tilt back = pitch up */
     const beta  = Math.max(15, Math.min(75, e.beta || 45));
     steerX = gamma / 45;
-    steerY = Math.max(-1, Math.min(1, (beta - 45) / 30));
+    /* Flipped: tilt phone UP (beta decreases) → steerY negative → drone goes UP */
+    steerY = Math.max(-1, Math.min(1, -(beta - 45) / 30));
   }
 
   function tryGyro() {
@@ -465,6 +466,55 @@
   const droneVel = new THREE.Vector3(0, 0, -8);
   let droneYaw = 0;
   let bat = 91;
+  let gameState = 'playing'; // 'playing' | 'crashed' | 'won'
+
+  /* ── Confetti (digital B&W style) ── */
+  const CONFETTI_CHARS = ['0','1','1','0','|','/','\\','>','<','#','*','+'];
+  let confetti = [];
+  let confettiReady = false;
+
+  function spawnConfetti() {
+    const W = mount.clientWidth, H = mount.clientHeight;
+    confetti = [];
+    for (let i = 0; i < 75; i++) {
+      confetti.push({
+        x: Math.random() * W,
+        y: -20 - Math.random() * H * 0.7,
+        vy: 0.9 + Math.random() * 2.2,
+        vx: (Math.random() - 0.5) * 0.6,
+        char: CONFETTI_CHARS[Math.floor(Math.random() * CONFETTI_CHARS.length)],
+        alpha: 0.3 + Math.random() * 0.7,
+        size: 9 + Math.floor(Math.random() * 10),
+      });
+    }
+    confettiReady = true;
+  }
+
+  function drawConfetti() {
+    if (!confettiReady || !hctx) return;
+    const W = mount.clientWidth, H = mount.clientHeight;
+    confetti.forEach(p => {
+      p.y += p.vy;
+      p.x += p.vx;
+      if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W; }
+      hctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+      hctx.font = `bold ${p.size}px 'Courier New',monospace`;
+      hctx.fillText(p.char, p.x, p.y);
+    });
+  }
+
+  /* ── Game over screens ── */
+  function showOverlay(type) {
+    const ov = document.createElement('div');
+    ov.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;color:#fff;font-family:\'Courier New\',monospace;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:24px;pointer-events:auto;';
+    const btn = 'margin-top:22px;padding:10px 30px;background:none;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.75);font:.74rem/1 \'Courier New\',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;';
+    if (type === 'crashed') {
+      ov.innerHTML = `<div style="font-size:clamp(2rem,8vw,3.5rem);font-weight:900;margin-bottom:10px;">CRASHED</div><div style="font-size:.75rem;opacity:.42;margin-bottom:4px;">Drone down. Try again.</div><button style="${btn}" onclick="location.reload()">Fly again</button>`;
+    } else {
+      ov.innerHTML = `<div style="font-size:clamp(1.8rem,7vw,3rem);font-weight:900;margin-bottom:8px;">YOU WON!</div><div style="font-size:.80rem;opacity:.65;max-width:340px;line-height:1.5;">You are a real drone operator.</div><button style="${btn}" onclick="location.reload()">Fly again</button>`;
+    }
+    mount.appendChild(ov);
+  }
 
   /* ── Loop ── */
   const clock = new THREE.Clock();
@@ -472,6 +522,17 @@
     requestAnimationFrame(animate);
     const dt = Math.min(clock.getDelta(), 0.05);
     const t  = clock.getElapsedTime();
+
+    /* Freeze physics on game over — keep rendering + confetti */
+    if (gameState !== 'playing') {
+      renderer.render(scene, camera);
+      if (confettiReady && hctx) {
+        hctx.clearRect(0, 0, hudCanvas.width, hudCanvas.height);
+        hctx.setTransform(DPR_H, 0, 0, DPR_H, 0, 0);
+        drawConfetti();
+      }
+      return;
+    }
 
     const YAW_RATE  = 1.8;
     const FWD_SPEED = 14;
@@ -484,14 +545,26 @@
     droneVel.x = Math.sin(droneYaw) * -speed;
     droneVel.z = Math.cos(droneYaw) * -speed;
 
-    /* Altitude: stay well above terrain, user controls up/down freely */
-    const groundH = fbm(dronePos.x, dronePos.z);
-    const minAlt  = Math.max(15, groundH + 8);   /* at least 15 units up */
-    const thrustY = -steerY * 5;
-    droneVel.y    = thrustY + Math.max(0, minAlt - dronePos.y) * 2.0;
+    /* Altitude: gentle hold at cruise height + user pitch control */
+    const groundH  = fbm(dronePos.x, dronePos.z);
+    const droneAlt = dronePos.y - groundH;
+
+    /* Crash if drone gets too close to terrain */
+    if (droneAlt < 2.5) {
+      gameState = 'crashed';
+      showOverlay('crashed');
+      renderer.render(scene, camera);
+      return;
+    }
+
+    const nominalY = 22;
+    const altHold  = (nominalY - dronePos.y) * 0.10;  /* gentle return to cruise */
+    const thrustY  = -steerY * 6;
+    droneVel.y     = thrustY + altHold;
 
     dronePos.addScaledVector(droneVel, dt);
-    dronePos.y = Math.max(dronePos.y, minAlt);
+    /* Hard floor just above ground (crash check fires first, this is a safety net) */
+    dronePos.y = Math.max(dronePos.y, groundH + 1.8);
 
     /* Wrap position so terrain tiles seamlessly */
     const HALF = T_SIZE / 2 - 5;
@@ -523,6 +596,13 @@
       }
     });
 
+    /* Win check — all gates cleared */
+    if (gates.every(g => g.passed)) {
+      gameState = 'won';
+      showOverlay('won');
+      spawnConfetti();
+    }
+
     /* Wiggle gates gently */
     gates.forEach((g, i) => {
       if (!g.group.userData.baseY) g.group.userData.baseY = g.group.rotation.y;
@@ -532,8 +612,9 @@
     bat = Math.max(0, bat - dt * 0.04);
 
     const kph = Math.round(Math.sqrt(droneVel.x**2 + droneVel.z**2) * 3.6);
-    const alt = dronePos.y - fbm(dronePos.x, dronePos.z);
+    const alt = dronePos.y - groundH;
     drawHUD(kph, alt, Math.round(bat), currentBank);
+    drawConfetti();
 
     renderer.render(scene, camera);
   })();
