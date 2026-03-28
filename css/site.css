@@ -512,7 +512,6 @@
       display: inline-block;
       transition: transform .2s var(--ease);
     }
-    .nav-dropdown:hover .nav-caret,
     .nav-dropdown.open .nav-caret{ transform: rotate(180deg); }
     .nav-dropdown-menu{
       display: flex;
@@ -538,7 +537,6 @@
       position:absolute;
       top:-8px; left:0; right:0; height:8px;
     }
-    .nav-dropdown:hover .nav-dropdown-menu,
     .nav-dropdown.open .nav-dropdown-menu{
       visibility: visible;
       opacity: 1;
@@ -558,20 +556,14 @@
     }
     .nav-dropdown-menu a:hover{ background: rgba(255,255,255,.06); color:#fff; }
     /* Staggered fade-in when menu opens */
-    .nav-dropdown:hover .nav-dropdown-menu a,
-    .nav-dropdown.open   .nav-dropdown-menu a{
+    .nav-dropdown.open .nav-dropdown-menu a{
       animation: menuItemIn .22s var(--ease) both;
     }
-    .nav-dropdown:hover .nav-dropdown-menu a:nth-child(1),
-    .nav-dropdown.open   .nav-dropdown-menu a:nth-child(1){ animation-delay:.03s; }
-    .nav-dropdown:hover .nav-dropdown-menu a:nth-child(2),
-    .nav-dropdown.open   .nav-dropdown-menu a:nth-child(2){ animation-delay:.08s; }
-    .nav-dropdown:hover .nav-dropdown-menu a:nth-child(3),
-    .nav-dropdown.open   .nav-dropdown-menu a:nth-child(3){ animation-delay:.13s; }
-    .nav-dropdown:hover .nav-dropdown-menu a:nth-child(4),
-    .nav-dropdown.open   .nav-dropdown-menu a:nth-child(4){ animation-delay:.18s; }
-    .nav-dropdown:hover .nav-dropdown-menu a:nth-child(5),
-    .nav-dropdown.open   .nav-dropdown-menu a:nth-child(5){ animation-delay:.23s; }
+    .nav-dropdown.open .nav-dropdown-menu a:nth-child(1){ animation-delay:.03s; }
+    .nav-dropdown.open .nav-dropdown-menu a:nth-child(2){ animation-delay:.08s; }
+    .nav-dropdown.open .nav-dropdown-menu a:nth-child(3){ animation-delay:.13s; }
+    .nav-dropdown.open .nav-dropdown-menu a:nth-child(4){ animation-delay:.18s; }
+    .nav-dropdown.open .nav-dropdown-menu a:nth-child(5){ animation-delay:.23s; }
     /* Drawer section label */
     .drawer-section{
       font-size: .60rem;
