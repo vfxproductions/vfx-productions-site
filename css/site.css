@@ -473,6 +473,75 @@
       color: var(--fg80);
     }
 
+    /* ====== NAV DROPDOWN ====== */
+    .nav-dropdown{
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .nav-dropdown-toggle{
+      display: flex; align-items: center; gap: 5px;
+      background: none; border: none; padding: 0;
+      color: var(--fg90);
+      font-family: inherit;
+      font-weight: 800;
+      font-size: .80rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: .92;
+      cursor: pointer;
+      transition: opacity .2s var(--ease);
+    }
+    .nav-dropdown-toggle:hover{ opacity: 1; }
+    .nav-caret{
+      font-size: .60rem;
+      display: inline-block;
+      transition: transform .2s var(--ease);
+    }
+    .nav-dropdown:hover .nav-caret,
+    .nav-dropdown.open .nav-caret{ transform: rotate(180deg); }
+    .nav-dropdown-menu{
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 190px;
+      background: rgba(8,8,16,.96);
+      border: 1px solid rgba(240,240,250,.12);
+      border-radius: 10px;
+      padding: 6px 0;
+      z-index: 200;
+      backdrop-filter: blur(14px);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu{ display: flex; }
+    .nav-dropdown-menu a{
+      color: var(--fg90);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .78rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      white-space: nowrap;
+      opacity: .85;
+      transition: opacity .15s var(--ease), background .15s;
+    }
+    .nav-dropdown-menu a:hover{ opacity: 1; background: rgba(255,255,255,.07); }
+    /* Drawer section label */
+    .drawer-section{
+      font-size: .60rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(240,240,250,.35);
+      padding: 14px 22px 5px;
+      font-weight: 800;
+    }
+    .drawer-sub{ padding-left: 32px !important; }
+
     /* ====== RESPONSIVE ====== */
     @media (max-width: 980px){
       .links{ display:none; }
@@ -481,6 +550,8 @@
       .content{ align-items:flex-end; }
       /* Clear the fixed down-arrow — prevents text/button overlap */
       .content{ padding-bottom: 92px; }
+      /* Thinner hero stroke on tablets so outline stays clean */
+      #hero h1{ -webkit-text-stroke-width: 1px; }
     }
 
     @media (max-width: 640px){
