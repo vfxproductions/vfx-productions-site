@@ -111,17 +111,17 @@
       </div>
     </section>
 
-    <!-- 3D FESTIVAL STAGE DEMO -->
+    <!-- 3D STAGE DEMO -->
     <section style="background:#050508;" id="stageDemo">
       <div style="max-width:var(--maxw);margin:0 auto;padding:72px 22px 28px;">
         <div class="kicker">Interactive Demo</div>
         <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Feel the stage.</h2>
         <p class="sub" style="max-width:520px;margin-bottom:0;">
-          Drag to orbit the venue. Scroll to zoom. The screen plays our actual visuals —
-          click the glowing crowd figures to see the experience from their perspective.
+          Drag to orbit the venue. Scroll to zoom. The LED wall plays our actual visuals.
+          Click the glowing crowd figures to see the experience from their perspective.
         </p>
       </div>
-      <div id="stageMount" style="width:100%;height:65svh;min-height:380px;max-height:720px;position:relative;overflow:hidden;cursor:grab;">
+      <div id="stageMount" style="width:100%;height:68svh;min-height:400px;max-height:760px;position:relative;overflow:hidden;cursor:grab;">
         <!-- canvas + overlays injected by JS -->
       </div>
     </section>
@@ -226,8 +226,10 @@
 
   /* ═══════════════════════════════════════════════════════
      3D CLUB STAGE — Vision For Xperiences
-     Loads Club.glb, applies video textures + custom materials.
-     No OrbitControls — custom drag-orbit camera.
+     - Club.glb with video textures & emission materials
+     - 27mm FOV (48° vertical, full-frame equivalent)
+     - PCFSoftShadowMap + ACES filmic tonemapping
+     - Cinematic person-focus mode with smooth lerp camera
   ═══════════════════════════════════════════════════════ */
 
   const mount = document.getElementById("stageMount");
@@ -238,18 +240,36 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setSize(mount.clientWidth, mount.clientHeight);
   renderer.setClearColor(0x050508, 1);
-  renderer.shadowMap.enabled = false;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
   renderer.domElement.style.cssText = "position:absolute;inset:0;display:block;width:100%;height:100%;cursor:grab;";
   mount.insertBefore(renderer.domElement, mount.firstChild);
 
+  /* ── Loading overlay ── */
+  const loadingDiv = document.createElement("div");
+  loadingDiv.innerHTML = "LOADING STAGE&hellip;";
+  loadingDiv.style.cssText = "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35);pointer-events:none;z-index:10;";
+  mount.appendChild(loadingDiv);
+
   /* ── Scene ── */
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x050508, 25, 65);
+  scene.fog = new THREE.Fog(0x050508, 18, 50);
 
-  /* ── Camera — wide-ish FOV for immersive feel ── */
-  const camera = new THREE.PerspectiveCamera(78, mount.clientWidth / mount.clientHeight, 0.1, 100);
-  let camTheta = 1.05, camPhi = 1.1, camRadius = 15;
-  const camTarget = new THREE.Vector3(3, 1.5, 0);
+  /* ── Camera — 27mm on full-frame = ~48° vertical FOV ── */
+  const camera = new THREE.PerspectiveCamera(48, mount.clientWidth / mount.clientHeight, 0.1, 100);
+
+  /* Default orbit state */
+  const DEF = { theta: 1.05, phi: 1.1, radius: 18 };
+  const DEF_TARGET = new THREE.Vector3(3, 1.5, 0);
+  let camTheta = DEF.theta, camPhi = DEF.phi, camRadius = DEF.radius;
+  const camTarget = DEF_TARGET.clone();
+
+  /* Lerp targets — set these to trigger smooth camera transitions */
+  let tgtTheta = camTheta, tgtPhi = camPhi, tgtRadius = camRadius;
+  const tgtTarget = camTarget.clone();
+
   function syncCamera() {
     camera.position.set(
       camTarget.x + camRadius * Math.sin(camPhi) * Math.sin(camTheta),
@@ -261,88 +281,151 @@
   syncCamera();
 
   /* ── Ambient ── */
-  scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+  scene.add(new THREE.AmbientLight(0x0a1020, 1.2));
 
-  /* ── Spotlights at venue fixture positions ── */
-  // Positions derived from Cylinder node locations in Club.glb
-  const spotDefs = [
-    { pos: [-0.55, 6.5, -2.0],  target: [5, 0, 2],   color: 0xffffff, intensity: 150, angle: 0.40 },
-    { pos: [ 0.62, 6.5, -2.0],  target: [4, 0, -1],  color: 0x3366ff, intensity: 100, angle: 0.42 },
-    { pos: [ 2.15, 7.0,  3.5],  target: [1, 0.5, 0], color: 0xff2255, intensity: 80,  angle: 0.50 },
-    { pos: [ 0.96, 6.0,  4.26], target: [0, 0.5, 0], color: 0xffffff, intensity: 70,  angle: 0.38 },
-    { pos: [ 8.0,  5.5,  2.0],  target: [4, 0, 0],   color: 0xcc44ff, intensity: 60,  angle: 0.55 },
-    { pos: [ 1.04, 5.5,  1.31], target: [4, 0, -2],  color: 0xff8800, intensity: 50,  angle: 0.60 },
-  ];
-  spotDefs.forEach(({ pos, target, color, intensity, angle }) => {
+  /* ── Spotlights ── */
+  function addSpot(px, py, pz, tx, ty, tz, color, intensity, shadows) {
     const spot = new THREE.SpotLight(color, intensity);
-    spot.position.set(...pos);
-    spot.angle   = angle;
-    spot.penumbra = 0.45;
+    spot.position.set(px, py, pz);
+    spot.angle   = 0.42;
+    spot.penumbra = 0.55;
     spot.decay   = 2;
-    spot.distance = 35;
+    spot.distance = 38;
+    spot.castShadow = !!shadows;
+    if (shadows) {
+      spot.shadow.mapSize.set(1024, 1024);
+      spot.shadow.bias   = -0.0015;
+      spot.shadow.camera.near = 1;
+      spot.shadow.camera.far  = 40;
+    }
     const tgt = new THREE.Object3D();
-    tgt.position.set(...target);
+    tgt.position.set(tx, ty, tz);
     scene.add(tgt);
     spot.target = tgt;
     scene.add(spot);
-  });
+  }
+  //               pos-x  pos-y  pos-z   tgt-x  tgt-y  tgt-z    color      int    shadow
+  addSpot(  -0.55,   7.5,  -2.0,   5.0,   0.0,   2.0,  0xffffff,  220,   true  ); // main — shadows
+  addSpot(   0.62,   7.5,  -2.0,   4.0,   0.0,  -1.0,  0x3366ff,  130,   false );
+  addSpot(   2.15,   8.5,   3.5,   1.0,   0.0,   0.0,  0xff2255,  100,   false );
+  addSpot(   0.96,   7.5,   4.26,  0.0,   0.0,   0.0,  0xffffff,   90,   false );
+  addSpot(   8.0,    6.0,   2.0,   4.0,   0.0,   0.0,  0xcc44ff,   80,   false );
+  addSpot(   1.04,   6.5,   1.31,  4.0,   0.0,  -2.0,  0xff8800,   70,   false );
 
   /* ── Video helpers ── */
-  function makeVideo(src) {
+  function makeVid(src) {
     const v = document.createElement("video");
-    v.src = src;
-    v.crossOrigin = "anonymous";
+    v.src = src; v.crossOrigin = "anonymous";
     v.loop = v.muted = v.autoplay = v.playsInline = true;
     v.play().catch(() => {});
     const tex = new THREE.VideoTexture(v);
     tex.minFilter = tex.magFilter = THREE.LinearFilter;
     return { v, tex };
   }
-  const stageVid = makeVideo("/assets/crowdexperience1.mp4");
-  const vid1     = makeVideo("/assets/crowdexperience1.mp4");
-  const vid2     = makeVideo("/assets/crowdexperience2.mp4");
+  const stageVid = makeVid("/assets/crowdexperience1.mp4"); // stagevisual mesh in GLB
+  const maasVid  = makeVid("/assets/maassilo.mp4");          // big backdrop plane near stagevisual
+  const vid1     = makeVid("/assets/crowdexperience1.mp4");  // Person_001 portrait panel
+  const vid2     = makeVid("/assets/crowdexperience2.mp4");  // Person_002 portrait panel
 
-  /* ── Shared materials ── */
-  const matDark  = new THREE.MeshStandardMaterial({ color: 0x080810, roughness: 0.88, metalness: 0.05 });
-  const matEmit  = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveIntensity: 3.5, roughness: 1, metalness: 0 });
+  /* ── Materials ── */
+  const matDark  = new THREE.MeshStandardMaterial({ color: 0x080810, roughness: 0.92, metalness: 0.08 });
+  const matEmit  = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveIntensity: 4, roughness: 1, metalness: 0 });
   const matStage = new THREE.MeshBasicMaterial({ map: stageVid.tex });
-  const matVid1  = new THREE.MeshBasicMaterial({ map: vid1.tex, side: THREE.DoubleSide });
-  const matVid2  = new THREE.MeshBasicMaterial({ map: vid2.tex, side: THREE.DoubleSide });
+  const matMaas  = new THREE.MeshBasicMaterial({ map: maasVid.tex });
 
-  /* ── Video panels — 3D planes that float near each person ── */
-  // Positions hardcoded from GLB node translations (Person_001 & Person_002)
-  const panelGeo = new THREE.PlaneGeometry(2.6, 1.46);
+  /* Portrait (9:16) video panel materials — transparent for fade-in */
+  const matP1 = new THREE.MeshBasicMaterial({ map: vid1.tex, side: THREE.DoubleSide, transparent: true, opacity: 0 });
+  const matP2 = new THREE.MeshBasicMaterial({ map: vid2.tex, side: THREE.DoubleSide, transparent: true, opacity: 0 });
 
-  const panel1 = new THREE.Mesh(panelGeo, matVid1);
-  panel1.position.set(7.76, 2.6, -2.33);
+  /* Portrait panels — 9:16 aspect ratio */
+  const PW = 1.35, PH = PW * (16 / 9);
+  const panel1 = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), matP1);
   panel1.visible = false;
   scene.add(panel1);
 
-  const panel2 = new THREE.Mesh(panelGeo, matVid2);
-  panel2.position.set(5.31, 2.9, 1.45);
+  const panel2 = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), matP2);
   panel2.visible = false;
   scene.add(panel2);
+
+  /* Panel animation state */
+  const panelAnim = [
+    { panel: panel1, mat: matP1, vid: vid1, active: false },
+    { panel: panel2, mat: matP2, vid: vid2, active: false },
+  ];
+
+  /* ── Focus mode ── */
+  let focusMode  = false;
+  let focusIndex = -1;
+  let idleFrames = 0;
+
+  /* Cinematic close-up params per person (spherical, relative to person position) */
+  const focusParams = [
+    /* Person_001 @ [7.76, 0.65, -2.33] */
+    { theta: 2.1,  phi: 1.3,  radius: 4.2, target: new THREE.Vector3(7.76, 1.3, -2.33) },
+    /* Person_002 @ [5.31, 1.14, 1.45] */
+    { theta: 0.35, phi: 1.3,  radius: 4.2, target: new THREE.Vector3(5.31, 1.5,  1.45) },
+  ];
+
+  function enterFocus(idx) {
+    // Close any other open panel first
+    panelAnim.forEach((pa, i) => { if (i !== idx) { pa.active = false; pa.vid.v.pause(); } });
+
+    focusMode  = true;
+    focusIndex = idx;
+    idleFrames = 0;
+
+    const p = focusParams[idx];
+    tgtTheta  = p.theta;
+    tgtPhi    = p.phi;
+    tgtRadius = p.radius;
+    tgtTarget.copy(p.target);
+
+    panelAnim[idx].active = true;
+    panelAnim[idx].panel.visible = true;
+    panelAnim[idx].vid.v.play();
+
+    closeBtnDiv.style.display  = "flex";
+    tooltipDiv.innerHTML = idx === 0
+      ? "CROWD POV &mdash; Figure 1<br><span style='color:rgba(255,255,255,.4);font-size:.6rem;'>Click figure again to close</span>"
+      : "CROWD POV &mdash; Figure 2<br><span style='color:rgba(255,255,255,.4);font-size:.6rem;'>Click figure again to close</span>";
+    tooltipDiv.style.display = "block";
+  }
+
+  function exitFocus() {
+    if (!focusMode) return;
+    panelAnim.forEach(pa => { pa.active = false; pa.vid.v.pause(); });
+    tgtTheta  = DEF.theta;
+    tgtPhi    = DEF.phi;
+    tgtRadius = DEF.radius;
+    tgtTarget.copy(DEF_TARGET);
+    closeBtnDiv.style.display = "none";
+    tooltipDiv.style.display  = "none";
+    focusMode  = false;
+    focusIndex = -1;
+  }
 
   /* ── GLB ── */
   const loader = new GLTFLoader();
 
   loader.load("/models/Club.glb", (gltf) => {
-    // Add to scene first so getWorldPosition resolves correctly
     scene.add(gltf.scene);
+
+    let stageVisualMesh = null;
 
     gltf.scene.traverse(obj => {
       if (!obj.isMesh) return;
+      obj.castShadow    = true;
+      obj.receiveShadow = true;
 
-      /* stagevisual gets the crowd-experience video texture */
       if (obj.name === "stagevisual") {
         obj.material = matStage;
+        stageVisualMesh = obj;
         return;
       }
 
-      /* Emission material — replace with real emissive + add point light */
       if (obj.material && obj.material.name === "Emission") {
         obj.material = matEmit.clone();
-        const pl = new THREE.PointLight(0xffffff, 5, 7);
+        const pl = new THREE.PointLight(0xffffff, 6, 8);
         const wp = new THREE.Vector3();
         obj.getWorldPosition(wp);
         pl.position.copy(wp);
@@ -350,40 +433,73 @@
         return;
       }
 
-      /* Everything else — flat dark material, no textures */
       obj.material = matDark;
     });
 
-    /* Update video panel positions to match actual person world positions */
-    const names = ["Person_001", "Person_002"];
-    const panels = [panel1, panel2];
-    names.forEach((name, i) => {
-      let found = null;
-      gltf.scene.traverse(o => { if (o.name === name && !found) found = o; });
-      if (found) {
+    /* Big maassilo backdrop — same transform as stagevisual, slightly behind it */
+    if (stageVisualMesh) {
+      const wp = new THREE.Vector3();
+      const wq = new THREE.Quaternion();
+      stageVisualMesh.getWorldPosition(wp);
+      stageVisualMesh.getWorldQuaternion(wq);
+
+      /* Measure stagevisual size to match the backdrop scale */
+      const bbox = new THREE.Box3().setFromObject(stageVisualMesh);
+      const sz   = bbox.getSize(new THREE.Vector3());
+      const longest = Math.max(sz.x, sz.y, sz.z);
+      const bW = Math.max(longest, 3) * 1.6;   // wider than the screen mesh
+      const bH = bW * (9 / 16);
+
+      const maasPlane = new THREE.Mesh(new THREE.PlaneGeometry(bW, bH), matMaas);
+      maasPlane.position.copy(wp);
+      maasPlane.quaternion.copy(wq);
+      maasPlane.translateZ(-0.03); // push behind stagevisual to avoid z-fighting
+      scene.add(maasPlane);
+    }
+
+    /* Position portrait panels beside each person */
+    [["Person_001", panel1, 0], ["Person_002", panel2, 1]].forEach(([name, panel, idx]) => {
+      let node = null;
+      gltf.scene.traverse(o => { if (o.name === name && !node) node = o; });
+      if (node) {
         const wp = new THREE.Vector3();
-        found.getWorldPosition(wp);
-        panels[i].position.set(wp.x, wp.y + 2.0, wp.z);
+        node.getWorldPosition(wp);
+        // Place panel beside & slightly above person, offset so it doesn't overlap them
+        panel.position.set(wp.x + 0.9, wp.y + 1.5, wp.z);
+      } else {
+        // Fallback hardcoded positions from GLB node data
+        panel.position.set(idx === 0 ? 8.7 : 6.2, idx === 0 ? 2.1 : 2.5, idx === 0 ? -2.33 : 1.45);
       }
     });
 
-  }, undefined, err => console.error("GLB load error:", err));
+    loadingDiv.style.display = "none";
 
-  /* ── Overlays (appended after canvas so they layer on top) ── */
+  }, undefined, err => {
+    console.error("GLB error:", err);
+    loadingDiv.innerHTML = "FAILED TO LOAD — check console";
+  });
+
+  /* ── DOM Overlays ── */
   const hintDiv = document.createElement("div");
   hintDiv.innerHTML = "DRAG to orbit &nbsp;&middot;&nbsp; SCROLL to zoom &nbsp;&middot;&nbsp; CLICK glowing figures";
-  hintDiv.style.cssText = "position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,250,.38);pointer-events:none;white-space:nowrap;z-index:5;";
+  hintDiv.style.cssText = "position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,250,.35);pointer-events:none;white-space:nowrap;z-index:5;";
   mount.appendChild(hintDiv);
 
   const tooltipDiv = document.createElement("div");
-  tooltipDiv.style.cssText = "position:absolute;top:16px;left:16px;font-size:.7rem;letter-spacing:.08em;color:#fff;background:rgba(5,5,12,.85);border-left:2px solid rgba(180,80,255,.9);padding:8px 14px;max-width:230px;line-height:1.55;pointer-events:none;display:none;z-index:5;";
+  tooltipDiv.style.cssText = "position:absolute;top:16px;left:16px;font-size:.7rem;letter-spacing:.08em;color:#fff;background:rgba(5,5,12,.88);border-left:2px solid rgba(180,80,255,.9);padding:8px 14px;max-width:240px;line-height:1.6;pointer-events:none;display:none;z-index:5;";
   mount.appendChild(tooltipDiv);
 
-  /* ── Raycasting — walk up parent chain to find named clickables ── */
+  const closeBtnDiv = document.createElement("button");
+  closeBtnDiv.innerHTML = "&#8592; BACK TO STAGE";
+  closeBtnDiv.style.cssText = "position:absolute;bottom:48px;left:50%;transform:translateX(-50%);background:rgba(5,5,12,.92);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);font:.7rem/1 inherit;letter-spacing:.14em;text-transform:uppercase;padding:11px 24px;cursor:pointer;display:none;z-index:6;border-radius:2px;";
+  closeBtnDiv.addEventListener("click", () => exitFocus());
+  mount.appendChild(closeBtnDiv);
+
+  /* ── Raycaster ── */
   const raycaster = new THREE.Raycaster();
   const mouse2d   = new THREE.Vector2();
 
-  function getClickableName(obj) {
+  function getPersonName(obj) {
     let o = obj;
     while (o) {
       if (o.name === "Person_001" || o.name === "Person_002") return o.name;
@@ -401,63 +517,51 @@
 
   let hovered = null;
 
-  function handleClick(cx, cy) {
-    const hits = castRay(cx, cy);
-    const name = hits.length ? getClickableName(hits[0].object) : null;
-
-    if (name === "Person_001") {
-      panel1.visible = !panel1.visible;
-      panel2.visible = false; vid2.v.pause();
-      if (panel1.visible) {
-        vid1.v.play();
-        tooltipDiv.innerHTML = "CROWD POV &mdash; Figure 1<br><span style='color:rgba(255,255,255,.4);font-size:.62rem;'>Click figure again to close</span>";
-        tooltipDiv.style.display = "block";
-      } else {
-        vid1.v.pause();
-        tooltipDiv.style.display = "none";
-      }
-    } else if (name === "Person_002") {
-      panel2.visible = !panel2.visible;
-      panel1.visible = false; vid1.v.pause();
-      if (panel2.visible) {
-        vid2.v.play();
-        tooltipDiv.innerHTML = "CROWD POV &mdash; Figure 2<br><span style='color:rgba(255,255,255,.4);font-size:.62rem;'>Click figure again to close</span>";
-        tooltipDiv.style.display = "block";
-      } else {
-        vid2.v.pause();
-        tooltipDiv.style.display = "none";
-      }
-    } else {
-      tooltipDiv.style.display = "none";
-    }
-  }
-
-  /* ── Hover cursor ── */
   mount.addEventListener("mousemove", e => {
     if (dragging) return;
     const hits = castRay(e.clientX, e.clientY);
-    const name = hits.length ? getClickableName(hits[0].object) : null;
+    const name = hits.length ? getPersonName(hits[0].object) : null;
     if (name !== hovered) {
       hovered = name;
       renderer.domElement.style.cursor = name ? "pointer" : "grab";
     }
   });
 
-  /* ── Drag orbit ── */
-  let dragging = false, dragPixels = 0, idleFrames = 0;
+  function handleClick(cx, cy) {
+    const hits = castRay(cx, cy);
+    const name = hits.length ? getPersonName(hits[0].object) : null;
+    if (name === "Person_001") {
+      if (focusMode && focusIndex === 0) { exitFocus(); return; }
+      enterFocus(0);
+    } else if (name === "Person_002") {
+      if (focusMode && focusIndex === 1) { exitFocus(); return; }
+      enterFocus(1);
+    }
+  }
 
-  mount.addEventListener("mousedown", () => { dragging = true; dragPixels = 0; idleFrames = 0; renderer.domElement.style.cursor = "grabbing"; });
-  window.addEventListener("mouseup",  () => { dragging = false; renderer.domElement.style.cursor = hovered ? "pointer" : "grab"; });
+  /* ── Drag orbit ── */
+  let dragging = false, dragPixels = 0;
+
+  mount.addEventListener("mousedown", () => {
+    dragging = true; dragPixels = 0; idleFrames = 0;
+    renderer.domElement.style.cursor = "grabbing";
+  });
+  window.addEventListener("mouseup", () => {
+    dragging = false;
+    renderer.domElement.style.cursor = hovered ? "pointer" : "grab";
+  });
   window.addEventListener("mousemove", e => {
     if (!dragging) return;
     dragPixels += Math.abs(e.movementX) + Math.abs(e.movementY);
-    camTheta -= e.movementX * 0.005;
-    camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi + e.movementY * 0.005));
+    /* Update both current and target so lerp doesn't fight drag */
+    camTheta -= e.movementX * 0.005; tgtTheta = camTheta;
+    camPhi    = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi + e.movementY * 0.005)); tgtPhi = camPhi;
     syncCamera();
   });
   mount.addEventListener("wheel", e => {
-    camRadius = Math.max(4, Math.min(45, camRadius + e.deltaY * 0.03));
-    syncCamera();
+    const minR = focusMode ? 1.8 : 5;
+    const maxR = focusMode ? 12  : 45;
+    tgtRadius = Math.max(minR, Math.min(maxR, tgtRadius + e.deltaY * 0.03));
     e.preventDefault();
   }, { passive: false });
   mount.addEventListener("click", e => { if (dragPixels < 8) handleClick(e.clientX, e.clientY); });
@@ -471,15 +575,14 @@
     if (!tLast || e.touches.length !== 1) return;
     const t = e.touches[0];
     dragPixels += Math.abs(t.clientX - tLast.clientX) + Math.abs(t.clientY - tLast.clientY);
-    camTheta -= (t.clientX - tLast.clientX) * 0.005;
-    camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi + (t.clientY - tLast.clientY) * 0.005));
+    camTheta -= (t.clientX - tLast.clientX) * 0.005; tgtTheta = camTheta;
+    camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi + (t.clientY - tLast.clientY) * 0.005)); tgtPhi = camPhi;
     tLast = t; syncCamera();
     e.preventDefault();
   }, { passive: false });
   mount.addEventListener("touchend", e => {
     if (dragPixels < 8 && e.changedTouches.length) {
-      const t = e.changedTouches[0];
-      handleClick(t.clientX, t.clientY);
+      const t = e.changedTouches[0]; handleClick(t.clientX, t.clientY);
     }
     tLast = null;
   });
@@ -495,18 +598,42 @@
   (function animate() {
     requestAnimationFrame(animate);
 
-    /* Update video textures */
-    if (stageVid.v.readyState >= 2) stageVid.tex.needsUpdate = true;
-    if (vid1.v.readyState >= 2)     vid1.tex.needsUpdate = true;
-    if (vid2.v.readyState >= 2)     vid2.tex.needsUpdate = true;
+    /* Smooth camera lerp (skip theta/phi while dragging — already synced) */
+    if (!dragging) {
+      camTheta  += (tgtTheta  - camTheta)  * 0.075;
+      camPhi    += (tgtPhi    - camPhi)    * 0.075;
+    }
+    camRadius += (tgtRadius - camRadius) * 0.075;
+    camTarget.lerp(tgtTarget, 0.075);
+    syncCamera();
 
-    /* Slow auto-rotate when idle */
-    if (!dragging && !tLast) {
+    /* Slow auto-rotate when idle in orbit mode */
+    if (!focusMode && !dragging && !tLast) {
       idleFrames++;
-      if (idleFrames > 220) { camTheta += 0.0006; syncCamera(); }
+      if (idleFrames > 240) tgtTheta += 0.0005;
+    } else if (dragging || tLast) {
+      idleFrames = 0;
     }
 
-    /* Keep video panels facing camera */
+    /* Video texture updates */
+    if (stageVid.v.readyState >= 2) stageVid.tex.needsUpdate = true;
+    if (maasVid.v.readyState  >= 2) maasVid.tex.needsUpdate  = true;
+    if (vid1.v.readyState     >= 2) vid1.tex.needsUpdate     = true;
+    if (vid2.v.readyState     >= 2) vid2.tex.needsUpdate     = true;
+
+    /* Panel fade in / out */
+    panelAnim.forEach(pa => {
+      if (pa.active) {
+        if (pa.mat.opacity < 1) pa.mat.opacity = Math.min(1, pa.mat.opacity + 0.045);
+      } else {
+        if (pa.mat.opacity > 0) {
+          pa.mat.opacity -= 0.07;
+          if (pa.mat.opacity <= 0) { pa.mat.opacity = 0; pa.panel.visible = false; }
+        }
+      }
+    });
+
+    /* Panels always face camera */
     if (panel1.visible) panel1.lookAt(camera.position);
     if (panel2.visible) panel2.lookAt(camera.position);
 
