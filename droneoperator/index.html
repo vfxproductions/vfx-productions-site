@@ -33,11 +33,13 @@
     <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
     <a href="/about" data-nav>About</a>
     <a href="/shop" data-nav>Shop</a>
+    <a href="/jobs" data-nav>Jobs</a>
     <a href="/contact" data-nav>Contact</a>
   </aside>
 
   <header>
     <nav class="nav" aria-label="Primary">
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
       <a class="brand" href="/">
         <img src="/assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
       </a>
@@ -55,11 +57,10 @@
         </div>
         <a href="/about">About</a>
         <a href="/shop">Shop</a>
+        <a href="/jobs">Jobs</a>
         <a href="/contact">Contact</a>
       </div>
-      <div class="right">
-        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
-      </div>
+      <div class="right"></div>
     </nav>
   </header>
 
@@ -167,6 +168,7 @@
         <a href="/technology">Technology</a>
         <a href="/droneoperator">Drone Operator</a>
         <a href="/shop">Shop</a>
+        <a href="/jobs">Jobs</a>
         <a href="/contact">Contact</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
@@ -198,13 +200,15 @@
     document.querySelectorAll('.nav-dropdown').forEach(function(dd){
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
+      var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-      if(window.matchMedia('(hover:hover)').matches){
+      if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
         dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
       }
       btn.addEventListener('click',function(e){
+        if(isHoverDevice) return; /* desktop: hover-only */
         e.stopPropagation();
         var opening=!dd.classList.contains('open');
         document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); });
