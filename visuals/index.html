@@ -471,6 +471,7 @@
       maas.rotation.y = Math.PI / 2;
       maas.translateZ(-0.05); /* push slightly behind screen in local-Z = world +X direction */
       scene.add(maas);
+      window._maas = maas; /* console tuning handle */
     }
 
     /* Enhance clickable persons */
