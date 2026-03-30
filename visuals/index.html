@@ -600,6 +600,16 @@
       camera.updateProjectionMatrix();
     }, 50);
   }
+  const _isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  function _doFakeFS_visuals() {
+    _iosFakeFS = true;
+    mount._savedStyle = mount.getAttribute('style') || '';
+    mount.style.cssText = mount._savedStyle +
+      ';position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;z-index:9999!important;max-height:none!important;';
+    document.body.style.overflow = 'hidden';
+    _onFsChange();
+  }
   fsBtn.addEventListener("click", () => {
     const inFS = document.fullscreenElement || document.webkitFullscreenElement || _iosFakeFS;
     if (inFS) {
@@ -612,18 +622,12 @@
         (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       }
     } else {
+      if (_isIOS) { _doFakeFS_visuals(); return; }
       const req = mount.requestFullscreen || mount.webkitRequestFullscreen;
-      if (req) {
-        Promise.resolve(req.call(mount)).catch(() => {
-          /* iOS Safari: fake fullscreen */
-          _iosFakeFS = true;
-          mount._savedStyle = mount.getAttribute('style') || '';
-          mount.style.cssText = mount._savedStyle +
-            ';position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;z-index:9999!important;max-height:none!important;';
-          document.body.style.overflow = 'hidden';
-          _onFsChange();
-        });
-      }
+      if (!req) { _doFakeFS_visuals(); return; }
+      let p;
+      try { p = req.call(mount); } catch(e) { _doFakeFS_visuals(); return; }
+      if (p && typeof p.catch === 'function') p.catch(_doFakeFS_visuals);
     }
   });
   document.addEventListener("fullscreenchange", _onFsChange);

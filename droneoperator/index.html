@@ -410,7 +410,7 @@
   let _lockHint;
   if (!_isTouch && mount.requestPointerLock) {
     _lockHint = document.createElement("div");
-    _lockHint.style.cssText = "position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,240,250,.5);pointer-events:none;white-space:nowrap;z-index:9;transition:opacity .4s;";
+    _lockHint.style.cssText = "position:absolute;bottom:42px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,240,250,.5);pointer-events:none;white-space:nowrap;z-index:9;transition:opacity .4s;";
     _lockHint.textContent = "CLICK TO FLY  ·  ESC TO RELEASE MOUSE";
     mount.appendChild(_lockHint);
 
@@ -454,6 +454,16 @@
       resizeHud();
     }, 50);
   }
+  const _isIOSDrone = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  function _doFakeFS_drone() {
+    _droneFakeFS = true;
+    mount._fsSavedStyle = mount.getAttribute('style') || '';
+    mount.style.cssText = mount._fsSavedStyle +
+      ';position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;z-index:9999!important;max-height:none!important;cursor:none!important;';
+    document.body.style.overflow = 'hidden';
+    _droneFsChange();
+  }
   dronefsBtn.addEventListener("click", () => {
     const inFS = document.fullscreenElement || document.webkitFullscreenElement || _droneFakeFS;
     if (inFS) {
@@ -466,17 +476,12 @@
         (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       }
     } else {
+      if (_isIOSDrone) { _doFakeFS_drone(); return; }
       const req = mount.requestFullscreen || mount.webkitRequestFullscreen;
-      if (req) {
-        Promise.resolve(req.call(mount)).catch(() => {
-          _droneFakeFS = true;
-          mount._fsSavedStyle = mount.getAttribute('style') || '';
-          mount.style.cssText = mount._fsSavedStyle +
-            ';position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;z-index:9999!important;max-height:none!important;cursor:none!important;';
-          document.body.style.overflow = 'hidden';
-          _droneFsChange();
-        });
-      }
+      if (!req) { _doFakeFS_drone(); return; }
+      let p;
+      try { p = req.call(mount); } catch(e) { _doFakeFS_drone(); return; }
+      if (p && typeof p.catch === 'function') p.catch(_doFakeFS_drone);
     }
   });
   document.addEventListener("fullscreenchange", _droneFsChange);
