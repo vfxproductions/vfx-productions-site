@@ -112,8 +112,8 @@
     </section>
 
     <!-- 3D STAGE DEMO -->
-    <section style="background:#050508;" id="stageDemo">
-      <div style="max-width:var(--maxw);margin:0 auto;padding:72px 22px 28px;">
+    <section style="background:#050508;padding-bottom:90px;" id="stageDemo">
+      <div style="max-width:var(--maxw);margin:0 auto;padding:80px 22px 28px;">
         <div class="kicker">Interactive Demo</div>
         <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Feel the stage.</h2>
         <p class="sub" style="max-width:520px;margin-bottom:0;">
@@ -130,7 +130,7 @@
     <section class="section" id="final">
       <div class="media">
         <video autoplay muted loop playsinline preload="metadata">
-          <source src="/assets/tessaract.mp4" type="video/mp4" />
+          <source src="/assets/maassilo.mp4" type="video/mp4" />
         </video>
       </div>
       <div class="fade"></div>
@@ -334,44 +334,39 @@
 
   /* ── Canvas helpers for 3D labels ── */
   function makeTextSprite(text) {
-    const CW = 384, CH = 80;
+    const CW = 320, CH = 52;
     const c = document.createElement("canvas"); c.width = CW; c.height = CH;
     const ctx = c.getContext("2d");
-    ctx.fillStyle = "rgba(4,4,16,0.85)";
-    ctx.beginPath(); ctx.roundRect(4, 6, CW - 8, CH - 12, 18); ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,0.55)"; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.roundRect(4, 6, CW - 8, CH - 12, 18); ctx.stroke();
-    ctx.font = "bold 26px Arial, sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,1)";
+    ctx.font = "600 21px Arial, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.88)";
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.fillText(text, CW / 2, CH / 2);
     const tex = new THREE.CanvasTexture(c);
     const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
     const sp = new THREE.Sprite(mat);
-    sp.scale.set(1.6, 1.6 * (CH / CW), 1);
+    sp.scale.set(1.5, 1.5 * (CH / CW), 1);
     return sp;
   }
 
   function makeDescPanel(title, body) {
-    const CW = 512, CH = 220;
+    const CW = 512, CH = 200;
     const c = document.createElement("canvas"); c.width = CW; c.height = CH;
     const ctx = c.getContext("2d");
-    ctx.fillStyle = "rgba(4,4,16,0.93)"; ctx.fillRect(0, 0, CW, CH);
-    ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.fillRect(0, 0, 3, CH);
-    ctx.font = "bold 24px Arial, sans-serif";
-    ctx.fillStyle = "#ffffff"; ctx.fillText(title, 14, 34);
-    ctx.fillStyle = "rgba(255,255,255,0.12)"; ctx.fillRect(14, 44, CW - 28, 1);
-    ctx.font = "15px Arial, sans-serif"; ctx.fillStyle = "rgba(210,210,210,0.9)";
-    const words = body.split(" "); let line = "", y = 68;
+    ctx.fillStyle = "rgba(0,0,0,0.82)"; ctx.fillRect(0, 0, CW, CH);
+    ctx.font = "bold 22px Arial, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.95)"; ctx.fillText(title, 16, 32);
+    ctx.fillStyle = "rgba(255,255,255,0.09)"; ctx.fillRect(16, 42, CW - 32, 1);
+    ctx.font = "14px Arial, sans-serif"; ctx.fillStyle = "rgba(195,195,195,0.88)";
+    const words = body.split(" "); let line = "", y = 64;
     for (const w of words) {
       const test = line ? line + " " + w : w;
-      if (ctx.measureText(test).width > CW - 28 && line) { ctx.fillText(line, 14, y); line = w; y += 23; }
+      if (ctx.measureText(test).width > CW - 32 && line) { ctx.fillText(line, 16, y); line = w; y += 22; }
       else line = test;
     }
-    if (line) ctx.fillText(line, 14, y);
+    if (line) ctx.fillText(line, 16, y);
     const tex = new THREE.CanvasTexture(c);
     const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, side: THREE.DoubleSide });
-    return new THREE.Mesh(new THREE.PlaneGeometry(2.5, 2.5 * (CH / CW)), mat);
+    return new THREE.Mesh(new THREE.PlaneGeometry(2.4, 2.4 * (CH / CW)), mat);
   }
 
   /* ── Person config ── */
@@ -462,18 +457,19 @@
       obj.material = matDark;
     });
 
-    /* maassilo backdrop — same transform as stagevisual + corrective rotations */
+    /* maassilo backdrop — positioned behind stagevisual, facing +X toward audience */
     if (stageVisualMesh) {
-      const wp = new THREE.Vector3(), wq = new THREE.Quaternion();
+      const wp = new THREE.Vector3();
       stageVisualMesh.getWorldPosition(wp);
-      stageVisualMesh.getWorldQuaternion(wq);
       const bbox = new THREE.Box3().setFromObject(stageVisualMesh);
       const sz   = bbox.getSize(new THREE.Vector3());
-      const bW   = Math.max(Math.max(sz.x, sz.y, sz.z), 3) * 1.6;
+      /* Screen is vertical, facing +X; take the largest dim as width */
+      const bW   = Math.max(sz.y, sz.z, 3) * 1.6;
       const maas = new THREE.Mesh(new THREE.PlaneGeometry(bW, bW * (9 / 16)), matMaas);
       maas.position.copy(wp);
-      maas.quaternion.copy(wq);
-      maas.translateZ(-0.03);
+      /* PlaneGeometry default normal = +Z; rotate Y +90° → normal = +X (faces audience) */
+      maas.rotation.y = Math.PI / 2;
+      maas.translateZ(-0.05); /* push slightly behind screen in local-Z = world +X direction */
       scene.add(maas);
     }
 
@@ -512,13 +508,14 @@
 
       /* Portrait panel position — beside the person, panel center clear of roof */
       const panels = [panel1, panel2];
-      panels[cfg.panelIdx].position.set(wp.x + 0.85, wp.y + 1.55, wp.z);
+      const vidPanel = panels[cfg.panelIdx];
+      vidPanel.position.set(wp.x + 0.85, wp.y + 1.55, wp.z);
 
-      /* Description panel (hidden until focused) — next to the video panel */
+      /* Description panel — child of video panel, to its right in local space */
       const descPanel = makeDescPanel(cfg.title, cfg.desc);
-      descPanel.position.set(wp.x + 0.85 + PW * 0.5 + 1.35, wp.y + 1.55, wp.z);
+      descPanel.position.set(PW * 0.5 + 1.25, 0, 0); /* right of video panel */
       descPanel.visible = false;
-      scene.add(descPanel);
+      vidPanel.add(descPanel);
 
       personData[name] = { node, ring, ringMat, label, descPanel, outlineMats, wp };
     });
@@ -579,24 +576,41 @@
     if (name) enterFocus(name);
   }
 
-  /* ── Orbit drag ── */
+  /* ── Orbit drag (left) + Pan (right) ── */
   let dragging = false, dragPixels = 0;
+  let panning = false, panLastX = 0, panLastY = 0;
 
-  mount.addEventListener("mousedown", () => {
-    dragging = true; dragPixels = 0; idleFrames = 0;
-    renderer.domElement.style.cursor = "grabbing";
+  mount.addEventListener("contextmenu", e => e.preventDefault());
+
+  mount.addEventListener("mousedown", e => {
+    if (e.button === 0) {
+      dragging = true; dragPixels = 0; idleFrames = 0;
+      renderer.domElement.style.cursor = "grabbing";
+    } else if (e.button === 2) {
+      panning = true; panLastX = e.clientX; panLastY = e.clientY;
+      renderer.domElement.style.cursor = "move";
+    }
   });
-  window.addEventListener("mouseup", () => {
-    dragging = false;
-    renderer.domElement.style.cursor = hovered ? "pointer" : "grab";
+  window.addEventListener("mouseup", e => {
+    if (e.button === 0) { dragging = false; renderer.domElement.style.cursor = hovered ? "pointer" : "grab"; }
+    if (e.button === 2) { panning = false; renderer.domElement.style.cursor = hovered ? "pointer" : "grab"; }
   });
   window.addEventListener("mousemove", e => {
-    if (!dragging) return;
-    dragPixels += Math.abs(e.movementX) + Math.abs(e.movementY);
-    camTheta -= e.movementX * 0.005; tgtTheta = camTheta;
-    /* Y INVERTED — dragging down looks down, dragging up looks up */
-    camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi - e.movementY * 0.005)); tgtPhi = camPhi;
-    syncCamera();
+    if (dragging) {
+      dragPixels += Math.abs(e.movementX) + Math.abs(e.movementY);
+      camTheta -= e.movementX * 0.005; tgtTheta = camTheta;
+      camPhi = Math.max(0.15, Math.min(Math.PI - 0.15, camPhi - e.movementY * 0.005)); tgtPhi = camPhi;
+      syncCamera();
+    }
+    if (panning) {
+      const dx = e.clientX - panLastX, dy = e.clientY - panLastY;
+      panLastX = e.clientX; panLastY = e.clientY;
+      const right = new THREE.Vector3();
+      right.crossVectors(camera.getWorldDirection(new THREE.Vector3()), new THREE.Vector3(0, 1, 0)).normalize();
+      const spd = camRadius * 0.003;
+      tgtTarget.addScaledVector(right, -dx * spd);
+      tgtTarget.y += dy * spd;
+    }
   });
   mount.addEventListener("wheel", e => {
     const mn = focusPerson ? 1.8 : 4, mx = focusPerson ? 10 : 45;
@@ -698,7 +712,7 @@
       pd.outlineMats.forEach(m => { m.opacity = pulse; });
       pd.ringMat.opacity = isFocused ? 0.5 : 0.18 + 0.12 * Math.sin(now * 1.8 + 1);
 
-      if (pd.descPanel.visible) pd.descPanel.lookAt(camera.position);
+      /* descPanel inherits lookAt from its parent video panel */
     });
 
     /* Video panels face camera */
