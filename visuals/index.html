@@ -590,18 +590,44 @@
   fsBtn.innerHTML = EXPAND_SVG;
   fsBtn.title = "Toggle fullscreen";
   fsBtn.style.cssText = "position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:8;border-radius:3px;padding:0;";
-  fsBtn.addEventListener("click", () => {
-    if (!document.fullscreenElement) mount.requestFullscreen().catch(() => {});
-    else document.exitFullscreen();
-  });
-  document.addEventListener("fullscreenchange", () => {
-    fsBtn.innerHTML = document.fullscreenElement ? COMPRESS_SVG : EXPAND_SVG;
+  let _iosFakeFS = false;
+  function _onFsChange() {
+    const inFS = !!document.fullscreenElement || !!document.webkitFullscreenElement || _iosFakeFS;
+    fsBtn.innerHTML = inFS ? COMPRESS_SVG : EXPAND_SVG;
     setTimeout(() => {
       renderer.setSize(mount.clientWidth, mount.clientHeight);
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
     }, 50);
+  }
+  fsBtn.addEventListener("click", () => {
+    const inFS = document.fullscreenElement || document.webkitFullscreenElement || _iosFakeFS;
+    if (inFS) {
+      if (_iosFakeFS) {
+        _iosFakeFS = false;
+        mount.style.cssText = mount._savedStyle || '';
+        document.body.style.overflow = '';
+        _onFsChange();
+      } else {
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      }
+    } else {
+      const req = mount.requestFullscreen || mount.webkitRequestFullscreen;
+      if (req) {
+        Promise.resolve(req.call(mount)).catch(() => {
+          /* iOS Safari: fake fullscreen */
+          _iosFakeFS = true;
+          mount._savedStyle = mount.getAttribute('style') || '';
+          mount.style.cssText = mount._savedStyle +
+            ';position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;z-index:9999!important;max-height:none!important;';
+          document.body.style.overflow = 'hidden';
+          _onFsChange();
+        });
+      }
+    }
   });
+  document.addEventListener("fullscreenchange", _onFsChange);
+  document.addEventListener("webkitfullscreenchange", _onFsChange);
   mount.appendChild(fsBtn);
 
   const closeBtnDiv = document.createElement("button");

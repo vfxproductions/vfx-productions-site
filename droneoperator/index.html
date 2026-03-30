@@ -121,7 +121,7 @@
       </div>
 
       <!-- FPV viewport -->
-      <div id="droneMount" style="width:100%;height:62svh;min-height:360px;max-height:680px;position:relative;overflow:hidden;cursor:none;background:#020305;">
+      <div id="droneMount" style="width:100%;height:62svh;min-height:360px;max-height:680px;position:relative;overflow:hidden;cursor:none;background:#020305;" tabindex="0">
         <!-- HUD — drawn on top of canvas -->
         <canvas id="droneHudCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;"></canvas>
 
@@ -331,6 +331,8 @@
   let currentPitch = -0.35;
   let currentYaw   = 0;
   let gyroActive   = false;
+  let pointerLocked = false;
+  let vx = 0.5, vy = 0.5; /* virtual cursor pos when pointer is locked */
 
   function updateSteer(nx, ny) {
     steerX = (nx - 0.5) * 2;
@@ -338,11 +340,18 @@
   }
 
   mount.addEventListener("mousemove", e => {
-    if (gyroActive) return;
+    if (gyroActive || pointerLocked) return;
     const r = mount.getBoundingClientRect();
     updateSteer((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
   });
-  mount.addEventListener("mouseleave", () => { if (!gyroActive) { steerX = 0; steerY = 0; } });
+  mount.addEventListener("mouseleave", () => { if (!gyroActive && !pointerLocked) { steerX = 0; steerY = 0; } });
+  /* Pointer-lock: use relative movement so mouse can't escape the experience */
+  document.addEventListener("mousemove", e => {
+    if (!pointerLocked || gyroActive) return;
+    vx = Math.max(0, Math.min(1, vx + e.movementX / mount.clientWidth * 3));
+    vy = Math.max(0, Math.min(1, vy + e.movementY / mount.clientHeight * 3));
+    updateSteer(vx, vy);
+  });
   mount.addEventListener("touchmove", e => {
     if (gyroActive) return;
     const r = mount.getBoundingClientRect();
@@ -395,6 +404,84 @@
       tryGyro();
     }
   }
+
+  /* ── Pointer lock (desktop only) — keeps mouse inside experience ── */
+  const _isTouch = 'ontouchstart' in window;
+  let _lockHint;
+  if (!_isTouch && mount.requestPointerLock) {
+    _lockHint = document.createElement("div");
+    _lockHint.style.cssText = "position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,240,250,.5);pointer-events:none;white-space:nowrap;z-index:9;transition:opacity .4s;";
+    _lockHint.textContent = "CLICK TO FLY  ·  ESC TO RELEASE MOUSE";
+    mount.appendChild(_lockHint);
+
+    mount.addEventListener("click", e => {
+      if (gameState !== 'playing') return;
+      if (e.target.id === 'gyroPrompt') return;
+      if (!pointerLocked) mount.requestPointerLock();
+    });
+    document.addEventListener("pointerlockchange", () => {
+      pointerLocked = document.pointerLockElement === mount;
+      if (pointerLocked) {
+        vx = 0.5; vy = 0.5;
+        _lockHint.textContent = "ESC TO RELEASE MOUSE";
+        _lockHint.style.opacity = "1";
+        setTimeout(() => { _lockHint.style.opacity = "0"; }, 2200);
+      } else {
+        steerX = 0; steerY = 0;
+        if (gameState === 'playing') {
+          _lockHint.textContent = "CLICK TO FLY  ·  ESC TO RELEASE MOUSE";
+          _lockHint.style.opacity = "1";
+        }
+      }
+    });
+  }
+
+  /* ── Fullscreen button (desktop + Android; iOS fake-fullscreen fallback) ── */
+  const FS_EXPAND   = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,5 1,1 5,1"/><polyline points="11,1 15,1 15,5"/><polyline points="15,11 15,15 11,15"/><polyline points="5,15 1,15 1,11"/></svg>`;
+  const FS_COMPRESS = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,1 5,5 1,5"/><polyline points="11,5 15,5 15,1"/><polyline points="15,11 11,11 11,15"/><polyline points="1,11 5,11 5,15"/></svg>`;
+  const dronefsBtn = document.createElement("button");
+  dronefsBtn.innerHTML = FS_EXPAND;
+  dronefsBtn.title = "Toggle fullscreen";
+  dronefsBtn.style.cssText = "position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9;border-radius:3px;padding:0;";
+  let _droneFakeFS = false;
+  function _droneFsChange() {
+    const inFS = !!document.fullscreenElement || !!document.webkitFullscreenElement || _droneFakeFS;
+    dronefsBtn.innerHTML = inFS ? FS_COMPRESS : FS_EXPAND;
+    setTimeout(() => {
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.updateProjectionMatrix();
+      resizeHud();
+    }, 50);
+  }
+  dronefsBtn.addEventListener("click", () => {
+    const inFS = document.fullscreenElement || document.webkitFullscreenElement || _droneFakeFS;
+    if (inFS) {
+      if (_droneFakeFS) {
+        _droneFakeFS = false;
+        mount.style.cssText = mount._fsSavedStyle || '';
+        document.body.style.overflow = '';
+        _droneFsChange();
+      } else {
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      }
+    } else {
+      const req = mount.requestFullscreen || mount.webkitRequestFullscreen;
+      if (req) {
+        Promise.resolve(req.call(mount)).catch(() => {
+          _droneFakeFS = true;
+          mount._fsSavedStyle = mount.getAttribute('style') || '';
+          mount.style.cssText = mount._fsSavedStyle +
+            ';position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;z-index:9999!important;max-height:none!important;cursor:none!important;';
+          document.body.style.overflow = 'hidden';
+          _droneFsChange();
+        });
+      }
+    }
+  });
+  document.addEventListener("fullscreenchange", _droneFsChange);
+  document.addEventListener("webkitfullscreenchange", _droneFsChange);
+  mount.appendChild(dronefsBtn);
 
   /* ── HUD canvas ── */
   const hudCanvas = document.getElementById("droneHudCanvas");
@@ -512,8 +599,12 @@
 
   /* ── Game over screens ── */
   function showOverlay(type) {
+    /* release pointer lock so the button is clickable */
+    if (document.pointerLockElement) document.exitPointerLock();
+    mount.style.cursor = 'auto';
+    if (_lockHint) { _lockHint.style.opacity = '0'; }
     const ov = document.createElement('div');
-    ov.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;color:#fff;font-family:\'Courier New\',monospace;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:24px;pointer-events:auto;';
+    ov.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;color:#fff;font-family:\'Courier New\',monospace;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:24px;pointer-events:auto;cursor:auto;';
     const btn = 'margin-top:22px;padding:10px 30px;background:none;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.75);font:.74rem/1 \'Courier New\',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;';
     if (type === 'crashed') {
       ov.innerHTML = `<div style="font-size:clamp(2rem,8vw,3.5rem);font-weight:900;margin-bottom:10px;">CRASHED</div><div style="font-size:.75rem;opacity:.42;margin-bottom:4px;">Drone down. Try again.</div><button style="${btn}" onclick="location.reload()">Fly again</button>`;
