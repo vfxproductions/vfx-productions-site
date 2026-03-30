@@ -435,9 +435,10 @@
     });
 
     Object.entries(personData).forEach(([n, pd]) => {
-      pd.descPanel.visible = (n === name);
-      pd.label.visible     = (n !== name);
-      if (n === name) { pd.descChars = 0; pd.descRender(0); } /* reset typewriter */
+      pd.descPanel.visible  = (n === name);
+      pd.label.visible      = (n !== name);
+      pd.lineMesh.visible   = (n !== name);
+      if (n === name) { pd.descChars = 0; pd.descRender(0); }
     });
 
     closeBtnDiv.style.display = "flex";
@@ -446,7 +447,7 @@
   function exitFocus() {
     if (!focusPerson) return;
     panelAnim.forEach(pa => { pa.active = false; pa.vid.v.pause(); });
-    Object.values(personData).forEach(pd => { pd.descPanel.visible = false; pd.label.visible = true; });
+    Object.values(personData).forEach(pd => { pd.descPanel.visible = false; pd.label.visible = true; pd.lineMesh.visible = true; });
     tgtTheta  = DEF.theta; tgtPhi = DEF.phi; tgtRadius = DEF.radius;
     tgtTarget.copy(DEF_TARGET);
     closeBtnDiv.style.display = "none";
@@ -495,7 +496,7 @@
       maas.position.copy(wp);
       /* PlaneGeometry default normal = +Z; rotate Y +90° → normal = +X (faces audience) */
       maas.rotation.y = Math.PI / 2;
-      maas.translateZ(-0.05); /* push slightly behind screen in local-Z = world +X direction */
+      maas.translateZ(0.5); /* offset +0.5 in world X (local Z = world X with this rotation) */
       maas.scale.setScalar(0.7);
       scene.add(maas);
       window._maas = maas; /* console tuning handle */
@@ -534,10 +535,21 @@
       ring.position.set(wp.x, 0.06, wp.z);
       scene.add(ring);
 
-      /* Floating label sprite */
+      /* Floating label sprite — at same height as desc card title */
       const label = makeTextSprite(cfg.label);
-      label.position.set(wp.x, wp.y + 3.0, wp.z);
+      label.position.set(wp.x, wp.y + 1.0, wp.z);
       scene.add(label);
+
+      /* Dotted line from label down to the person's feet */
+      const lineMat = new THREE.LineDashedMaterial({ color: 0xffffff, dashSize: 0.09, gapSize: 0.06, transparent: true, opacity: 0.35, depthTest: false });
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(wp.x, wp.y + 1.0, wp.z),
+        new THREE.Vector3(wp.x, 0.08, wp.z)
+      ]);
+      const lineMesh = new THREE.Line(lineGeo, lineMat);
+      lineMesh.computeLineDistances();
+      lineMesh.renderOrder = 998;
+      scene.add(lineMesh);
 
       /* Portrait panel position — beside the person, panel center clear of roof */
       const panels = [panel1, panel2];
@@ -551,7 +563,7 @@
       descPanel.visible = false;
       vidPanel.add(descPanel);
 
-      personData[name] = { node, ring, ringMat, label, descPanel, outlineMats, wp,
+      personData[name] = { node, ring, ringMat, label, lineMesh, lineMat, descPanel, outlineMats, wp,
         descRender: descResult.renderChars, descTotal: descResult.totalChars, descChars: 0 };
     });
 
@@ -564,9 +576,33 @@
 
   /* ── DOM overlays ── */
   const hintDiv = document.createElement("div");
-  hintDiv.innerHTML = "DRAG to orbit &nbsp;&middot;&nbsp; SCROLL / PINCH to zoom &nbsp;&middot;&nbsp; CLICK highlighted figures";
+  const _touch = window.matchMedia("(hover:none)").matches;
+  hintDiv.innerHTML = _touch
+    ? "DRAG to orbit &nbsp;&middot;&nbsp; 2-FINGER DRAG to pan &nbsp;&middot;&nbsp; PINCH to zoom &nbsp;&middot;&nbsp; TAP highlighted figures"
+    : "DRAG to orbit &nbsp;&middot;&nbsp; RIGHT CLICK to pan &nbsp;&middot;&nbsp; SCROLL to zoom &nbsp;&middot;&nbsp; CLICK highlighted figures";
   hintDiv.style.cssText = "position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,250,.34);pointer-events:none;white-space:nowrap;z-index:5;";
   mount.appendChild(hintDiv);
+
+  /* ── Fullscreen button ── */
+  const EXPAND_SVG   = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,5 1,1 5,1"/><polyline points="11,1 15,1 15,5"/><polyline points="15,11 15,15 11,15"/><polyline points="5,15 1,15 1,11"/></svg>`;
+  const COMPRESS_SVG = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,1 5,5 1,5"/><polyline points="11,5 15,5 15,1"/><polyline points="15,11 11,11 11,15"/><polyline points="1,11 5,11 5,15"/></svg>`;
+  const fsBtn = document.createElement("button");
+  fsBtn.innerHTML = EXPAND_SVG;
+  fsBtn.title = "Toggle fullscreen";
+  fsBtn.style.cssText = "position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:8;border-radius:3px;padding:0;";
+  fsBtn.addEventListener("click", () => {
+    if (!document.fullscreenElement) mount.requestFullscreen().catch(() => {});
+    else document.exitFullscreen();
+  });
+  document.addEventListener("fullscreenchange", () => {
+    fsBtn.innerHTML = document.fullscreenElement ? COMPRESS_SVG : EXPAND_SVG;
+    setTimeout(() => {
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.updateProjectionMatrix();
+    }, 50);
+  });
+  mount.appendChild(fsBtn);
 
   const closeBtnDiv = document.createElement("button");
   closeBtnDiv.innerHTML = "&#8592; BACK TO STAGE";
@@ -654,18 +690,18 @@
   }, { passive: false });
   mount.addEventListener("click", e => { if (dragPixels < 8) handleClick(e.clientX, e.clientY); });
 
-  /* ── Touch orbit + pinch zoom ── */
-  let tLast = null, pinchDist0 = null, pinchRadius0 = null;
+  /* ── Touch orbit (1-finger) + pinch zoom + 2-finger pan ── */
+  let tLast = null, pinchDist0 = null, pinchRadius0 = null, touch2Mid = null;
 
   mount.addEventListener("touchstart", e => {
     if (e.touches.length === 2) {
-      /* Start pinch */
       tLast = null;
-      pinchDist0   = Math.hypot(e.touches[1].clientX - e.touches[0].clientX, e.touches[1].clientY - e.touches[0].clientY);
+      pinchDist0  = Math.hypot(e.touches[1].clientX - e.touches[0].clientX, e.touches[1].clientY - e.touches[0].clientY);
       pinchRadius0 = tgtRadius;
+      touch2Mid = { x: (e.touches[0].clientX + e.touches[1].clientX) / 2, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 };
     } else if (e.touches.length === 1) {
       tLast = e.touches[0]; dragPixels = 0; idleFrames = 0;
-      pinchDist0 = pinchRadius0 = null;
+      pinchDist0 = pinchRadius0 = touch2Mid = null;
     }
   }, { passive: true });
 
@@ -675,6 +711,16 @@
       const d = Math.hypot(e.touches[1].clientX - e.touches[0].clientX, e.touches[1].clientY - e.touches[0].clientY);
       const mn = focusPerson ? 1.8 : 4, mx = focusPerson ? 10 : 45;
       tgtRadius = Math.max(mn, Math.min(mx, pinchRadius0 * (pinchDist0 / d)));
+      /* 2-finger pan — track midpoint delta */
+      const mid = { x: (e.touches[0].clientX + e.touches[1].clientX) / 2, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 };
+      if (touch2Mid) {
+        const dx = mid.x - touch2Mid.x, dy = mid.y - touch2Mid.y;
+        const right = new THREE.Vector3().crossVectors(camera.getWorldDirection(new THREE.Vector3()), new THREE.Vector3(0, 1, 0)).normalize();
+        const spd = camRadius * 0.004;
+        tgtTarget.addScaledVector(right, -dx * spd);
+        tgtTarget.y += dy * spd;
+      }
+      touch2Mid = mid;
       e.preventDefault(); return;
     }
     if (!tLast || e.touches.length !== 1) return;
@@ -686,7 +732,7 @@
   }, { passive: false });
 
   mount.addEventListener("touchend", e => {
-    if (e.touches.length < 2) { pinchDist0 = pinchRadius0 = null; }
+    if (e.touches.length < 2) { pinchDist0 = pinchRadius0 = touch2Mid = null; }
     if (dragPixels < 8 && e.changedTouches.length && !pinchDist0) {
       const t = e.changedTouches[0]; handleClick(t.clientX, t.clientY);
     }
@@ -747,8 +793,10 @@
       const pulse = isFocused ? 0.9 : 0.3 + 0.55 * Math.abs(Math.sin(now * 2.0));
       pd.outlineMats.forEach(m => { m.opacity = pulse; });
       pd.ringMat.opacity = isFocused ? 0.6 : 0.1 + 0.35 * Math.abs(Math.sin(now * 2.0 + 1));
-      /* Label fades in/out to draw attention */
-      pd.label.material.opacity = isFocused ? 0 : 0.45 + 0.55 * Math.abs(Math.sin(now * 1.6));
+      /* Label + dotted line pulse together */
+      const labelAlpha = isFocused ? 0 : 0.45 + 0.55 * Math.abs(Math.sin(now * 1.6));
+      pd.label.material.opacity = labelAlpha;
+      pd.lineMat.opacity = labelAlpha * 0.6;
       /* Typewriter advance */
       if (isFocused && pd.descPanel.visible && pd.descChars < pd.descTotal) {
         pd.descChars = Math.min(pd.descTotal, pd.descChars + 4);
