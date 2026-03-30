@@ -261,8 +261,8 @@
   const camera = new THREE.PerspectiveCamera(48, mount.clientWidth / mount.clientHeight, 0.1, 100);
 
   /* Default state — crowd level, not too high */
-  const DEF = { theta: 1.05, phi: 1.35, radius: 13 };
-  const DEF_TARGET = new THREE.Vector3(3, 1.0, 0);
+  const DEF = { theta: 1.05, phi: 1.50, radius: 8 };
+  const DEF_TARGET = new THREE.Vector3(4.5, 1.5, 0);
   let camTheta = DEF.theta, camPhi = DEF.phi, camRadius = DEF.radius;
   const camTarget = DEF_TARGET.clone();
   let tgtTheta = camTheta, tgtPhi = camPhi, tgtRadius = camRadius;
@@ -291,11 +291,11 @@
     scene.add(t); s.target = t; scene.add(s);
   }
   addSpot(-0.55, 7.5, -2.0,  5.0, 0.0,  2.0, 0xffffff, 220, true);
-  addSpot( 0.62, 7.5, -2.0,  4.0, 0.0, -1.0, 0x3366ff, 130, false);
-  addSpot( 2.15, 8.5,  3.5,  1.0, 0.0,  0.0, 0xff2255, 100, false);
+  addSpot( 0.62, 7.5, -2.0,  4.0, 0.0, -1.0, 0xffffff, 130, false);
+  addSpot( 2.15, 8.5,  3.5,  1.0, 0.0,  0.0, 0xffffff, 100, false);
   addSpot( 0.96, 7.5,  4.26, 0.0, 0.0,  0.0, 0xffffff,  90, false);
-  addSpot( 8.0,  6.0,  2.0,  4.0, 0.0,  0.0, 0xcc44ff,  80, false);
-  addSpot( 1.04, 6.5,  1.31, 4.0, 0.0, -2.0, 0xff8800,  70, false);
+  addSpot( 8.0,  6.0,  2.0,  4.0, 0.0,  0.0, 0xffffff,  80, false);
+  addSpot( 1.04, 6.5,  1.31, 4.0, 0.0, -2.0, 0xffffff,  70, false);
 
   /* ── Video helpers ── */
   function makeVid(src) {
@@ -339,10 +339,10 @@
     const ctx = c.getContext("2d");
     ctx.fillStyle = "rgba(4,4,16,0.85)";
     ctx.beginPath(); ctx.roundRect(4, 6, CW - 8, CH - 12, 18); ctx.fill();
-    ctx.strokeStyle = "rgba(153,51,255,0.9)"; ctx.lineWidth = 2;
+    ctx.strokeStyle = "rgba(255,255,255,0.55)"; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.roundRect(4, 6, CW - 8, CH - 12, 18); ctx.stroke();
     ctx.font = "bold 26px Arial, sans-serif";
-    ctx.fillStyle = "rgba(204,136,255,1)";
+    ctx.fillStyle = "rgba(255,255,255,1)";
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.fillText(text, CW / 2, CH / 2);
     const tex = new THREE.CanvasTexture(c);
@@ -357,11 +357,11 @@
     const c = document.createElement("canvas"); c.width = CW; c.height = CH;
     const ctx = c.getContext("2d");
     ctx.fillStyle = "rgba(4,4,16,0.93)"; ctx.fillRect(0, 0, CW, CH);
-    ctx.fillStyle = "#9933ff"; ctx.fillRect(0, 0, 3, CH);
+    ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.fillRect(0, 0, 3, CH);
     ctx.font = "bold 24px Arial, sans-serif";
-    ctx.fillStyle = "#cc88ff"; ctx.fillText(title, 14, 34);
-    ctx.fillStyle = "rgba(255,255,255,0.1)"; ctx.fillRect(14, 44, CW - 28, 1);
-    ctx.font = "15px Arial, sans-serif"; ctx.fillStyle = "rgba(210,205,235,0.9)";
+    ctx.fillStyle = "#ffffff"; ctx.fillText(title, 14, 34);
+    ctx.fillStyle = "rgba(255,255,255,0.12)"; ctx.fillRect(14, 44, CW - 28, 1);
+    ctx.font = "15px Arial, sans-serif"; ctx.fillStyle = "rgba(210,210,210,0.9)";
     const words = body.split(" "); let line = "", y = 68;
     for (const w of words) {
       const test = line ? line + " " + w : w;
@@ -473,9 +473,6 @@
       const maas = new THREE.Mesh(new THREE.PlaneGeometry(bW, bW * (9 / 16)), matMaas);
       maas.position.copy(wp);
       maas.quaternion.copy(wq);
-      /* Correct orientation — 90° X then 90° Y */
-      maas.rotateX(Math.PI / 2);
-      maas.rotateY(Math.PI / 2);
       maas.translateZ(-0.03);
       scene.add(maas);
     }
@@ -493,7 +490,7 @@
       const outlineMats = [];
       node.traverse(child => {
         if (!child.isMesh || child.userData.isOutline) return;
-        const om = new THREE.MeshBasicMaterial({ color: 0x9933ff, side: THREE.BackSide, transparent: true, opacity: 0.65 });
+        const om = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.BackSide, transparent: true, opacity: 0.65 });
         const oc = new THREE.Mesh(child.geometry, om);
         oc.scale.setScalar(1.07);
         oc.userData.isOutline = true;
@@ -502,7 +499,7 @@
       });
 
       /* Floor glow ring */
-      const ringMat = new THREE.MeshBasicMaterial({ color: 0x9933ff, transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide });
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide });
       const ring = new THREE.Mesh(new THREE.RingGeometry(0.4, 0.65, 40), ringMat);
       ring.rotation.x = -Math.PI / 2;
       ring.position.set(wp.x, 0.06, wp.z);
@@ -513,15 +510,15 @@
       label.position.set(wp.x, wp.y + 3.0, wp.z);
       scene.add(label);
 
-      /* Description panel (hidden until focused) */
-      const descPanel = makeDescPanel(cfg.title, cfg.desc);
-      descPanel.position.set(wp.x, wp.y + 3.2, wp.z);
-      descPanel.visible = false;
-      scene.add(descPanel);
-
       /* Portrait panel position — beside the person, panel center clear of roof */
       const panels = [panel1, panel2];
       panels[cfg.panelIdx].position.set(wp.x + 0.85, wp.y + 1.55, wp.z);
+
+      /* Description panel (hidden until focused) — next to the video panel */
+      const descPanel = makeDescPanel(cfg.title, cfg.desc);
+      descPanel.position.set(wp.x + 0.85 + PW * 0.5 + 1.35, wp.y + 1.55, wp.z);
+      descPanel.visible = false;
+      scene.add(descPanel);
 
       personData[name] = { node, ring, ringMat, label, descPanel, outlineMats, wp };
     });
