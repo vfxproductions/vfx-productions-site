@@ -928,47 +928,7 @@
   }
 }
 
-/* ====== CONTACT PAGE — studio info / map ====== */
-.contact-link,
-.contact-link:link,
-.contact-link:visited{
-  color: var(--fg80);
-  text-decoration: none;
-  font-size: .95rem;
-  transition: color .2s;
-}
-.contact-link:hover{ color: var(--fg); }
-/* Social icon buttons */
-.social-icon,
-.social-icon:link,
-.social-icon:visited{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--fg15);
-  border-radius: 8px;
-  color: var(--fg60);
-  background: rgba(255,255,255,.02);
-  transition: color .2s, border-color .2s;
-  flex-shrink: 0;
-}
-.social-icon svg{ width: 17px; height: 17px; }
-.social-icon:hover{ color: var(--fg); border-color: var(--fg35); }
-/* Leaflet dark-theme overrides */
-.leaflet-container .leaflet-bar a{
-  background: rgba(10,10,14,.90) !important;
-  color: rgba(240,240,250,.70) !important;
-  border-color: rgba(240,240,250,.15) !important;
-}
-.leaflet-container .leaflet-bar a:hover{
-  background: rgba(30,30,38,.95) !important;
-  color: rgba(240,240,250,1) !important;
-}
-@media (max-width: 560px){
-  #studioMap{ height: 260px !important; }
-}
+/* contact page studio section styles are inlined in contact/index.html <style> block */
 
 /* ====== SHOP PAGE ====== */
 .shop-grid{
