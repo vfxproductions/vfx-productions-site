@@ -15,7 +15,7 @@
   <meta property="og:image" content="/assets/about.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="/css/site.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" crossorigin="" />
 </head>
 
 <body>
@@ -194,44 +194,33 @@
     </section>
 
     <!-- STUDIO INFO + MAP -->
-    <section class="studio-section">
-      <div class="studio-inner">
+    <section style="max-width:var(--maxw);margin:0 auto;padding:0 22px 100px;">
+      <div style="border-top:1px solid var(--fg15);padding-top:64px;">
 
-        <!-- Details column -->
-        <div class="studio-details">
-          <div class="studio-kicker">Studio</div>
-          <h2 class="studio-heading">Where<br>To Find Us</h2>
+        <div class="kicker">Studio</div>
 
-          <div class="studio-item">
-            <div class="studio-item-icon" aria-hidden="true">
-              <!-- location pin -->
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            </div>
+        <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start;">
+
+          <!-- Contact details -->
+          <div style="display:flex;flex-direction:column;gap:32px;">
             <div>
-              <div class="studio-item-label">Address</div>
-              <address class="studio-address">
+              <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg35);margin-bottom:10px;">Address</div>
+              <address style="font-style:normal;font-size:.95rem;line-height:1.75;color:var(--fg80);">
                 Visseringlaan 22B<br>
                 2288 ER Rijswijk<br>
                 The Netherlands
               </address>
             </div>
-          </div>
-
-          <div class="studio-item">
-            <div class="studio-item-icon" aria-hidden="true">
-              <!-- envelope -->
-              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-            </div>
             <div>
-              <div class="studio-item-label">Email</div>
-              <a class="studio-email" href="mailto:studio@vfx.productions">studio@vfx.productions</a>
+              <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg35);margin-bottom:10px;">Email</div>
+              <a class="contact-link" href="mailto:studio@vfx.productions">studio@vfx.productions</a>
             </div>
           </div>
+
+          <!-- Map -->
+          <div id="studioMap" style="height:360px;border-radius:12px;border:1px solid var(--fg15);overflow:hidden;" aria-label="Studio location map"></div>
+
         </div>
-
-        <!-- Map column -->
-        <div class="studio-map" id="studioMap" aria-label="Studio location map"></div>
-
       </div>
     </section>
 
@@ -258,7 +247,7 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqaY=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" crossorigin=""></script>
   <script>
   (function(){
     /* Drawer */
@@ -327,35 +316,21 @@
       /* Scroll to form smoothly */
       document.getElementById("form")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    /* Studio map — Leaflet + CartoDB dark tiles */
-    const studioMap = L.map('studioMap', {
-      scrollWheelZoom: false,
-      zoomControl: true,
-    }).setView([52.03990, 4.32255], 16);
-
+    /* Studio map */
+    var smap = L.map('studioMap', { scrollWheelZoom: false, zoomControl: true }).setView([52.0399, 4.3222], 16);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
       subdomains: 'abcd',
       maxZoom: 19,
-    }).addTo(studioMap);
-
-    const pinIcon = L.divIcon({
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'
+    }).addTo(smap);
+    var pin = L.divIcon({
       className: '',
-      html: '<div style="width:14px;height:14px;background:#fff;border-radius:50%;border:2px solid rgba(255,255,255,.35);box-shadow:0 0 0 6px rgba(255,255,255,.10),0 0 18px rgba(255,255,255,.25);"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7],
-      popupAnchor: [0, -12],
+      html: '<div style="width:14px;height:14px;background:#fff;border-radius:50%;border:2px solid rgba(255,255,255,.4);box-shadow:0 0 0 6px rgba(255,255,255,.08),0 0 20px rgba(255,255,255,.22);"></div>',
+      iconSize: [14,14], iconAnchor: [7,7], popupAnchor: [0,-10]
     });
-
-    L.marker([52.03990, 4.32255], { icon: pinIcon })
-      .addTo(studioMap)
-      .bindPopup(
-        '<div style="font-family:inherit;font-size:.82rem;line-height:1.6;color:#fff;background:rgba(10,10,12,.92);padding:10px 14px;border-radius:8px;border:1px solid rgba(240,240,250,.12);min-width:160px;">' +
-        '<strong style="letter-spacing:.06em;text-transform:uppercase;font-size:.75rem;">Vision For Xperiences</strong><br>' +
-        'Visseringlaan 22B<br>2288 ER Rijswijk' +
-        '</div>',
-        { className: 'studio-popup', maxWidth: 220 }
-      )
+    L.marker([52.0399, 4.3222], { icon: pin })
+      .addTo(smap)
+      .bindPopup('<div style="background:rgba(8,8,10,.95);border:1px solid rgba(240,240,250,.12);border-radius:8px;padding:10px 14px;font-size:.82rem;line-height:1.6;color:rgba(240,240,250,.85);min-width:150px;"><strong style="display:block;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;color:#fff;margin-bottom:4px;">Vision For Xperiences</strong>Visseringlaan 22B<br>2288 ER Rijswijk</div>')
       .openPopup();
 
   })();
