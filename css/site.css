@@ -928,6 +928,120 @@
   }
 }
 
+/* ====== STUDIO / CONTACT INFO ====== */
+.studio-section{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 22px 100px;
+}
+.studio-inner{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  border-top: 1px solid var(--fg15);
+  padding-top: 64px;
+  align-items: start;
+}
+.studio-kicker{
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg35);
+  margin-bottom: 16px;
+}
+.studio-heading{
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 0 0 40px;
+  line-height: 1.1;
+}
+.studio-item{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.studio-item-icon{
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--fg15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.studio-item-icon svg{
+  width: 16px;
+  height: 16px;
+  stroke: var(--fg60);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.studio-item-label{
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg35);
+  margin-bottom: 6px;
+}
+.studio-address{
+  font-style: normal;
+  font-size: .95rem;
+  line-height: 1.75;
+  color: var(--fg80);
+}
+.studio-email{
+  font-size: .95rem;
+  color: var(--fg80);
+  text-decoration: none;
+  transition: color .2s;
+}
+.studio-email:hover{ color: var(--fg); }
+.studio-map{
+  height: 360px;
+  border-radius: 12px;
+  border: 1px solid var(--fg15);
+  overflow: hidden;
+}
+/* Override Leaflet attribution to match dark theme */
+.leaflet-container .leaflet-control-attribution{
+  background: rgba(0,0,0,.55) !important;
+  color: rgba(240,240,250,.35) !important;
+  font-size: .65rem !important;
+}
+.leaflet-container .leaflet-control-attribution a{ color: rgba(240,240,250,.45) !important; }
+.leaflet-container .leaflet-bar a{
+  background: rgba(10,10,12,.85) !important;
+  color: rgba(240,240,250,.7) !important;
+  border-color: var(--fg15) !important;
+}
+.leaflet-container .leaflet-bar a:hover{
+  background: rgba(30,30,36,.95) !important;
+  color: var(--fg) !important;
+}
+/* Hide default popup wrapper — we style entirely via inner HTML */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip{
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content{ margin: 0 !important; }
+@media (max-width: 720px){
+  .studio-inner{
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .studio-map{ height: 280px; }
+}
+
 /* ====== SHOP PAGE ====== */
 .shop-grid{
   max-width: var(--maxw);
