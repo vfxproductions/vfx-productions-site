@@ -621,9 +621,9 @@
     @media (max-width: 640px){
       /* Phone: compact events widget — show "Events" label only, hide countdown */
       .events-title{ display:none; }
-      .events-mobile-prefix{ display:inline; font-size:.70rem; color:var(--fg80); margin-right:3px; letter-spacing:.08em; }
+      .events-mobile-prefix{ display:inline; font-size:.70rem; color:var(--fg80); letter-spacing:.08em; }
       .events-time{ display:none; }
-      .events-widget{ padding: 0 8px; gap: 4px; height: 30px; }
+      .events-widget{ padding: 0 8px; gap: 0; height: 30px; justify-content:center; }
       /* 3-column grid: [hamburger | logo | events] — hamburger left, logo centered, events right */
       .nav{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
       .hamburger{ grid-column:1; grid-row:1; justify-self:start; }
@@ -651,7 +651,7 @@
       .kicker{ margin-bottom: 8px; }
       /* Stack actions buttons on phones */
       .actions{ flex-direction: column; }
-      .shop-card-footer{ flex-direction: column; align-items: flex-start; gap: 10px; }
+      .shop-card-footer{ flex-direction: row; }
     }
 
     /* iOS home indicator clearance in footer */
@@ -983,8 +983,12 @@
 .shop-card-footer{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
+}
+.shop-card-footer .shop-btn{
+  width: 100%;
+  justify-content: center;
 }
 .shop-price{
   font-weight: 950;
