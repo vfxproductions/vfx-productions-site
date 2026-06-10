@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#000000" />
 <title>VFX · Augmented Logo</title>
 
+<!-- model-viewer: native AR (iOS Quick Look / Android Scene Viewer / WebXR) -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.4.0/dist/model-viewer.min.js"></script>
+
 <!-- Three.js as ES modules (single instance via import map). -->
 <script type="importmap">
 {
@@ -40,8 +43,12 @@
   .lede{margin:26px auto 0;max-width:30ch;font-size:14px;line-height:1.6;color:#cfcfcf}
   .btn{appearance:none;cursor:pointer;border:1px solid #fff;background:transparent;color:#fff;
     font:inherit;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    padding:15px 30px;border-radius:40px;transition:.25s ease;margin-top:36px}
+    padding:15px 30px;border-radius:40px;transition:.25s ease}
   .btn:hover{background:#fff;color:#000}
+  .actions{margin-top:36px;display:flex;flex-direction:column;gap:13px;align-items:center}
+  .btn.ghost{border-color:#444;color:#bdbdbd;padding:13px 26px}
+  .btn.ghost:hover{border-color:#fff;color:#fff;background:transparent}
+  .arnote{margin-top:16px;font-size:11px;letter-spacing:.08em;color:#777;min-height:1em}
 
   .foot{position:fixed;bottom:20px;left:0;right:0;z-index:6;text-align:center;
     font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#6a6a6a}
@@ -80,6 +87,15 @@
   <!-- Logo, rendered transparent on top -->
   <canvas id="gl"></canvas>
 
+  <!-- Native AR launcher (placed on a real surface via the OS). Kept invisible;
+       triggered by the "Place it on your table" button. -->
+  <model-viewer id="mv"
+    src="./assets/logo_ar.glb"
+    ios-src="./assets/logo_ar.usdz"
+    ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="fixed"
+    loading="eager" reveal="auto" interaction-prompt="none"
+    style="position:fixed;left:0;top:0;width:100%;height:100%;opacity:0;pointer-events:none;z-index:-1"></model-viewer>
+
   <!-- TOP BAR -->
   <div id="topbar">
     <button class="close" id="closeBtn" aria-label="Close">×</button>
@@ -90,8 +106,12 @@
   <section id="intro" class="layer">
     <img class="mark" src="./assets/logo.png" alt="VFX" />
     <p class="tagline">Vision&nbsp;For&nbsp;Xperiences</p>
-    <p class="lede">Launch the camera and watch the studio mark come to life in front of you.</p>
-    <button class="btn" id="launchBtn">Launch AR</button>
+    <p class="lede">Drop the studio mark into your space — place it on a table or floor and walk around it.</p>
+    <div class="actions">
+      <button class="btn" id="tableBtn">Place it on your table&nbsp;→</button>
+      <button class="btn ghost" id="launchBtn">View over camera</button>
+    </div>
+    <p class="arnote" id="arnote"></p>
   </section>
 
   <div class="foot" id="foot">vfx.productions</div>
@@ -142,17 +162,13 @@
     let radius = 1;
 
     loading.classList.add('show');
-    new GLTFLoader().load('./assets/logo.glb', (gltf) => {
+    // Reuse the AR-ready model (already upright, facing the camera) — one download, shared with model-viewer.
+    new GLTFLoader().load('./assets/logo_ar.glb', (gltf) => {
       const logo = gltf.scene;
-      // center the model at the origin
       const box = new THREE.Box3().setFromObject(logo);
       const center = box.getCenter(new THREE.Vector3());
-      logo.position.sub(center);
-      // face the camera (GLB has a baked +90°X), then let the pivot spin it
-      const holder = new THREE.Group();
-      holder.rotation.x = Math.PI / 2;
-      holder.add(logo);
-      pivot.add(holder);
+      logo.position.sub(center);           // center at origin; pivot spins it
+      pivot.add(logo);
       radius = box.getBoundingSphere(new THREE.Sphere()).radius || 1;
       frameCamera();
       loading.classList.remove('show');
@@ -209,7 +225,34 @@
     }
     function stopCamera(){ if (stream){ stream.getTracks().forEach(t=>t.stop()); stream = null; camEl.srcObject = null; } }
 
-    /* ---------- UI ---------- */
+    /* ---------- Native AR (real surface tracking) ---------- */
+    const mv = document.getElementById('mv');
+    const tableBtn = document.getElementById('tableBtn');
+    const arnote = document.getElementById('arnote');
+
+    customElements.whenDefined('model-viewer').then(() => {
+      const update = () => {
+        arnote.textContent = mv.canActivateAR
+          ? 'Point your phone at a table or floor, then move it around'
+          : 'Open this page on an iPhone or Android phone to place it in AR';
+      };
+      update();
+      mv.addEventListener('load', update);
+      mv.addEventListener('ar-status', update);
+      setTimeout(update, 1000);
+    });
+
+    // Primary: drop the logo onto a real surface via the OS (ARKit / ARCore).
+    tableBtn.addEventListener('click', () => {
+      if (mv && mv.canActivateAR) {
+        stopCamera();          // release the camera so ARKit/ARCore can use it
+        mv.activateAR();
+      } else {
+        flash('Native AR isn’t available on this device. Open vfx.productions/business-card on a recent iPhone (Safari) or Android (Chrome) to place the logo on your table or floor.', 8000);
+      }
+    });
+
+    /* ---------- Secondary: logo composited over the live camera ---------- */
     document.getElementById('launchBtn').addEventListener('click', async () => {
       intro.classList.add('hidden'); hideC(foot); topbar.classList.add('show');
       const ok = await startCamera();
