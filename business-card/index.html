@@ -278,9 +278,29 @@ document.getElementById('launchBtn').addEventListener('click', async () => {
     // Let MindAR open the camera and attach its own <video>. Do NOT pre-open the
     // camera ourselves — on iOS that leaves MindAR's video with no live feed (black screen).
     await sys.start();
-    // iOS belt-and-suspenders: make sure the camera <video> is actually playing.
+
+    // Force the AR (WebGL) canvas to clear TRANSPARENT so the camera feed behind
+    // it is visible — otherwise it paints opaque black over the video.
+    if (sceneEl.renderer) {
+      sceneEl.renderer.setClearColor(0x000000, 0);
+      sceneEl.renderer.setClearAlpha(0);
+    }
+    if (sceneEl.object3D) sceneEl.object3D.background = null;
+
+    // The camera <video> usually has no width/height until its metadata loads, which
+    // leaves the layout black until a resize recomputes it (that's why rotating the
+    // phone briefly shows the feed). So we trigger that resize ourselves — once the
+    // video is ready, and again on short delays to catch slow iOS metadata loads.
     const v = sceneEl.querySelector('video') || document.querySelector('video');
-    if (v) { v.setAttribute('playsinline', ''); v.muted = true; try { await v.play(); } catch (e) {} }
+    const nudge = () => { try { v && v.play(); } catch (e) {} window.dispatchEvent(new Event('resize')); };
+    if (v) {
+      v.setAttribute('playsinline', ''); v.muted = true;
+      v.addEventListener('loadedmetadata', nudge);
+      v.addEventListener('playing', nudge);
+      if (v.readyState >= 2) nudge();
+    }
+    [120, 400, 1000, 2000].forEach((ms) => setTimeout(nudge, ms));
+
     arRunning = true;
     toast.classList.remove('show');
   } catch (err) {
