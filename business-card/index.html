@@ -6,8 +6,7 @@
 <meta name="theme-color" content="#000000" />
 <title>VFX · Augmented Logo</title>
 
-<!-- Import map MUST come before ANY module script, or the browser ignores it
-     (which would break the bare "three" imports below and kill the whole script). -->
+<!-- Import map MUST come before ANY module script, or the browser ignores it. -->
 <script type="importmap">
 {
   "imports": {
@@ -16,7 +15,6 @@
   }
 }
 </script>
-
 <!-- model-viewer: native AR (iOS Quick Look / Android Scene Viewer / WebXR) -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.4.0/dist/model-viewer.min.js"></script>
 
@@ -26,98 +24,106 @@
     background:radial-gradient(120% 90% at 50% 35%, #0c0c0c 0%, #000 65%);
     color:#fff;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 
-  /* Camera feed (a normal element — NOT behind any opaque background). */
-  #cam{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#000}
-  /* Transparent WebGL canvas, composited on top of the feed. */
-  #gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;display:block}
+  /* Camera feed + transparent logo canvas — shown ONLY in the "view over camera" screen. */
+  #cam{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#000;display:none}
+  #gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;display:none}
+  body.camera #cam, body.camera #gl{display:block}
 
-  /* ---------- overlay layers ---------- */
-  .layer{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;padding:32px;
-    transition:opacity .5s ease, visibility .5s ease}
-  .layer.hidden{opacity:0;visibility:hidden;pointer-events:none}
+  /* model-viewer is only an AR launcher — keep it invisible. */
+  #mv{position:fixed;left:0;top:0;width:100%;height:100%;opacity:0;pointer-events:none;z-index:-1}
+
+  /* ---------- screens ---------- */
+  .screen{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:34px;
+    transition:opacity .45s ease, visibility .45s ease}
+  .screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
 
   .mark{width:min(60vw,360px);height:auto;display:block;
     filter:drop-shadow(0 2px 34px rgba(255,255,255,.12))}
   .tagline{margin:18px 0 0;font-size:clamp(10px,2.6vw,13px);letter-spacing:.55em;
     text-transform:uppercase;color:#9a9a9a;padding-left:.55em}
-  .lede{margin:26px auto 0;max-width:30ch;font-size:14px;line-height:1.6;color:#cfcfcf}
+  .lede{margin:24px auto 0;max-width:30ch;font-size:14px;line-height:1.6;color:#cfcfcf}
+
+  .actions{margin-top:38px;display:flex;flex-direction:column;gap:14px;align-items:center}
   .btn{appearance:none;cursor:pointer;border:1px solid #fff;background:transparent;color:#fff;
     font:inherit;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    padding:15px 30px;border-radius:40px;transition:.25s ease}
+    padding:15px 32px;border-radius:40px;transition:.25s ease;text-decoration:none;display:inline-block}
   .btn:hover{background:#fff;color:#000}
-  .actions{margin-top:36px;display:flex;flex-direction:column;gap:13px;align-items:center}
-  .btn.ghost{border-color:#444;color:#bdbdbd;padding:13px 26px}
+  .btn.ghost{border-color:#3a3a3a;color:#b8b8b8}
   .btn.ghost:hover{border-color:#fff;color:#fff;background:transparent}
-  .arnote{margin-top:16px;font-size:11px;letter-spacing:.08em;color:#777;min-height:1em}
+  .textlink{margin-top:22px;background:none;border:0;cursor:pointer;color:#777;font:inherit;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:.2s}
+  .textlink:hover{color:#fff}
+  .arnote{margin-top:18px;font-size:11px;letter-spacing:.08em;color:#777;min-height:1em}
 
   .foot{position:fixed;bottom:20px;left:0;right:0;z-index:6;text-align:center;
-    font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#6a6a6a}
+    font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#6a6a6a;transition:opacity .4s}
+  body.camera .foot{opacity:0}
 
-  /* hint while AR is live */
+  /* scanning hint over the camera */
   #hint{position:fixed;left:0;right:0;bottom:74px;z-index:6;text-align:center;
     font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#fff;
     text-shadow:0 1px 14px rgba(0,0,0,.85);opacity:0;transition:opacity .5s;pointer-events:none}
   #hint.show{opacity:1}
 
-  /* top bar during AR */
-  #topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:none;
-    justify-content:space-between;align-items:center;padding:18px 20px}
+  /* top bar (close) — only on AR page + camera */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:none;justify-content:flex-start;padding:18px 20px}
   #topbar.show{display:flex}
   .close{appearance:none;cursor:pointer;background:rgba(0,0,0,.35);border:1px solid #444;color:#fff;
-    width:40px;height:40px;border-radius:50%;font-size:18px;line-height:1;backdrop-filter:blur(6px)}
+    width:42px;height:42px;border-radius:50%;font-size:19px;line-height:1;backdrop-filter:blur(6px)}
   .close:hover{border-color:#fff}
-  .cta{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
-    background:rgba(0,0,0,.35);border:1px solid #fff;color:#fff;border-radius:40px;
-    padding:11px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;backdrop-filter:blur(6px);transition:.25s}
-  .cta:hover{background:#fff;color:#000}
 
   #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:40;
     max-width:88vw;background:#111;border:1px solid #333;color:#eee;border-radius:10px;
     padding:12px 16px;font-size:13px;line-height:1.5;display:none}
   #toast.show{display:block}
-
   #loading{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:25;
     font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#bbb;display:none}
   #loading.show{display:block}
 </style>
 </head>
 <body>
-  <!-- Live camera feed (proven approach) -->
   <video id="cam" autoplay muted playsinline></video>
-  <!-- Logo, rendered transparent on top -->
   <canvas id="gl"></canvas>
 
-  <!-- Native AR launcher (placed on a real surface via the OS). Kept invisible;
-       triggered by the "Place it on your table" button. -->
+  <!-- Native AR launcher (invisible) -->
   <model-viewer id="mv"
     src="./assets/logo_ar.glb"
     ios-src="./assets/logo_ar.usdz"
     ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="fixed"
-    loading="eager" reveal="auto" interaction-prompt="none"
-    style="position:fixed;left:0;top:0;width:100%;height:100%;opacity:0;pointer-events:none;z-index:-1"></model-viewer>
+    loading="eager" reveal="auto" interaction-prompt="none"></model-viewer>
 
   <!-- TOP BAR -->
-  <div id="topbar">
-    <button class="close" id="closeBtn" aria-label="Close">×</button>
-    <a class="cta" id="siteBtn" href="https://vfx.productions" target="_blank" rel="noopener">See our work&nbsp;↗</a>
-  </div>
+  <div id="topbar"><button class="close" id="closeBtn" aria-label="Back">×</button></div>
 
-  <!-- INTRO -->
-  <section id="intro" class="layer">
+  <!-- START -->
+  <section id="intro" class="screen">
     <img class="mark" src="./assets/logo.png" alt="VFX" />
     <p class="tagline">Vision&nbsp;For&nbsp;Xperiences</p>
-    <p class="lede">Drop the studio mark into your space — place it on a table or floor and walk around it.</p>
+    <p class="lede">See the studio mark in augmented reality.</p>
     <div class="actions">
-      <button class="btn" id="tableBtn">Place it on your table&nbsp;→</button>
-      <button class="btn ghost" id="launchBtn">View over camera</button>
+      <button class="btn" id="enterBtn">Enter AR view</button>
     </div>
+  </section>
+
+  <!-- AR PAGE (place it on your table) -->
+  <section id="arpage" class="screen hidden">
+    <img class="mark" src="./assets/logo.png" alt="VFX" />
+    <p class="lede">Place the VFX mark on a table or floor and walk around it.</p>
+    <div class="actions">
+      <button class="btn" id="tableBtn">Place it on your table</button>
+      <a class="btn ghost" id="siteBtn" href="https://vfx.productions" target="_blank" rel="noopener">See our work</a>
+    </div>
+    <button class="textlink" id="cameraBtn">View over camera</button>
     <p class="arnote" id="arnote"></p>
   </section>
 
+  <!-- VIEW OVER CAMERA (kept for now) -->
+  <section id="camera" class="screen hidden" style="background:transparent;pointer-events:none"></section>
+
   <div class="foot" id="foot">vfx.productions</div>
   <div id="hint">Move your phone around the logo</div>
-  <div id="loading">Loading logo…</div>
+  <div id="loading">Loading…</div>
   <div id="toast"></div>
 
   <script type="module">
@@ -125,143 +131,98 @@
     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-    const intro   = document.getElementById('intro');
-    const foot    = document.getElementById('foot');
-    const hint    = document.getElementById('hint');
-    const topbar  = document.getElementById('topbar');
-    const toast   = document.getElementById('toast');
-    const loading = document.getElementById('loading');
-    const camEl   = document.getElementById('cam');
+    const foot=document.getElementById('foot'), hint=document.getElementById('hint'),
+          topbar=document.getElementById('topbar'), toast=document.getElementById('toast'),
+          loading=document.getElementById('loading'), camEl=document.getElementById('cam');
+    const screens={ intro:document.getElementById('intro'), arpage:document.getElementById('arpage'), camera:document.getElementById('camera') };
+    function flash(msg,ms){ toast.textContent=msg; toast.classList.add('show'); if(ms) setTimeout(()=>toast.classList.remove('show'),ms); }
 
-    const show = (el) => el.classList.add('show');
-    const hideC = (el) => el.classList.remove('show');
-    function flash(msg, ms){ toast.textContent = msg; toast.classList.add('show'); if(ms) setTimeout(()=>toast.classList.remove('show'), ms); }
+    /* ---------- Three.js (transparent canvas, lit rotating logo) ---------- */
+    const canvas=document.getElementById('gl');
+    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    renderer.setClearColor(0x000000,0);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    renderer.outputColorSpace=THREE.SRGBColorSpace;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,0.01,100); camera.position.set(0,0,5);
+    const pmrem=new THREE.PMREMGenerator(renderer); scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+    scene.add(new THREE.AmbientLight(0xffffff,0.35));
+    const key=new THREE.DirectionalLight(0xffffff,2.2); key.position.set(2,3,2.5); scene.add(key);
+    const rim=new THREE.DirectionalLight(0x9fb8ff,1.1); rim.position.set(-2.5,-1,-2); scene.add(rim);
+    const pivot=new THREE.Group(); scene.add(pivot);
+    let radius=1, logoLoaded=false, rendering=false;
 
-    /* ---------- Three.js: transparent canvas, lit rotating logo ---------- */
-    const canvas = document.getElementById('gl');
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setClearColor(0x000000, 0);                 // fully transparent — feed shows through
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.01, 100);
-    camera.position.set(0, 0, 5);
-
-    // Studio-style reflections so the metallic logo reads well.
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-    const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(2, 3, 2.5); scene.add(key);
-    const rim = new THREE.DirectionalLight(0x9fb8ff, 1.1); rim.position.set(-2.5, -1, -2); scene.add(rim);
-
-    const pivot = new THREE.Group();   // turntable
-    scene.add(pivot);
-    let radius = 1;
-
-    loading.classList.add('show');
-    // Reuse the AR-ready model (already upright, facing the camera) — one download, shared with model-viewer.
-    new GLTFLoader().load('./assets/logo_ar.glb', (gltf) => {
-      const logo = gltf.scene;
-      const box = new THREE.Box3().setFromObject(logo);
-      const center = box.getCenter(new THREE.Vector3());
-      logo.position.sub(center);           // center at origin; pivot spins it
-      pivot.add(logo);
-      radius = box.getBoundingSphere(new THREE.Sphere()).radius || 1;
-      frameCamera();
-      loading.classList.remove('show');
-    }, undefined, (err) => { console.error(err); loading.textContent = 'Could not load logo'; });
-
-    // Fit the logo in view for any screen aspect (portrait & landscape).
+    function ensureLogo(){
+      if(logoLoaded) return Promise.resolve();
+      loading.classList.add('show');
+      return new Promise((res)=>{
+        new GLTFLoader().load('./assets/logo_ar.glb',(g)=>{
+          const logo=g.scene;                                  // already upright
+          const box=new THREE.Box3().setFromObject(logo);
+          logo.position.sub(box.getCenter(new THREE.Vector3()));
+          pivot.add(logo);
+          radius=box.getBoundingSphere(new THREE.Sphere()).radius||1;
+          logoLoaded=true; frameCamera(); loading.classList.remove('show'); res();
+        },undefined,(e)=>{ console.error(e); loading.textContent='Could not load logo'; res(); });
+      });
+    }
     function frameCamera(){
-      const vFOV = THREE.MathUtils.degToRad(camera.fov);
-      const hFOV = 2 * Math.atan(Math.tan(vFOV/2) * camera.aspect);
-      const fov = Math.min(vFOV, hFOV);
-      camera.position.z = (radius / Math.sin(fov/2)) * 1.3;
-      camera.updateProjectionMatrix();
+      const vF=THREE.MathUtils.degToRad(camera.fov), hF=2*Math.atan(Math.tan(vF/2)*camera.aspect);
+      camera.position.z=(radius/Math.sin(Math.min(vF,hF)/2))*1.3; camera.updateProjectionMatrix();
     }
-
-    function resize(){
-      const w = window.innerWidth, h = window.innerHeight;
-      camera.aspect = w / h;
-      renderer.setSize(w, h, false);
-      frameCamera();
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let last = 0;
-    function animate(t){
-      requestAnimationFrame(animate);
-      const dt = (t - last) || 16; last = t;
-      pivot.rotation.y += dt * 0.0006;
-      pivot.position.y = Math.sin(t * 0.0014) * (radius * 0.05);
-      renderer.render(scene, camera);
-    }
-    requestAnimationFrame(animate);
+    function resize(){ camera.aspect=innerWidth/innerHeight; renderer.setSize(innerWidth,innerHeight,false); frameCamera(); }
+    addEventListener('resize',resize); resize();
+    let last=0;
+    (function animate(t){ requestAnimationFrame(animate);
+      if(!rendering) return;
+      const dt=(t-last)||16; last=t;
+      pivot.rotation.y+=dt*0.0006; pivot.position.y=Math.sin(t*0.0014)*(radius*0.05);
+      renderer.render(scene,camera);
+    })(0);
 
     /* ---------- Camera ---------- */
-    let stream = null;
+    let stream=null;
     async function startCamera(){
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-        flash("This browser can't open the camera. If you came from inside another app, open this link in Safari/Chrome directly."); return false;
-      }
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
-      } catch (e1){
-        try { stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false }); }
-        catch (e2){
-          const n = e2 && e2.name;
-          if (n === 'NotAllowedError') flash('Camera blocked. Allow it in your browser settings, then reload. (You can still see the logo above.)', 6000);
-          else flash('Camera error: ' + (n || e2), 6000);
-          return false;
-        }
-      }
-      camEl.srcObject = stream;
-      try { await camEl.play(); } catch(e){}
-      return true;
+      if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){ flash("This browser can't open the camera. Open the link directly in Safari/Chrome.",6000); return false; }
+      try{ stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false}); }
+      catch(e1){ try{ stream=await navigator.mediaDevices.getUserMedia({video:true,audio:false}); }
+        catch(e2){ flash(e2&&e2.name==='NotAllowedError'?'Camera blocked — allow it in settings, then reload.':'Camera error: '+(e2&&e2.name||e2),6000); return false; } }
+      camEl.srcObject=stream; try{ await camEl.play(); }catch(e){} return true;
     }
-    function stopCamera(){ if (stream){ stream.getTracks().forEach(t=>t.stop()); stream = null; camEl.srcObject = null; } }
+    function stopCamera(){ if(stream){ stream.getTracks().forEach(t=>t.stop()); stream=null; camEl.srcObject=null; } }
 
-    /* ---------- Native AR (real surface tracking) ---------- */
-    const mv = document.getElementById('mv');
-    const tableBtn = document.getElementById('tableBtn');
-    const arnote = document.getElementById('arnote');
-
-    customElements.whenDefined('model-viewer').then(() => {
-      const update = () => {
-        arnote.textContent = mv.canActivateAR
-          ? 'Point your phone at a table or floor, then move it around'
-          : 'Open this page on an iPhone or Android phone to place it in AR';
-      };
-      update();
-      mv.addEventListener('load', update);
-      mv.addEventListener('ar-status', update);
-      setTimeout(update, 1000);
-    });
-
-    // Primary: drop the logo onto a real surface via the OS (ARKit / ARCore).
-    tableBtn.addEventListener('click', () => {
-      if (mv && mv.canActivateAR) {
-        stopCamera();          // release the camera so ARKit/ARCore can use it
-        mv.activateAR();
-      } else {
-        flash('Native AR isn’t available on this device. Open vfx.productions/business-card on a recent iPhone (Safari) or Android (Chrome) to place the logo on your table or floor.', 8000);
+    /* ---------- Navigation ---------- */
+    let current='intro';
+    async function go(name){
+      Object.values(screens).forEach(s=>s.classList.add('hidden'));
+      // leaving camera
+      if(current==='camera' && name!=='camera'){ rendering=false; stopCamera(); document.body.classList.remove('camera'); hint.classList.remove('show'); }
+      current=name;
+      screens[name].classList.remove('hidden');
+      topbar.classList.toggle('show', name!=='intro');
+      if(name==='camera'){
+        document.body.classList.add('camera');
+        await ensureLogo();
+        const ok=await startCamera();
+        rendering=true;
+        if(ok){ hint.classList.add('show'); setTimeout(()=>hint.classList.remove('show'),4500); }
       }
-    });
+    }
 
-    /* ---------- Secondary: logo composited over the live camera ---------- */
-    document.getElementById('launchBtn').addEventListener('click', async () => {
-      intro.classList.add('hidden'); hideC(foot); topbar.classList.add('show');
-      const ok = await startCamera();
-      if (ok) { show(hint); setTimeout(()=>hideC(hint), 4500); }
+    document.getElementById('enterBtn').addEventListener('click',()=>go('arpage'));
+    document.getElementById('cameraBtn').addEventListener('click',()=>go('camera'));
+    document.getElementById('closeBtn').addEventListener('click',()=> go(current==='camera'?'arpage':'intro'));
+
+    /* ---------- Native AR ---------- */
+    const mv=document.getElementById('mv'), tableBtn=document.getElementById('tableBtn'), arnote=document.getElementById('arnote');
+    customElements.whenDefined('model-viewer').then(()=>{
+      const upd=()=>{ arnote.textContent = mv.canActivateAR ? 'Point at a table or floor, then move around it' : 'Open on an iPhone or Android phone to place it in AR'; };
+      upd(); mv.addEventListener('load',upd); mv.addEventListener('ar-status',upd); setTimeout(upd,1000);
     });
-    document.getElementById('closeBtn').addEventListener('click', () => {
-      stopCamera(); topbar.classList.remove('show'); hideC(hint); toast.classList.remove('show');
-      intro.classList.remove('hidden'); show(foot);
+    tableBtn.addEventListener('click',()=>{
+      if(mv&&mv.canActivateAR){ stopCamera(); mv.activateAR(); }
+      else flash('Native AR isn’t available on this device. Open vfx.productions/business-card on a recent iPhone (Safari) or Android (Chrome).',8000);
     });
   </script>
 </body>
