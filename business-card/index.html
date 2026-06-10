@@ -4,73 +4,56 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <meta name="theme-color" content="#000000" />
-<title>VFX · Augmented Business Card</title>
+<title>VFX · Augmented Logo</title>
 
-<!-- AR runtime: A-Frame + MindAR image tracking -->
-<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-<!-- No-camera 3D preview -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.4.0/dist/model-viewer.min.js"></script>
+<!-- Three.js as ES modules (single instance via import map). -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 
 <style>
-  :root { --ink:#fff; --bg:#000; }
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden;
-    font-family:"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:inherit}
+  html,body{margin:0;height:100%;width:100%;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% 35%, #0c0c0c 0%, #000 65%);
+    color:#fff;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 
-  /* ---------- AR scene fills the viewport, sits behind the UI ---------- */
-  #arscene{position:fixed;inset:0;z-index:0;background:transparent}
-  /* keep the WebGL canvas transparent so the MindAR camera <video> shows through */
-  #arscene canvas, canvas.a-canvas{background:transparent!important}
+  /* Camera feed (a normal element — NOT behind any opaque background). */
+  #cam{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#000}
+  /* Transparent WebGL canvas, composited on top of the feed. */
+  #gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;display:block}
 
-  /* ---------- shared overlay layers ---------- */
-  .layer{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;
+  /* ---------- overlay layers ---------- */
+  .layer{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;padding:32px;
     transition:opacity .5s ease, visibility .5s ease}
   .layer.hidden{opacity:0;visibility:hidden;pointer-events:none}
 
-  /* ---------- intro ---------- */
-  #intro{background:
-    radial-gradient(120% 90% at 50% 30%, #0c0c0c 0%, #000 60%);}
-  .mark{width:min(62vw,380px);height:auto;display:block;
+  .mark{width:min(60vw,360px);height:auto;display:block;
     filter:drop-shadow(0 2px 34px rgba(255,255,255,.12))}
   .tagline{margin:18px 0 0;font-size:clamp(10px,2.6vw,13px);letter-spacing:.55em;
     text-transform:uppercase;color:#9a9a9a;padding-left:.55em}
   .lede{margin:26px auto 0;max-width:30ch;font-size:14px;line-height:1.6;color:#cfcfcf}
-  .actions{margin-top:38px;display:flex;flex-direction:column;gap:14px;align-items:center}
   .btn{appearance:none;cursor:pointer;border:1px solid #fff;background:transparent;color:#fff;
     font:inherit;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    padding:15px 30px;border-radius:40px;transition:.25s ease}
+    padding:15px 30px;border-radius:40px;transition:.25s ease;margin-top:36px}
   .btn:hover{background:#fff;color:#000}
-  .btn.ghost{border-color:#333;color:#9a9a9a;padding:10px 22px}
-  .btn.ghost:hover{border-color:#fff;color:#fff;background:transparent}
-  .foot{position:fixed;bottom:20px;left:0;right:0;z-index:10;text-align:center;
-    font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#5a5a5a}
 
-  /* ---------- scanning hint (during AR) ---------- */
-  #hint{z-index:5;justify-content:flex-end;padding-bottom:96px;background:transparent;pointer-events:none}
-  .reticle{width:min(74vw,360px);aspect-ratio:1.55/1;border-radius:14px;position:relative;margin-bottom:26px}
-  .reticle span{position:absolute;width:26px;height:26px;border:2px solid rgba(255,255,255,.85)}
-  .reticle span:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-radius:14px 0 0 0}
-  .reticle span:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
-  .reticle span:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 14px}
-  .reticle span:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 14px 0}
-  .reticle::after{content:"";position:absolute;left:6%;right:6%;top:8%;height:2px;
-    background:linear-gradient(90deg,transparent,#fff,transparent);opacity:.85;
-    animation:scan 2.6s ease-in-out infinite}
-  @keyframes scan{0%{transform:translateY(0)}50%{transform:translateY(440%)}100%{transform:translateY(0)}}
-  #hint p{margin:0;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#fff;
-    text-shadow:0 1px 14px rgba(0,0,0,.8)}
-  #hint.found{opacity:0}
+  .foot{position:fixed;bottom:20px;left:0;right:0;z-index:6;text-align:center;
+    font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#6a6a6a}
 
-  /* ---------- preview (no camera) ---------- */
-  #preview{background:radial-gradient(120% 90% at 50% 40%,#101010,#000 70%);}
-  model-viewer{width:min(92vw,720px);height:min(70vh,620px);background:transparent;
-    --poster-color:transparent}
+  /* hint while AR is live */
+  #hint{position:fixed;left:0;right:0;bottom:74px;z-index:6;text-align:center;
+    font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#fff;
+    text-shadow:0 1px 14px rgba(0,0,0,.85);opacity:0;transition:opacity .5s;pointer-events:none}
+  #hint.show{opacity:1}
 
-  /* ---------- top bar (close) ---------- */
-  #topbar{position:fixed;top:0;left:0;right:0;z-index:20;display:none;
+  /* top bar during AR */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:none;
     justify-content:space-between;align-items:center;padding:18px 20px}
   #topbar.show{display:flex}
   .close{appearance:none;cursor:pointer;background:rgba(0,0,0,.35);border:1px solid #444;color:#fff;
@@ -78,273 +61,164 @@
   .close:hover{border-color:#fff}
   .cta{display:inline-flex;align-items:center;gap:7px;text-decoration:none;
     background:rgba(0,0,0,.35);border:1px solid #fff;color:#fff;border-radius:40px;
-    padding:11px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    backdrop-filter:blur(6px);transition:.25s ease}
-  .cta:hover{background:#fff;color:#000;border-color:#fff}
+    padding:11px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;backdrop-filter:blur(6px);transition:.25s}
+  .cta:hover{background:#fff;color:#000}
 
-  /* ---------- toast / errors ---------- */
-  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:30;
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:40;
     max-width:88vw;background:#111;border:1px solid #333;color:#eee;border-radius:10px;
     padding:12px 16px;font-size:13px;line-height:1.5;display:none}
   #toast.show{display:block}
+
+  #loading{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:25;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#bbb;display:none}
+  #loading.show{display:block}
 </style>
 </head>
 <body>
+  <!-- Live camera feed (proven approach) -->
+  <video id="cam" autoplay muted playsinline></video>
+  <!-- Logo, rendered transparent on top -->
+  <canvas id="gl"></canvas>
 
-<!-- ===== AR SCENE (camera starts only on user gesture) ===== -->
-<a-scene id="arscene"
-  mindar-image="imageTargetSrc: ./assets/targets.mind; autoStart: false; uiScanning: no; uiLoading: no; uiError: no; maxTrack: 1; filterMinCF: 0.0001; filterBeta: 0.001"
-  color-space="sRGB" embedded keep-transparent
-  renderer="colorManagement: true; physicallyCorrectLights: true; toneMapping: ACESFilmic; exposure: 1.05; antialias: true; alpha: true"
-  vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-
-  <a-assets>
-    <a-asset-item id="logoModel" src="./assets/logo.glb"></a-asset-item>
-  </a-assets>
-
-  <a-camera position="0 0 0" look-controls="false"></a-camera>
-
-  <a-entity id="card" mindar-image-target="targetIndex: 0">
-    <a-entity light="type: ambient; intensity: 0.55; color: #ffffff"></a-entity>
-    <a-entity light="type: directional; intensity: 1.0; color: #ffffff" position="0.6 1 1"></a-entity>
-    <a-entity light="type: directional; intensity: 0.45; color: #9fb8ff" position="-1 -0.2 0.6"></a-entity>
-    <a-entity id="spin" turntable="speed: 0.45">
-      <a-gltf-model src="#logoModel" rotation="90 0 0" card-fit="size: 0.55; lift: 0.05"></a-gltf-model>
-    </a-entity>
-  </a-entity>
-</a-scene>
-
-<!-- ===== TOP BAR ===== -->
-<div id="topbar">
-  <button class="close" id="closeBtn" aria-label="Close">×</button>
-  <a class="cta" id="siteBtn" href="https://vfx.productions" target="_blank" rel="noopener">See our work&nbsp;↗</a>
-</div>
-
-<!-- ===== INTRO ===== -->
-<section id="intro" class="layer">
-  <img class="mark" src="./assets/logo.png" alt="VFX" />
-  <p class="tagline">Vision&nbsp;For&nbsp;Xperiences</p>
-  <p class="lede">Point your phone at the card and watch the studio mark lift off the paper.</p>
-  <div class="actions">
-    <button class="btn" id="launchBtn">Launch AR experience</button>
-    <button class="btn ghost" id="previewBtn">Preview the logo</button>
+  <!-- TOP BAR -->
+  <div id="topbar">
+    <button class="close" id="closeBtn" aria-label="Close">×</button>
+    <a class="cta" id="siteBtn" href="https://vfx.productions" target="_blank" rel="noopener">See our work&nbsp;↗</a>
   </div>
-</section>
-<div class="foot" id="foot">vfx.productions</div>
 
-<!-- ===== SCANNING HINT ===== -->
-<section id="hint" class="layer hidden">
-  <div class="reticle"><span></span><span></span><span></span><span></span></div>
-  <p>Point at the VFX card</p>
-</section>
+  <!-- INTRO -->
+  <section id="intro" class="layer">
+    <img class="mark" src="./assets/logo.png" alt="VFX" />
+    <p class="tagline">Vision&nbsp;For&nbsp;Xperiences</p>
+    <p class="lede">Launch the camera and watch the studio mark come to life in front of you.</p>
+    <button class="btn" id="launchBtn">Launch AR</button>
+  </section>
 
-<!-- ===== PREVIEW (no camera) ===== -->
-<section id="preview" class="layer hidden">
-  <model-viewer id="mv" src="./assets/logo.glb" alt="VFX logo"
-    camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="18deg"
-    interaction-prompt="none" shadow-intensity="1" exposure="1.1"
-    environment-image="neutral" disable-tap></model-viewer>
-</section>
+  <div class="foot" id="foot">vfx.productions</div>
+  <div id="hint">Move your phone around the logo</div>
+  <div id="loading">Loading logo…</div>
+  <div id="toast"></div>
 
-<!-- ===== TOAST ===== -->
-<div id="toast"></div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-<script>
-/* ---------- A-Frame components ---------- */
+    const intro   = document.getElementById('intro');
+    const foot    = document.getElementById('foot');
+    const hint    = document.getElementById('hint');
+    const topbar  = document.getElementById('topbar');
+    const toast   = document.getElementById('toast');
+    const loading = document.getElementById('loading');
+    const camEl   = document.getElementById('cam');
 
-// Keep the WebGL canvas clearing TRANSPARENT every frame, so the MindAR camera
-// <video> behind it stays visible. THREE defaults clearAlpha to 1 (opaque black),
-// and a one-time override doesn't stick — so we enforce it on each tick.
-AFRAME.registerComponent('keep-transparent', {
-  init: function () {
-    const apply = () => {
-      const r = this.el.renderer;
-      if (r) { r.setClearColor(0x000000, 0); r.setClearAlpha(0); r.autoClear = true; }
-      if (this.el.object3D) this.el.object3D.background = null;
-    };
-    this.apply = apply;
-    this.el.addEventListener('render-target-loaded', apply);
-    this.el.addEventListener('loaded', apply);
-    apply();
-  },
-  tick: function () { this.apply(); }
-});
+    const show = (el) => el.classList.add('show');
+    const hideC = (el) => el.classList.remove('show');
+    function flash(msg, ms){ toast.textContent = msg; toast.classList.add('show'); if(ms) setTimeout(()=>toast.classList.remove('show'), ms); }
 
-// Slowly rotate the logo around the card's vertical axis (turntable).
-AFRAME.registerComponent('turntable', {
-  schema: { speed: { default: 0.45 } }, // radians / second
-  tick: function (t, dt) {
-    this.el.object3D.rotation.y += (dt || 16) / 1000 * this.data.speed;
-  }
-});
+    /* ---------- Three.js: transparent canvas, lit rotating logo ---------- */
+    const canvas = document.getElementById('gl');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setClearColor(0x000000, 0);                 // fully transparent — feed shows through
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
 
-// Auto-fit the GLB to the card, then play an entrance reveal tied to tracking.
-AFRAME.registerComponent('card-fit', {
-  schema: { size: { default: 0.55 }, lift: { default: 0.05 } },
-  init: function () {
-    this.ready = false; this.p = 0; this.show = false;
-    this.center = new THREE.Vector3();
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.01, 100);
+    camera.position.set(0, 0, 5);
 
-    this.el.addEventListener('model-loaded', () => {
-      const obj = this.el.object3D;
-      const box = new THREE.Box3().setFromObject(obj);
-      const size = new THREE.Vector3(); box.getSize(size);
-      box.getCenter(this.center);
-      const maxDim = Math.max(size.x, size.y, size.z) || 1;
-      this.k = this.data.size / maxDim;
-      obj.scale.setScalar(0);
-      obj.visible = false;
-      this.ready = true;
+    // Studio-style reflections so the metallic logo reads well.
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(2, 3, 2.5); scene.add(key);
+    const rim = new THREE.DirectionalLight(0x9fb8ff, 1.1); rim.position.set(-2.5, -1, -2); scene.add(rim);
+
+    const pivot = new THREE.Group();   // turntable
+    scene.add(pivot);
+    let radius = 1;
+
+    loading.classList.add('show');
+    new GLTFLoader().load('./assets/logo.glb', (gltf) => {
+      const logo = gltf.scene;
+      // center the model at the origin
+      const box = new THREE.Box3().setFromObject(logo);
+      const center = box.getCenter(new THREE.Vector3());
+      logo.position.sub(center);
+      // face the camera (GLB has a baked +90°X), then let the pivot spin it
+      const holder = new THREE.Group();
+      holder.rotation.x = Math.PI / 2;
+      holder.add(logo);
+      pivot.add(holder);
+      radius = box.getBoundingSphere(new THREE.Sphere()).radius || 1;
+      frameCamera();
+      loading.classList.remove('show');
+    }, undefined, (err) => { console.error(err); loading.textContent = 'Could not load logo'; });
+
+    // Fit the logo in view for any screen aspect (portrait & landscape).
+    function frameCamera(){
+      const vFOV = THREE.MathUtils.degToRad(camera.fov);
+      const hFOV = 2 * Math.atan(Math.tan(vFOV/2) * camera.aspect);
+      const fov = Math.min(vFOV, hFOV);
+      camera.position.z = (radius / Math.sin(fov/2)) * 1.3;
+      camera.updateProjectionMatrix();
+    }
+
+    function resize(){
+      const w = window.innerWidth, h = window.innerHeight;
+      camera.aspect = w / h;
+      renderer.setSize(w, h, false);
+      frameCamera();
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let last = 0;
+    function animate(t){
+      requestAnimationFrame(animate);
+      const dt = (t - last) || 16; last = t;
+      pivot.rotation.y += dt * 0.0006;
+      pivot.position.y = Math.sin(t * 0.0014) * (radius * 0.05);
+      renderer.render(scene, camera);
+    }
+    requestAnimationFrame(animate);
+
+    /* ---------- Camera ---------- */
+    let stream = null;
+    async function startCamera(){
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+        flash("This browser can't open the camera. If you came from inside another app, open this link in Safari/Chrome directly."); return false;
+      }
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+      } catch (e1){
+        try { stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false }); }
+        catch (e2){
+          const n = e2 && e2.name;
+          if (n === 'NotAllowedError') flash('Camera blocked. Allow it in your browser settings, then reload. (You can still see the logo above.)', 6000);
+          else flash('Camera error: ' + (n || e2), 6000);
+          return false;
+        }
+      }
+      camEl.srcObject = stream;
+      try { await camEl.play(); } catch(e){}
+      return true;
+    }
+    function stopCamera(){ if (stream){ stream.getTracks().forEach(t=>t.stop()); stream = null; camEl.srcObject = null; } }
+
+    /* ---------- UI ---------- */
+    document.getElementById('launchBtn').addEventListener('click', async () => {
+      intro.classList.add('hidden'); hideC(foot); topbar.classList.add('show');
+      const ok = await startCamera();
+      if (ok) { show(hint); setTimeout(()=>hideC(hint), 4500); }
     });
-
-    const tgt = this.el.closest('[mindar-image-target]');
-    if (tgt) {
-      tgt.addEventListener('targetFound', () => { this.show = true; });
-      tgt.addEventListener('targetLost', () => { this.show = false; });
-    }
-  },
-  tick: function (t, dt) {
-    if (!this.ready) return;
-    dt = dt || 16;
-    const target = this.show ? 1 : 0;
-    this.p += (target - this.p) * Math.min(1, dt / 180);
-    const e = Math.max(0, Math.min(1, this.p));
-    const ease = e * e * (3 - 2 * e);              // smoothstep
-    const obj = this.el.object3D;
-    const k = this.k * ease;
-    obj.visible = ease > 0.004;
-    obj.scale.setScalar(k);
-    const bob = Math.sin(t * 0.0022) * 0.02 * ease;
-    const rise = (1 - ease) * 0.12;                // emerge from the card
-    obj.position.set(
-      -this.center.x * k,
-      -this.center.y * k,
-      -this.center.z * k + this.data.lift + bob - rise
-    );
-  }
-});
-
-/* ---------- UI wiring ---------- */
-const sceneEl   = document.getElementById('arscene');
-const intro     = document.getElementById('intro');
-const hint      = document.getElementById('hint');
-const preview   = document.getElementById('preview');
-const topbar    = document.getElementById('topbar');
-const foot      = document.getElementById('foot');
-const toast     = document.getElementById('toast');
-let arRunning = false;
-
-const show = (el) => el.classList.remove('hidden');
-const hide = (el) => el.classList.add('hidden');
-function flash(msg, ms) {
-  toast.textContent = msg; toast.classList.add('show');
-  if (ms) setTimeout(() => toast.classList.remove('show'), ms);
-}
-
-function sceneReady() {
-  return sceneEl.hasLoaded
-    ? Promise.resolve()
-    : new Promise((r) => sceneEl.addEventListener('loaded', r, { once: true }));
-}
-
-// Tracking events -> swap the scanning hint for the live logo.
-document.getElementById('card').addEventListener('targetFound', () => hint.classList.add('found'));
-document.getElementById('card').addEventListener('targetLost',  () => hint.classList.remove('found'));
-
-function resetToIntro() {
-  topbar.classList.remove('show');
-  hide(hint); hint.classList.remove('found');
-  hide(preview);
-  show(intro); show(foot);
-}
-
-function cameraMessage(err) {
-  const n = err && err.name;
-  if (n === 'NotAllowedError' || n === 'SecurityError')
-    return 'Camera access was blocked. In Safari tap “AA” (left of the address bar) → Website Settings → Camera → Allow, then reload. Also check iOS Settings → Safari → Camera → Allow.';
-  if (n === 'NotReadableError' || n === 'AbortError' || n === 'TrackStartError')
-    return 'The camera is in use by another app. Close other camera apps (FaceTime, Camera, etc.) and try again.';
-  if (n === 'NotFoundError')
-    return 'No usable camera was found on this device.';
-  return 'AR could not start (' + (n || 'unknown') + '): ' + (err && err.message ? err.message : err);
-}
-
-/* ----- Launch AR ----- */
-document.getElementById('launchBtn').addEventListener('click', async () => {
-  hide(intro); hide(foot); topbar.classList.add('show');
-
-  // Synchronous environment checks (catch in-app browsers that block the camera).
-  if (!window.isSecureContext) {
-    resetToIntro();
-    flash('This page must be opened over a secure https:// link for the camera to work.');
-    return;
-  }
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    resetToIntro();
-    flash("This browser can't access the camera. If you opened the link from inside another app (a QR scanner, Instagram, Messages, etc.), tap the “···” / share icon and choose “Open in Safari”, then try again.");
-    return;
-  }
-
-  show(hint);
-  flash('Starting camera…');
-  try {
-    await sceneReady();
-    const sys = sceneEl.systems['mindar-image-system'];
-    if (!window.AFRAME || !sys) {
-      throw new Error('AR engine did not load — check your connection and reload.');
-    }
-    // Let MindAR open the camera and attach its own <video>. Do NOT pre-open the
-    // camera ourselves — on iOS that leaves MindAR's video with no live feed (black screen).
-    await sys.start();
-
-    // Force the AR (WebGL) canvas to clear TRANSPARENT so the camera feed behind
-    // it is visible — otherwise it paints opaque black over the video.
-    if (sceneEl.renderer) {
-      sceneEl.renderer.setClearColor(0x000000, 0);
-      sceneEl.renderer.setClearAlpha(0);
-    }
-    if (sceneEl.object3D) sceneEl.object3D.background = null;
-
-    // The camera <video> usually has no width/height until its metadata loads, which
-    // leaves the layout black until a resize recomputes it (that's why rotating the
-    // phone briefly shows the feed). So we trigger that resize ourselves — once the
-    // video is ready, and again on short delays to catch slow iOS metadata loads.
-    const v = sceneEl.querySelector('video') || document.querySelector('video');
-    const nudge = () => { try { v && v.play(); } catch (e) {} window.dispatchEvent(new Event('resize')); };
-    if (v) {
-      v.setAttribute('playsinline', ''); v.muted = true;
-      v.addEventListener('loadedmetadata', nudge);
-      v.addEventListener('playing', nudge);
-      if (v.readyState >= 2) nudge();
-    }
-    [120, 400, 1000, 2000].forEach((ms) => setTimeout(nudge, ms));
-
-    arRunning = true;
-    toast.classList.remove('show');
-  } catch (err) {
-    console.error('[ar]', err);
-    resetToIntro();
-    flash(cameraMessage(err) + '  · Or use “Preview the logo”.');
-  }
-});
-
-/* ----- Preview (no camera) ----- */
-document.getElementById('previewBtn').addEventListener('click', () => {
-  hide(intro); hide(foot); show(preview); topbar.classList.add('show');
-});
-
-/* ----- Close / back ----- */
-document.getElementById('closeBtn').addEventListener('click', async () => {
-  topbar.classList.remove('show');
-  toast.classList.remove('show');
-  if (arRunning) {
-    try { await sceneEl.systems['mindar-image-system'].stop(); } catch (e) {}
-    arRunning = false;
-  }
-  hide(hint); hint.classList.remove('found');
-  hide(preview);
-  show(intro); show(foot);
-});
-</script>
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      stopCamera(); topbar.classList.remove('show'); hideC(hint); toast.classList.remove('show');
+      intro.classList.remove('hidden'); show(foot);
+    });
+  </script>
 </body>
 </html>
