@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>VFX · Test 4 — fullscreen + transparent overlay</title>
+<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000;
+    color: #fff; font-family: "Helvetica Neue", Arial, system-ui, sans-serif; }
+  a-scene { display: block; width: 100%; height: 100%; }
+
+  /* My own overlays, on top of the feed — all transparent backgrounds. */
+  #topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex;
+    justify-content: flex-end; padding: 18px 20px; }
+  .cta { display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+    background: rgba(0,0,0,.35); border: 1px solid #fff; color: #fff; border-radius: 40px;
+    padding: 11px 20px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    backdrop-filter: blur(6px); }
+  #hint { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end; padding-bottom: 90px; pointer-events: none;
+    background: transparent; }
+  .reticle { width: min(74vw, 360px); aspect-ratio: 1.55/1; position: relative; margin-bottom: 26px; }
+  .reticle span { position: absolute; width: 26px; height: 26px; border: 2px solid rgba(255,255,255,.85); }
+  .reticle span:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+  .reticle span:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+  .reticle span:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+  .reticle span:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+  #hint p { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
+    text-shadow: 0 1px 14px rgba(0,0,0,.85); }
+</style>
+</head>
+<body>
+  <a-scene
+    mindar-image="imageTargetSrc: ./assets/targets.mind; uiScanning: no; uiError: no"
+    color-space="sRGB" embedded
+    renderer="colorManagement: true; physicallyCorrectLights: true"
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-camera position="0 0 0" look-controls="false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0"></a-entity>
+  </a-scene>
+
+  <div id="topbar"><a class="cta" href="https://vfx.productions" target="_blank" rel="noopener">See our work&nbsp;↗</a></div>
+  <div id="hint">
+    <div class="reticle"><span></span><span></span><span></span><span></span></div>
+    <p>Point at the VFX card</p>
+  </div>
+</body>
+</html>
