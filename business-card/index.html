@@ -231,19 +231,78 @@ function sceneReady() {
 document.getElementById('card').addEventListener('targetFound', () => hint.classList.add('found'));
 document.getElementById('card').addEventListener('targetLost',  () => hint.classList.remove('found'));
 
+function resetToIntro() {
+  topbar.classList.remove('show');
+  hide(hint); hint.classList.remove('found');
+  hide(preview);
+  show(intro); show(foot);
+}
+
+// Ask for the rear camera. Throws a classified error we can explain clearly.
+async function requestCamera() {
+  if (!window.isSecureContext) {
+    throw { kind: 'insecure', message: 'This page must be opened over a secure https:// link for the camera to work.' };
+  }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    throw { kind: 'noapi', message: "This browser can't access the camera. If you opened the link from inside another app (the QR scanner, Instagram, Messages, etc.), tap the “···” or share icon and choose “Open in Safari”, then try again." };
+  }
+  try {
+    return await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+  } catch (err) {
+    // Some devices reject the rear-camera constraint — retry with any camera.
+    if (err && (err.name === 'OverconstrainedError' || err.name === 'NotFoundError')) {
+      return await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    }
+    throw err;
+  }
+}
+
+function cameraMessage(err) {
+  if (err && err.kind) return err.message;            // insecure / noapi
+  const n = err && err.name;
+  if (n === 'NotAllowedError' || n === 'SecurityError')
+    return 'Camera access was blocked. In Safari tap “AA” (left of the address bar) → Website Settings → Camera → Allow, then reload. Also check iOS Settings → Safari → Camera → Allow.';
+  if (n === 'NotReadableError' || n === 'AbortError' || n === 'TrackStartError')
+    return 'The camera is in use by another app. Close other camera apps (FaceTime, Camera, etc.) and try again.';
+  if (n === 'NotFoundError')
+    return 'No usable camera was found on this device.';
+  return 'Camera error (' + (n || 'unknown') + '): ' + (err && err.message ? err.message : err);
+}
+
 /* ----- Launch AR ----- */
 document.getElementById('launchBtn').addEventListener('click', async () => {
-  hide(intro); hide(foot); show(hint); topbar.classList.add('show');
+  hide(intro); hide(foot); topbar.classList.add('show');
+  flash('Requesting camera…');
+
+  // 1) Explicitly request the camera FIRST, inside the tap — this is what makes
+  //    iOS Safari show the permission prompt and gives us a precise error.
+  let probe;
   try {
+    probe = await requestCamera();
+  } catch (err) {
+    console.error('[camera]', err);
+    resetToIntro();
+    flash(cameraMessage(err) + '  · Or use “Preview the logo”.');
+    return;
+  }
+  // Release our probe stream so MindAR can open the camera itself.
+  probe.getTracks().forEach((t) => t.stop());
+  await new Promise((r) => setTimeout(r, 250));
+
+  // 2) Start image tracking.
+  show(hint);
+  try {
+    if (!window.AFRAME || !sceneEl.systems['mindar-image']) {
+      throw new Error('AR engine did not load — check your connection and reload.');
+    }
     await sceneReady();
-    const sys = sceneEl.systems['mindar-image'];
-    await sys.start();
+    await sceneEl.systems['mindar-image'].start();
     arRunning = true;
     toast.classList.remove('show');
   } catch (err) {
-    console.error(err);
-    hint.classList.add('hidden');
-    flash('Camera or AR target unavailable. Make sure you opened this over http://localhost (not as a file), allowed the camera, and that targets.mind exists. You can still use “Preview the logo”.');
+    console.error('[mindar]', err);
+    resetToIntro();
+    flash('Camera works, but AR tracking failed to start: ' + (err && err.message ? err.message : err) + '  · Try reloading.');
   }
 });
 
