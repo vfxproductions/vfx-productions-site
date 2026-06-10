@@ -94,7 +94,7 @@
 <!-- ===== AR SCENE (camera starts only on user gesture) ===== -->
 <a-scene id="arscene"
   mindar-image="imageTargetSrc: ./assets/targets.mind; autoStart: false; uiScanning: no; uiLoading: no; uiError: no; maxTrack: 1; filterMinCF: 0.0001; filterBeta: 0.001"
-  color-space="sRGB" embedded
+  color-space="sRGB" embedded keep-transparent
   renderer="colorManagement: true; physicallyCorrectLights: true; toneMapping: ACESFilmic; exposure: 1.05; antialias: true; alpha: true"
   vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
@@ -151,6 +151,24 @@
 
 <script>
 /* ---------- A-Frame components ---------- */
+
+// Keep the WebGL canvas clearing TRANSPARENT every frame, so the MindAR camera
+// <video> behind it stays visible. THREE defaults clearAlpha to 1 (opaque black),
+// and a one-time override doesn't stick — so we enforce it on each tick.
+AFRAME.registerComponent('keep-transparent', {
+  init: function () {
+    const apply = () => {
+      const r = this.el.renderer;
+      if (r) { r.setClearColor(0x000000, 0); r.setClearAlpha(0); r.autoClear = true; }
+      if (this.el.object3D) this.el.object3D.background = null;
+    };
+    this.apply = apply;
+    this.el.addEventListener('render-target-loaded', apply);
+    this.el.addEventListener('loaded', apply);
+    apply();
+  },
+  tick: function () { this.apply(); }
+});
 
 // Slowly rotate the logo around the card's vertical axis (turntable).
 AFRAME.registerComponent('turntable', {
