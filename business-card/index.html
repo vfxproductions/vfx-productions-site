@@ -292,11 +292,12 @@ document.getElementById('launchBtn').addEventListener('click', async () => {
   // 2) Start image tracking.
   show(hint);
   try {
-    if (!window.AFRAME || !sceneEl.systems['mindar-image']) {
+    await sceneReady();
+    const sys = sceneEl.systems['mindar-image-system'];
+    if (!window.AFRAME || !sys) {
       throw new Error('AR engine did not load — check your connection and reload.');
     }
-    await sceneReady();
-    await sceneEl.systems['mindar-image'].start();
+    await sys.start();
     arRunning = true;
     toast.classList.remove('show');
   } catch (err) {
@@ -316,7 +317,7 @@ document.getElementById('closeBtn').addEventListener('click', async () => {
   topbar.classList.remove('show');
   toast.classList.remove('show');
   if (arRunning) {
-    try { await sceneEl.systems['mindar-image'].stop(); } catch (e) {}
+    try { await sceneEl.systems['mindar-image-system'].stop(); } catch (e) {}
     arRunning = false;
   }
   hide(hint); hint.classList.remove('found');
