@@ -144,6 +144,24 @@
       margin: 0 auto;
       object-fit: contain;
     }
+
+    /* Walkthrough video player */
+    .cyber-video{
+      max-width: 1200px;
+      border: 1px solid var(--fg10);
+      border-radius: 16px;
+      overflow: hidden;
+      background:#000;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    }
+    .cyber-video video{
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background:#000;
+    }
   </style>
 </head>
 
@@ -344,6 +362,26 @@
       </div>
       <div class="cyber-wrap" style="padding-top:14px;padding-bottom:6px;">
         <div class="cyber-cap">The five-control layout — move the reticle, target the threat, confirm to neutralise it.</div>
+      </div>
+    </section>
+
+    <!-- WALKTHROUGH VIDEO -->
+    <section style="background:#040408;border-top:1px solid rgba(255,255,255,.05);" id="walkthrough">
+      <div class="cyber-wrap" style="padding-top:72px;padding-bottom:84px;">
+        <div class="kicker">See the Experience</div>
+        <h2 class="cyber-title" style="font-size:clamp(2rem,5.5vw,3.6rem);margin-bottom:16px;">Watch the walkthrough</h2>
+        <p class="cyber-lead" style="margin-bottom:30px;">
+          A full run through CYBERAWARE — step behind the console, switch between the live cameras and
+          hunt down the threats exactly as visitors do on the floor. This is the experience, end to end.
+        </p>
+        <div class="cyber-video">
+          <video controls playsinline preload="metadata"
+                 poster="/assets/cyberaware_walkthrough_poster.jpg"
+                 controlslist="nodownload" disablepictureinpicture>
+            <source src="/assets/cyberaware_walkthrough.webm" type="video/webm" />
+            Your browser can’t play this WebM video — try a recent Chrome, Edge, Firefox or Safari&nbsp;16+.
+          </video>
+        </div>
       </div>
     </section>
 
