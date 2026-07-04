@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Interactive Design &amp; Technology — Vision For Xperiences</title>
-  <meta name="description" content="Interactive art installations, educational devices, real-time experiences, and interactive media systems. Built to be robust in public environments." />
-  <meta name="keywords" content="interactive design, interactive installation, real-time experience, interactive media, educational device, interactive technology, Vision For Xperiences" />
+  <title>Interactive Design &amp; Installations — CYBERAWARE | Vision For Xperiences</title>
+  <meta name="description" content="CYBERAWARE — an immersive, hands-on cybersecurity-awareness installation by Vision For Xperiences. Interactive design that teaches through play, built to tour and be installed at events, expos and schools." />
+  <meta name="keywords" content="interactive design, interactive installation, CYBERAWARE, cybersecurity awareness installation, educational installation, event installation, immersive experience, real-time experience, interactive technology, Vision For Xperiences" />
   <meta name="robots" content="index, follow" />
   <link rel="icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Vision For Xperiences" />
-  <meta property="og:title" content="Interactive Design &amp; Technology — Vision For Xperiences" />
-  <meta property="og:description" content="Interactive art installations, educational devices, and real-time experiences built for public environments." />
-  <meta property="og:image" content="/assets/technology.jpg" />
+  <meta property="og:title" content="Interactive Design &amp; Installations — CYBERAWARE | Vision For Xperiences" />
+  <meta property="og:description" content="CYBERAWARE — an immersive, hands-on cybersecurity-awareness installation. Interactive design that teaches through play, available to install at your event." />
+  <meta property="og:image" content="/assets/cyberaware_console.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="/css/site.css" />
   <style>
@@ -32,6 +32,135 @@
       background: rgba(255,255,255,.12);
       border-color: rgba(255,255,255,.4);
       color: #fff;
+    }
+
+    /* ===== CYBERAWARE feature section ===== */
+    .cyber-wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 90px 22px 40px;
+    }
+    .cyber-title{
+      font-size: clamp(2.6rem, 8vw, 6rem);
+      font-weight: 950;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      line-height: .92;
+      margin: 6px 0 18px;
+    }
+    .cyber-lead{
+      max-width: 68ch;
+      font-size: 1.12rem;
+      line-height: 1.65;
+      color: var(--fg80);
+      margin-bottom: 8px;
+    }
+    .cyber-meta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin: 20px 0 34px;
+    }
+    .cyber-feature-img{
+      width:100%;
+      aspect-ratio: 16/8.5;
+      object-fit: cover;
+      border: 1px solid var(--fg10);
+      border-radius: 14px;
+      filter: contrast(1.03) brightness(.96);
+      display:block;
+    }
+    .cyber-cap{
+      font: .66rem/1.5 'Courier New', monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg35);
+      margin-top: 10px;
+    }
+
+    /* Stat row */
+    .cyber-stats{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 16px;
+      margin: 46px 0;
+    }
+    .cyber-stat{
+      border: 1px solid var(--fg10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.02);
+      padding: 22px 20px;
+    }
+    .cyber-stat .num{
+      font-size: 2.1rem;
+      font-weight: 950;
+      letter-spacing: .02em;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+    .cyber-stat .lbl{
+      font-size: .88rem;
+      line-height: 1.5;
+      color: var(--fg60);
+    }
+
+    /* Feature cards */
+    .cyber-cards{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .cyber-card{
+      border: 1px solid var(--fg10);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      overflow: hidden;
+      transition: border-color .25s var(--ease), background .25s var(--ease);
+    }
+    .cyber-card:hover{
+      border-color: var(--fg25);
+      background: rgba(255,255,255,.04);
+    }
+    .cyber-card-thumb{
+      aspect-ratio: 4/3;
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .cyber-card-thumb img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      filter: contrast(1.03) brightness(.95);
+      transition: transform .5s var(--ease);
+    }
+    .cyber-card:hover .cyber-card-thumb img{ transform: scale(1.04); }
+    .cyber-card-body{ padding: 20px 20px 22px; }
+    .cyber-card-body h3{
+      font-size: 1rem;
+      font-weight: 950;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .cyber-card-body p{
+      font-size: .92rem;
+      line-height: 1.6;
+      color: var(--fg60);
+    }
+
+    .cyber-ctas{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 40px; }
+
+    /* Control-layout band */
+    .cyber-band{
+      background:#000;
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .cyber-band img{
+      display:block;
+      width:100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -84,22 +213,22 @@
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO — CYBERAWARE build timelapse -->
     <section class="section">
       <div class="media">
         <video autoplay muted loop playsinline preload="metadata">
-          <source src="/assets/interactive_intro.mp4" type="video/mp4" />
+          <source src="/assets/cyberaware_timelapse.mp4" type="video/mp4" />
         </video>
       </div>
       <div class="fade"></div>
       <div class="content">
         <div class="copy">
-          <div class="kicker">Interactive Design</div>
+          <div class="kicker">Interactive Design &amp; Installations</div>
           <h1>ENGAGE.<br>CREATE.<br>INTERACT.</h1>
           <p class="sub">
-            Interactive design isn't just about aesthetics — it's about creating an experience
-            that captivates and empowers users. We design with intent, making technology
-            accessible through innovative art, games, and interfaces.
+            We build interactive experiences that people don't just watch — they operate.
+            Physical consoles, real-time visuals and playable systems that turn a subject into
+            something you can touch, explore and remember. This is the making of CYBERAWARE.
           </p>
         </div>
       </div>
@@ -115,49 +244,155 @@
         <div>
           <div class="kicker">What we do</div>
           <p class="sub">
-            From interactive art installations that encourage better health habits to
-            collaborating with tech companies to create games that raise cyber awareness —
-            we craft experiences that blend creativity with purpose. Websites, retrofitted
-            systems, or entirely new interactive tools: we prioritize user engagement.
+            Interactive design is where we get to combine everything we love — 3D, real-time
+            graphics, physical builds and a bit of playful engineering — into experiences that
+            invite people in. From art installations that nudge better habits to games that teach
+            cyber awareness, we craft moments that blend creativity with purpose. Websites,
+            retrofitted hardware, or entirely new interactive tools: engagement comes first.
           </p>
         </div>
         <div>
           <div class="kicker">Why it matters</div>
           <p class="sub">
-            Interactive design transforms the way people perceive and interact with technology.
-            By creating immersive environments — through 3D interfaces, gaming, or artistic
-            installations — we provide meaningful interactions that make technology not just
-            functional, but memorable.
+            People remember what they do far better than what they're told. So we teach through
+            play. Give someone a console to operate, a threat to spot, a system to explore, and a
+            dry subject becomes intuition they keep. Interactive design doesn't just make
+            technology functional — it makes it memorable, and it makes learning genuinely fun.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- PRESENCE INSTALLATION DEMO -->
+    <!-- CYBERAWARE FEATURE -->
+    <section style="background:#040408;border-top:1px solid rgba(255,255,255,.05);">
+      <div class="cyber-wrap">
+        <div class="kicker">Featured Installation — Utrecht 2026</div>
+        <h2 class="cyber-title">CYBERAWARE</h2>
+        <p class="cyber-lead">
+          Our flagship interactive installation. CYBERAWARE is an immersive audiovisual experience
+          that hands each visitor the role of a futuristic cybersecurity officer — confronting
+          real-world digital threats through interactive surveillance gameplay and cinematic AI
+          interfaces. Players don't read about phishing, deepfakes or rogue devices; they catch
+          them in the act, and walk away with the instinct to recognise them in real life.
+        </p>
+        <p class="cyber-lead">
+          It premiered as a live installation in Utrecht in 2026 to a fantastic response — and it's
+          now touring. CYBERAWARE is ready to be installed at events, expos, schools, festivals and
+          corporate awareness days, with bookings open for 2026 and beyond.
+        </p>
+        <div class="cyber-meta">
+          <span class="pill">Immersive</span>
+          <span class="pill">Hands-on console</span>
+          <span class="pill">Live cameras</span>
+          <span class="pill">Educational</span>
+          <span class="pill">Tours to events</span>
+        </div>
+
+        <img class="cyber-feature-img" src="/assets/cyberaware_console.jpg" alt="The CYBERAWARE control console — a custom-modelled, fully 3D-printed surveillance panel" />
+        <div class="cyber-cap">01 — The control console · custom-modelled &amp; 3D-printed surveillance panel</div>
+
+        <!-- Educational stat row -->
+        <div class="cyber-stats">
+          <div class="cyber-stat">
+            <div class="num">39 sec</div>
+            <div class="lbl">A device is attacked somewhere in the world roughly every 39 seconds — most victims never see it coming.</div>
+          </div>
+          <div class="cyber-stat">
+            <div class="num">95%</div>
+            <div class="lbl">of cybersecurity breaches come down to human error, not broken technology. Awareness is the strongest defence.</div>
+          </div>
+          <div class="cyber-stat">
+            <div class="num">AI</div>
+            <div class="lbl">is now weaponised — cloned voices, flawless phishing and deepfakes at scale. CYBERAWARE trains people to spot it.</div>
+          </div>
+        </div>
+
+        <!-- Feature cards -->
+        <div class="cyber-cards">
+          <div class="cyber-card">
+            <div class="cyber-card-thumb">
+              <img src="/assets/cyberaware_handson.jpg" alt="A visitor operating the physical button bar on the CYBERAWARE console" />
+            </div>
+            <div class="cyber-card-body">
+              <h3>A console you operate</h3>
+              <p>
+                Everything runs from a custom-modelled, fully 3D-printed control panel that visitors
+                work by hand. Five tactile controls — mode, prev/next, movement, return, confirm —
+                are all it takes. No manual: anyone is running the surveillance system within seconds.
+              </p>
+            </div>
+          </div>
+          <div class="cyber-card">
+            <div class="cyber-card-thumb">
+              <img src="/assets/cyberaware_cameras.jpg" alt="Real webcams inside custom 3D-printed CCTV housings streaming live to the installation" />
+            </div>
+            <div class="cyber-card-body">
+              <h3>Live feeds, real space</h3>
+              <p>
+                The surveillance feeds are real. Each camera is a webcam inside a custom 3D-printed
+                housing, wired to a Raspberry Pi that streams straight into the installation. Switch
+                cameras in-game and you're watching the actual room around you, live.
+              </p>
+            </div>
+          </div>
+          <div class="cyber-card">
+            <div class="cyber-card-thumb">
+              <img src="/assets/cyberaware_exhibition.jpg" alt="The full CYBERAWARE installation on its console in the exhibition space" />
+            </div>
+            <div class="cyber-card-body">
+              <h3>Awareness through play</h3>
+              <p>
+                Step into the role of a security officer and learn to read the attacks hitting people
+                every day — phishing, smishing, malicious QR codes, deepfakes, ransomware — by
+                hunting them down through the console instead of skimming a leaflet.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cyber-ctas">
+          <a class="btn" href="/contact">Bring CYBERAWARE to your event</a>
+          <a class="btn" href="https://www.keesmoolenaar.com/cyberaware" target="_blank" rel="noopener">Explore the full project ↗</a>
+        </div>
+      </div>
+
+      <!-- Control-layout band -->
+      <div class="cyber-band" style="margin-top:56px;">
+        <img src="/assets/cyberaware_controls.jpg" alt="The CYBERAWARE control layout — mode, prev/next, movement, return and confirm" />
+      </div>
+      <div class="cyber-wrap" style="padding-top:14px;padding-bottom:6px;">
+        <div class="cyber-cap">The five-control layout — move the reticle, target the threat, confirm to neutralise it.</div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DEMO — Surveillance scanner (reworked to fit CYBERAWARE) -->
     <section style="background:#040408;" id="techDemo">
-      <div style="max-width:var(--maxw);margin:0 auto;padding:72px 22px 28px;">
-        <div class="kicker">Interactive Demo — Presence Installation</div>
-        <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Touch the space.</h2>
-        <p class="sub" style="max-width:540px;margin-bottom:22px;">
-          Move your cursor — or touch the screen — and the installation responds to your presence in real time.
-          This is exactly how presence-reactive art installations and interactive exhibits work:
-          a sensor reads your position and feeds it live to the system. <strong>Click to switch response mode.</strong>
+      <div style="max-width:var(--maxw);margin:0 auto;padding:64px 22px 28px;">
+        <div class="kicker">Interactive Demo — Take the Console</div>
+        <h2 style="font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 14px;line-height:1.05;">Sweep the grid. Catch the threats.</h2>
+        <p class="sub" style="max-width:600px;margin-bottom:22px;">
+          Move your cursor — or drag a finger across the screen — to steer the scanner through a live
+          signal field. Pass your reticle over a red threat node to detect and neutralise it, exactly
+          like hunting attacks through the CYBERAWARE console. <strong>Click to switch scan mode.</strong>
         </p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <button id="modeAttract" class="inst-btn active">ATTRACT</button>
-          <button id="modeRepel"   class="inst-btn">REPEL</button>
-          <button id="modeFlow"    class="inst-btn">FLOW</button>
+          <button id="modeScan"   class="inst-btn active">SCAN</button>
+          <button id="modeSecure" class="inst-btn">SECURE</button>
+          <button id="modeTrace"  class="inst-btn">TRACE</button>
         </div>
       </div>
       <div id="techMount" style="width:100%;height:62svh;min-height:360px;max-height:680px;position:relative;overflow:hidden;cursor:crosshair;">
         <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);font:.64rem/1.5 'Courier New',monospace;letter-spacing:.1em;color:rgba(255,255,255,.45);pointer-events:none;text-align:center;white-space:nowrap;z-index:5;">
-          PRESENCE SENSOR ACTIVE
+          SURVEILLANCE GRID — ONLINE
         </div>
         <div id="techModeHud" style="position:absolute;top:34px;left:50%;transform:translateX(-50%);font:.58rem/1 'Courier New',monospace;letter-spacing:.09em;color:rgba(255,255,255,.22);pointer-events:none;text-align:center;white-space:nowrap;z-index:5;">
-          MODE: ATTRACT — PARTICLES FOLLOW YOUR PRESENCE
+          MODE: SCAN — SENSOR SWEEP FOLLOWS YOUR RETICLE
+        </div>
+        <div id="techThreatHud" style="position:absolute;top:16px;right:18px;font:.62rem/1.4 'Courier New',monospace;letter-spacing:.09em;color:rgba(90,240,200,.85);pointer-events:none;text-align:right;white-space:nowrap;z-index:5;">
+          THREATS NEUTRALISED: 0 / 0
         </div>
         <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font:.60rem/1 'Courier New',monospace;letter-spacing:.07em;color:rgba(255,255,255,.18);pointer-events:none;white-space:nowrap;z-index:5;">
-          SENSOR → MICROCONTROLLER → PARTICLE OUTPUT
+          RETICLE → SIGNAL FIELD → THREAT DETECTION
         </div>
       </div>
     </section>
@@ -172,12 +407,13 @@
       <div class="fade"></div>
       <div class="content">
         <div class="copy">
-          <div class="kicker">The impact</div>
-          <h1>THE<br>FINAL<br>EXPERIENCE.</h1>
+          <div class="kicker">Bring it to your space</div>
+          <h1>BOOK THE<br>EXPERIENCE.</h1>
           <p class="sub">
-            Every interaction is designed to make an impact — transforming a display into
-            a 3D space, or a game that teaches important concepts. Every touchpoint leaves
-            the user more engaged and informed.
+            Whether it's CYBERAWARE touring to your event or an entirely new interactive piece built
+            for your subject, we design installations that turn a display into a 3D space and a
+            message into a game people actually play. Every touchpoint leaves the visitor more
+            engaged — and more informed.
           </p>
           <div class="actions">
             <a class="btn" href="/contact">Build with us</a>
@@ -253,7 +489,7 @@
   </script>
 
   <script type="module">
-  /* ── Presence Installation — Three.js particle field ── */
+  /* ── CYBERAWARE Surveillance Scanner — Three.js signal field + threat detection ── */
   import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 
   const mount = document.getElementById("techMount");
@@ -271,7 +507,7 @@
   const camera = new THREE.PerspectiveCamera(65, mount.clientWidth / mount.clientHeight, 0.1, 500);
   camera.position.z = 45;
 
-  /* ── Main particle field ── */
+  /* ── Main signal field ── */
   const COUNT = isMobile ? 1500 : 3000;
   const positions  = new Float32Array(COUNT * 3);
   const velocities = new Float32Array(COUNT * 3);
@@ -289,14 +525,14 @@
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   const mat = new THREE.PointsMaterial({
-    color: 0xffffff,
-    size: isMobile ? 0.38 : 0.22,
-    sizeAttenuation: true, transparent: true, opacity: 0.88,
+    color: 0xbfeee6,
+    size: isMobile ? 0.36 : 0.22,
+    sizeAttenuation: true, transparent: true, opacity: 0.85,
   });
   const points = new THREE.Points(geo, mat);
   scene.add(points);
 
-  /* Accent particles — subtle blue, sparse, larger */
+  /* Accent particles — faint cyan haze */
   const accentCount = isMobile ? 60 : 140;
   const accentPos = new Float32Array(accentCount * 3);
   for (let i = 0; i < accentCount; i++) {
@@ -307,10 +543,57 @@
   const accentGeo = new THREE.BufferGeometry();
   accentGeo.setAttribute('position', new THREE.BufferAttribute(accentPos, 3));
   scene.add(new THREE.Points(accentGeo,
-    new THREE.PointsMaterial({ color: 0x6688ff, size: 1.1, sizeAttenuation: true, transparent: true, opacity: 0.15 })
+    new THREE.PointsMaterial({ color: 0x3df0d0, size: 1.1, sizeAttenuation: true, transparent: true, opacity: 0.14 })
   ));
 
-  /* ── Cursor / probe ── */
+  /* ── Threat nodes (the things you hunt) ── */
+  const THREAT_COUNT = isMobile ? 8 : 12;
+  const DETECT_R = 5.2;
+  const COL_THREAT = new THREE.Color(0xff3b52);
+  const COL_CLEAR  = new THREE.Color(0x39ff9c);
+  const threats = [];
+  const threatPos = new Float32Array(THREAT_COUNT * 3);
+  const threatCol = new Float32Array(THREAT_COUNT * 3);
+
+  function spawnThreat(i, reset) {
+    const x = (Math.random() - 0.5) * 52;
+    const y = (Math.random() - 0.5) * 30;
+    const t = threats[i] || (threats[i] = {});
+    t.x = x; t.y = y; t.hx = x; t.hy = y;
+    t.phase = Math.random() * Math.PI * 2;
+    t.detected = false;
+    threatPos[i*3] = x; threatPos[i*3+1] = y; threatPos[i*3+2] = 6;
+    COL_THREAT.toArray(threatCol, i*3);
+  }
+  for (let i = 0; i < THREAT_COUNT; i++) spawnThreat(i, false);
+
+  const threatGeo = new THREE.BufferGeometry();
+  threatGeo.setAttribute('position', new THREE.BufferAttribute(threatPos, 3));
+  threatGeo.setAttribute('color',    new THREE.BufferAttribute(threatCol, 3));
+  const threatPoints = new THREE.Points(threatGeo, new THREE.PointsMaterial({
+    size: isMobile ? 2.4 : 1.9, sizeAttenuation: true, vertexColors: true,
+    transparent: true, opacity: 0.95,
+  }));
+  scene.add(threatPoints);
+
+  /* Scanner reticle ring that follows the probe */
+  const ring = new THREE.Mesh(
+    new THREE.RingGeometry(DETECT_R * 0.82, DETECT_R, 56),
+    new THREE.MeshBasicMaterial({ color: 0x3df0d0, transparent: true, opacity: 0, side: THREE.DoubleSide })
+  );
+  ring.position.z = 6;
+  scene.add(ring);
+
+  let detectedTotal = 0;
+  const threatHud = document.getElementById('techThreatHud');
+  function updateThreatHud() {
+    if (threatHud) threatHud.textContent =
+      (detectedTotal >= THREAT_COUNT ? 'SECTOR CLEAR — ' : '') +
+      'THREATS NEUTRALISED: ' + detectedTotal + ' / ' + THREAT_COUNT;
+  }
+  updateThreatHud();
+
+  /* ── Reticle / probe ── */
   const probe = new THREE.Vector3(0, 0, 0);
   let probeActive = false;
   const RADIUS = 13;
@@ -333,30 +616,30 @@
   }, { passive: true });
 
   /* ── Mode ── */
-  let mode = 'attract';
+  let mode = 'scan';
   const modeHudText = {
-    attract: 'MODE: ATTRACT — PARTICLES FOLLOW YOUR PRESENCE',
-    repel:   'MODE: REPEL — INSTALLATION OPENS AROUND YOU',
-    flow:    'MODE: FLOW — VORTEX FORMS AT YOUR POSITION',
+    scan:   'MODE: SCAN — SENSOR SWEEP FOLLOWS YOUR RETICLE',
+    secure: 'MODE: SECURE — THE SECTOR LOCKS DOWN AROUND YOU',
+    trace:  'MODE: TRACE — SPIN UP A VORTEX ON THE INTRUSION',
   };
 
   function setMode(m) {
     mode = m;
     document.querySelectorAll('.inst-btn').forEach(b => b.classList.remove('active'));
-    const idMap = { attract:'modeAttract', repel:'modeRepel', flow:'modeFlow' };
+    const idMap = { scan:'modeScan', secure:'modeSecure', trace:'modeTrace' };
     const btn = document.getElementById(idMap[m]);
     if (btn) btn.classList.add('active');
     const hud = document.getElementById('techModeHud');
     if (hud) hud.textContent = modeHudText[m];
   }
 
-  document.getElementById('modeAttract').addEventListener('click', e => { e.stopPropagation(); setMode('attract'); });
-  document.getElementById('modeRepel').addEventListener('click',   e => { e.stopPropagation(); setMode('repel');   });
-  document.getElementById('modeFlow').addEventListener('click',    e => { e.stopPropagation(); setMode('flow');    });
+  document.getElementById('modeScan').addEventListener('click',   e => { e.stopPropagation(); setMode('scan');   });
+  document.getElementById('modeSecure').addEventListener('click', e => { e.stopPropagation(); setMode('secure'); });
+  document.getElementById('modeTrace').addEventListener('click',  e => { e.stopPropagation(); setMode('trace');  });
 
   /* Click canvas to cycle mode */
   mount.addEventListener('click', () => {
-    const order = ['attract','repel','flow'];
+    const order = ['scan','secure','trace'];
     setMode(order[(order.indexOf(mode) + 1) % 3]);
   });
 
@@ -369,6 +652,7 @@
   /* ── Animation loop ── */
   const clock = new THREE.Clock();
   const posArr = geo.attributes.position.array;
+  let clearedAt = -1;
 
   (function animate() {
     requestAnimationFrame(animate);
@@ -383,14 +667,14 @@
 
       if (infl > 0.001) {
         const str = infl * 0.11;
-        if (mode === 'attract') {
+        if (mode === 'scan') {
           velocities[ix] += dx * str;
           velocities[iy] += dy * str;
-        } else if (mode === 'repel') {
+        } else if (mode === 'secure') {
           velocities[ix] -= dx * str * 1.6;
           velocities[iy] -= dy * str * 1.6;
         } else {
-          /* flow — tangential force creates vortex */
+          /* trace — tangential force creates vortex */
           velocities[ix] += -dy * str * 1.3;
           velocities[iy] +=  dx * str * 1.3;
         }
@@ -411,6 +695,44 @@
       posArr[iz] += velocities[iz];
     }
     geo.attributes.position.needsUpdate = true;
+
+    /* ── Threats: drift, detect, recolour ── */
+    for (let i = 0; i < THREAT_COUNT; i++) {
+      const th = threats[i];
+      th.x = th.hx + Math.sin(t * 0.5 + th.phase) * 2.4;
+      th.y = th.hy + Math.cos(t * 0.42 + th.phase) * 1.8;
+      threatPos[i*3]   = th.x;
+      threatPos[i*3+1] = th.y;
+
+      if (!th.detected && probeActive) {
+        const dx = probe.x - th.x, dy = probe.y - th.y;
+        if (Math.sqrt(dx*dx + dy*dy) < DETECT_R) {
+          th.detected = true;
+          detectedTotal++;
+          COL_CLEAR.toArray(threatCol, i*3);
+          updateThreatHud();
+          if (detectedTotal >= THREAT_COUNT) clearedAt = t;
+        }
+      }
+    }
+    threatGeo.attributes.position.needsUpdate = true;
+    threatGeo.attributes.color.needsUpdate = true;
+
+    /* Reticle ring follows the probe, pulsing */
+    ring.position.x = probe.x;
+    ring.position.y = probe.y;
+    const targetOpacity = probeActive ? 0.32 + Math.sin(t * 4) * 0.10 : 0;
+    ring.material.opacity += (targetOpacity - ring.material.opacity) * 0.15;
+    ring.scale.setScalar(1 + Math.sin(t * 3) * 0.05);
+
+    /* When the sector is fully cleared, reset after a beat so the demo stays playable */
+    if (clearedAt >= 0 && t - clearedAt > 4) {
+      for (let i = 0; i < THREAT_COUNT; i++) spawnThreat(i, true);
+      detectedTotal = 0;
+      clearedAt = -1;
+      threatGeo.attributes.color.needsUpdate = true;
+      updateThreatHud();
+    }
 
     /* Slow z-rotation for ambient depth */
     points.rotation.z += 0.00035;
