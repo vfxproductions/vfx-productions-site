@@ -68,7 +68,7 @@
     <!-- HERO -->
     <section class="section">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/Droneoperator.mp4" type="video/mp4" />
         </video>
       </div>
@@ -726,5 +726,6 @@
     renderer.render(scene, camera);
   })();
   </script>
+  <script defer src="/js/lazyvideo.js"></script>
 </body>
 </html>

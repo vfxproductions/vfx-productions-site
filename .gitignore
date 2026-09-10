@@ -8,3 +8,7 @@
 # Large 3D model files (unused, exceed GitHub 100MB limit)
 models/festival_stage.glb
 models/people_model.glb
+
+# Optimization working dirs (originals + intermediates)
+assets/_orig/
+assets/_opt/

@@ -68,7 +68,7 @@
     <!-- HERO -->
     <section class="section" style="min-height:60svh;">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/hero.mp4" type="video/mp4" />
         </video>
       </div>
@@ -302,5 +302,6 @@
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); }); });
   })();
   </script>
+  <script defer src="/js/lazyvideo.js"></script>
 </body>
 </html>

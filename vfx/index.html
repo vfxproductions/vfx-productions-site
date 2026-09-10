@@ -68,7 +68,7 @@
     <!-- HERO -->
     <section class="section">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/breakdown.mp4" type="video/mp4" />
         </video>
       </div>
@@ -140,7 +140,7 @@
     <!-- FINAL RESULT -->
     <section class="section" id="final">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/vfx.mp4" type="video/mp4" />
         </video>
       </div>
@@ -254,7 +254,7 @@
 
     const loader  = new THREE.TextureLoader();
     const layers  = [];
-    const urls    = ["/assets/layer1.png","/assets/layer2.png","/assets/layer3.png","/assets/layer4.png"];
+    const urls    = ["/assets/layer1.webp","/assets/layer2.webp","/assets/layer3.webp","/assets/layer4.webp"];
 
     urls.forEach((u, i) => {
       const mesh = new THREE.Mesh(
@@ -297,5 +297,6 @@
     })();
   }
   </script>
+  <script defer src="/js/lazyvideo.js"></script>
 </body>
 </html>

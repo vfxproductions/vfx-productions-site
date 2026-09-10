@@ -68,7 +68,7 @@
     <!-- HERO -->
     <section class="section">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/visuals.mp4" type="video/mp4" />
         </video>
       </div>
@@ -130,7 +130,7 @@
     <!-- FINAL -->
     <section class="section" id="final">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/maassilo.mp4" type="video/mp4" />
         </video>
       </div>
@@ -851,5 +851,6 @@
     renderer.render(scene, camera);
   })();
   </script>
+  <script defer src="/js/lazyvideo.js"></script>
 </body>
 </html>

@@ -26,6 +26,11 @@
     /* leaflet bar */
     .leaflet-container .leaflet-bar a{background:rgba(10,10,14,.9)!important;color:rgba(240,240,250,.7)!important;border-color:rgba(240,240,250,.15)!important;}
     .leaflet-container .leaflet-bar a:hover{background:rgba(30,30,38,.95)!important;color:rgba(240,240,250,1)!important;}
+    /* Dark basemap without a paid tile key: invert the light OSM tiles.
+       Scoped to the tile pane so the white location pin keeps its colours. */
+    #studioMap .leaflet-tile-pane{ filter: invert(1) hue-rotate(180deg) brightness(.78) contrast(1.05) saturate(.35); }
+    #studioMap .leaflet-control-attribution{ background:rgba(6,6,8,.7); color:var(--fg35); font-size:.6rem; }
+    #studioMap .leaflet-control-attribution a{ color:var(--fg35); }
     @media(max-width:560px){#studioMap{height:260px!important;}}
   </style>
 </head>
@@ -81,7 +86,7 @@
     <!-- HERO -->
     <section class="section" style="min-height:60svh;">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/hero.mp4" type="video/mp4" />
         </video>
       </div>
@@ -219,8 +224,8 @@
             <div>
               <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg35);margin-bottom:10px;">Address</div>
               <address style="font-style:normal;font-size:.95rem;line-height:1.75;color:var(--fg80);">
-                Westfrankelandsedijk 1<br>
-                3115 HG Schiedam<br>
+                Visseringlaan 22B<br>
+                2288 ER Rijswijk<br>
                 The Netherlands
               </address>
             </div>
@@ -368,27 +373,29 @@
     var smap = L.map('studioMap', {
       scrollWheelZoom: false,
       zoomControl: true,
-      attributionControl: false
-    }).setView([51.9107, 4.3939], 16);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd',
-      maxZoom: 19
+      attributionControl: true
+    }).setView([52.0399, 4.3222], 16);
+    /* OSM tiles (no API key) darkened via CSS to match the site — see #studioMap rule */
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap'
     }).addTo(smap);
     var pin = L.divIcon({
       className: '',
       html: '<div style="position:relative;">'
           + '<div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(6,6,8,.94);border:1px solid rgba(240,240,250,.13);border-radius:7px;padding:7px 13px;font-size:.72rem;line-height:1.5;color:rgba(240,240,250,.78);font-family:ui-sans-serif,system-ui,sans-serif;pointer-events:none;">'
           + '<strong style="display:block;color:rgba(240,240,250,.95);text-transform:uppercase;letter-spacing:.09em;font-size:.65rem;margin-bottom:3px;">Vision For Xperiences</strong>'
-          + 'Westfrankelandsedijk 1, Schiedam'
+          + 'Visseringlaan 22B, Rijswijk'
           + '</div>'
           + '<div style="width:14px;height:14px;background:#fff;border-radius:50%;box-shadow:0 0 0 5px rgba(255,255,255,.09),0 0 18px rgba(255,255,255,.20);"></div>'
           + '</div>',
       iconSize: [14, 14],
       iconAnchor: [7, 7]
     });
-    L.marker([51.9107, 4.3939], { icon: pin }).addTo(smap);
+    L.marker([52.0399, 4.3222], { icon: pin }).addTo(smap);
 
   })();
   </script>
+  <script defer src="/js/lazyvideo.js"></script>
 </body>
 </html>

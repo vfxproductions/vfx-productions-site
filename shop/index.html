@@ -68,7 +68,7 @@
     <!-- HERO -->
     <section class="section">
       <div class="media">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/digitalitems.mp4" type="video/mp4" />
         </video>
       </div>
@@ -109,7 +109,7 @@
 
         <article class="shop-card">
           <div class="shop-card-thumb">
-            <video autoplay muted loop playsinline preload="metadata">
+            <video muted loop playsinline preload="none" data-lazyvideo>
               <source src="/assets/vfx.mp4" type="video/mp4" />
             </video>
           </div>
@@ -124,7 +124,7 @@
 
         <article class="shop-card">
           <div class="shop-card-thumb">
-            <video autoplay muted loop playsinline preload="metadata">
+            <video muted loop playsinline preload="none" data-lazyvideo>
               <source src="/assets/visuals.mp4" type="video/mp4" />
             </video>
           </div>
@@ -139,7 +139,7 @@
 
         <article class="shop-card">
           <div class="shop-card-thumb">
-            <video autoplay muted loop playsinline preload="metadata">
+            <video muted loop playsinline preload="none" data-lazyvideo>
               <source src="/assets/animation.mp4" type="video/mp4" />
             </video>
           </div>
@@ -154,7 +154,7 @@
 
         <article class="shop-card">
           <div class="shop-card-thumb">
-            <video autoplay muted loop playsinline preload="metadata">
+            <video muted loop playsinline preload="none" data-lazyvideo>
               <source src="/assets/digitalitems.mp4" type="video/mp4" />
             </video>
           </div>
@@ -169,7 +169,7 @@
 
         <article class="shop-card">
           <div class="shop-card-thumb">
-            <video autoplay muted loop playsinline preload="metadata">
+            <video muted loop playsinline preload="none" data-lazyvideo>
               <source src="/assets/breakdown.mp4" type="video/mp4" />
             </video>
           </div>
@@ -283,5 +283,6 @@
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); }); });
   })();
   </script>
+  <script defer src="/js/lazyvideo.js"></script>
 </body>
 </html>
