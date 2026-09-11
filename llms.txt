@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Open source flips the commercial 3D software economics](/news/open-source-flips-the-commercial-3d-software-economics/): Vendor lock-in is now the top reason organizations choose free tools over licensed subscriptions, reshaping how studios pitch to clients and how they budget.
 - [How to pick a studio for a 3D product animation](/news/how-to-pick-a-studio-for-a-3d-product-animation/): Current rates span from 5k to 25k per finished minute. We mapped who does what work and at what price point.
 - [Building real-time interactive experiences for museums and exhibitions](/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/): A practical guide to finding the right studio for hands-on installations that respond to visitors in real time.
 - [August broke open the Gaussian splatting toolkit](/news/august-broke-open-the-gaussian-splatting-toolkit/): Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment.

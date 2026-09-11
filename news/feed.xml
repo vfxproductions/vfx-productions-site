@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Sep 2026 14:57:53 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2026 15:18:34 +0000</lastBuildDate>
+    <item>
+      <title>Open source flips the commercial 3D software economics</title>
+      <link>https://vfx.productions/news/open-source-flips-the-commercial-3d-software-economics/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/open-source-flips-the-commercial-3d-software-economics/</guid>
+      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Vendor lock-in is now the top reason organizations choose free tools over licensed subscriptions, reshaping how studios pitch to clients and how they budget.</description>
+      <category>blender</category><category>open-source</category><category>3d-software</category><category>production-tools</category><category>market-shift</category>
+    </item>
     <item>
       <title>How to pick a studio for a 3D product animation</title>
       <link>https://vfx.productions/news/how-to-pick-a-studio-for-a-3d-product-animation/</link>
