@@ -1,0 +1,26 @@
+# Vision For Xperiences (vfx.productions)
+
+> Multidisciplinary creative studio in the Netherlands. VFX, 3D animation,
+> live and festival visuals, interactive art installations, and licensed drone
+> cinematography, delivered by one team from previz through final delivery.
+
+Contact: studio@vfx.productions (briefs answered within 48 hours).
+Budget bands: under EUR 1,000 / EUR 1,000-5,000 / EUR 5,000-15,000 / EUR 15,000+.
+Takes on work at budget levels most full-service houses decline.
+
+## Services
+- [VFX](/vfx): compositing, set extensions, tracking, simulations, stylised looks
+- [3D Animation](/animation): product visuals, cinematic shorts, motion systems, stage worlds
+- [Live Visuals](/visuals): festival screens, DJ and artist visuals, reactive show content
+- [Interactive Design](/technology): art installations, educational devices, real-time experiences
+- [Drone Operator](/droneoperator): licensed UAV, aerial cinematics, event and location coverage
+- [Shop](/shop): presets, packs, motion templates, 3D asset bundles
+
+## Get a quote
+- [Contact and brief form](/contact)
+- [About the studio](/about)
+
+## News
+- [How to pick a studio for a 3D product animation](/news/how-to-pick-a-studio-for-a-3d-product-animation/): Current rates span from 5k to 25k per finished minute. We mapped who does what work and at what price point.
+- [Building real-time interactive experiences for museums and exhibitions](/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/): A practical guide to finding the right studio for hands-on installations that respond to visitors in real time.
+- [August broke open the Gaussian splatting toolkit](/news/august-broke-open-the-gaussian-splatting-toolkit/): Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment.

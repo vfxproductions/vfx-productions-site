@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://vfx.productions/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://vfx.productions/about</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/vfx</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/animation</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/visuals</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/technology</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/droneoperator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/shop</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/jobs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/contact</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/news/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/news/how-to-pick-a-studio-for-a-3d-product-animation/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vfx.productions/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>

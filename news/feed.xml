@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vision For Xperiences — News</title>
+    <link>https://vfx.productions/news/</link>
+    <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
+    <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 11 Sep 2026 14:57:00 +0000</lastBuildDate>
+    <item>
+      <title>How to pick a studio for a 3D product animation</title>
+      <link>https://vfx.productions/news/how-to-pick-a-studio-for-a-3d-product-animation/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/how-to-pick-a-studio-for-a-3d-product-animation/</guid>
+      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Current rates span from 5k to 25k per finished minute. We mapped who does what work and at what price point.</description>
+      <category>3d animation</category><category>product visualization</category><category>studio selection</category><category>video production</category><category>pricing</category>
+    </item>
+    <item>
+      <title>Building real-time interactive experiences for museums and exhibitions</title>
+      <link>https://vfx.productions/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/</guid>
+      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
+      <description>A practical guide to finding the right studio for hands-on installations that respond to visitors in real time.</description>
+      <category>interactive installations</category><category>museum exhibitions</category><category>real-time experiences</category><category>experience design</category><category>museums</category>
+    </item>
+    <item>
+      <title>August broke open the Gaussian splatting toolkit</title>
+      <link>https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</guid>
+      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment.</description>
+      <category>gaussian splatting</category><category>real-time 3d</category><category>vfx production</category><category>3d capture</category><category>rendering</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,101 @@
+/* Events feature — DISABLED 2026-09-10 at owner request (confusing visitors).
+   To restore: paste this block back into the <script type="module"> in index.html,
+   and un-comment the "Events modal" and "events-widget" blocks in index.html.
+   This file is NOT loaded by any page. */
+
+    /* ========== EVENTS CONFIG ========== */
+    const events = [
+      {
+        id: "event-1",
+        name: "SOCIAL MEDIA VFX — DUTCH RAPPER",
+        dateISO: "2026-04-09T12:00:00",
+        location: "Online Release",
+        type: "Music Industry",
+        notes: "Social media VFX work for a Dutch rapper. Cinematic effects, motion graphics, and release visuals."
+      },
+      {
+        id: "event-2",
+        name: "CYBER SECURITY ART INSTALLATION",
+        dateISO: "2026-06-26T12:00:00",
+        location: "TBA",
+        type: "Interactive Art",
+        notes: "Interactive art installation for a cyber security company — blending physical and digital interaction."
+      },
+      {
+        id: "event-3",
+        name: "LOGISTICS INFOGRAPHIC",
+        dateISO: "2026-08-26T12:00:00",
+        location: "TBA",
+        type: "Logistical Company",
+        notes: "End-to-end logistical process infographic — A→B flow visualisation for a major logistics client."
+      }
+    ];
+
+    const now = Date.now();
+    const upcoming = events
+      .map(e => ({...e, t: new Date(e.dateISO).getTime()}))
+      .filter(e => Number.isFinite(e.t) && e.t > now)
+      .sort((a,b) => a.t - b.t);
+    const primaryEvent = upcoming[0] || null;
+
+    /* ========== COUNTDOWN ========== */
+    const countdownEl = document.getElementById("countdown");
+    function pad2(n){ return String(n).padStart(2,"0"); }
+    function formatCountdown(ms){
+      if (ms <= 0) return "LIVE";
+      const s   = Math.floor(ms / 1000);
+      const m   = Math.floor(s  / 60);
+      const h   = Math.floor(m  / 60);
+      const d   = Math.floor(h  / 24);
+      if (d >= 2)  return `${d}d ${h % 24}h`;        // "14d 3h"
+      if (h >= 1)  return `${h}h ${pad2(m % 60)}m`;  // "6h 23m"
+      return `${m}m ${pad2(s % 60)}s`;               // "23m 45s"
+    }
+    function tick(){
+      countdownEl.textContent = primaryEvent ? formatCountdown(primaryEvent.t - Date.now()) : "–";
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ========== EVENTS MODAL ========== */
+    const eventsModal   = document.getElementById("eventsModal");
+    const eventsWidget  = document.getElementById("eventsWidget");
+    const eventsClose   = document.getElementById("eventsClose");
+    const eventsList    = document.getElementById("eventsList");
+
+    function fmtDate(iso){
+      return new Date(iso).toLocaleString(undefined, {
+        weekday:"short", year:"numeric", month:"short", day:"2-digit", hour:"2-digit", minute:"2-digit"
+      });
+    }
+    function renderEvents(){
+      eventsList.innerHTML = "";
+      [...events]
+        .map(e => ({...e, t: new Date(e.dateISO).getTime()}))
+        .filter(e => Number.isFinite(e.t))
+        .sort((a,b) => a.t - b.t)
+        .forEach(e => {
+          const card = document.createElement("div");
+          card.className = "event-card";
+          card.innerHTML = `
+            <div class="event-thumb" aria-hidden="true"></div>
+            <div class="event-meta">
+              <div class="event-name">${e.name}</div>
+              <div class="event-line">${fmtDate(e.dateISO)} &mdash; ${e.location}</div>
+              <div class="event-mini">
+                <span class="pill">${e.type}</span>
+                ${primaryEvent && e.id === primaryEvent.id ? '<span class="pill">Primary countdown</span>' : ''}
+              </div>
+              <div class="event-line" style="margin-top:10px;color:rgba(240,240,250,.75);">${e.notes}</div>
+            </div>`;
+          eventsList.appendChild(card);
+        });
+    }
+    function openEvents(){ renderEvents(); eventsModal.classList.add("open"); eventsModal.setAttribute("aria-hidden","false"); }
+    function closeEvents(){ eventsModal.classList.remove("open"); eventsModal.setAttribute("aria-hidden","true"); }
+
+    eventsWidget.addEventListener("click", openEvents);
+    eventsWidget.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" ") openEvents(); });
+    eventsClose.addEventListener("click", closeEvents);
+    eventsModal.addEventListener("click", e => { if(e.target===eventsModal) closeEvents(); });
+    window.addEventListener("keydown", e => { if(e.key==="Escape") closeEvents(); });
