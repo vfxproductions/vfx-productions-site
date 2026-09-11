@@ -496,7 +496,8 @@
         dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
       }
       btn.addEventListener('click',function(e){
-        if(isHoverDevice) return; /* desktop: hover-only, clicks do nothing */
+        /* Always toggle on click too — some touchscreens misreport (hover:hover),
+           so hover-detection alone isn't enough to guarantee tap-to-open. */
         e.stopPropagation();
         var opening=!dd.classList.contains('open');
         document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); });
