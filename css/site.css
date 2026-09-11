@@ -595,6 +595,10 @@
     .nav-dropdown.open .nav-dropdown-menu a:nth-child(3){ animation-delay:.13s; }
     .nav-dropdown.open .nav-dropdown-menu a:nth-child(4){ animation-delay:.18s; }
     .nav-dropdown.open .nav-dropdown-menu a:nth-child(5){ animation-delay:.23s; }
+
+    /* Language switcher — same dropdown mechanics, narrower + right-aligned so it never overflows the viewport */
+    .lang-dropdown-menu{ left:auto; right:0; min-width:150px; }
+
     /* Drawer section label */
     .drawer-section{
       font-size: .60rem;
