@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Sep 2026 15:48:30 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2026 09:02:03 +0000</lastBuildDate>
+    <item>
+      <title>Vicon acquires face capture firm, closing the pipeline gap</title>
+      <link>https://vfx.productions/news/vicon-acquires-face-capture-firm-closing-the-pipeline-gap/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/vicon-acquires-face-capture-firm-closing-the-pipeline-gap/</guid>
+      <pubDate>Sat, 12 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Facial and body performance capture have always come from different vendors. That just changed.</description>
+      <category>mocap</category><category>facial capture</category><category>digital humans</category><category>vfx pipeline</category><category>performance capture</category>
+    </item>
     <item>
       <title>Open source flips the commercial 3D software economics</title>
       <link>https://vfx.productions/news/open-source-flips-the-commercial-3d-software-economics/</link>
