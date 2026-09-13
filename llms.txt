@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [ISO 22028-5 sets a common language for HDR still image colour](/news/iso-22028-5-sets-a-common-language-for-hdr-still-image-colour/): A new international standard published in May defines how studios encode, store, and deliver HDR photographs and graphics with consistent colour across devices.
 - [Vicon acquires face capture firm, closing the pipeline gap](/news/vicon-acquires-face-capture-firm-closing-the-pipeline-gap/): Facial and body performance capture have always come from different vendors. That just changed.
 - [Open source flips the commercial 3D software economics](/news/open-source-flips-the-commercial-3d-software-economics/): Vendor lock-in is now the top reason organizations choose free tools over licensed subscriptions, reshaping how studios pitch to clients and how they budget.
 - [How to pick a studio for a 3D product animation](/news/how-to-pick-a-studio-for-a-3d-product-animation/): Current rates span from 5k to 25k per finished minute. We mapped who does what work and at what price point.
