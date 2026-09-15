@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 07:14:25 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2026 07:06:36 +0000</lastBuildDate>
+    <item>
+      <title>Houdini 22 brings MCP agents into character rigging workflows</title>
+      <link>https://vfx.productions/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/</guid>
+      <pubDate>Tue, 15 Sep 2026 09:00:00 +0000</pubDate>
+      <description>SideFX wired AI code generation into KineFX, letting riggers scaffold procedural setups faster without surrendering control.</description>
+      <category>houdini</category><category>character animation</category><category>procedural rigging</category><category>ai workflow</category><category>production pipeline</category>
+    </item>
     <item>
       <title>DJI Avata 360 shifts FPV from linear chase work to 360 capture</title>
       <link>https://vfx.productions/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/</link>
