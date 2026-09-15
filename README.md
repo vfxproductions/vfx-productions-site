@@ -1,6 +1,6 @@
 # Vision For Xperiences
 
-**Multidisciplinary creative studio** delivering film-grade VFX, 3D animation, live event visuals, interactive media, and drone cinematography.
+**Cinematic 3D, animation, and interactive visuals** for products, spaces, performances, and ideas that are difficult to show.
 
 🌐 [vfx.productions](https://vfx.productions)
 
@@ -10,20 +10,37 @@
 
 | Service | Description |
 |---|---|
-| **VFX** | Compositing, simulations, set extensions, and stylized looks |
-| **3D Animation** | Product visuals, cinematic shorts, motion systems, and stage worlds |
-| **Live Visuals** | DJ & rapper visuals, festival screens, reactive content, show packages |
-| **Interactive Design** | Art installations, educational devices, real-time experiences |
-| **Drone Operator** | Licensed aerial capture for events, commercials, and real estate |
-| **Shop** | Presets, packs, templates, and digital assets for creators |
+| **3D animation & product films** | Cinematic films that show a product, process or idea in motion |
+| **Technical & product visualisation** | Cutaways, exploded views, assembly and simulation sequences |
+| **VFX & compositing** | Set extensions, tracking, cleanup, simulations, stylised looks |
+| **Motion design** | Titles, infographics, UI animation, brand motion systems |
+| **Live visuals & music content** | Show packages, festival screens, artist visuals, audio-reactive scenes |
+| **Interactive installations** | Physical installations that respond to the people in front of them |
+| **Design visualisation** | Buildings, interiors and public spaces shown before they are built |
+| **Aerial capture** | Licensed drone and FPV for locations, events and commercials |
 
 ---
 
 ## Tech
 
-Static HTML/CSS/JS site — no framework, no build step.
+Static HTML/CSS/JS site, hosted on GitHub Pages with a custom domain.
 3D demos built with [Three.js](https://threejs.org/) via CDN.
-Hosted on GitHub Pages with a custom domain.
+
+Most pages are hand-written. `/work`, `/work/<slug>`, `/services` and
+`/industries/<slug>` are **generated** from a single data file so the project
+list lives in one place instead of fifteen HTML files:
+
+```
+data/site.mjs      <- edit projects, services and categories here
+tools/build.mjs    <- node tools/build.mjs   (regenerates the pages + sitemap)
+```
+
+The generated HTML is committed, so GitHub Pages needs no CI step. After
+editing `data/site.mjs`, run the build and commit the result.
+
+A project with `status: 'draft'` is listed on `/work` as a clearly marked
+placeholder and gets **no** page of its own. Fill in its fields and flip it to
+`status: 'published'` to generate the case study.
 
 ---
 

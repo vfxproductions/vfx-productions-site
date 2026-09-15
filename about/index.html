@@ -3,37 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
   <title>About — Vision For Xperiences</title>
-  <meta name="description" content="About Vision For Xperiences — a multidisciplinary creative studio founded by VFX artists and 3D animators with 8+ years of experience across film, live events, and interactive media." />
-  <meta name="keywords" content="about Vision For Xperiences, VFX studio team, 3D animation studio, creative production company" />
+  <meta name="description" content="Vision For Xperiences is a creative studio for cinematic 3D, animation, VFX, design visualisation, live visuals and interactive media, led by CEO Kees Moolenaar." />
+  <meta name="keywords" content="about Vision For Xperiences, 3D artist, creative technologist, VFX studio Netherlands, interactive media" />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vfx.productions/about" />
   <link rel="icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:url" content="https://vfx.productions/about" />
   <meta property="og:title" content="About — Vision For Xperiences" />
-  <meta property="og:description" content="A multidisciplinary creative studio delivering film-grade VFX, animation, live visuals, and interactive systems." />
-  <meta property="og:image" content="/assets/about.jpg" />
+  <meta property="og:description" content="A creative studio working across animation, VFX, design visualisation, live visuals and interactive media." />
+  <meta property="og:image" content="https://vfx.productions/assets/about.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About — Vision For Xperiences" />
+  <meta name="twitter:description" content="A creative studio working across animation, VFX, design visualisation, live visuals and interactive media." />
+  <meta name="twitter:image" content="https://vfx.productions/assets/about.jpg" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=50bd5ed72c" />
+  <link rel="stylesheet" href="/css/site.css?v=1ea914c9b6" />
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-top">
       <div class="drawer-title">Navigation</div>
-      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
     </div>
     <a href="/" data-nav>Home</a>
-    <div class="drawer-section">Xperiences</div>
+    <a href="/work" data-nav>Work</a>
+    <div class="drawer-section">By industry</div>
+    <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
+    <a href="/industries/architecture-spaces" data-nav class="drawer-sub">Architecture &amp; Spaces</a>
+    <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
+    <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
+    <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
+    <a href="/services" data-nav>Services</a>
+    <div class="drawer-section">Disciplines</div>
     <a href="/vfx" data-nav class="drawer-sub">VFX</a>
     <a href="/animation" data-nav class="drawer-sub">Animation</a>
     <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
     <a href="/technology" data-nav class="drawer-sub">Technology</a>
     <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
     <a href="/news" data-nav>News</a>
-    <a href="/about" data-nav>About</a>
+    <a href="/about" data-nav aria-current="page">About</a>
     <a href="/shop" data-nav>Shop</a>
     <a href="/jobs" data-nav>Jobs</a>
     <a href="/contact" data-nav>Contact</a>
@@ -41,35 +57,44 @@
 
   <header>
     <nav class="nav" aria-label="Primary">
-      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
       <a class="brand" href="/">
-        <img src="/assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" style="height:28px;width:auto;object-fit:contain;" />
       </a>
       <div class="links" aria-label="Site links">
-        <a href="/">Home</a>
         <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">▾</span></button>
+          <a class="nav-dropdown-toggle" href="/work">Work <span class="nav-caret">&#9662;</span></a>
           <div class="nav-dropdown-menu">
+            <a href="/work">All work</a>
+            <a href="/industries/product-technology">Product &amp; Technology</a>
+            <a href="/industries/architecture-spaces">Architecture &amp; Spaces</a>
+            <a href="/industries/music-culture">Music &amp; Culture</a>
+            <a href="/industries/fashion-luxury">Fashion &amp; Luxury</a>
+            <a href="/industries/film-commercial">Film &amp; Commercial</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/services">Services <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/services">All services</a>
             <a href="/vfx">VFX</a>
             <a href="/animation">Animation</a>
-            <a href="/visuals">Visuals</a>
-            <a href="/technology">Technology</a>
+            <a href="/visuals">Live Visuals</a>
+            <a href="/technology">Interactive</a>
             <a href="/droneoperator">Drone Operator</a>
           </div>
         </div>
         <a href="/news">News</a>
-        <a href="/about">About</a>
-        <a href="/shop">Shop</a>
-        <a href="/jobs">Jobs</a>
+        <a href="/about" aria-current="page">About</a>
         <a href="/contact">Contact</a>
       </div>
       <div class="right"></div>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <!-- HERO -->
-    <section class="section">
+    <section class="section page-hero">
       <div class="media">
         <video muted loop playsinline preload="none" data-lazyvideo>
           <source src="/assets/tessaract.mp4" type="video/mp4" />
@@ -79,73 +104,145 @@
       <div class="content">
         <div class="copy">
           <div class="kicker">About</div>
-          <h1>BUILDING<br>REALITY<br>BEYOND REAL.</h1>
-          <p class="sub">
-            Vision For Xperiences is a production engine for cinematic visuals, real-time systems,
-            and narrative-driven tech. We don't decorate ideas. We weaponize them.
+          <h1>MAKING THE<br>DIFFICULT<br>VISIBLE.</h1>
+          <p class="sub lead">
+            We are a creative studio for cinematic 3D, animation, and interactive visuals —
+            built for products, spaces, performances, and ideas that are difficult to show.
           </p>
         </div>
       </div>
-      <a class="down" href="#story" aria-label="Scroll to next section">
-        Learn More
+      <a class="down" href="#studio" aria-label="Scroll to next section">
+        The studio
         <span class="chev"></span>
       </a>
     </section>
 
-    <!-- STORY -->
-    <section id="story" style="max-width:var(--maxw);margin:0 auto;padding:80px 22px;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;">
+    <!-- STUDIO -->
+    <section class="page-wrap band" id="studio">
+      <div class="founder">
+        <div class="founder-media">
+          <img src="/assets/kees_portrait.jpg" alt="Kees Moolenaar, CEO of Vision For Xperiences" loading="lazy" />
+        </div>
         <div>
-          <div class="kicker">Who we are</div>
+          <div class="kicker accent">The studio</div>
+          <h2 class="band-title">One pipeline,<br>many disciplines.</h2>
+          <p class="sub lead">
+            Vision For Xperiences is a creative studio working across animation, visual effects,
+            design visualisation, live visuals and interactive media. We are led by
+            <strong style="font-size:inherit;letter-spacing:0;text-transform:none;color:var(--fg);">Kees Moolenaar, CEO</strong>,
+            and we work with a trusted network of specialists and partner studios who join a project
+            when it needs them.
+          </p>
           <p class="sub">
-            Founded by a VFX artist and 3D animator with 8+ years in the field, Vision For Xperiences operates at the
-            intersection of film, live events, and interactive media. We've shipped work for award
-            shows, festivals, Netflix series, national campaigns, and large-scale installations.
+            The range is wide but the thread is narrow: take something complex, abstract or technical
+            and make it legible, then make people feel something about it. That is the same problem
+            whether the subject is a distribution centre, a stage set, a CG truck in a live-action
+            plate, or a cybersecurity threat.
+          </p>
+          <p class="sub">
+            We like the work that has no clean answer yet: figure it out, then make every frame earn
+            its place. That includes building our own tools — Python, Blender add-ons, web apps — so
+            the pipeline bends to the project instead of the other way round. If a project would rather
+            skip the AI-assisted parts of that workflow, it does.
+          </p>
+          <p class="sub">
+            Because it is one pipeline rather than five departments, a project can move from previz to
+            a finished film to a physical installation without being handed over three times. That is
+            also why the work sits under one name instead of five.
+          </p>
+          <div class="actions">
+            <a class="btn btn-accent" href="/contact">Discuss a collaboration</a>
+            <a class="btn btn-ghost" href="/work">See the work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT THE STUDIO DOES -->
+    <section class="page-wrap band">
+      <div class="kicker accent">Disciplines</div>
+      <div class="about-grid" style="margin-top:22px;">
+        <div>
+          <p class="sub" style="margin-top:0;">
+            We work across cinematic 3D, product and technical visualisation, animation, VFX,
+            interactive experiences, live visuals and design visualisation. Each of those has its own
+            page under <a class="card-deep" href="/services">Services</a>; the work itself is grouped by
+            who it was made for under <a class="card-deep" href="/work">Work</a>.
           </p>
         </div>
         <div>
-          <div class="kicker">What we stand for</div>
-          <p class="sub">
-            Clarity beats chaos. Craft beats noise. Every frame must earn its place. We design
-            experiences that explain, persuade, and perform under pressure. If it's complex, we
-            make it legible. If it's ambitious, we make it real.
+          <p class="sub" style="margin-top:0;">
+            Projects run from a single hero render to a fabricated installation that has to survive a
+            full exhibition day unattended. Budgets and timelines are discussed openly at the start —
+            see the brief checklist on the <a class="card-deep" href="/contact">contact page</a>.
           </p>
         </div>
       </div>
+    </section>
 
-      <div style="margin-top:80px;display:grid;gap:32px;max-width:720px;">
-        <div>
-          <strong>FILM &amp; VFX</strong><br>
-          <span class="sub">Set extensions, tracking, compositing, cinematic storytelling.</span>
-        </div>
-        <div>
-          <strong>STAGES &amp; SHOWS</strong><br>
-          <span class="sub">Festival visuals, live content systems, performance worlds.</span>
-        </div>
-        <div>
-          <strong>BRANDS &amp; SYSTEMS</strong><br>
-          <span class="sub">Infographics, campaigns, A&rarr;B logistics visualization.</span>
-        </div>
-        <div>
-          <strong>ARTISTS &amp; LABS</strong><br>
-          <span class="sub">Fine art, documentaries, experimental pipelines.</span>
-        </div>
-        <div>
-          <strong>DRONE &amp; AERIAL</strong><br>
-          <span class="sub">Licensed UAV operations, aerial cinematics, top-down reveals, and on-location event coverage.</span>
-        </div>
-        <div>
-          <strong>INTERACTIVE TECH</strong><br>
-          <span class="sub">Art installations, educational devices, and real-time interactive experiences built for public spaces.</span>
-        </div>
-        <div>
-          <strong>DIGITAL ASSETS</strong><br>
-          <span class="sub">Presets, packs, motion templates, and 3D model bundles for creators who want to move fast.</span>
-        </div>
-      </div>
+    <!-- BACKGROUND — editable placeholders. Nothing here is invented. -->
+    <section class="page-wrap band">
+      <div class="kicker accent">Background</div>
+      <p class="sub" style="max-width:60ch;">
+        Credits, studio experience and background.
+      </p>
+      <ul class="fact-list">
+        <li>
+          <strong>Partners</strong>
+          <span>Film and TV work delivered through VFX studio <strong style="font-size:inherit;letter-spacing:0;text-transform:none;color:var(--fg80);">Planet X</strong>.</span>
+        </li>
+        <li>
+          <strong>Leadership</strong>
+          <span>Kees Moolenaar &mdash; CEO. BA Image &amp; Media Technology, University of the Arts Utrecht (HKU). <a class="card-deep" href="https://www.imdb.com/name/nm17152376/" target="_blank" rel="noopener">IMDb &rarr;</a></span>
+        </li>
+        <li>
+          <strong>Film &amp; series</strong>
+          <span>
+            <em>El Eternauta</em> &mdash; Netflix series, 3D artist, 2025<br>
+            <em>De Vuurwerkramp</em> &mdash; series, 3D artist, 2025<br>
+            <em>De Tatta&rsquo;s 3</em> &mdash; feature, virtual production artist, 2025<br>
+          </span>
+        </li>
+        <li>
+          <strong>Commercial</strong>
+          <span>Full-CG vehicle work composited into live-action plates. <a class="card-deep" href="/work/street-takeover">Street Takeover &rarr;</a></span>
+        </li>
+        <li>
+          <strong>Live &amp; stage</strong>
+          <span>Show content for arena LED and venue screens &mdash; <a class="card-deep" href="/work/broederliefde">Broederliefde at the FunX Music Awards</a> and <a class="card-deep" href="/work/flaire-maassilo">FLAIRE at the Maassilo</a>.</span>
+        </li>
+        <li>
+          <strong>Interactive &amp; art</strong>
+          <span>CYBERAWARE &mdash; a self-initiated interactive installation on digital security: a 3D-printed console, live CCTV feeds over Raspberry Pi, and a game that puts the visitor in the chair of a security officer. Exhibited in Utrecht, 2026. <a class="card-deep" href="/work/cyberaware">Case study &rarr;</a></span>
+        </li>
+        <li>
+          <strong>Exhibitions</strong>
+          <span><!-- EDIT: Dutch Design Week - which year, which installation, which venue? -->CYBERAWARE, Utrecht 2026. <em>Dutch Design Week presentation &mdash; details to be added.</em></span>
+        </li>
+        <li>
+          <strong>Technical</strong>
+          <span>3D modelling &middot; animation &middot; compositing &middot; simulations &amp; FX &middot; lighting and look-dev &middot; real-time and live &middot; aerial and drone &middot; Python, Java and web &middot; custom Blender add-ons &middot; AI-assisted workflows.</span>
+        </li>
+        <li>
+          <strong>Contact</strong>
+          <span><a class="card-deep" href="mailto:studio@vfx.productions">studio@vfx.productions</a> &nbsp;&middot;&nbsp; Visseringlaan 22B, 2288 ER Rijswijk, The Netherlands &nbsp;&middot;&nbsp; <a class="card-deep" href="https://www.instagram.com/keesmoolenaarvfx" target="_blank" rel="noopener">@keesmoolenaarvfx</a></span>
+        </li>
+      </ul>
+    </section>
 
-      <div style="margin-top:60px;">
-        <a class="btn" href="/contact">Start a project</a>
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="page-wrap">
+        <div class="kicker">Work together</div>
+        <h2 class="band-title">Tell us what you are making.</h2>
+        <p class="sub">
+          Send us what you are working on, what you need, the deadline, and a budget range if you
+          have one. We answer within 48 hours.
+        </p>
+        <div class="actions">
+          <a class="btn btn-accent" href="/contact">Start a project</a>
+          <a class="btn" href="mailto:studio@vfx.productions">studio@vfx.productions</a>
+        </div>
       </div>
     </section>
   </main>
@@ -153,17 +250,19 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/assets/logo.png" alt="Vision For Xperiences" style="height:22px;object-fit:contain;opacity:.7;" />
+        <img src="/assets/logo.png" alt="Vision For Xperiences" width="640" height="360" style="height:22px;width:auto;object-fit:contain;opacity:.7;" />
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
         <a href="/about">About</a>
+        <a href="/news">News</a>
         <a href="/vfx">VFX</a>
         <a href="/animation">Animation</a>
         <a href="/visuals">Visuals</a>
         <a href="/technology">Technology</a>
         <a href="/droneoperator">Drone Operator</a>
-        <a href="/news">News</a>
         <a href="/shop">Shop</a>
         <a href="/jobs">Jobs</a>
         <a href="/contact">Contact</a>
@@ -174,47 +273,51 @@
 
   <script>
   (function(){
-    const drawer   = document.getElementById("drawer");
-    const backdrop = document.getElementById("drawerBackdrop");
-    const ham      = document.getElementById("hamburger");
-    const close    = document.getElementById("drawerClose");
-    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); }
-    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); }
+    var drawer   = document.getElementById("drawer");
+    var backdrop = document.getElementById("drawerBackdrop");
+    var ham      = document.getElementById("hamburger");
+    var closeBtn = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); ham.setAttribute("aria-expanded","true"); closeBtn.focus(); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); ham.setAttribute("aria-expanded","false"); }
     ham.addEventListener("click", open);
-    close.addEventListener("click", shut);
+    closeBtn.addEventListener("click", shut);
     backdrop.addEventListener("click", shut);
-    drawer.querySelectorAll("[data-nav]").forEach(a => a.addEventListener("click", shut));
-    window.addEventListener("keydown", e => { if(e.key==="Escape") shut(); });
+    drawer.querySelectorAll("[data-nav]").forEach(function(a){ a.addEventListener("click", shut); });
+    window.addEventListener("keydown", function(e){ if(e.key==="Escape") shut(); });
 
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", e => {
-        const href = a.getAttribute("href");
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener("click", function(e){
+        var href = a.getAttribute("href");
         if (!href || href==="#") return;
-        const t = document.querySelector(href);
+        var t = document.querySelector(href);
         if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
       });
     });
 
-    /* Dropdown toggle */
     document.querySelectorAll('.nav-dropdown').forEach(function(dd){
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-      function closeDd(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      var isButton=btn.tagName==='BUTTON';
+      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
         dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
+        dd.addEventListener('focusin', openDd);
+        dd.addEventListener('focusout',function(){ closeTimer=setTimeout(closeDd,120); });
+        if(isButton){ btn.addEventListener('click',function(e){ e.preventDefault(); }); }
+      } else {
+        btn.addEventListener('click',function(e){
+          if(dd.classList.contains('open') && !isButton) return; /* second tap follows the link */
+          e.preventDefault(); e.stopPropagation();
+          var opening=!dd.classList.contains('open');
+          document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
+          if(opening) openDd();
+        });
       }
-      btn.addEventListener('click',function(e){
-        if(isHoverDevice) return; /* desktop: hover-only */
-        e.stopPropagation();
-        var opening=!dd.classList.contains('open');
-        document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); });
-        if(opening) openDd();
-      });
     });
-    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); }); });
+    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
   })();
   </script>
   <script defer src="/js/lazyvideo.js"></script>
