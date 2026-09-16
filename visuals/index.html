@@ -7,6 +7,7 @@
   <meta name="description" content="Immersive live visuals for festivals, DJ sets, stage design, and retail spaces. Reactive content and show packages that define the energy of your event." />
   <meta name="keywords" content="festival visuals, DJ visuals, stage design, live visuals, event production, immersive visuals, show package, Vision For Xperiences" />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vfx.productions/visuals" />
   <link rel="icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Vision For Xperiences" />
@@ -15,7 +16,7 @@
   <meta property="og:image" content="/assets/about.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
 </head>
 
 <body>
@@ -275,7 +276,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -935,5 +936,6 @@
   </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

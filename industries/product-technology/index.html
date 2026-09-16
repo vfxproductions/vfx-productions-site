@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="We help technology and product companies make complex ideas visible through cinematic 3D animation, visualisation, and interactive experiences." />
   <meta name="twitter:image" content="https://vfx.productions/assets/cyberaware_console.jpg" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
 </head>
 
 <body style="--accent:#5B9DFF;">
@@ -205,7 +205,7 @@
           <div class="work-card-thumb"><img src="/assets/spec_med.jpg" alt="" loading="lazy" /></div>
           <div class="work-card-body">
             <div class="work-card-cat">Product &amp; Technology</div>
-            <h3 class="work-card-title">Medical design — knee</h3>
+            <h3 class="work-card-title">Medical design</h3>
             <p class="work-card-sum"><span class="soon">Coming soon</span></p>
             
           </div>
@@ -219,15 +219,24 @@
             
           </div>
         </article>
-          <article class="work-card is-draft" data-cat="product-technology" style="--accent:#5B9DFF;">
-          <div class="work-card-thumb"><img src="/assets/spec_cat.jpg" alt="" loading="lazy" /></div>
+          <a class="work-card" href="/work/catamaran" data-cat="product-technology" style="--accent:#5B9DFF;">
+          <div class="work-card-thumb"><img src="/assets/spec_cat_2.jpg" alt="" loading="lazy" /></div>
           <div class="work-card-body">
             <div class="work-card-cat">Product &amp; Technology</div>
-            <h3 class="work-card-title">Boat design — catamaran</h3>
-            <p class="work-card-sum"><span class="soon">Coming soon</span></p>
-            
+            <h3 class="work-card-title">Catamaran</h3>
+            <p class="work-card-sum">A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.</p>
+            <span class="card-deep">View case study &rarr;</span>
           </div>
-        </article>
+        </a>
+          <a class="work-card" href="/work/freight-calculator" data-cat="product-technology" style="--accent:#5B9DFF;">
+          <div class="work-card-thumb"><img src="/assets/freight_poster.jpg" alt="" loading="lazy" /></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Product &amp; Technology</div>
+            <h3 class="work-card-title">Freight Calculator</h3>
+            <p class="work-card-sum">The login screen for a freight-rate app — a container ship coming straight at you, and the hull used as the brand surface.</p>
+            <span class="card-deep">View case study &rarr;</span>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -329,7 +338,7 @@
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); }
       function closeDd(){ dd.classList.remove('open'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -348,46 +357,8 @@
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
   })();
   </script>
-  <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
-    <img id="lightboxImg" src="" alt="" />
-    <p class="lightbox-cap" id="lightboxCap"></p>
-  </dialog>
-
-  <script>
-  /* Click any process image to enlarge it. Uses a native dialog element, so Esc,
-     focus trapping and the backdrop are handled by the browser. */
-  (function(){
-    var dlg = document.getElementById('lightbox');
-    if (!dlg || !dlg.showModal) return;          /* no dialog support: images stay inline */
-    var img = document.getElementById('lightboxImg');
-    var cap = document.getElementById('lightboxCap');
-    var opener = null;
-
-    document.addEventListener('click', function(e){
-      var btn = e.target.closest('.zoom');
-      if (btn){
-        var src = btn.querySelector('img');
-        if (!src) return;
-        opener = btn;
-        img.src = src.currentSrc || src.src;
-        img.alt = src.alt || '';
-        cap.textContent = src.alt || '';
-        dlg.showModal();
-        return;
-      }
-      /* click outside the image closes it */
-      if (dlg.open && (e.target === dlg)) dlg.close();
-    });
-
-    document.getElementById('lightboxClose').addEventListener('click', function(){ dlg.close(); });
-    dlg.addEventListener('close', function(){
-      img.src = '';
-      if (opener) { opener.focus(); opener = null; }
-    });
-  })();
-  </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

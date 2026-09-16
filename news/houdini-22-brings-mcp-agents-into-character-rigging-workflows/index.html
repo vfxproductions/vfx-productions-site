@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Houdini 22 brings MCP agents into character rigging workflows — Vision For Xperiences" />
   <meta name="twitter:description" content="SideFX wired AI code generation into KineFX, letting riggers scaffold procedural setups faster without surrendering control." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/houdini-22-brings-mcp-agents-into-character-rigging-workflows.webp" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -235,10 +235,10 @@
       <p>The MCP agents are marked as preview, not production-ready yet. SideFX is being careful with how it ships AI into the pipeline, which reads as respect for the artists who need to trust the code they're running.</p>
       <h2>Why procedural rigging matters now</h2>
       <p>Artists working on character-heavy projects have been sideloading procedural logic into Houdini for years. Teams at larger studios built custom tools to automate rig setup. SideFX is now making that pattern built-in, with AI assistance taking on the boilerplate. For <a href="/animation">animation shops handling character work at scale</a>, that cuts iteration cycles. You're not waiting for a specialist to rewrite rig logic; you're teaching the agent the pattern once and applying it across variants.</p>
-      <p>Vision For Xperiences has run character rigs through Houdini procedurally for product and cinematic work. The bottleneck is usually not the rig itself, but the setup labor and communication overhead between modeling, rigging, and animation departments. Procedural workflows with agent-assisted code generation compress that gap.</p>
+      <p>Vision For Xperiences is looking at where procedural rigging like this would fit into product and cinematic work. The bottleneck is usually not the rig itself, but the setup labor and communication overhead between modeling, rigging, and animation departments. Procedural workflows with agent-assisted code generation compress that gap.</p>
       <h2>The splatting layer</h2>
       <p>The bundled Gaussian splatting toolkit is worth noting because it keeps the entire pipeline inside Houdini. Train splats, animate them with standard deformation nodes, relight them to match their environment, render them with Karma. For work involving photogrammetry or reference-based 3D capture, that's one fewer tool handoff. You can test splatting as a supplementary layer for assets where raster geometry is overkill.</p>
-      <p>Vision For Xperiences has explored splats for <a href="/vfx">VFX set extensions and environment work</a> where training time and render cost matter. Native Houdini integration removes the friction of jumping to a separate splat application, running training, exporting, and re-importing.</p>
+      <p>Splats are on the studio’s list to evaluate for <a href="/vfx">VFX set extensions and environment work</a>, where training time and render cost are the deciding factors. Native Houdini integration removes the friction of jumping to a separate splat application, running training, exporting, and re-importing.</p>
       <h2>The waiting game</h2>
       <p>AI in creative tools has a trust tax. Riggers need to understand what the agent produced before shipping it. SideFX positioned MCP as a preview feature, not a finished product, which is the right move. The early adopters will spot edge cases and limitations. By the time it's stable, there will be a clear set of workflows where it saves time without introducing hidden failure modes.</p>
       <p>For teams considering an upgrade, the procedural KineFX updates and the splatting toolkit are solid on their own. The MCP agents are a bonus layer to experiment with if your pipeline has room for it.</p>
@@ -312,7 +312,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -334,5 +334,6 @@
   })();
   </script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@
   <meta name="description" content="3D animation for artists, brands, events, and systems. From DJ visuals and stage worlds to cinematic shorts and explainer films." />
   <meta name="keywords" content="3D animation studio, motion graphics, cinematic animation, stage visuals animation, product animation, Vision For Xperiences" />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vfx.productions/animation" />
   <link rel="icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Vision For Xperiences" />
@@ -15,7 +16,7 @@
   <meta property="og:image" content="/assets/animation.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <style>
     /* Logo scene sits in the right half so it never overlaps the graph editor */
     #graphLogoMount {
@@ -293,12 +294,12 @@
             <span class="card-deep">View case study &rarr;</span>
           </div>
         </a>
-          <a class="work-card" href="/work/hooiberg" data-cat="architecture-spaces" style="--accent:#8FA3B8;">
-          <div class="work-card-thumb"><img src="/assets/hooiberg_02.jpg" alt="" loading="lazy" /></div>
+          <a class="work-card" href="/work/catamaran" data-cat="product-technology" style="--accent:#5B9DFF;">
+          <div class="work-card-thumb"><img src="/assets/spec_cat_2.jpg" alt="" loading="lazy" /></div>
           <div class="work-card-body">
-            <div class="work-card-cat">Architecture &amp; Spaces</div>
-            <h3 class="work-card-title">Hooiberg</h3>
-            <p class="work-card-sum">An architectural animation of a house that borrows its structure from the Dutch hooiberg — the hay barn whose roof rides on masts — and rebuilds it as a modern home.</p>
+            <div class="work-card-cat">Product &amp; Technology</div>
+            <h3 class="work-card-title">Catamaran</h3>
+            <p class="work-card-sum">A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.</p>
             <span class="card-deep">View case study &rarr;</span>
           </div>
         </a>
@@ -360,7 +361,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -704,5 +705,6 @@
   </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

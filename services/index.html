@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="3D animation and product films, technical visualisation, VFX and compositing, motion design, live visuals, interactive installations, design visualisation and aerial capture." />
   <meta name="twitter:image" content="https://vfx.productions/assets/about.jpg" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
 </head>
 
 <body>
@@ -460,7 +460,7 @@
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); }
       function closeDd(){ dd.classList.remove('open'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -479,46 +479,8 @@
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
   })();
   </script>
-  <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
-    <img id="lightboxImg" src="" alt="" />
-    <p class="lightbox-cap" id="lightboxCap"></p>
-  </dialog>
-
-  <script>
-  /* Click any process image to enlarge it. Uses a native dialog element, so Esc,
-     focus trapping and the backdrop are handled by the browser. */
-  (function(){
-    var dlg = document.getElementById('lightbox');
-    if (!dlg || !dlg.showModal) return;          /* no dialog support: images stay inline */
-    var img = document.getElementById('lightboxImg');
-    var cap = document.getElementById('lightboxCap');
-    var opener = null;
-
-    document.addEventListener('click', function(e){
-      var btn = e.target.closest('.zoom');
-      if (btn){
-        var src = btn.querySelector('img');
-        if (!src) return;
-        opener = btn;
-        img.src = src.currentSrc || src.src;
-        img.alt = src.alt || '';
-        cap.textContent = src.alt || '';
-        dlg.showModal();
-        return;
-      }
-      /* click outside the image closes it */
-      if (dlg.open && (e.target === dlg)) dlg.close();
-    });
-
-    document.getElementById('lightboxClose').addEventListener('click', function(){ dlg.close(); });
-    dlg.addEventListener('close', function(){
-      img.src = '';
-      if (opener) { opener.focus(); opener = null; }
-    });
-  })();
-  </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

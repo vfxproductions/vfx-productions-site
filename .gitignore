@@ -12,6 +12,7 @@ models/people_model.glb
 # Optimization working dirs (originals + intermediates)
 assets/_orig/
 assets/_opt/
+assets/_archive/
 
 # Local export scratch (not part of the site)
 export/

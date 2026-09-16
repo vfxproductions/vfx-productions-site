@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="A creative studio working across animation, VFX, design visualisation, live visuals and interactive media." />
   <meta name="twitter:image" content="https://vfx.productions/assets/about.jpg" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
 </head>
 
 <body>
@@ -142,9 +142,7 @@
           <p class="sub lead">
             Vision For Xperiences is a creative studio working across animation, visual effects,
             design visualisation, live visuals and interactive media. It was founded and is run by
-            <strong style="font-size:inherit;letter-spacing:0;text-transform:none;color:var(--fg);">Kees Moolenaar</strong>,
-            who takes on every project personally — you will always be talking to the person doing
-            the work.
+            <strong style="font-size:inherit;letter-spacing:0;text-transform:none;color:var(--fg);">Kees Moolenaar</strong>.
           </p>
           <p class="sub">
             The studio scales by collaboration. Around the core sits a group of freelancers we work
@@ -209,7 +207,7 @@
       <ul class="fact-list">
         <li>
           <strong>Collaborators</strong>
-          <span>Freelance camera operators, licensed drone pilots and 3D artists, brought in per project. Film and TV work delivered through VFX studio <strong style="font-size:inherit;letter-spacing:0;text-transform:none;color:var(--fg80);">Planet X</strong>.</span>
+          <span>Freelance camera operators, licensed drone pilots and 3D artists, brought in per project.</span>
         </li>
         <li>
           <strong>Founder</strong>
@@ -225,7 +223,7 @@
         </li>
         <li>
           <strong>Commercial</strong>
-          <span>Full-CG vehicle work composited into live-action plates. <a class="card-deep" href="/work/street-takeover">Street Takeover &rarr;</a></span>
+          <span>CG vehicle work composited into live-action plates. <a class="card-deep" href="/work/street-takeover">Street Takeover &rarr;</a></span>
         </li>
         <li>
           <strong>Live &amp; stage</strong>
@@ -233,11 +231,11 @@
         </li>
         <li>
           <strong>Interactive &amp; art</strong>
-          <span>CYBERAWARE &mdash; a self-initiated interactive installation on digital security: a 3D-printed console, live CCTV feeds over Raspberry Pi, and a game that puts the visitor in the chair of a security officer. Exhibited in Utrecht, 2026. <a class="card-deep" href="/work/cyberaware">Case study &rarr;</a></span>
+          <span>CYBERAWARE &mdash; an art project on digital security: a 3D-printed console, live CCTV feeds over Raspberry Pi, and a game that puts the visitor in the chair of a security officer. Exhibited in Utrecht, 2026. <a class="card-deep" href="/work/cyberaware">Case study &rarr;</a></span>
         </li>
         <li>
           <strong>Exhibitions</strong>
-          <span><!-- EDIT: Dutch Design Week - which year, which installation, which venue? -->CYBERAWARE, Utrecht 2026. <em>Dutch Design Week presentation &mdash; details to be added.</em></span>
+          <span>CYBERAWARE, Utrecht 2026.</span>
         </li>
         <li>
           <strong>Technical</strong>
@@ -319,7 +317,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -342,5 +340,6 @@
   </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

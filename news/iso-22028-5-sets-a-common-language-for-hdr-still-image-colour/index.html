@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="ISO 22028-5 sets a common language for HDR still image colour — Vision For Xperiences" />
   <meta name="twitter:description" content="A new international standard published in May defines how studios encode, store, and deliver HDR photographs and graphics with consistent colour across devices." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/iso-22028-5-sets-a-common-language-for-hdr-still-image-colour.webp" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -232,7 +232,7 @@
       <p>The specification defines both baseline and extended colour encoding methods, mandates 10-bit minimum pipelines (12-bit recommended for master files), and requires embedded metadata that describes colour reproduction and content intent. For a studio shooting product visuals, creating composited imagery, or designing graphics for HDR display, this means one set of rules replaces the ad-hoc conversions that have dominated the work.</p>
       <h2>What actually shifted</h2>
       <p>The industry has been operating on fragments. Rec.2100 (BT.2100) handles HDR video, Rec.709 governs SDR stills, and working between them required custom LUTs and manual tone mapping. The new ISO standard bridges that gap for stills specifically, using Rec.2020 colour space and either PQ (perceptual quantizer) or HLG (hybrid log-gamma) transfer functions depending on whether the final destination is mastering-grade or broadcast.</p>
-      <p>Vision For Xperiences works on <a href="/animation">product animation</a> and <a href="/vfx">compositing</a> that lands across both SDR and HDR destinations. A standard reference for still-image colour encoding means metadata can travel with the work, reducing the metadata hand-off friction that typically requires our team to rebuild colour instructions on delivery.</p>
+      <p>Vision For Xperiences is following this closely, because <a href="/animation">product animation</a> and <a href="/vfx">compositing</a> increasingly have to land across both SDR and HDR destinations. A standard reference for still-image colour encoding would let metadata travel with the work, reducing the hand-off friction that otherwise means rebuilding colour instructions on delivery.</p>
       <h2>Single-stream workflows now have a standard</h2>
       <p>The standard enables single-stream delivery, where one HDR master serves both legacy SDR devices and HDR displays. This eliminates parallel rendering pipelines and halves the QA burden on deliverables. The metadata-driven approach means tone mapping adjustments can be applied downstream without re-grading, which matters when a campaign needs both cinema DCP and Instagram delivery from one source.</p>
       <p>For teams working in DaVinci Resolve or similar grading tools, ISO 22028-5 now defines what those tools should write to disk. Resolve has supported HDR10+ workflows since version 15, and this standard gives that work a normative foundation. When <a href="/technology">a studio handles interactive installations</a> or real-time graphics, HDR colour management becomes critical for public displays that increasingly support wide gamut and HDR output.</p>
@@ -313,7 +313,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -335,5 +335,6 @@
   })();
   </script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

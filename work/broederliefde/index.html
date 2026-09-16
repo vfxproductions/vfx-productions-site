@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="Show visuals for Broederliefde’s set at the FunX Music Awards — content built for the arena’s main LED wall and run live behind the group for the whole set." />
   <meta name="twitter:image" content="https://vfx.productions/assets/broederliefde_afas.jpg" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
 </head>
 
 <body style="--accent:#FF3D7F;">
@@ -144,6 +144,14 @@
         </div>
       </section>
 
+      <section class="page-wrap band">
+        <div class="kicker accent">Process</div>
+        <div class="cs-gallery">
+          <figure class="cs-shot"><button type="button" class="zoom" aria-label="Enlarge image: Broederliefde × AFAS Live"><img src="/assets/broederliefde_afas.jpg" alt="Broederliefde × AFAS Live" loading="lazy" /></button></figure>
+          <figure class="cs-shot is-video"><button type="button" class="zoom" aria-label="Enlarge video: The screen content built for the arena LED wall"><video muted loop playsinline preload="none" data-lazyvideo poster="/assets/bl_visual_poster.jpg" aria-label="The screen content built for the arena LED wall"><source src="/assets/bl_visual.mp4" type="video/mp4" /></video></button></figure>
+          <figure class="cs-shot is-video"><button type="button" class="zoom" aria-label="Enlarge video: The visuals running live behind the performance"><video muted loop playsinline preload="none" data-lazyvideo poster="/assets/bl_live_poster.jpg" aria-label="The visuals running live behind the performance"><source src="/assets/visuals.mp4" type="video/mp4" /></video></button></figure>
+        </div>
+      </section>
 
 
       <section class="page-wrap band cs-split">
@@ -152,6 +160,7 @@
           <p class="sub">Show content design, 3D environment, look-dev and delivery for the LED wall.</p>
         </div>
       </section>
+
 
       <section class="page-wrap band">
         <div class="kicker accent">Services used</div>
@@ -268,7 +277,7 @@
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); }
       function closeDd(){ dd.classList.remove('open'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -287,46 +296,8 @@
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
   })();
   </script>
-  <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
-    <img id="lightboxImg" src="" alt="" />
-    <p class="lightbox-cap" id="lightboxCap"></p>
-  </dialog>
-
-  <script>
-  /* Click any process image to enlarge it. Uses a native dialog element, so Esc,
-     focus trapping and the backdrop are handled by the browser. */
-  (function(){
-    var dlg = document.getElementById('lightbox');
-    if (!dlg || !dlg.showModal) return;          /* no dialog support: images stay inline */
-    var img = document.getElementById('lightboxImg');
-    var cap = document.getElementById('lightboxCap');
-    var opener = null;
-
-    document.addEventListener('click', function(e){
-      var btn = e.target.closest('.zoom');
-      if (btn){
-        var src = btn.querySelector('img');
-        if (!src) return;
-        opener = btn;
-        img.src = src.currentSrc || src.src;
-        img.alt = src.alt || '';
-        cap.textContent = src.alt || '';
-        dlg.showModal();
-        return;
-      }
-      /* click outside the image closes it */
-      if (dlg.open && (e.target === dlg)) dlg.close();
-    });
-
-    document.getElementById('lightboxClose').addEventListener('click', function(){ dlg.close(); });
-    dlg.addEventListener('close', function(){
-      img.src = '';
-      if (opener) { opener.focus(); opener = null; }
-    });
-  })();
-  </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

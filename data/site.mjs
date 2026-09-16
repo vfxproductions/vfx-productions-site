@@ -239,7 +239,7 @@ export const projects = [
     title: 'CYBERAWARE',
     category: 'product-technology',
     year: '2026',
-    client: 'Self-initiated',
+    client: '',          /* no external client - the row is hidden when empty */
     summary: 'An interactive cybersecurity awareness installation that turns an abstract threat into something visitors operate with their hands.',
     hero: { type: 'video', src: '/assets/cyberaware_timelapse.mp4', poster: '/assets/cyberaware_console.jpg' },
     thumb: '/assets/cyberaware_console.jpg',
@@ -266,7 +266,7 @@ export const projects = [
     status: 'published',
     title: 'Giving an AI a Face',
     category: 'product-technology',
-    year: '',            /* EDIT: year */
+    year: '2026',
     client: '',          /* EDIT: the AI startup's name, once it can be named */
     summary: 'A concept render for an AI art piece — a glass head with an LED cube suspended inside it, standing on a dock you can talk to.',
     hero: { type: 'video', src: '/assets/aihead.mp4', poster: '/assets/aihead_poster.jpg' },
@@ -286,11 +286,12 @@ export const projects = [
 
   {
     slug: 'cyberphone',
+    notice: true,   /* names a brand it was not commissioned by */
     status: 'published',
     title: 'Cyberphone',
     category: 'product-technology',
-    year: '',            /* EDIT: year */
-    client: 'Self-initiated concept',
+    year: '2025',
+    client: '',          /* no external client - the row is hidden when empty */
     summary: 'A concept phone drawn in the Tesla Cybertruck’s design language — flat planes, hard folds, exposed stainless, and a flip.',
     hero: { type: 'video', src: '/assets/cyberphone.mp4', poster: '/assets/cyberphone_poster.jpg' },
     thumb: '/assets/cyberphone_02.jpg',
@@ -313,7 +314,7 @@ export const projects = [
     status: 'published',
     title: 'Sea and Shore Services',
     category: 'product-technology',
-    year: '',            /* EDIT: year */
+    year: '2022',
     client: 'Sea and Shore Services B.V.',
     summary: 'Brand identity worked out in 3D for a logistics company — putting the mark on container ships and container stacks to see how it actually behaves at scale.',
     hero: { type: 'image', src: '/assets/seashore_ship.jpg' },
@@ -337,8 +338,8 @@ export const projects = [
     status: 'published',
     title: 'Driving, Simulated',
     category: 'product-technology',
-    year: '',            /* EDIT: year */
-    client: '',          /* EDIT: the VR simulator startup, once it can be named */
+    year: '2022',
+    client: '',          /* no external client - the row is hidden when empty */
     summary: 'A brand commercial for a VR driving-simulator startup, built around the moment the real car and the simulated one turn out to be the same thing.',
     hero: { type: 'image', src: '/assets/vr_xray.jpg' },
     thumb: '/assets/vr_xray.jpg',
@@ -358,7 +359,7 @@ export const projects = [
   },
 
   /* ---- Product & Technology ------------------------------------------------ */
-  { slug: 'medical-design-knee', status: 'draft', title: 'Medical design — knee', category: 'product-technology',
+  { slug: 'medical-design-knee', status: 'draft', title: 'Medical design', category: 'product-technology',
     summary: '', description: '', challenge: '', approach: '', result: '', role: '', year: '', client: '',
     serviceSlugs: ['technical-visualisation', '3d-animation'], thumb: '/assets/spec_med.jpg', gallery: [] },
 
@@ -366,9 +367,53 @@ export const projects = [
     summary: '', description: '', challenge: '', approach: '', result: '', role: '', year: '', client: '',
     serviceSlugs: ['technical-visualisation', '3d-animation'], thumb: '/assets/spec_oil.jpg', gallery: [] },
 
-  { slug: 'boat-design-catamaran', status: 'draft', title: 'Boat design — catamaran', category: 'product-technology',
-    summary: '', description: '', challenge: '', approach: '', result: '', role: '', year: '', client: '',
-    serviceSlugs: ['3d-animation', 'design-visualisation'], thumb: '/assets/spec_cat.jpg', gallery: [] },
+  {
+    slug: 'catamaran',
+    status: 'published',
+    title: 'Catamaran',
+    category: 'product-technology',
+    year: '2026',
+    client: '',          /* no external client - the row is hidden when empty */
+    summary: 'A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.',
+    hero: { type: 'video', src: '/assets/catamaran.mp4', poster: '/assets/catamaran_poster.jpg' },
+    thumb: '/assets/spec_cat_2.jpg',
+    description: 'A twin-hulled performance catamaran modelled and rendered at sea, in the language boat builders almost never get — not a brochure shot on flat water, but low sun, real swell, and the camera close enough to the deck to read the teak and the hardware.',
+    challenge: 'Boats are photographed badly. The usual options are a drone shot from 200 metres, where the boat becomes a white shape, or a marina shot where it is sitting still and surrounded by other boats. Neither tells you what the thing is like to be on, and neither shows the part of the design anyone actually paid for.',
+    approach: 'Three passes, three different jobs. One close on the foredeck so the teak, the flush hatches and the deck hardware read at detail level. One head-on at the bow, where the twin hulls frame the water and light bounces up off the underside. One straight into the sun, where the whole boat becomes a silhouette and the rig does the drawing. Water is simulated rather than a plate, so the swell behaves the same in every shot and the boat sits in it correctly.',
+    result: '',          /* EDIT */
+    role: 'Modelling, materials, water simulation, lighting, camera and rendering.',
+    serviceSlugs: ['3d-animation', 'design-visualisation', 'technical-visualisation'],
+    gallery: [
+      { src: '/assets/spec_cat_2.jpg', alt: 'Head-on at the bow, light bouncing off the underside of the hulls' },
+      { src: '/assets/spec_cat_1.jpg', alt: 'Foredeck detail — teak, flush hatches and deck hardware' },
+      { src: '/assets/spec_cat_3.jpg', alt: 'Backlit into the sun, the rig reading as silhouette' }
+    ]
+  },
+
+  {
+    slug: 'freight-calculator',
+    status: 'published',
+    title: 'Freight Calculator',
+    category: 'product-technology',
+    year: '2025',
+    client: 'Freight Calculator',
+    summary: 'The login screen for a freight-rate app — a container ship coming straight at you, and the hull used as the brand surface.',
+    hero: { type: 'video', src: '/assets/freight_ship.mp4', poster: '/assets/freight_poster.jpg' },
+    heroFit: 'tall',   /* the source is 9:16 - keep the gallery tile portrait too */
+    thumb: '/assets/freight_poster.jpg',
+    description: 'Freight Calculator needed something behind their login form. Rather than a gradient and a logo, the app opens on a container ship bow-on, moving toward the viewer on flat water under a bright sky, shot vertically so it fills a phone. The hull carries the brand, and most of the work went into treating it as a surface the identity lives on rather than a place to paste a logo.',
+    challenge: 'A login screen is the least considered part of most apps: it is a form, a gradient, and a logo, seen for four seconds before anyone stops looking. It is also the first thing every single user sees, every single time — so the question was whether it could carry the brand instead of just hosting it.',
+    approach: 'Everything is built vertical from the start, 9:16, so nothing is a cropped landscape shot. The palette comes out of the identity rather than out of a photograph: pale blue hull, terracotta containers, a high soft sky, and water calm enough to hold a clean reflection — deliberately still, because the screen sits behind a form people need to read. The wordmark was then tested on the hull in several lockups, at the size it would actually be seen at on a phone, which is the only test that matters.',
+    result: 'The lockups were delivered as a set of renders so the identity could be judged on the object it would live on, in the aspect ratio it would be seen in.',
+    role: 'Vessel and container modelling, brand application, shading, water, lighting and rendering.',
+    serviceSlugs: ['3d-animation', 'design-visualisation', 'motion-design'],
+    gallery: [
+      { src: '/assets/freight_logo.jpg',   alt: 'Logo mark and wordmark set into the hull', fit: 'tall' },
+      { src: '/assets/freight_orange.jpg', alt: 'Wordmark in the brand orange', fit: 'tall' },
+      { src: '/assets/freight_mark_1.jpg', alt: 'Alternative wordmark lockup on the hull', fit: 'tall' },
+      { src: '/assets/freight_mark_2.jpg', alt: 'A heavier wordmark weight tested at phone size', fit: 'tall' }
+    ]
+  },
 
   /* ---- Architecture & Spaces ----------------------------------------------- */
   {
@@ -376,7 +421,7 @@ export const projects = [
     status: 'published',
     title: 'Hooiberg',
     category: 'architecture-spaces',
-    year: '',            /* EDIT: year */
+    year: '2024',
     client: '',          /* EDIT: client or architect */
     summary: 'An architectural animation of a house that borrows its structure from the Dutch hooiberg — the hay barn whose roof rides on masts — and rebuilds it as a modern home.',
     hero: { type: 'video', src: '/assets/hooiberg.mp4', poster: '/assets/hooiberg_poster.jpg' },
@@ -455,7 +500,7 @@ export const projects = [
     status: 'published',
     title: 'Off To A Better Future',
     category: 'architecture-spaces',
-    year: '',            /* EDIT: year */
+    year: '2021',
     client: 'DAF, Sunrock, Logwise, Hyzon and DHG',
     summary: 'A brand film for five companies building a carbon-neutral logistics centre together — solar in, hydrogen out, trucks running on it.',
     hero: { type: 'image', src: '/assets/cn_warehouse.jpg' },
@@ -476,29 +521,6 @@ export const projects = [
     watch: { src: '/assets/carbonneutral_film.mp4', poster: '/assets/cn_poster.jpg', label: 'The film' }
   },
 
-  {
-    slug: 'ready-set-studios',
-    status: 'published',
-    title: 'Ready Set Studios',
-    category: 'architecture-spaces',
-    year: '',            /* EDIT: year */
-    client: 'Ready Set Studios',
-    summary: 'A dimensioned 3D model of a film studio, built from the architectural drawings so clients could judge the space before booking it.',
-    hero: { type: 'image', src: '/assets/rss_front_angle.jpg' },
-    thumb: '/assets/rss_front_angle.jpg',
-    description: 'Ready Set Studios needed to show prospective clients what their stage actually offered. The building was rebuilt in 3D from the architectural drawings and rendered as a ghosted shell, so the volume, the lighting grid, the LED wall and the shooting areas can all be read at once without the walls getting in the way. Every critical figure is annotated on the render: 27 by 18.5 metres of floor, 8 metres to the grid, the green screen and cyc footprints, and where the 32, 63 and 125 amp power and the water point sit. The set was used on the studio’s own website.',
-    challenge: 'A producer deciding where to shoot needs three things fast: does my set fit, can I light it, and can I power it. A floor plan answers the first badly and the other two not at all, and photographs of an empty stage tell you nothing about height or clearance. Nobody books a stage they cannot picture.',
-    approach: 'Model the real building from the drawings, then take the walls down to a ghost so the interior volume is the subject rather than the architecture. Dimensions are placed in 3D against the thing they measure instead of being listed beside the image, and the technical points a production actually asks about — power, water, grid height, shooting areas — are tagged in place. Four views cover it: two three-quarter angles for volume, a front elevation for height, and a top-down for floor layout.',
-    result: 'The renders were used on the studio’s website to show clients the scale of the space.',
-    role: '3D modelling from architectural drawings, annotation and dimensioning, lighting, look-dev and rendering.',
-    serviceSlugs: ['technical-visualisation', 'design-visualisation', '3d-animation'],
-    gallery: [
-      { src: '/assets/rss_back.jpg', alt: 'Three-quarter view from the back of the stage showing the lighting grid', fit: 'contain' },
-      { src: '/assets/rss_front.jpg', alt: 'Front elevation with the 8 metre grid height dimensioned', fit: 'contain' },
-      { src: '/assets/rss_top.jpg', alt: 'Top-down view showing the floor layout and the LED wall', fit: 'contain' }
-    ]
-  },
-
   /* ---- Music & Culture ------------------------------------------------------ */
   {
     slug: 'broederliefde',
@@ -516,7 +538,10 @@ export const projects = [
     result: '',          /* EDIT */
     role: 'Show content design, 3D environment, look-dev and delivery for the LED wall.',
     serviceSlugs: ['live-visuals', 'vfx-compositing'],
-    gallery: []
+    gallery: [
+      { type: 'video', src: '/assets/bl_visual.mp4', poster: '/assets/bl_visual_poster.jpg', alt: 'The screen content built for the arena LED wall' },
+      { type: 'video', src: '/assets/visuals.mp4', poster: '/assets/bl_live_poster.jpg', alt: 'The visuals running live behind the performance' }
+    ]
   },
 
   {
@@ -524,7 +549,7 @@ export const projects = [
     status: 'published',
     title: 'FLAIRE × Maassilo',
     category: 'music-culture',
-    year: '',            /* EDIT */
+    year: '2025',
     client: 'FLAIRE',
     summary: 'A show package for FLAIRE built around a rendered Rotterdam skyline, made for the big screens at the Maassilo.',
     hero: { type: 'video', src: '/assets/maassilo.mp4', poster: '/assets/flaire_maassilo.jpg' },
@@ -544,8 +569,8 @@ export const projects = [
     status: 'published',
     title: 'Tessaract',
     category: 'music-culture',
-    year: '',            /* EDIT */
-    client: 'Self-initiated',
+    year: '2026',
+    client: '',          /* no external client - the row is hidden when empty */
     summary: 'An infinite mirror room — a reflective real-time environment built as a loop for screens and installations.',
     hero: { type: 'video', src: '/assets/tessaract.mp4', poster: '/assets/tessaract_room.jpg' },
     thumb: '/assets/tessaract_room.jpg',
@@ -562,15 +587,16 @@ export const projects = [
   /* ---- Fashion & Luxury ----------------------------------------------------- */
   {
     slug: 'loro-piana-open-walk',
+    notice: true,   /* names a brand it was not commissioned by */
     status: 'published',
     title: 'Loro Piana — Open Walk',
     category: 'fashion-luxury',
     year: '',            /* EDIT: year */
-    client: 'Self-initiated spec',
-    summary: 'A spec commercial rebuilding the Loro Piana Open Walk in black suede, down to the crest stamped into the footbed — made to prove an existing product can be recreated in full CG.',
+    client: '',          /* no external client - the row is hidden when empty */
+    summary: 'A commercial rebuilding the Loro Piana Open Walk in black suede, down to the crest stamped into the footbed — made to prove an existing product can be recreated in full CG.',
     hero: { type: 'video', src: '/assets/loropiana_outside.mp4', poster: '/assets/loropiana_out_20.jpg' },
     thumb: '/assets/loropiana_out_20.jpg',
-    description: 'A self-initiated piece with one job: take a product that already exists, that people already know by sight, and rebuild it in 3D closely enough that the difference stops mattering. The Open Walk in black suede — nap, tan leather lining, white cup sole, and the Loro Piana crest printed into the footbed — modelled, shaded and lit as a commercial rather than as a turntable.',
+    description: 'One job: take a product that already exists, that people already know by sight, and rebuild it in 3D closely enough that the difference stops mattering. The Open Walk in black suede — nap, tan leather lining, white cup sole, and the Loro Piana crest printed into the footbed — modelled, shaded and lit as a commercial rather than as a turntable.',
     challenge: 'Recreating a product nobody recognises is easy. Recreating a famous one is not: the viewer already knows what suede does in raking light, how a cup sole meets the upper, and how a slip-on collapses when nothing is inside it. Every one of those is a place the render can quietly fail.',
     approach: 'The work went into the surface and the light. Suede is the whole brief here — it has direction, it catches light differently as the camera moves, and it has to stay matte without going flat. The lining is a different leather entirely, with its own sheen, and the footbed carries printed artwork that has to sit on the material rather than float above it. Lighting is a single considered key with controlled falloff, the way the product would actually be shot.',
     result: 'Two pieces came out of it: an exterior commercial pass on the pair, and a macro pass that pushes into the footbed to show the branding holds up under a close lens. Together they are the argument — if this product can be rebuilt this closely, so can yours.',
@@ -587,18 +613,19 @@ export const projects = [
 
   {
     slug: 'cp-company-mask',
+    notice: true,   /* names a brand it was not commissioned by */
     status: 'published',
     title: 'C.P. Company — Integrated Mask',
     category: 'fashion-luxury',
     year: '2020',
-    client: '',          /* EDIT: confirm - commissioned by C.P. Company, or speculative concept? */
+    client: '',          /* no external client - the row is hidden when empty */
     summary: 'A concept study from the COVID period: a face mask built into the garment itself, clipped on and off, in the language of C.P. Company.',
     hero: { type: 'image', src: '/assets/company_mask_1.jpg' },
     thumb: '/assets/company_mask_1.jpg',
     description: 'A design concept that treats the face mask as part of the garment rather than an accessory carried alongside it. The mask attaches to the collar of a knit high-neck with a clip at the jaw, so it can be worn, dropped or removed without ever leaving the wearer. Two constructions were studied — a moulded technical shell and a soft fabric panel that reads as an extension of the collar itself.',
     challenge: 'In 2020 the face mask became a thing everyone carried and nobody wanted to look at. Treated as a medical object it stayed medical. The question was whether protective equipment could be absorbed into a garment as a considered design element instead — without the result looking like a gimmick, and without leaving the brand’s own visual language.',
     approach: 'The concept was built around C.P. Company’s own vocabulary: technical black fabric, matte utilitarian hardware, and the lens badge at the shoulder. A single clip carries the whole idea — it is the fastening, the hinge and the reason the mask never becomes something separate to lose. Everything was modelled, shaded and lit as a product render so the two mask constructions could be compared as finished garments rather than sketches.',
-    result: '',          /* EDIT: was this presented, and what came of it? */
+    result: 'The concept reached C.P. Company, and they liked it — which for a speculative piece is the whole point. It got the brand’s attention on the strength of the idea alone.',
     role: 'Concept, garment and hardware modelling, shading, lighting and rendering.',
     serviceSlugs: ['3d-animation', 'design-visualisation'],
     gallery: [
@@ -608,75 +635,47 @@ export const projects = [
   },
 
   {
-    slug: 'llokaal-expeditie',
+    slug: 'ready-set-studios',
     status: 'published',
-    title: 'Llokaal Expeditie',
+    title: 'Ready Set Studios',
     category: 'film-commercial',
-    year: '2022',
-    client: 'Llokaal',
-    summary: 'A launch film announcing Llokaal Expeditie, a new branch of Llokaal, explained in low-poly 3D inside the brand’s own magenta.',
-    hero: { type: 'image', src: '/assets/llokaal_step.jpg' },
-    thumb: '/assets/llokaal_step.jpg',
-    description: 'Llokaal was launching a new branch, Llokaal Expeditie, and needed people to understand what it actually offered: guidance towards work and education, one to one or in a group. The film explains that in full 3D, using simple low-poly figures and buildings staged in the brand’s existing magenta, with the Dutch copy set directly into the scenes.',
-    challenge: 'Announcing a sub-brand is harder than announcing a brand. It has to feel unmistakably like the parent, so nobody reads it as a separate organisation, while still being distinct enough that the new offer registers as something new. And the offer itself — help moving towards work and education — is an abstraction with nothing to photograph.',
-    approach: 'Work inside Llokaal’s existing identity rather than around it: the magenta is theirs, and the film commits to it completely, using it as the ground the entire world stands on. Everything else is stripped back to white low-poly figures and buildings, so the only colour in frame is the brand itself. Abstractions get objects — a building with a graduation cap for education, one with a briefcase for work — and the copy is placed in the scene as dimensional type so it reads as part of the world.',
-    result: '',          /* EDIT: how was it rolled out - social, site, in-house? */
-    role: 'Concept, 3D animation, low-poly art direction, typography, lighting and rendering.',
-    serviceSlugs: ['motion-design', '3d-animation'],
+    year: '2025',
+    client: 'Ready Set Studios',
+    summary: 'A dimensioned 3D model of a film studio, built from the architectural drawings so clients could judge the space before booking it.',
+    hero: { type: 'image', src: '/assets/rss_front_angle.jpg' },
+    thumb: '/assets/rss_front_angle.jpg',
+    description: 'Ready Set Studios needed to show prospective clients what their stage actually offered. The building was rebuilt in 3D from the architectural drawings and rendered as a ghosted shell, so the volume, the lighting grid, the LED wall and the shooting areas can all be read at once without the walls getting in the way. Every critical figure is annotated on the render: 27 by 18.5 metres of floor, 8 metres to the grid, the green screen and cyc footprints, and where the 32, 63 and 125 amp power and the water point sit. The set was used on the studio’s own website.',
+    challenge: 'A producer deciding where to shoot needs three things fast: does my set fit, can I light it, and can I power it. A floor plan answers the first badly and the other two not at all, and photographs of an empty stage tell you nothing about height or clearance. Nobody books a stage they cannot picture.',
+    approach: 'Model the real building from the drawings, then take the walls down to a ghost so the interior volume is the subject rather than the architecture. Dimensions are placed in 3D against the thing they measure instead of being listed beside the image, and the technical points a production actually asks about — power, water, grid height, shooting areas — are tagged in place. Four views cover it: two three-quarter angles for volume, a front elevation for height, and a top-down for floor layout.',
+    result: 'The renders were used on the studio’s website to show clients the scale of the space.',
+    role: '3D modelling from architectural drawings, annotation and dimensioning, lighting, look-dev and rendering.',
+    serviceSlugs: ['technical-visualisation', 'design-visualisation', '3d-animation'],
     gallery: [
-      { src: '/assets/llokaal_title.jpg', alt: 'Title card reading llokaal expeditie', fit: 'contain' },
-      { src: '/assets/llokaal_group.jpg', alt: 'Low-poly figures illustrating one to one or in a group', fit: 'contain' },
-      { src: '/assets/llokaal_city.jpg', alt: 'Buildings marked with a graduation cap and a briefcase', fit: 'contain' },
-      { src: '/assets/llokaal_end.jpg', alt: 'Closing frame of the film', fit: 'contain' }
-    ],
-    watch: { src: '/assets/llokaal_expeditie.mp4', poster: '/assets/llokaal_poster.jpg', label: 'The film' }
+      { src: '/assets/rss_back.jpg', alt: 'Three-quarter view from the back of the stage showing the lighting grid', fit: 'contain' },
+      { src: '/assets/rss_front.jpg', alt: 'Front elevation with the 8 metre grid height dimensioned', fit: 'contain' },
+      { src: '/assets/rss_top.jpg', alt: 'Top-down view showing the floor layout and the LED wall', fit: 'contain' }
+    ]
   },
 
-  /* ---- Film & Commercial ---------------------------------------------------- */
   {
     slug: 'street-takeover',
+    notice: true,   /* names a brand it was not commissioned by */
     status: 'published',
     title: 'Street Takeover',
     category: 'film-commercial',
     year: '',            /* EDIT */
-    client: '',          /* EDIT: agency or brand, if it can be named */
-    summary: 'A full-CG delivery truck dropped into a live-action street plate — modelled, tracked and comped to sit in the shot as if it drove past the camera.',
+    client: '',          /* EDIT: confirm how to credit this - was it for Heineken, an agency, or self-initiated? */
+    summary: 'A real Heineken truck on a real street, with the bottle printed on its side pulled out of the livery and made physical — VFX, CG and Houdini liquid on an otherwise ordinary shot.',
     hero: { type: 'image', src: '/assets/street_takeover.jpg' },
     thumb: '/assets/street_takeover.jpg',
-    description: 'A beverage truck built entirely in 3D and placed into a plate shot on a Dutch residential street. The whole vehicle — body, livery, glass, wheels and shadow contact — is CG; the street, the light and the camera move are real.',
-    challenge: 'Nothing about a CG vehicle in a daylight plate is forgiving. The paint has to pick up the same sky, the shadow has to land on the same camber, and the track has to hold while the truck passes foreground objects.',
-    approach: 'Plate-first: match the lens and the camera solve, build the truck to real dimensions, light it from the plate rather than from a preset, then comp with the plate’s own grain and grade so nothing announces itself.',
-    result: '',          /* EDIT */
-    role: 'Modelling, look-dev, tracking and compositing.',
+    description: 'The truck is real. The street is real. The camera move is real. What is not real is the bottle: the trailer carries a flat printed bottle in its livery, and this film takes that graphic and makes it an object — a full three-dimensional bottle breaking out of the side of the truck, with the liquid inside it simulated in Houdini. Only the back of the trailer and the bottle itself are CG. Everything else is the plate.',
+    challenge: 'Surreal work fails the moment the audience decides it is looking at a graphic rather than an object. A giant bottle growing out of a delivery truck is already asking a lot, so everything around it has to behave perfectly: the same sky in the glass, the same shadow on the same road camber, the same lens, and a track that holds while the truck passes foreground objects.',
+    approach: 'Plate-first, as always. Match the lens and solve the camera, rebuild the back of the trailer in CG so the bottle has something real to emerge from, then light the glass from the sky that is actually in the shot rather than from a preset. The liquid is a Houdini simulation, so it carries weight and moves with the truck instead of floating. Comped back with the plate’s own grain and grade so the only thing that looks impossible is the thing that is meant to.',
+    result: 'This is the piece that best shows what we mean by surreal commercial work: take an ordinary subject — a truck, a building, a product on a shelf — and do one impossible thing to it, executed carefully enough that it reads as real. The trick is not the effect, it is everything around the effect being honest.',
+    role: 'CG build of the trailer back and the bottle, Houdini liquid simulation, look-dev, tracking and compositing.',
     serviceSlugs: ['vfx-compositing', '3d-animation'],
     gallery: []
   },
-
-  {
-    slug: 'el-eternauta',
-    status: 'published',
-    title: 'El Eternauta',
-    category: 'film-commercial',
-    year: '2025',
-    client: 'Netflix, via VFX studio Planet X',
-    summary: 'Environment and prop modelling for the Netflix series — rebuilding blocks of Buenos Aires, and the things left lying in them.',
-    hero: { type: 'image', src: '/assets/eternauta_city.jpg' },
-    thumb: '/assets/eternauta_city.jpg',
-    description: 'Work on the Netflix series El Eternauta, delivered through VFX studio Planet X. The job was the city the story happens in: blocks of Buenos Aires rebuilt from reference so they could be extended, damaged and shot from angles the location never allowed. Alongside the buildings came the set dressing that makes a street read as lived-in — municipal recycling containers carrying the real Ciudad de Buenos Aires markings, and shattered aircraft window panels.',
-    challenge: 'A city that a local audience knows by heart cannot be approximated. The rooflines, the shop fronts, the way a low-rise block meets a railway cutting — all of it has to match a real place closely enough to survive being cut against plate photography, while still being built light enough to hand back to a pipeline and dress, damage and relight.',
-    approach: 'Reference first: street photography and aerials of the actual neighbourhood assembled into a board, then the block laid out in flat colour to get massing and proportion right before a single texture exists. Only once the silhouette reads does the detail go on. Props were built the same way — a crushed recycling container modelled and weathered with its real municipal graphics intact, and window panels broken as geometry with clean UVs so the damage could be re-dressed shot to shot rather than baked in.',
-    result: '',          /* EDIT: anything you can say about shots delivered or how it was used */
-    role: 'Environment and asset modelling, texturing and set-dressing props.',
-    serviceSlugs: ['vfx-compositing', '3d-animation', 'technical-visualisation'],
-    gallery: [
-      { src: '/assets/eternauta_reference.jpg', alt: 'Reference board: street and aerial photography of the neighbourhood beside the 3D block', fit: 'contain' },
-      { src: '/assets/eternauta_blocking.jpg', alt: 'The city block laid out in flat colour to judge massing before texturing', fit: 'contain' },
-      { src: '/assets/eternauta_building.jpg', alt: 'A textured and weathered commercial building' },
-      { src: '/assets/eternauta_container.jpg', alt: 'Crushed municipal recycling container' },
-      { src: '/assets/eternauta_container2.jpg', alt: 'The container showing its Ciudad de Buenos Aires markings' },
-      { src: '/assets/eternauta_windows.jpg', alt: 'Shattered aircraft window panels built as geometry with clean UVs', fit: 'contain' }
-    ]
-  }
 ];
 
 /* Studio-wide copy reused across the generated pages. */

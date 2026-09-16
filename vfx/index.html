@@ -7,6 +7,7 @@
   <meta name="description" content="Film-grade visual effects: compositing, simulations, set extensions, tracking, and stylized looks. Built for music, brands, and experiences." />
   <meta name="keywords" content="VFX studio, visual effects, compositing, film VFX, set extensions, motion graphics, visual effects Netherlands, Vision For Xperiences" />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vfx.productions/vfx" />
   <link rel="icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Vision For Xperiences" />
@@ -15,7 +16,7 @@
   <meta property="og:image" content="/assets/about.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
 </head>
 
 <body>
@@ -216,16 +217,7 @@
           <div class="work-card-body">
             <div class="work-card-cat">Film &amp; Commercial</div>
             <h3 class="work-card-title">Street Takeover</h3>
-            <p class="work-card-sum">A full-CG delivery truck dropped into a live-action street plate — modelled, tracked and comped to sit in the shot as if it drove past the camera.</p>
-            <span class="card-deep">View case study &rarr;</span>
-          </div>
-        </a>
-          <a class="work-card" href="/work/el-eternauta" data-cat="film-commercial" style="--accent:#E04B33;">
-          <div class="work-card-thumb"><img src="/assets/eternauta_city.jpg" alt="" loading="lazy" /></div>
-          <div class="work-card-body">
-            <div class="work-card-cat">Film &amp; Commercial</div>
-            <h3 class="work-card-title">El Eternauta</h3>
-            <p class="work-card-sum">Environment and prop modelling for the Netflix series — rebuilding blocks of Buenos Aires, and the things left lying in them.</p>
+            <p class="work-card-sum">A real Heineken truck on a real street, with the bottle printed on its side pulled out of the livery and made physical — VFX, CG and Houdini liquid on an otherwise ordinary shot.</p>
             <span class="card-deep">View case study &rarr;</span>
           </div>
         </a>
@@ -287,7 +279,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -381,5 +373,6 @@
   </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

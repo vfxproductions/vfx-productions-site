@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Open source flips the commercial 3D software economics — Vision For Xperiences" />
   <meta name="twitter:description" content="Vendor lock-in is now the top reason organizations choose free tools over licensed subscriptions, reshaping how studios pitch to clients and how they budget." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/open-source-flips-the-commercial-3d-software-economics.webp" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -310,7 +310,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -332,5 +332,6 @@
   })();
   </script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

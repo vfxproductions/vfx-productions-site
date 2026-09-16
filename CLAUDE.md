@@ -71,9 +71,26 @@ Everything lives in one object in `data/site.mjs`:
   partial info rather than inventing filler.
 - `watch: {src, poster, label}` adds a controls video; its MIME type is derived from
   the file extension.
-- Gallery items take `fit: 'contain'` to stop cover-cropping anything with text in it
-  (site models, film frames with burnt-in copy, annotated technical views).
-- Every gallery image is a `<button class="zoom">` opening a native `<dialog>` lightbox.
+- `fit` on a gallery item becomes a CSS class on the tile, so new shapes need no code:
+  `'contain'` stops cover-cropping anything with text in it (site models, film frames
+  with burnt-in copy, annotated technical views); `'tall'` gives a 9:16 portrait tile
+  for phone-shaped sources. `heroFit` on the project applies the same class to the
+  auto-prepended hero tile.
+- `notice: true` prints a non-affiliation line under the case study. Set it on any
+  project that names a brand it was not commissioned by (Street Takeover, Loro Piana,
+  C.P. Company, Cyberphone). It is deliberately footer-quiet — it is not the same as
+  calling the work "spec" in the body copy, which the owner has ruled out.
+- `client:` renders only when non-empty. A piece with no external client leaves it
+  blank rather than announcing itself as spec on every page.
+- Gallery items can be `type: 'video'` (`{type,src,poster,alt}`) as well as stills.
+  Video tiles render as muted `data-lazyvideo` loops so they only load on scroll.
+- The hero is **automatically repeated as the first gallery tile** (skipped if the same
+  src is already listed). Do not add it to `gallery` by hand.
+- Every tile, image or video, is a `<button class="zoom">`. `/js/lightbox.js` builds a
+  native `<dialog>` gallery viewer on demand: arrows, wrap-around, `n / total` counter,
+  caption, ArrowLeft/Right, Esc, backdrop click, and horizontal swipe on touch. Videos
+  open with controls, autoplay muted and loop. Arrows hide for a single-item gallery.
+  The markup is built in JS, so pages only need the one script tag.
 
 ---
 
@@ -151,6 +168,7 @@ Two recurring self-inflicted bugs to watch for:
 | `D:/3D/Projects/PlanetX/Footage/` | RSS_Studio_Floorplan_* and `image1–36` (El Eternauta assets) |
 | `D:/3D/Projects/LogisticCenters/Deliverables/` | Logwise film + site renders |
 | `D:/3D/Projects/Cyberphone/Deliverables/` | Cyberphone |
+| `D:/3D/Projects/FreightCalculatorShip/Deliverables/` | Freight Calculator ship renders. **The AI videos in here are off-limits** - only the 3D renders are used |
 | `keesmoolenaar.com` | Source of truth for credits. Scrape it — it is Apache/Varnish, **not** a GitHub Pages repo. `/img/*.jpg` are reusable first-party stills. |
 
 Instagram `@keesmoolenaarvfx` hard-stops at 12 posts logged out and strips alt text.
@@ -160,50 +178,49 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**18 published case studies, 3 coming soon** (every remaining card has a thumbnail), across five industries:
+**19 published case studies, 2 coming soon**, across five industries:
 
-- **Product & Technology** — CYBERAWARE · Giving an AI a Face · Cyberphone · Sea and Shore Services · Driving, Simulated
-- **Architecture & Spaces** — Hooiberg · DHG—Logwise · Fountain Fuel · Off To A Better Future · Ready Set Studios
-- **Music & Culture** — Broederliefde × AFAS Live · FLAIRE × Maassilo · Tessaract
-- **Fashion & Luxury** — Loro Piana Open Walk · C.P. Company Integrated Mask
-- **Film & Commercial** — Llokaal Expeditie · Street Takeover · El Eternauta
+- **Product & Technology** (7) — CYBERAWARE - Giving an AI a Face - Cyberphone -
+  Sea and Shore Services - Driving, Simulated - Catamaran - Freight Calculator
+- **Architecture & Spaces** (4) — Hooiberg - DHG/Logwise - Fountain Fuel -
+  Off To A Better Future
+- **Music & Culture** (3) — Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
+- **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask
+- **Film & Commercial** (3) — Ready Set Studios - Street Takeover - El Eternauta
 
-44 pages. Nav is four items plus the logo:
+46 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
+Contact as hover dropdowns (News/Shop, Jobs). The logo is the way home; there is no
+HOME item. `llms.txt` case-study list and `sitemap.xml` are both generated — edit
+the data, not those files.
 
-**[VFX logo → /] · Xperiences ▾ · Work ▾ · About ▾ · Contact ▾**
+### Things the owner has decided, so don't undo them
 
-- There is **no Home button** - the logo is the way back, and it carries a hover
-  border/glow plus `title="Home"` so it reads as clickable. Do not re-add Home to
-  the top bar.
-- Xperiences ▾ = the five original discipline pages (unchanged).
-- Work ▾ = All work + the five industries.
-- About ▾ = About the studio / News / Shop.
-- Contact ▾ = Get in touch / Jobs.
-- `/services` still exists and is linked from the footer and every case study, but is
-  deliberately **not** in the top nav - Xperiences covers that ground.
-- The mobile drawer stays a full flat index (it is the only nav on phones) and keeps Home.
-
-The five discipline pages each end with a "Selected work" strip of project cards,
-injected by the build between `<!-- WORK-CARDS:key -->` markers. Capped at 6; a
-discipline with no matching projects falls back to the industry rail.
-
-The header fades a solid dark bar in on scroll (`js/header.js` toggles `.scrolled`,
-`header::after` does the fade) so the nav stays readable over page content.
-
-The Google-translate language switcher was **removed** - it redirected to a
-`*.translate.goog` proxy that could not reach the site, and it persisted the choice in
-localStorage so it kept redirecting on later visits. A better one can come later.
-
-No routes were removed.
+- **Llokaal Expeditie was removed** entirely; it did not fit the site.
+- **Ready Set Studios sits in Film & Commercial**, not Architecture — films and
+  commercials are shot on that stage.
+- **Don't label work as spec.** These pages exist to show capability; repeating
+  "spec commercial" across seven of them costs him work. The CLIENT row renders only
+  when it is filled, which claims nothing in either direction.
+- **Street Takeover: the truck is real.** Only the back of the trailer and the bottle
+  are CG, plus a Houdini liquid sim. It is the reference example for the surreal
+  commercial work the studio sells.
+- **Freight Calculator uses only the 3D renders.** The AI videos in that folder (the
+  ship lurching over huge waves) are explicitly not to be used.
+- **News posts say the studio is interested in / looking into** a technique, never that
+  it has shipped work with it.
 
 ### Outstanding — needs the owner
 
-- **`year:`** is empty on most projects (Logwise 2025, CP 2020, Llokaal 2022, El Eternauta 2025, Fountain Fuel 2024 are set)
-- **Client credits to confirm:** the VR simulator startup's name · is "DHG" the right credit for Logwise · was C.P. Company commissioned or spec · how to credit Heineken on Street Takeover · the exact split with Astrolads on Fountain Fuel
-- **Empty `result:`** on Logwise, Cyberphone, CP, Street Takeover, Sea and Shore, Llokaal, RSS, El Eternauta; `challenge`/`approach`/`result` on Hooiberg, FLAIRE, Tessaract
-- **DDW presentation details** — last placeholder on `/about`
-- **`spec_med.jpg` shows surgical forceps** but its entry is titled "Medical design — knee". Retitle?
-- `digitalitems.mp4` is the Shop page hero but is actually the old Hooiberg animation
-- Three pre-existing tracked videos are unreferenced: `about.mp4`, `interactive_intro.mp4` (21 MB), `technology.mp4` — ~26 MB recoverable
-- **El Eternauta** shows Netflix production assets delivered via Planet X — worth checking the agreement before this goes public
-- **Nothing has been pushed yet.** The news bot's nav template also still needs updating.
+- **Years still missing:** Broederliefde, Loro Piana, Street Takeover
+- **Names still missing:** the VR/AI startup behind "Giving an AI a Face" -
+  Hooiberg's client or architect
+- Empty `result:` on several projects (Logwise, Cyberphone, CP, Sea and Shore, RSS,
+  El Eternauta, Catamaran); `challenge`/`approach`/`result` on Hooiberg, FLAIRE, Tessaract
+- Two generic drafts remain: "Live visuals — other shows", "Animation and VFX work"
+- `digitalitems.mp4` is the Shop hero but is actually the old Hooiberg animation
+- `interactive_intro.mp4` (21.5 MB) and `technology.mp4` are tracked but unreferenced
+  — ~23 MB recoverable
+- **El Eternauta** shows Netflix production assets delivered via Planet X — worth
+  checking the agreement before this goes public
+- **Nothing has been pushed yet.** The news bot template still emits the old nav and the
+  "we used this technique" phrasing; the owner is updating that script himself.

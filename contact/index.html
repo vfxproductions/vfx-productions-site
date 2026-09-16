@@ -7,6 +7,7 @@
   <meta name="description" content="Tell us about your project. We'll review your brief and send you a quote for VFX, 3D animation, live visuals, interactive design, or drone cinematics." />
   <meta name="keywords" content="contact Vision For Xperiences, get a quote VFX, hire 3D animation studio, book drone operator, request project quote" />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vfx.productions/contact" />
   <link rel="icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Vision For Xperiences" />
@@ -15,7 +16,7 @@
   <meta property="og:image" content="/assets/about.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" crossorigin="" />
   <style>
     /* studio section — inlined so these are never affected by CSS caching */
@@ -160,18 +161,7 @@
     <!-- FORM SECTION -->
     <section id="form" class="form-section">
 
-      <!--
-        ============================================================
-        FORM SETUP
-        ============================================================
-        To receive form submissions by email, sign up for free at:
-          https://formspree.io
-        Then replace "YOUR_FORM_ID" in the action attribute below
-        with the ID you get (looks like: xrgvkzap).
-
-        Free plan: 50 submissions / month. No server required.
-        ============================================================
-      -->
+      <!-- Submissions go to Formspree; the form ID is in the action below. -->
       <form
         class="inquiry-form"
         id="inquiryForm"
@@ -401,7 +391,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -471,5 +461,6 @@
   </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

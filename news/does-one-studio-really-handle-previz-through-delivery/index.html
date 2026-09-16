@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Does one studio really handle previz through delivery — Vision For Xperiences" />
   <meta name="twitter:description" content="Some do, but the trend is toward specialists who know when to hand off. Here&#x27;s how to tell the difference." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/does-one-studio-really-handle-previz-through-delivery.webp" />
-  <link rel="stylesheet" href="/css/site.css?v=50bd5ed72c" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -127,6 +127,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-top">
@@ -140,21 +141,29 @@
     <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
     <a href="/technology" data-nav class="drawer-sub">Technology</a>
     <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
-    <a href="/news" data-nav>News</a>
-    <a href="/about" data-nav>About</a>
-    <a href="/shop" data-nav>Shop</a>
-    <a href="/jobs" data-nav>Jobs</a>
-    <a href="/contact" data-nav>Contact</a>
+    <a href="/work" data-nav>Work</a>
+    <div class="drawer-section">By industry</div>
+    <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
+    <a href="/industries/architecture-spaces" data-nav class="drawer-sub">Architecture &amp; Spaces</a>
+    <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
+    <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
+    <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
+    <div class="drawer-section">Studio</div>
+    <a href="/about" data-nav class="drawer-sub">About</a>
+    <a href="/news" data-nav class="drawer-sub" aria-current="page">News</a>
+    <a href="/shop" data-nav class="drawer-sub">Shop</a>
+    <div class="drawer-section">Get in touch</div>
+    <a href="/contact" data-nav class="drawer-sub">Contact</a>
+    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
   </aside>
 
   <header>
     <nav class="nav" aria-label="Primary">
       <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
-      <a class="brand" href="/">
-        <img src="/assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
+      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
       </a>
       <div class="links" aria-label="Site links">
-        <a href="/">Home</a>
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
           <div class="nav-dropdown-menu">
@@ -165,17 +174,39 @@
             <a href="/droneoperator">Drone Operator</a>
           </div>
         </div>
-        <a href="/news">News</a>
-        <a href="/about">About</a>
-        <a href="/shop">Shop</a>
-        <a href="/jobs">Jobs</a>
-        <a href="/contact">Contact</a>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/work">Work <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/work">All work</a>
+            <a href="/industries/product-technology">Product &amp; Technology</a>
+            <a href="/industries/architecture-spaces">Architecture &amp; Spaces</a>
+            <a href="/industries/music-culture">Music &amp; Culture</a>
+            <a href="/industries/fashion-luxury">Fashion &amp; Luxury</a>
+            <a href="/industries/film-commercial">Film &amp; Commercial</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/about" aria-current="page">About <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/about">About the studio</a>
+            <a href="/news" aria-current="page">News</a>
+            <a href="/shop">Shop</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/contact">Contact <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/contact">Get in touch</a>
+            <a href="/jobs">Jobs</a>
+          </div>
+        </div>
       </div>
+
       <div class="right"></div>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <article class="post">
       <div class="post-hero">
         <img src="/news/img/does-one-studio-really-handle-previz-through-delivery.webp" alt="Highest education productivity growth rate since series began" />
@@ -276,7 +307,7 @@
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -293,5 +324,7 @@
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); }); });
   })();
   </script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>

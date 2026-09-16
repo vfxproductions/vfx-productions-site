@@ -209,7 +209,7 @@ function footerAndScripts() {
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); }
       function closeDd(){ dd.classList.remove('open'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -228,47 +228,9 @@ function footerAndScripts() {
     document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
   })();
   </script>
-  <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
-    <img id="lightboxImg" src="" alt="" />
-    <p class="lightbox-cap" id="lightboxCap"></p>
-  </dialog>
-
-  <script>
-  /* Click any process image to enlarge it. Uses a native dialog element, so Esc,
-     focus trapping and the backdrop are handled by the browser. */
-  (function(){
-    var dlg = document.getElementById('lightbox');
-    if (!dlg || !dlg.showModal) return;          /* no dialog support: images stay inline */
-    var img = document.getElementById('lightboxImg');
-    var cap = document.getElementById('lightboxCap');
-    var opener = null;
-
-    document.addEventListener('click', function(e){
-      var btn = e.target.closest('.zoom');
-      if (btn){
-        var src = btn.querySelector('img');
-        if (!src) return;
-        opener = btn;
-        img.src = src.currentSrc || src.src;
-        img.alt = src.alt || '';
-        cap.textContent = src.alt || '';
-        dlg.showModal();
-        return;
-      }
-      /* click outside the image closes it */
-      if (dlg.open && (e.target === dlg)) dlg.close();
-    });
-
-    document.getElementById('lightboxClose').addEventListener('click', function(){ dlg.close(); });
-    dlg.addEventListener('close', function(){
-      img.src = '';
-      if (opener) { opener.focus(); opener = null; }
-    });
-  })();
-  </script>
   <script defer src="/js/lazyvideo.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>
 `;
@@ -502,17 +464,46 @@ ${[left, right].filter(Boolean).join(String.fromCharCode(10))}
     : '';
   const resultRole = pair('The result', p.result, 'My role', p.role, deepExtra);
 
-  const gallery = p.gallery.length
+  /* The hero only plays at the top of the page, so repeat it in the gallery -
+     otherwise the best asset on a case study vanishes as soon as you scroll.
+     Skipped when the same file is already listed below. */
+  const heroInGallery =
+    p.hero && !p.gallery.some((g) => g.src === p.hero.src)
+      ? [
+          p.hero.type === 'video'
+            ? { type: 'video', src: p.hero.src, poster: p.hero.poster, alt: `${p.title} in motion`, fit: p.heroFit }
+            : { src: p.hero.src, alt: p.title, fit: p.heroFit }
+        ]
+      : [];
+
+  /* A video hero renders as its poster frame until it plays, so a gallery item
+     that IS that poster would show the same picture twice. */
+  const heroPoster = (heroInGallery[0] && heroInGallery[0].poster) || null;
+  const galleryItems = [...heroInGallery, ...p.gallery.filter((g) => g.src !== heroPoster)];
+
+  const galleryTile = (g) => {
+    if (g.type === 'video') {
+      /* muted background loop: preload="none" + js/lazyvideo.js means it only
+         downloads once it scrolls into view */
+      return `          <figure class="cs-shot is-video${g.fit ? ' ' + g.fit : ''}"><button type="button" class="zoom" aria-label="Enlarge video: ${esc(
+        g.alt
+      )}"><video muted loop playsinline preload="none" data-lazyvideo${
+        g.poster ? ` poster="${g.poster}"` : ''
+      } aria-label="${esc(g.alt)}"><source src="${g.src}" type="video/${
+        g.src.endsWith('.webm') ? 'webm' : 'mp4'
+      }" /></video></button></figure>`;
+    }
+    return `          <figure class="cs-shot${g.fit ? ' ' + g.fit : ''}"><button type="button" class="zoom" aria-label="Enlarge image: ${esc(
+      g.alt
+    )}"><img src="${g.src}" alt="${esc(g.alt)}" loading="lazy" /></button></figure>`;
+  };
+
+  const gallery = galleryItems.length
     ? `
       <section class="page-wrap band">
         <div class="kicker accent">Process</div>
         <div class="cs-gallery">
-${p.gallery
-  .map(
-    (g) =>
-      `          <figure class="cs-shot${g.fit === 'contain' ? ' contain' : ''}"><button type="button" class="zoom" aria-label="Enlarge image: ${esc(g.alt)}"><img src="${g.src}" alt="${esc(g.alt)}" loading="lazy" /></button></figure>`
-  )
-  .join('\n')}
+${galleryItems.map(galleryTile).join('\n')}
         </div>
       </section>`
     : '';
@@ -526,6 +517,16 @@ ${p.gallery
             <source src="${p.watch.src}" type="video/${p.watch.src.endsWith('.webm') ? 'webm' : 'mp4'}" />
           </video>
         </div>
+      </section>`
+    : '';
+
+  /* Unlicensed brand work carries a quiet non-affiliation line. Not the same as
+     labelling a page "spec" in the body copy - buyers skim this, brand lawyers
+     look for it. Set `notice: true` on the project. */
+  const notice = p.notice
+    ? `
+      <section class="page-wrap">
+        <p class="cs-notice">Concept work. Not commissioned by, affiliated with or endorsed by the brands shown. All trademarks, brand names and product designs are the property of their respective owners and are referenced here only to describe the work.</p>
       </section>`
     : '';
 
@@ -602,6 +603,7 @@ ${challengeApproach}
 ${gallery}
 ${watch}
 ${resultRole}
+${notice}
 ${serviceRail(p.serviceSlugs, accent)}
 ${relatedBlock}
 ${ctaBlock(
@@ -950,6 +952,25 @@ ${newsUrls.join('\n')}
   console.log('  wrote sitemap.xml');
 }
 
+/* llms.txt duplicated the case-study list by hand and drifted. Regenerate that
+   one block from the data; the rest of the file stays hand-written. */
+function buildLlms() {
+  const path = join(ROOT, 'llms.txt');
+  const current = readFileSync(path, 'utf8');
+  const HEAD = '## Case studies';
+  const start = current.indexOf(HEAD);
+  const end = current.indexOf('## ', start + HEAD.length);
+  if (start === -1 || end === -1) {
+    console.log('  !! llms.txt: Case studies block not found, left alone');
+    return;
+  }
+  const list = published.map((p) => `- [${p.title}](/work/${p.slug}): ${p.summary}`);
+  const block = [HEAD, ...list, '', ''].join('\n');
+  const next = current.slice(0, start) + block + current.slice(end);
+  if (next !== current) writeFileSync(path, next, 'utf8');
+  console.log(`  wrote llms.txt (${published.length} case studies)`);
+}
+
 /* --------------------------------------------------------------------------- */
 
 console.log('Building generated pages (css v' + CSSV + ')...');
@@ -959,6 +980,7 @@ buildServices();
 categories.forEach(buildIndustry);
 injectDisciplineWork();
 buildSitemap();
+buildLlms();
 console.log(
   `Done. ${published.length} case study page(s), ${projects.length - published.length} draft(s) listed without a page.`
 );

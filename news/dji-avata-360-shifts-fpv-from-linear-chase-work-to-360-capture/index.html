@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="DJI Avata 360 shifts FPV from linear chase work to 360 capture — Vision For Xperiences" />
   <meta name="twitter:description" content="Eight-kilohertz 360-degree video and single-lens fallback mode open new options for spatial storytelling and post-production freedom." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture.webp" />
-  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
+  <link rel="stylesheet" href="/css/site.css?v=79370eded5" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -238,7 +238,7 @@
       <p>The real shift is permission. FPV teams can now build rigs that carry a 360 camera without abandoning the speed work that justified FPV in the first place. For outfits handling <a href="/technology">real-time experiences for events</a>, spatial capture opens paths that locked-perspective drones cannot touch.</p>
       <h2>Stabilization and spatial codec support</h2>
       <p>The Avata 360 includes Spotlight Free tracking, which locks onto a subject and assists framing in real time. That simplifies the pilot workload on pre-planned sequences. Raw 360 footage at 8K still needs heavy processing. ReelSteady GO and open-source Gyroflow have both added 360 stabilization workflows, which means the post-production pipeline for this format is now accessible to mid-size shops, not just facilities with custom infrastructure.</p>
-      <p>Vision For Xperiences tested the Avata 360 on confined interior work, where the 360 capture mode eliminated the need for multiple passes at different angles. One flight, complete spatial data. For <a href="/animation">commercial visualization</a> where clients want to review a space from vantage points they did not request, that cuts iteration cycles sharply.</p>
+      <p>Confined interior work is where Vision For Xperiences is watching this most closely. If the 360 capture mode removes the need for multiple passes at different angles, that is one flight instead of several for complete spatial data. For <a href="/animation">commercial visualization</a> where clients want to review a space from vantage points they did not request, that cuts iteration cycles sharply.</p>
       <p>The 8K HDR baseline matters less than the encoding. If you are downconverting to 4K for delivery, you benefit from the oversample. If you are holding it at 8K for archival or high-end editorial, DJI has now made that a field-capture problem instead of a post-only synthetic task.</p>
       </div>
 
@@ -310,7 +310,7 @@
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
       var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
       function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
@@ -332,5 +332,6 @@
   })();
   </script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>
