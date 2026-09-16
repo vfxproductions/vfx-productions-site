@@ -160,7 +160,7 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**18 published case studies, 5 coming soon**, across five industries:
+**18 published case studies, 3 coming soon** (every remaining card has a thumbnail), across five industries:
 
 - **Product & Technology** — CYBERAWARE · Giving an AI a Face · Cyberphone · Sea and Shore Services · Driving, Simulated
 - **Architecture & Spaces** — Hooiberg · DHG—Logwise · Fountain Fuel · Off To A Better Future · Ready Set Studios
@@ -168,8 +168,33 @@ Don't try to scrape project media from it — the owner drops files into `assets
 - **Fashion & Luxury** — Loro Piana Open Walk · C.P. Company Integrated Mask
 - **Film & Commercial** — Llokaal Expeditie · Street Takeover · El Eternauta
 
-44 pages. Nav is **Work · Services · News · About · Contact**; Shop and Jobs are in the
-drawer and footer only. No routes were removed.
+44 pages. Nav is four items plus the logo:
+
+**[VFX logo → /] · Xperiences ▾ · Work ▾ · About ▾ · Contact ▾**
+
+- There is **no Home button** - the logo is the way back, and it carries a hover
+  border/glow plus `title="Home"` so it reads as clickable. Do not re-add Home to
+  the top bar.
+- Xperiences ▾ = the five original discipline pages (unchanged).
+- Work ▾ = All work + the five industries.
+- About ▾ = About the studio / News / Shop.
+- Contact ▾ = Get in touch / Jobs.
+- `/services` still exists and is linked from the footer and every case study, but is
+  deliberately **not** in the top nav - Xperiences covers that ground.
+- The mobile drawer stays a full flat index (it is the only nav on phones) and keeps Home.
+
+The five discipline pages each end with a "Selected work" strip of project cards,
+injected by the build between `<!-- WORK-CARDS:key -->` markers. Capped at 6; a
+discipline with no matching projects falls back to the industry rail.
+
+The header fades a solid dark bar in on scroll (`js/header.js` toggles `.scrolled`,
+`header::after` does the fade) so the nav stays readable over page content.
+
+The Google-translate language switcher was **removed** - it redirected to a
+`*.translate.goog` proxy that could not reach the site, and it persisted the choice in
+localStorage so it kept redirecting on later visits. A better one can come later.
+
+No routes were removed.
 
 ### Outstanding — needs the owner
 
@@ -178,7 +203,6 @@ drawer and footer only. No routes were removed.
 - **Empty `result:`** on Logwise, Cyberphone, CP, Street Takeover, Sea and Shore, Llokaal, RSS, El Eternauta; `challenge`/`approach`/`result` on Hooiberg, FLAIRE, Tessaract
 - **DDW presentation details** — last placeholder on `/about`
 - **`spec_med.jpg` shows surgical forceps** but its entry is titled "Medical design — knee". Retitle?
-- Two generic drafts remain: "Live visuals — other shows", "Animation and VFX work"
 - `digitalitems.mp4` is the Shop page hero but is actually the old Hooiberg animation
 - Three pre-existing tracked videos are unreferenced: `about.mp4`, `interactive_intro.mp4` (21 MB), `technology.mp4` — ~26 MB recoverable
 - **El Eternauta** shows Netflix production assets delivered via Planet X — worth checking the agreement before this goes public

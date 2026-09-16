@@ -559,11 +559,6 @@ export const projects = [
     deepLink: { href: '/visuals', label: 'Live visuals' }
   },
 
-  { slug: 'live-visuals-shows', status: 'draft', title: 'Live visuals — other shows', category: 'music-culture',
-    summary: '', description: '', challenge: '', approach: '', result: '', role: '', year: '', client: '',
-    serviceSlugs: ['live-visuals'], gallery: [],
-    deepLink: { href: '/visuals', label: 'Live visuals' } },
-
   /* ---- Fashion & Luxury ----------------------------------------------------- */
   {
     slug: 'loro-piana-open-walk',
@@ -681,12 +676,7 @@ export const projects = [
       { src: '/assets/eternauta_container2.jpg', alt: 'The container showing its Ciudad de Buenos Aires markings' },
       { src: '/assets/eternauta_windows.jpg', alt: 'Shattered aircraft window panels built as geometry with clean UVs', fit: 'contain' }
     ]
-  },
-
-  { slug: 'animation-vfx-work', status: 'draft', title: 'Animation and VFX work', category: 'film-commercial',
-    summary: '', description: '', challenge: '', approach: '', result: '', role: '', year: '', client: '',
-    serviceSlugs: ['vfx-compositing', '3d-animation'], gallery: [],
-    deepLink: { href: '/vfx', label: 'VFX' } }
+  }
 ];
 
 /* Studio-wide copy reused across the generated pages. */

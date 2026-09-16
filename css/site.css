@@ -38,9 +38,27 @@
       transition: opacity .25s var(--ease), transform .25s var(--ease);
       padding-top: env(safe-area-inset-top);
     }
+    /* Once the page scrolls, fade a solid bar in behind the nav so the logo and
+       menu stay readable over whatever is passing underneath. See js/header.js. */
+    header::after{
+      content:"";
+      position:absolute; inset:0;
+      z-index:-1;
+      background: rgba(6,6,8,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--fg10);
+      opacity:0;
+      transition: opacity .28s var(--ease);
+      pointer-events:none;
+    }
+    header.scrolled::after{ opacity:1; }
     .nav{
       height: var(--headerH);
-      display:flex;
+      /* logo | menus | spare - so the menus sit dead centre of the page
+         regardless of how wide the logo or the right-hand slot are. */
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items:center;
       gap: 18px;
       padding: 0 22px;
@@ -55,7 +73,26 @@
       text-transform: uppercase;
       white-space:nowrap;
       user-select:none;
+      justify-self: start;
+      /* There is no Home button any more - the logo is the way back, so it has
+         to read as something you can click. */
+      cursor:pointer;
+      padding: 6px 10px;
+      margin-left: -10px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: border-color .22s var(--ease), background .22s var(--ease);
     }
+    .brand img{
+      /* One place to tune the logo size. */
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      opacity:.92;
+      transition: filter .22s var(--ease), opacity .22s var(--ease);
+    }
+    .brand:hover{ border-color: var(--fg25); background: rgba(255,255,255,.05); }
+    .brand:hover img{ opacity:1; filter: drop-shadow(0 0 8px rgba(255,255,255,.35)); }
     .brand-badge{
       border:1px solid var(--fg35);
       border-radius: 4px;
@@ -67,8 +104,9 @@
     .links{
       display:flex;
       align-items:center;
-      gap: 18px;
-      flex: 1;
+      justify-content:center;
+      gap: 22px;
+      justify-self: center;
       min-width: 0;
     }
     .links a{
@@ -86,6 +124,7 @@
 
     .right{
       display:flex; align-items:center; gap:12px;
+      justify-self: end;
     }
 
     .events-widget{
@@ -602,9 +641,6 @@
     .nav-dropdown.open .nav-dropdown-menu a:nth-child(4){ animation-delay:.18s; }
     .nav-dropdown.open .nav-dropdown-menu a:nth-child(5){ animation-delay:.23s; }
 
-    /* Language switcher — same dropdown mechanics, narrower + right-aligned so it never overflows the viewport */
-    .lang-dropdown-menu{ left:auto; right:0; min-width:150px; }
-
     /* Drawer section label */
     .drawer-section{
       font-size: .60rem;
@@ -643,6 +679,8 @@
 
     @media (max-width: 560px){
       .nav{ padding: 0 14px; gap: 10px; }
+      .brand img{ height: 30px; }
+      .brand{ padding: 4px 8px; margin-left: -8px; }
       .brand-badge{ padding: 6px 9px; font-size:.72rem; }
       .btn{ width: 100%; min-width: 0; }
       .sub{ font-size: 1.0rem; }
@@ -1301,6 +1339,10 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
   border-radius:999px; padding:4px 10px;
   opacity:.75;
 }
+
+/* Work strip at the bottom of the hand-written discipline pages. */
+.work-strip .group-head{ margin-bottom:24px; }
+.work-strip .actions{ margin-top:26px; }
 
 /* ---- CTA band ---- */
 .cta-band{

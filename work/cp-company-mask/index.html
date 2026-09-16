@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="A concept study from the COVID period: a face mask built into the garment itself, clipped on and off, in the language of C.P. Company." />
   <meta name="twitter:image" content="https://vfx.productions/assets/company_mask_1.jpg" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
-  <link rel="stylesheet" href="/css/site.css?v=1ea914c9b6" />
+  <link rel="stylesheet" href="/css/site.css?v=12fa646a27" />
 </head>
 
 <body style="--accent:#C8A96A;">
@@ -34,6 +34,12 @@
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
     </div>
     <a href="/" data-nav>Home</a>
+    <div class="drawer-section">Xperiences</div>
+    <a href="/vfx" data-nav class="drawer-sub">VFX</a>
+    <a href="/animation" data-nav class="drawer-sub">Animation</a>
+    <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
+    <a href="/technology" data-nav class="drawer-sub">Technology</a>
+    <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
     <a href="/work" data-nav aria-current="page">Work</a>
     <div class="drawer-section">By industry</div>
     <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
@@ -41,27 +47,32 @@
     <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
     <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
     <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
-    <a href="/services" data-nav>Services</a>
-    <div class="drawer-section">Disciplines</div>
-    <a href="/vfx" data-nav class="drawer-sub">VFX</a>
-    <a href="/animation" data-nav class="drawer-sub">Animation</a>
-    <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
-    <a href="/technology" data-nav class="drawer-sub">Technology</a>
-    <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
-    <a href="/news" data-nav>News</a>
-    <a href="/about" data-nav>About</a>
-    <a href="/shop" data-nav>Shop</a>
-    <a href="/jobs" data-nav>Jobs</a>
-    <a href="/contact" data-nav>Contact</a>
+    <div class="drawer-section">Studio</div>
+    <a href="/about" data-nav class="drawer-sub">About</a>
+    <a href="/news" data-nav class="drawer-sub">News</a>
+    <a href="/shop" data-nav class="drawer-sub">Shop</a>
+    <div class="drawer-section">Get in touch</div>
+    <a href="/contact" data-nav class="drawer-sub">Contact</a>
+    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
   </aside>
 
   <header>
     <nav class="nav" aria-label="Primary">
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
-      <a class="brand" href="/">
-        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" style="height:28px;width:auto;object-fit:contain;" />
+      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
       </a>
       <div class="links" aria-label="Site links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="/vfx">VFX</a>
+            <a href="/animation">Animation</a>
+            <a href="/visuals">Visuals</a>
+            <a href="/technology">Technology</a>
+            <a href="/droneoperator">Drone Operator</a>
+          </div>
+        </div>
         <div class="nav-dropdown">
           <a class="nav-dropdown-toggle" href="/work" aria-current="page">Work <span class="nav-caret">&#9662;</span></a>
           <div class="nav-dropdown-menu">
@@ -74,19 +85,20 @@
           </div>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-dropdown-toggle" href="/services">Services <span class="nav-caret">&#9662;</span></a>
+          <a class="nav-dropdown-toggle" href="/about">About <span class="nav-caret">&#9662;</span></a>
           <div class="nav-dropdown-menu">
-            <a href="/services">All services</a>
-            <a href="/vfx">VFX</a>
-            <a href="/animation">Animation</a>
-            <a href="/visuals">Live Visuals</a>
-            <a href="/technology">Interactive</a>
-            <a href="/droneoperator">Drone Operator</a>
+            <a href="/about">About the studio</a>
+            <a href="/news">News</a>
+            <a href="/shop">Shop</a>
           </div>
         </div>
-        <a href="/news">News</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/contact">Contact <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/contact">Get in touch</a>
+            <a href="/jobs">Jobs</a>
+          </div>
+        </div>
       </div>
       <div class="right"></div>
     </nav>
@@ -326,5 +338,6 @@
   })();
   </script>
   <script defer src="/js/lazyvideo.js"></script>
+  <script defer src="/js/header.js"></script>
 </body>
 </html>

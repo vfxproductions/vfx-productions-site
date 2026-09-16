@@ -78,6 +78,8 @@ function head({ title, desc, path, ogImage = '/assets/about.jpg', accent }) {
 /* Drawer + header. `current` highlights the active top-level item. */
 function chrome(current = '') {
   const on = (k) => (k === current ? ' aria-current="page"' : '');
+  /* About and Contact own children, so they read as current for those too. */
+  const group = (keys) => (keys.includes(current) ? ' aria-current="page"' : '');
   return `
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -88,30 +90,41 @@ function chrome(current = '') {
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
     </div>
     <a href="/" data-nav>Home</a>
-    <a href="/work" data-nav${on('work')}>Work</a>
-    <div class="drawer-section">By industry</div>
-${categories.map((c) => `    <a href="/industries/${c.slug}" data-nav class="drawer-sub">${esc(c.name)}</a>`).join('\n')}
-    <a href="/services" data-nav${on('services')}>Services</a>
-    <div class="drawer-section">Disciplines</div>
+    <div class="drawer-section">Xperiences</div>
     <a href="/vfx" data-nav class="drawer-sub">VFX</a>
     <a href="/animation" data-nav class="drawer-sub">Animation</a>
     <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
     <a href="/technology" data-nav class="drawer-sub">Technology</a>
     <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
-    <a href="/news" data-nav${on('news')}>News</a>
-    <a href="/about" data-nav${on('about')}>About</a>
-    <a href="/shop" data-nav>Shop</a>
-    <a href="/jobs" data-nav>Jobs</a>
-    <a href="/contact" data-nav${on('contact')}>Contact</a>
+    <a href="/work" data-nav${on('work')}>Work</a>
+    <div class="drawer-section">By industry</div>
+${categories.map((c) => `    <a href="/industries/${c.slug}" data-nav class="drawer-sub">${esc(c.name)}</a>`).join('\n')}
+    <div class="drawer-section">Studio</div>
+    <a href="/about" data-nav class="drawer-sub"${on('about')}>About</a>
+    <a href="/news" data-nav class="drawer-sub"${on('news')}>News</a>
+    <a href="/shop" data-nav class="drawer-sub">Shop</a>
+    <div class="drawer-section">Get in touch</div>
+    <a href="/contact" data-nav class="drawer-sub"${on('contact')}>Contact</a>
+    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
   </aside>
 
   <header>
     <nav class="nav" aria-label="Primary">
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
-      <a class="brand" href="/">
-        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" style="height:28px;width:auto;object-fit:contain;" />
+      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
       </a>
       <div class="links" aria-label="Site links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="/vfx">VFX</a>
+            <a href="/animation">Animation</a>
+            <a href="/visuals">Visuals</a>
+            <a href="/technology">Technology</a>
+            <a href="/droneoperator">Drone Operator</a>
+          </div>
+        </div>
         <div class="nav-dropdown">
           <a class="nav-dropdown-toggle" href="/work"${on('work')}>Work <span class="nav-caret">&#9662;</span></a>
           <div class="nav-dropdown-menu">
@@ -120,19 +133,20 @@ ${categories.map((c) => `            <a href="/industries/${c.slug}">${esc(c.nam
           </div>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-dropdown-toggle" href="/services"${on('services')}>Services <span class="nav-caret">&#9662;</span></a>
+          <a class="nav-dropdown-toggle" href="/about"${group(['about', 'news'])}>About <span class="nav-caret">&#9662;</span></a>
           <div class="nav-dropdown-menu">
-            <a href="/services">All services</a>
-            <a href="/vfx">VFX</a>
-            <a href="/animation">Animation</a>
-            <a href="/visuals">Live Visuals</a>
-            <a href="/technology">Interactive</a>
-            <a href="/droneoperator">Drone Operator</a>
+            <a href="/about"${on('about')}>About the studio</a>
+            <a href="/news"${on('news')}>News</a>
+            <a href="/shop">Shop</a>
           </div>
         </div>
-        <a href="/news"${on('news')}>News</a>
-        <a href="/about"${on('about')}>About</a>
-        <a href="/contact"${on('contact')}>Contact</a>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/contact"${on('contact')}>Contact <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/contact"${on('contact')}>Get in touch</a>
+            <a href="/jobs">Jobs</a>
+          </div>
+        </div>
       </div>
       <div class="right"></div>
     </nav>
@@ -254,6 +268,7 @@ function footerAndScripts() {
   })();
   </script>
   <script defer src="/js/lazyvideo.js"></script>
+  <script defer src="/js/header.js"></script>
 </body>
 </html>
 `;
@@ -807,6 +822,89 @@ ${footerAndScripts()}`;
   write(`industries/${c.slug}/index.html`, html);
 }
 
+
+/* ---------------------------------------------------------------------------
+   The five hand-written discipline pages (/vfx, /animation, ...) each end with
+   a strip of the projects that used that discipline. The markup is written
+   between markers in those files so the pages stay hand-editable everywhere
+   else, and this keeps the cards in sync with data/site.mjs.
+   --------------------------------------------------------------------------- */
+
+const DISCIPLINE_PAGES = {
+  'vfx/index.html':           { key: 'vfx',        service: 'vfx-compositing',           label: 'VFX' },
+  'animation/index.html':     { key: 'animation',  service: '3d-animation',              label: '3D animation' },
+  'visuals/index.html':       { key: 'visuals',    service: 'live-visuals',              label: 'live visuals' },
+  'technology/index.html':    { key: 'technology', service: 'interactive-installations', label: 'interactive work' },
+  'droneoperator/index.html': { key: 'drone',      service: 'aerial-capture',            label: 'aerial capture' }
+};
+
+const MAX_DISCIPLINE_CARDS = 6;
+
+function disciplineWorkBlock({ service, label }) {
+  const items = published.filter((p) => (p.serviceSlugs || []).includes(service)).slice(0, MAX_DISCIPLINE_CARDS);
+
+  /* Nothing tagged with this discipline yet: point at the work rather than
+     showing an empty shelf. */
+  if (!items.length) {
+    return `
+    <section class="page-wrap band work-strip">
+      <div class="group-head">
+        <div class="kicker">Selected work</div>
+        <p class="group-lead">Projects across every area the studio works in.</p>
+      </div>
+      <div class="rail-grid">
+${categories
+  .map(
+    (c) => `        <a class="rail-card" href="/industries/${c.slug}" style="--accent:${c.accent};">
+          <span class="rail-name">${esc(c.name)}</span>
+          <span class="rail-desc">${esc(c.short)} projects and approach</span>
+        </a>`
+  )
+  .join('\n')}
+      </div>
+      <div class="actions"><a class="btn" href="/work">See all work</a></div>
+    </section>`;
+  }
+
+  return `
+    <section class="page-wrap band work-strip">
+      <div class="group-head">
+        <div class="kicker">Selected work</div>
+        <p class="group-lead">Projects that used ${esc(label)}.</p>
+      </div>
+      <div class="work-grid">
+          ${items.map(projectCard).join('\n          ')}
+      </div>
+      <div class="actions"><a class="btn" href="/work">See all work &rarr;</a></div>
+    </section>`;
+}
+
+function injectDisciplineWork() {
+  for (const [rel, cfg] of Object.entries(DISCIPLINE_PAGES)) {
+    const full = join(ROOT, rel);
+    let html;
+    try {
+      html = readFileSync(full, 'utf8');
+    } catch {
+      console.log('  skip (missing)', rel);
+      continue;
+    }
+    const open = `<!-- WORK-CARDS:${cfg.key} -->`;
+    const close = '<!-- /WORK-CARDS -->';
+    const a = html.indexOf(open);
+    const b = html.indexOf(close);
+    if (a === -1 || b === -1) {
+      console.log('  skip (no markers)', rel);
+      continue;
+    }
+    const next = html.slice(0, a + open.length) + disciplineWorkBlock(cfg) + '\n    ' + html.slice(b);
+    if (next !== html) {
+      writeFileSync(full, next, 'utf8');
+      console.log('  injected work cards ->', rel);
+    }
+  }
+}
+
 /* ---------------------------------------------------------------------------
    SITEMAP - regenerate the non-news half, keep whatever the news bot added.
    --------------------------------------------------------------------------- */
@@ -859,6 +957,7 @@ buildWork();
 published.forEach(buildCaseStudy);
 buildServices();
 categories.forEach(buildIndustry);
+injectDisciplineWork();
 buildSitemap();
 console.log(
   `Done. ${published.length} case study page(s), ${projects.length - published.length} draft(s) listed without a page.`
