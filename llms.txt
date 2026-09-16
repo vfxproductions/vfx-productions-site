@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Does one studio really handle previz through delivery](/news/does-one-studio-really-handle-previz-through-delivery/): Some do, but the trend is toward specialists who know when to hand off. Here's how to tell the difference.
 - [Houdini 22 brings MCP agents into character rigging workflows](/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/): SideFX wired AI code generation into KineFX, letting riggers scaffold procedural setups faster without surrendering control.
 - [DJI Avata 360 shifts FPV from linear chase work to 360 capture](/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/): Eight-kilohertz 360-degree video and single-lens fallback mode open new options for spatial storytelling and post-production freedom.
 - [ISO 22028-5 sets a common language for HDR still image colour](/news/iso-22028-5-sets-a-common-language-for-hdr-still-image-colour/): A new international standard published in May defines how studios encode, store, and deliver HDR photographs and graphics with consistent colour across devices.

@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Sep 2026 07:06:36 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 07:10:47 +0000</lastBuildDate>
+    <item>
+      <title>Does one studio really handle previz through delivery</title>
+      <link>https://vfx.productions/news/does-one-studio-really-handle-previz-through-delivery/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/does-one-studio-really-handle-previz-through-delivery/</guid>
+      <pubDate>Wed, 16 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Some do, but the trend is toward specialists who know when to hand off. Here&#x27;s how to tell the difference.</description>
+      <category>production</category><category>outsourcing</category><category>workflow</category><category>vendor selection</category><category>cost</category>
+    </item>
     <item>
       <title>Houdini 22 brings MCP agents into character rigging workflows</title>
       <link>https://vfx.productions/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/</link>
