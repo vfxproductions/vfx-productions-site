@@ -1525,7 +1525,13 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .cs-shot.tall.is-video video{ aspect-ratio: 9/16; object-fit: cover; }
 
 /* Graphic plates (site models, diagrams with text) must not be cover-cropped. */
-.cs-shot.contain img{ object-fit: contain; aspect-ratio: 16/9; background: var(--media-bg); }
+.cs-shot.contain img,
+.cs-shot.contain video,
+.cs-shot.contain.is-video video{ object-fit: contain; aspect-ratio: 16/9; background: var(--media-bg); }
+/* Grid items stretch to the tallest tile in the row, so a 16:9 contain tile next
+   to a 4:3 one grew a black band under the picture. Harmless on a black page,
+   obvious on a light one. Size these to their own content instead. */
+.cs-shot.contain{ align-self: start; }
 /* Video tiles in the process gallery (the hero, plus any clip listed in data). */
 .cs-shot.is-video{ background: var(--media-bg); }
 .cs-shot.is-video video{

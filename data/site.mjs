@@ -674,7 +674,14 @@ export const projects = [
     result: 'This is the piece that best shows what we mean by surreal commercial work: take an ordinary subject — a truck, a building, a product on a shelf — and do one impossible thing to it, executed carefully enough that it reads as real. The trick is not the effect, it is everything around the effect being honest.',
     role: 'CG build of the trailer back and the bottle, Houdini liquid simulation, look-dev, tracking and compositing.',
     serviceSlugs: ['vfx-compositing', '3d-animation'],
-    gallery: []
+    gallery: [
+      { type: 'video', src: '/assets/vfx.mp4', poster: '/assets/street_takeover_final_poster.jpg',
+        fit: 'contain',
+        alt: 'The finished shot: the bottle printed on the trailer livery pulled out into a three-dimensional object as the truck passes.' },
+      { type: 'video', src: '/assets/breakdown.mp4', poster: '/assets/street_takeover_breakdown_poster.jpg',
+        fit: 'contain',
+        alt: 'Breakdown: the original plate, then the CG trailer back and bottle passes isolated on black, then the final composite.' }
+    ]
   },
 ];
 
