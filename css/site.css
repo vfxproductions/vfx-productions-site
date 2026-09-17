@@ -1,4 +1,15 @@
+/* ============================================================================
+   THEME
+   The studio is dark by default. js/theme.js resolves the OS setting (or a
+   saved choice) into data-theme on <html> before first paint; with no JS the
+   page stays dark, which is the brand.
+
+   Sections that sit on top of footage keep the dark palette in both themes -
+   white type over a dark scrim is the whole point of them, and inverting that
+   would put dark text on a night-time video. See .media-dark below.
+   ============================================================================ */
  :root{
+      color-scheme: dark;
       --bg:#000;
       --fg:rgba(240,240,250,1);
       --fg90:rgba(240,240,250,.9);
@@ -10,11 +21,91 @@
       --fg10:rgba(240,240,250,.10);
       --black50:rgba(0,0,0,.5);
       --black80:rgba(0,0,0,.8);
+
+      /* Surfaces: cards, pills, inputs, thumbnails. */
+      --surface:     rgba(255,255,255,.02);
+      --surface-med: rgba(255,255,255,.04);
+      --surface-hi:  rgba(255,255,255,.05);
+      --thumb-bg:    rgba(255,255,255,.03);
+      /* Chrome: the sticky header/filter bars and the floating panels. */
+      --bar:   rgba(6,6,8,.92);
+      --bar2:  rgba(0,0,0,.88);
+      --panel: rgba(0,0,0,.97);
+      --scrim: rgba(0,0,0,.75);
+      /* Buttons invert on hover, so the pair has to flip with the theme. */
+      --btn-bg:       rgba(0,0,0,.30);
+      --btn-hover-bg: rgba(255,255,255,.92);
+      --btn-hover-fg: #000;
+      --on-accent:    #000;
+      /* Letterboxing behind images and video stays black in both themes. */
+      --media-bg: #000;
+      --header-veil: rgba(0,0,0,.70);
+      --glow: rgba(255,255,255,.35);
+
       --maxw: 1700px;
       --headerH: 74px;
       --radius: 10px;
       --ease: cubic-bezier(.19,1,.22,1);
     }
+
+    :root[data-theme="light"]{
+      color-scheme: light;
+      --bg:#f4f4f7;
+      --fg:rgba(14,14,20,1);
+      --fg90:rgba(14,14,20,.88);
+      --fg80:rgba(14,14,20,.72);
+      --fg60:rgba(14,14,20,.56);
+      --fg35:rgba(14,14,20,.45);
+      --fg25:rgba(0,0,0,.28);
+      --fg15:rgba(14,14,20,.16);
+      --fg10:rgba(14,14,20,.11);
+      --black50:rgba(255,255,255,.5);
+      --black80:rgba(255,255,255,.8);
+
+      --surface:     rgba(14,14,20,.035);
+      --surface-med: rgba(14,14,20,.06);
+      --surface-hi:  rgba(14,14,20,.08);
+      --thumb-bg:    rgba(14,14,20,.05);
+      --bar:   rgba(247,247,250,.92);
+      --bar2:  rgba(244,244,247,.90);
+      --panel: rgba(255,255,255,.98);
+      --scrim: rgba(255,255,255,.75);
+      --btn-bg:       rgba(255,255,255,.55);
+      --btn-hover-bg: rgba(14,14,20,.92);
+      --btn-hover-fg: #fff;
+      --on-accent:    #fff;
+      --header-veil: rgba(244,244,247,.75);
+      --glow: rgba(14,14,20,.25);
+    }
+
+    /* Media bands keep the dark palette whatever the page theme is. */
+    .section,
+    .media-dark,
+    .lightbox{
+      color-scheme: dark;
+      --fg:rgba(240,240,250,1);
+      --fg90:rgba(240,240,250,.9);
+      --fg80:rgba(240,240,250,.8);
+      --fg60:rgba(240,240,250,.6);
+      --fg35:rgba(240,240,250,.35);
+      --fg25:rgba(255,255,255,.25);
+      --fg15:rgba(240,240,250,.15);
+      --fg10:rgba(240,240,250,.10);
+      --surface:     rgba(255,255,255,.02);
+      --surface-med: rgba(255,255,255,.04);
+      --surface-hi:  rgba(255,255,255,.05);
+      --thumb-bg:    rgba(255,255,255,.03);
+      --btn-bg:       rgba(0,0,0,.30);
+      --btn-hover-bg: rgba(255,255,255,.92);
+      --btn-hover-fg: #000;
+      --on-accent:    #000;
+      --header-veil: rgba(0,0,0,.70);
+      --glow: rgba(255,255,255,.35);
+      color: var(--fg);
+    }
+    /* A media band on a light page still needs its own dark ground, because the
+       page background behind the video is now pale. */
+    :root[data-theme="light"] .media-dark{ background-color:#08080c; }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
     html{
@@ -34,7 +125,7 @@
     header{
       position:fixed; top:0; left:0; right:0;
       z-index:1000;
-      background: linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,0) 95%);
+      background: linear-gradient(180deg, var(--header-veil) 0%, transparent 95%);
       transition: opacity .25s var(--ease), transform .25s var(--ease);
       padding-top: env(safe-area-inset-top);
     }
@@ -44,7 +135,7 @@
       content:"";
       position:absolute; inset:0;
       z-index:-1;
-      background: rgba(6,6,8,.92);
+      background: var(--bar);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--fg10);
@@ -91,14 +182,19 @@
       opacity:.92;
       transition: filter .22s var(--ease), opacity .22s var(--ease);
     }
-    .brand:hover{ border-color: var(--fg25); background: rgba(255,255,255,.05); }
-    .brand:hover img{ opacity:1; filter: drop-shadow(0 0 8px rgba(255,255,255,.35)); }
+    .brand:hover{ border-color: var(--fg25); background: var(--surface-hi); }
+    .brand:hover img{ opacity:1; filter: drop-shadow(0 0 8px var(--glow)); }
+    /* The wordmark is a light-grey glitch plate drawn for a black page. Inverting
+       keeps the glitch, just the other way up, so it reads on a pale header. */
+    :root[data-theme="light"] .brand img,
+    :root[data-theme="light"] .footer-brand img{ filter: invert(1); }
+    :root[data-theme="light"] .brand:hover img{ filter: invert(1) drop-shadow(0 0 8px var(--glow)); }
     .brand-badge{
       border:1px solid var(--fg35);
       border-radius: 4px;
       padding: 6px 10px;
       font-size:.78rem;
-      background: rgba(0,0,0,.15);
+      background: var(--surface);
     }
 
     .links{
@@ -120,7 +216,7 @@
       border-radius: 8px;
       transition: background .2s var(--ease), opacity .2s var(--ease);
     }
-    .links > a:hover{ background: rgba(255,255,255,.07); }
+    .links > a:hover{ background: var(--surface-hi); }
     .links a{
       color: var(--fg90);
       text-decoration:none;
@@ -148,7 +244,7 @@
       padding: 0 12px;
       border: 1px solid var(--fg25);
       border-radius: 6px;
-      background: rgba(0,0,0,.18);
+      background: var(--surface);
       cursor:pointer;
       user-select:none;
       white-space:nowrap;
@@ -168,16 +264,36 @@
       font-variant-numeric: tabular-nums;
     }
     .events-widget:hover{
-      background: rgba(0,0,0,.35);
+      background: var(--surface-med);
     }
     .events-mobile-prefix{ display:none; }
+
+    /* ---- theme toggle ---- */
+    .theme-toggle{
+      display:inline-flex;
+      align-items:center; justify-content:center;
+      width: 40px; height: 40px;
+      border:1px solid var(--fg25);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--fg80);
+      cursor:pointer;
+      padding:0;
+      transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+    }
+    .theme-toggle:hover{ color: var(--fg); border-color: var(--fg35); background: var(--surface-med); }
+    .theme-toggle svg{ width:19px; height:19px; display:block; }
+    /* One icon per theme: show the one you would switch TO. */
+    .theme-toggle .icon-sun{ display:none; }
+    :root[data-theme="light"] .theme-toggle .icon-sun{ display:block; }
+    :root[data-theme="light"] .theme-toggle .icon-moon{ display:none; }
 
     .hamburger{
       display:none;
       width: 44px; height: 44px;
       border:1px solid var(--fg25);
       border-radius: 10px;
-      background: rgba(0,0,0,.20);
+      background: var(--surface);
       align-items:center; justify-content:center;
       cursor:pointer;
     }
@@ -200,7 +316,7 @@
     /* ====== MOBILE NAV DRAWER ====== */
     .drawer-backdrop{
       position:fixed; inset:0;
-      background: rgba(0,0,0,.75);
+      background: var(--scrim);
       backdrop-filter: blur(6px);
       z-index: 1200;
       opacity:0; pointer-events:none;
@@ -212,7 +328,7 @@
       position:fixed;
       inset: 0;
       width:auto; height:auto;
-      background: rgba(6,6,8,.97);
+      background: var(--panel);
       -webkit-backdrop-filter: blur(22px);
       backdrop-filter: blur(22px);
       z-index: 1300;
@@ -272,7 +388,7 @@
       width:100%;
       margin: 0 0 6px;
       padding: calc(15px + env(safe-area-inset-top)) 0 14px;
-      background: linear-gradient(180deg, rgba(6,6,8,.97) 70%, rgba(6,6,8,0));
+      background: linear-gradient(180deg, var(--panel) 70%, transparent);
       flex: none;
     }
     .drawer-title{
@@ -286,7 +402,7 @@
       width: 44px; height: 44px;
       border:1px solid var(--fg25);
       border-radius: 12px;
-      background: rgba(255,255,255,.02);
+      background: var(--surface);
       cursor:pointer;
       color: var(--fg80);
       font-size: 18px;
@@ -315,7 +431,7 @@
     }
     .drawer a:hover{
       border-color: var(--fg25);
-      background: rgba(255,255,255,.04);
+      background: var(--surface-med);
     }
 
     /* ====== SECTIONS ====== */
@@ -328,7 +444,7 @@
       align-items:stretch;
       justify-content:center;
       overflow:hidden;
-      border-top: 1px solid rgba(255,255,255,.05);
+      border-top: 1px solid var(--surface-hi);
     }
 
     .media{
@@ -391,7 +507,7 @@
     }
     #hero h1{
       color: transparent;
-      -webkit-text-stroke: 2px #fff;
+      -webkit-text-stroke: 2px var(--fg);
     }
     /* ...but the hero positioning line is body copy, not outlined display type. */
     #hero h1.hero-line{
@@ -436,12 +552,12 @@
       letter-spacing: .12em;
       font-weight: 900;
       font-size: .78rem;
-      background: rgba(0,0,0,.30);
+      background: var(--btn-bg);
       transition: background .25s var(--ease), color .25s var(--ease);
     }
     .btn:hover{
-      background: rgba(255,255,255,.92);
-      color:#000;
+      background: var(--btn-hover-bg);
+      color: var(--btn-hover-fg);
     }
 
     .down{
@@ -501,7 +617,7 @@
     /* ====== EVENTS MODAL ====== */
     .modal-backdrop{
       position:fixed; inset:0;
-      background: rgba(0,0,0,.70);
+      background: var(--scrim);
       backdrop-filter: blur(6px);
       z-index: 2000;
       opacity:0; pointer-events:none;
@@ -518,7 +634,7 @@
       max-height: calc(92svh - max(env(safe-area-inset-top),18px) - max(env(safe-area-inset-bottom),18px));
       border-radius: 16px;
       border: 1px solid var(--fg15);
-      background: rgba(0,0,0,.90);
+      background: var(--panel);
       overflow:hidden;
       display:flex; flex-direction:column;
       box-shadow: 0 30px 80px rgba(0,0,0,.60);
@@ -539,7 +655,7 @@
       width: 40px; height: 40px;
       border:1px solid var(--fg25);
       border-radius: 12px;
-      background: rgba(255,255,255,.02);
+      background: var(--surface);
       cursor:pointer;
       color: var(--fg80);
       font-size: 18px;
@@ -552,13 +668,13 @@
       padding: 12px;
       border: 1px solid var(--fg10);
       border-radius: 14px;
-      background: rgba(255,255,255,.02);
+      background: var(--surface);
     }
     .event-thumb{
       width: 64px; height: 64px;
       border-radius: 12px;
       border: 1px solid var(--fg10);
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.08), var(--surface));
       flex: 0 0 auto;
     }
     .event-meta{ flex:1; min-width:0; }
@@ -585,7 +701,7 @@
       border:1px solid var(--fg10);
       border-radius: 999px;
       padding: 6px 10px;
-      background: rgba(255,255,255,.02);
+      background: var(--surface);
       letter-spacing:.08em;
       text-transform:uppercase;
       font-weight: 900;
@@ -627,7 +743,7 @@
     }
     .nav-dropdown-toggle:hover{ opacity: 1; }
     .nav-dropdown:hover .nav-dropdown-toggle,
-    .nav-dropdown.open .nav-dropdown-toggle{ background: rgba(255,255,255,.07); opacity:1; }
+    .nav-dropdown.open .nav-dropdown-toggle{ background: var(--surface-hi); opacity:1; }
     .nav-caret{
       font-size: .60rem;
       display: inline-block;
@@ -642,8 +758,8 @@
       left: 50%;
       transform: translateX(-50%);
       min-width: 200px;
-      background: rgba(0,0,0,.97);
-      border: 1px solid rgba(255,255,255,.09);
+      background: var(--panel);
+      border: 1px solid var(--fg10);
       border-radius: 2px;
       padding: 10px 0 6px;
       z-index: 200;
@@ -676,7 +792,7 @@
       opacity: 0;          /* animation drives this to 1 */
       transition: background .12s, color .12s;
     }
-    .nav-dropdown-menu a:hover{ background: rgba(255,255,255,.06); color:#fff; }
+    .nav-dropdown-menu a:hover{ background: var(--surface-med); color: var(--fg); }
     /* Staggered fade-in when menu opens */
     .nav-dropdown.open .nav-dropdown-menu a{
       animation: menuItemIn .22s var(--ease) both;
@@ -692,7 +808,7 @@
       font-size: .60rem;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(240,240,250,.35);
+      color: var(--fg35);
       padding: 16px 22px 4px;
       font-weight: 800;
       text-align: center;
@@ -703,10 +819,13 @@
     /* ====== RESPONSIVE ====== */
     @media (max-width: 980px){
       .links{ display:none; }
-      /* Menu button sits top-right wherever it is shown; logo stays centred. */
+      /* [logo | theme | menu] - menu button stays in the top-right corner and
+         the toggle sits beside it, so the logo takes the left instead of a
+         centre position with an empty gutter next to it. */
+      .nav{ grid-template-columns: 1fr auto auto; }
+      .brand{ grid-column:1; grid-row:1; justify-self:start; }
+      .right{ grid-column:2; grid-row:1; justify-self:end; }
       .hamburger{ display:inline-flex; grid-column:3; grid-row:1; justify-self:end; }
-      .brand{ grid-column:2; grid-row:1; }
-      .right{ grid-column:1; grid-row:1; justify-self:start; }
       .events-time{ min-width: 98px; }
       .content{ align-items:flex-end; }
       /* Clear the fixed down-arrow — prevents text/button overlap */
@@ -721,8 +840,8 @@
       .events-mobile-prefix{ display:inline; font-size:.70rem; color:var(--fg80); letter-spacing:.08em; }
       .events-time{ display:none; }
       .events-widget{ padding: 0 8px; gap: 0; height: 30px; justify-content:center; }
-      /* 3-column grid: [spare | logo | hamburger] — logo centred, menu button right */
-      .nav{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
+      .nav{ gap: 8px; }
+      .theme-toggle{ width:38px; height:38px; }
     }
 
     @media (max-width: 560px){
@@ -763,8 +882,8 @@
       .chev{ animation:none; }
     }
 	.anim-mode.active{
-  background: rgba(255,255,255,.92);
-  color:#000;
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
 }
 
 .depth-slider{
@@ -874,7 +993,7 @@
 
 /* ====== FOOTER ====== */
 .site-footer{
-  background: #000;
+  background: var(--bg);
   border-top: 1px solid var(--fg10);
   padding: 48px 22px 32px;
 }
@@ -940,7 +1059,7 @@
 .inquiry-form select,
 .inquiry-form textarea{
   width: 100%;
-  background: rgba(255,255,255,.04);
+  background: var(--surface-med);
   border: 1px solid var(--fg15);
   border-radius: 8px;
   color: var(--fg);
@@ -965,7 +1084,7 @@
   padding-right: 44px;
 }
 .inquiry-form select option{
-  background: #111;
+  background: var(--panel);
   color: var(--fg);
 }
 .inquiry-form textarea{
@@ -989,7 +1108,7 @@
   border-radius: 8px;
   border: 1px solid var(--fg35);
   color: var(--fg);
-  background: rgba(0,0,0,.30);
+  background: var(--btn-bg);
   text-transform: uppercase;
   letter-spacing: .12em;
   font-weight: 900;
@@ -999,8 +1118,8 @@
   transition: background .25s var(--ease), color .25s var(--ease);
 }
 .inquiry-form .btn-submit:hover{
-  background: rgba(255,255,255,.92);
-  color: #000;
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
 }
 .form-note{
   font-size: .80rem;
@@ -1030,6 +1149,15 @@
 
 /* contact page studio section styles are inlined in contact/index.html <style> block */
 
+/* The select chevrons are data-URIs, so the stroke colour cannot be a var.
+   Light mode gets an ink-stroked copy of each. */
+:root[data-theme="light"] .inquiry-form select{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(14,14,20,.55)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+:root[data-theme="light"] .graph-select{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(14,14,20,.6)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
 /* ====== SHOP PAGE ====== */
 .shop-grid{
   max-width: var(--maxw);
@@ -1042,17 +1170,17 @@
 .shop-card{
   border: 1px solid var(--fg10);
   border-radius: 14px;
-  background: rgba(255,255,255,.02);
+  background: var(--surface);
   overflow: hidden;
   transition: border-color .25s var(--ease), background .25s var(--ease);
 }
 .shop-card:hover{
   border-color: var(--fg25);
-  background: rgba(255,255,255,.04);
+  background: var(--surface-med);
 }
 .shop-card-thumb{
   aspect-ratio: 16/9;
-  background: rgba(255,255,255,.03);
+  background: var(--thumb-bg);
   overflow: hidden;
   position: relative;
 }
@@ -1109,12 +1237,12 @@
   letter-spacing: .10em;
   font-weight: 900;
   font-size: .72rem;
-  background: rgba(0,0,0,.30);
+  background: var(--btn-bg);
   transition: background .25s var(--ease), color .25s var(--ease);
 }
 .shop-btn:hover{
-  background: rgba(255,255,255,.92);
-  color: #000;
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
 }
 .shop-section-header{
   max-width: var(--maxw);
@@ -1137,7 +1265,7 @@
 .graph-select{
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(255,255,255,.05);
+  background: var(--surface-hi);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(240,240,250,.5)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
@@ -1156,7 +1284,7 @@
   transition: border-color .2s;
 }
 .graph-select:focus{ border-color: var(--fg35); }
-.graph-select option{ background: #111; }
+.graph-select option{ background: var(--panel); }
 .graph-desc{
   font-size: .80rem;
   color: var(--fg35);
@@ -1198,6 +1326,17 @@
   --band: clamp(56px, 7vw, 104px);   /* vertical rhythm between content bands */
 }
 
+/* Industry accents are brand colours picked against black. On a light page the
+   pale ones (gold, blue-grey) drop to ~2:1 against the background, so anywhere
+   the accent is used as TEXT it gets mixed toward ink first. Fills and borders
+   keep the raw colour. Declared on the elements that actually carry --accent,
+   because a custom property resolves where it is declared, not where it is read. */
+:root[data-theme="light"]{ --accent: rgba(14,14,20,.92); }
+:root[data-theme="light"] body,
+:root[data-theme="light"] [style*="--accent"]{
+  --accent-text: color-mix(in srgb, var(--accent) 58%, #000);
+}
+
 /* Keyboard access: visible focus everywhere, and a skip link. */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible{
   outline: 2px solid var(--accent);
@@ -1210,7 +1349,7 @@
 }
 .skip-link{
   position:absolute; left:-9999px; top:0; z-index:2000;
-  background:#000; color:var(--fg); border:1px solid var(--accent);
+  background: var(--panel); color:var(--fg); border:1px solid var(--accent);
   padding:12px 18px; border-radius:0 0 8px 0;
   font-size:.78rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase;
   text-decoration:none;
@@ -1221,7 +1360,7 @@
 .page-wrap{ max-width: var(--maxw); margin:0 auto; padding-left:22px; padding-right:22px; }
 .band{ padding-top: var(--band); padding-bottom: 0; }
 .band:last-of-type{ padding-bottom: var(--band); }
-.kicker.accent{ color: var(--accent); }
+.kicker.accent{ color: var(--accent-text, var(--accent)); }
 
 /* Inner-page hero: shorter than the homepage deck, so content starts above the fold. */
 .page-hero{ min-height: min(62svh, 620px); }
@@ -1234,18 +1373,18 @@
   color: var(--fg60); margin-bottom:14px; display:flex; gap:8px; align-items:center;
 }
 .crumbs a{ color: var(--fg80); text-decoration:none; }
-.crumbs a:hover{ color: var(--accent); }
+.crumbs a:hover{ color: var(--accent-text, var(--accent)); }
 
 /* ---- buttons: same shape as .btn, accent only on the primary ---- */
-.btn-accent{ border-color: var(--accent); color: var(--accent); }
-.btn-accent:hover{ background: var(--accent); color:#000; border-color: var(--accent); }
+.btn-accent{ border-color: var(--accent); color: var(--accent-text, var(--accent)); }
+.btn-accent:hover{ background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .btn-ghost{ border-color: var(--fg15); }
 
 /* ---- filter bar (/work) ---- */
 .filter-bar{
   position: sticky; top: calc(var(--headerH) + env(safe-area-inset-top));
   z-index: 40;
-  background: rgba(0,0,0,.88);
+  background: var(--bar2);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--fg10);
 }
@@ -1253,13 +1392,13 @@
 .filter{
   font: inherit; cursor:pointer;
   border:1px solid var(--fg15); border-radius:999px;
-  background: rgba(255,255,255,.02); color: var(--fg60);
+  background: var(--surface); color: var(--fg60);
   padding:8px 16px;
   font-size:.68rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase;
   transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
 }
 .filter:hover{ color: var(--fg); border-color: var(--fg25); }
-.filter.is-on{ color: var(--accent); border-color: var(--accent); background: rgba(255,255,255,.05); }
+.filter.is-on{ color: var(--accent-text, var(--accent)); border-color: var(--accent); background: var(--surface-hi); }
 
 /* Phone: six pills wrapped into four rows under a sticky bar, eating a third of
    the screen. One swipeable row instead. (Must sit after the base .filters rule.) */
@@ -1292,12 +1431,12 @@
 .work-card{
   display:flex; flex-direction:column;
   border:1px solid var(--fg10); border-radius:14px;
-  background: rgba(255,255,255,.02);
+  background: var(--surface);
   overflow:hidden; text-decoration:none;
   transition: border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
 }
-a.work-card:hover{ border-color: var(--accent); background: rgba(255,255,255,.05); transform: translateY(-2px); }
-.work-card-thumb{ aspect-ratio:16/10; overflow:hidden; background: rgba(255,255,255,.03); }
+a.work-card:hover{ border-color: var(--accent); background: var(--surface-hi); transform: translateY(-2px); }
+.work-card-thumb{ aspect-ratio:16/10; overflow:hidden; background: var(--thumb-bg); }
 .work-card-thumb img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .5s var(--ease); }
 a.work-card:hover .work-card-thumb img{ transform: scale(1.03); }
 
@@ -1306,8 +1445,8 @@ a.work-card:hover .work-card-thumb img{ transform: scale(1.03); }
 .draft-tile{
   display:flex; align-items:center; justify-content:center;
   background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.028) 0 12px, rgba(255,255,255,0) 12px 24px),
-    rgba(255,255,255,.015);
+    repeating-linear-gradient(135deg, var(--surface) 0 12px, transparent 12px 24px),
+    var(--thumb-bg);
 }
 .draft-tile span{
   width:34px; height:34px; border-radius:50%;
@@ -1342,7 +1481,7 @@ a.work-card:hover .work-card-thumb img{ transform: scale(1.03); }
 .work-card-body{ padding:20px; display:flex; flex-direction:column; gap:9px; flex:1; }
 .work-card-cat{
   font-size:.62rem; letter-spacing:.16em; text-transform:uppercase;
-  color: var(--accent); font-weight:900;
+  color: var(--accent-text, var(--accent)); font-weight:900;
 }
 .work-card-title{
   font-size:1.02rem; font-weight:950; line-height:1.2;
@@ -1352,7 +1491,7 @@ a.work-card:hover .work-card-thumb img{ transform: scale(1.03); }
 .card-deep{
   display:inline-block;
   font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase;
-  color: var(--accent); text-decoration:none;
+  color: var(--accent-text, var(--accent)); text-decoration:none;
 }
 a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 
@@ -1376,7 +1515,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .cs-split .sub{ max-width: 52ch; }
 
 .cs-gallery{ display:grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr)); gap: var(--gap); }
-.cs-shot{ margin:0; border-radius:12px; overflow:hidden; border:1px solid var(--fg10); background:rgba(255,255,255,.02); }
+.cs-shot{ margin:0; border-radius:12px; overflow:hidden; border:1px solid var(--fg10); background:var(--surface); }
 .cs-shot img{ width:100%; height:100%; display:block; object-fit:cover; aspect-ratio:4/3; }
 
 /* Portrait sources (phone screens, vertical formats) get a portrait tile so they
@@ -1386,9 +1525,9 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .cs-shot.tall.is-video video{ aspect-ratio: 9/16; object-fit: cover; }
 
 /* Graphic plates (site models, diagrams with text) must not be cover-cropped. */
-.cs-shot.contain img{ object-fit: contain; aspect-ratio: 16/9; background:#000; }
+.cs-shot.contain img{ object-fit: contain; aspect-ratio: 16/9; background: var(--media-bg); }
 /* Video tiles in the process gallery (the hero, plus any clip listed in data). */
-.cs-shot.is-video{ background:#000; }
+.cs-shot.is-video{ background: var(--media-bg); }
 .cs-shot.is-video video{
   width:100%; height:100%; display:block;
   object-fit:cover; aspect-ratio:4/3;
@@ -1397,8 +1536,8 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
   .cs-shot.is-video video{ /* lazyvideo still governs playback; nothing to animate here */ }
 }
 
-.cs-watch{ border-radius:12px; overflow:hidden; border:1px solid var(--fg10); background:#000; }
-.cs-watch video{ width:100%; display:block; aspect-ratio:16/9; background:#000; }
+.cs-watch{ border-radius:12px; overflow:hidden; border:1px solid var(--fg10); background: var(--media-bg); }
+.cs-watch video{ width:100%; display:block; aspect-ratio:16/9; background: var(--media-bg); }
 
 .band .rail-card:hover{ border-color: var(--accent); }
 
@@ -1429,7 +1568,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
   width:auto; height:auto;
   object-fit:contain;
   border-radius:4px;
-  background:#000;
+  background: var(--media-bg);
 }
 
 .lightbox-bar{
@@ -1452,14 +1591,14 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .lightbox-nav{
   position:absolute; z-index:2;
   border:1px solid var(--fg25);
-  background: rgba(0,0,0,.5);
+  background: var(--btn-bg);
   color: var(--fg80);
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
   transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
 }
 .lightbox-close:hover,
-.lightbox-nav:hover{ background: rgba(255,255,255,.12); color: var(--fg); border-color: var(--fg35); }
+.lightbox-nav:hover{ background: var(--surface-hi); color: var(--fg); border-color: var(--fg35); }
 
 .lightbox-close{
   top:18px; right:18px;
@@ -1493,7 +1632,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .soon{
   display:inline-block;
   font-size:.6rem; font-weight:900; letter-spacing:.16em; text-transform:uppercase;
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
   border:1px solid var(--accent);
   border-radius:999px; padding:4px 10px;
   opacity:.75;
@@ -1508,7 +1647,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
   margin-top: var(--band);
   padding: clamp(48px,6vw,88px) 0 clamp(56px,7vw,104px);
   border-top:1px solid var(--fg10);
-  background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,0));
+  background: linear-gradient(180deg, var(--surface), transparent);
 }
 .band-title{
   font-size: clamp(1.7rem, 3.4vw, 2.9rem);
@@ -1521,7 +1660,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .service-toc{
   border-top:1px solid var(--fg10); border-bottom:1px solid var(--fg10);
   position: sticky; top: calc(var(--headerH) + env(safe-area-inset-top)); z-index:40;
-  background: rgba(0,0,0,.88); backdrop-filter: blur(10px);
+  background: var(--bar2); backdrop-filter: blur(10px);
 }
 .service-toc .page-wrap{ display:flex; flex-wrap:wrap; gap:10px 22px; overflow-x:auto; padding-top:14px; padding-bottom:14px; scrollbar-width:none; }
 @media (max-width: 900px){ .service-toc .page-wrap{ flex-wrap:nowrap; } }
@@ -1543,11 +1682,11 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 }
 .service-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; }
 .pill-link{ text-decoration:none; transition: border-color .2s var(--ease), color .2s var(--ease); }
-.pill-link:hover{ border-color: var(--accent); color: var(--accent); }
+.pill-link:hover{ border-color: var(--accent); color: var(--accent-text, var(--accent)); }
 
 .service-side{
   border:1px solid var(--fg10); border-radius:14px;
-  background: rgba(255,255,255,.02);
+  background: var(--surface);
   padding: clamp(20px,2.4vw,30px);
 }
 .deliverables{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:11px; }
@@ -1562,7 +1701,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .side-project{
   display:flex; align-items:center; gap:12px; margin-top:12px;
   border:1px solid var(--fg10); border-radius:10px; overflow:hidden;
-  text-decoration:none; background: rgba(255,255,255,.02);
+  text-decoration:none; background: var(--surface);
   transition: border-color .25s var(--ease);
 }
 .side-project:hover{ border-color: var(--accent); }
@@ -1606,13 +1745,13 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
   display:grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr);
   gap: clamp(22px,3vw,48px); align-items:center;
   border:1px solid var(--fg10); border-radius:16px; overflow:hidden;
-  background: rgba(255,255,255,.02);
+  background: var(--surface);
   text-decoration:none;
   transition: border-color .3s var(--ease);
 }
 .feature:hover{ border-color: var(--accent); }
 @media (max-width: 860px){ .feature{ grid-template-columns:1fr; } }
-.feature-media{ aspect-ratio:16/10; overflow:hidden; background:#000; }
+.feature-media{ aspect-ratio:16/10; overflow:hidden; background: var(--media-bg); }
 .feature-media video, .feature-media img{ width:100%; height:100%; object-fit:cover; display:block; }
 .feature-body{ padding: clamp(22px,3vw,44px) clamp(22px,3vw,44px) clamp(22px,3vw,44px) 0; }
 @media (max-width: 860px){ .feature-body{ padding: 24px; } }
@@ -1620,11 +1759,11 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .cap-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr)); gap: var(--gap); }
 .cap{
   border:1px solid var(--fg10); border-radius:14px; padding: clamp(20px,2.4vw,28px);
-  background: rgba(255,255,255,.02); text-decoration:none;
+  background: var(--surface); text-decoration:none;
   display:flex; flex-direction:column; gap:10px;
   transition: border-color .3s var(--ease), background .3s var(--ease);
 }
-.cap:hover{ border-color: var(--accent); background: rgba(255,255,255,.05); }
+.cap:hover{ border-color: var(--accent); background: var(--surface-hi); }
 .cap h3{
   font-size:.86rem; font-weight:950; letter-spacing:.13em; text-transform:uppercase; color: var(--fg);
 }
@@ -1652,7 +1791,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .todo{
   display:inline-block; margin-left:6px;
   font-size:.6rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase;
-  color:#000; background: var(--accent); border-radius:3px; padding:2px 6px;
+  color: var(--on-accent); background: var(--accent); border-radius:3px; padding:2px 6px;
   vertical-align:middle;
 }
 
@@ -1660,7 +1799,7 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .brief-list{ list-style:none; display:grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr)); gap:18px; margin-top:22px; }
 .brief-list li{
   border:1px solid var(--fg10); border-radius:12px; padding:18px;
-  background: rgba(255,255,255,.02);
+  background: var(--surface);
   font-size:.88rem; line-height:1.55; color: var(--fg60);
 }
 .brief-list b{
@@ -1693,6 +1832,26 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
   line-height: 1.6;
   letter-spacing: .01em;
   color: var(--fg35);
+}
+
+/* Light-mode corrections for the bot-owned NEWS block below. That block is
+   rewritten by VFXBot, so these live outside it and win on specificity instead
+   of source order. Remove them once the generator emits tokens. */
+:root[data-theme="light"] .news-lead,
+:root[data-theme="light"] .news-card,
+:root[data-theme="light"] .faq-item,
+:root[data-theme="light"] .rail-card{ background: var(--surface); }
+:root[data-theme="light"] .news-lead:hover,
+:root[data-theme="light"] .news-card:hover,
+:root[data-theme="light"] .rail-card:hover{ background: var(--surface-med); }
+:root[data-theme="light"] .news-lead-thumb,
+:root[data-theme="light"] .news-card-thumb{ background: var(--thumb-bg); }
+:root[data-theme="light"] .post-body a:hover,
+:root[data-theme="light"] .faq-item summary:hover{ color: var(--fg); }
+/* The post hero fades to near-black; on a light page that has to land on the
+   page colour instead, or the image ends in a hard black band. */
+:root[data-theme="light"] .post-hero-fade{
+  background: linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.10) 45%, var(--bg) 100%);
 }
 
 /* ==== NEWS (generated by VFXBot — edits below this line are overwritten) ==== */

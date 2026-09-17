@@ -69,6 +69,7 @@ function head({ title, desc, path, ogImage = '/assets/about.jpg', accent }) {
   <meta name="twitter:description" content="${esc(desc)}" />
   <meta name="twitter:image" content="${SITE}${ogImage}" />
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
+  <script src="/js/theme.js"></script>
   <link rel="stylesheet" href="/css/site.css?v=${CSSV}" />
 </head>
 
@@ -148,7 +149,12 @@ ${categories.map((c) => `            <a href="/industries/${c.slug}">${esc(c.nam
           </div>
         </div>
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+        </button>
+      </div>
     </nav>
   </header>
 `;
