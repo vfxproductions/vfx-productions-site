@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Sep 2026 07:10:47 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 07:26:18 +0000</lastBuildDate>
+    <item>
+      <title>WebGPU just went baseline across every browser</title>
+      <link>https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/</guid>
+      <pubDate>Thu, 17 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms.</description>
+      <category>webgpu</category><category>3d rendering</category><category>browser graphics</category><category>web standards</category><category>performance</category>
+    </item>
     <item>
       <title>Does one studio really handle previz through delivery</title>
       <link>https://vfx.productions/news/does-one-studio-really-handle-previz-through-delivery/</link>

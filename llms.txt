@@ -1,71 +1,27 @@
 # Vision For Xperiences (vfx.productions)
 
-> Vision For Xperiences creates cinematic 3D, animation, and interactive visuals
-> for products, spaces, performances, and ideas that are difficult to show.
-> One studio, one pipeline: animation, VFX, design visualisation, live visuals
-> and interactive installations. Based in Rijswijk, the Netherlands.
+> Multidisciplinary creative studio in the Netherlands. VFX, 3D animation,
+> live and festival visuals, interactive art installations, and licensed drone
+> cinematography, delivered by one team from previz through final delivery.
 
 Contact: studio@vfx.productions (briefs answered within 48 hours).
 Budget bands: under EUR 1,000 / EUR 1,000-5,000 / EUR 5,000-15,000 / EUR 15,000+.
 Takes on work at budget levels most full-service houses decline.
 
-## Work
-- [All work](/work): projects grouped by the audience they were made for
-- [Product & Technology](/industries/product-technology): medical, offshore, vehicles, vessels, technical products
-- [Architecture & Spaces](/industries/architecture-spaces): buildings, interiors, retail and logistics environments
-- [Music & Culture](/industries/music-culture): artists, stages, festivals, cultural projects
-- [Fashion & Luxury](/industries/fashion-luxury): material, light and mood-led 3D imagery
-- [Film & Commercial](/industries/film-commercial): VFX, set extension and finishing for film and series
-
-## Case studies
-- [CYBERAWARE](/work/cyberaware): An interactive cybersecurity awareness installation that turns an abstract threat into something visitors operate with their hands.
-- [Giving an AI a Face](/work/ai-head): A concept render for an AI art piece — a glass head with an LED cube suspended inside it, standing on a dock you can talk to.
-- [Cyberphone](/work/cyberphone): A concept phone drawn in the Tesla Cybertruck’s design language — flat planes, hard folds, exposed stainless, and a flip.
-- [Sea and Shore Services](/work/sea-and-shore): Brand identity worked out in 3D for a logistics company — putting the mark on container ships and container stacks to see how it actually behaves at scale.
-- [Driving, Simulated](/work/vr-driving-simulator): A brand commercial for a VR driving-simulator startup, built around the moment the real car and the simulated one turn out to be the same thing.
-- [Catamaran](/work/catamaran): A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.
-- [Freight Calculator](/work/freight-calculator): The login screen for a freight-rate app — a container ship coming straight at you, and the hull used as the brand surface.
-- [Hooiberg](/work/hooiberg): An architectural animation of a house that borrows its structure from the Dutch hooiberg — the hay barn whose roof rides on masts — and rebuilds it as a modern home.
-- [DHG — Logwise](/work/dhg-logwise): Visualisation for a portfolio of Logwise distribution centres — a film for the flagship site plus site models for individual locations.
-- [Fountain Fuel — Brand Movie](/work/fountain-fuel): A brand film for a Dutch hydrogen and fast-charging network, built around a station that mostly did not exist yet.
-- [Off To A Better Future](/work/carbon-neutral): A brand film for five companies building a carbon-neutral logistics centre together — solar in, hydrogen out, trucks running on it.
-- [Broederliefde × AFAS Live](/work/broederliefde): Show visuals for Broederliefde’s set at the FunX Music Awards — content built for the arena’s main LED wall and run live behind the group for the whole set.
-- [FLAIRE × Maassilo](/work/flaire-maassilo): A show package for FLAIRE built around a rendered Rotterdam skyline, made for the big screens at the Maassilo.
-- [Tessaract](/work/tessaract): An infinite mirror room — a reflective real-time environment built as a loop for screens and installations.
-- [Loro Piana — Open Walk](/work/loro-piana-open-walk): A commercial rebuilding the Loro Piana Open Walk in black suede, down to the crest stamped into the footbed — made to prove an existing product can be recreated in full CG.
-- [C.P. Company — Integrated Mask](/work/cp-company-mask): A concept study from the COVID period: a face mask built into the garment itself, clipped on and off, in the language of C.P. Company.
-- [Ready Set Studios](/work/ready-set-studios): A dimensioned 3D model of a film studio, built from the architectural drawings so clients could judge the space before booking it.
-- [Street Takeover](/work/street-takeover): A real Heineken truck on a real street, with the bottle printed on its side pulled out of the livery and made physical — VFX, CG and Houdini liquid on an otherwise ordinary shot.
-
-## Studio
-Founded by Kees Moolenaar, 3D generalist and creative technologist (6+ years).
-BA Image & Media Technology, HKU Utrecht. Film and TV work via VFX studio Planet X:
-El Eternauta (Netflix series, 3D artist, 2025), De Vuurwerkramp (series, 3D artist, 2025),
-De Tatta's 3 (feature, virtual production artist, 2025). IMDb: nm17152376.
-
 ## Services
-- [3D animation and product films](/services#3d-animation)
-- [Technical and product visualisation](/services#technical-visualisation)
-- [VFX and compositing](/services#vfx-compositing)
-- [Motion design](/services#motion-design)
-- [Live visuals and music content](/services#live-visuals)
-- [Interactive installations and experiences](/services#interactive-installations)
-- [Design visualisation](/services#design-visualisation)
-- [Aerial capture](/services#aerial-capture)
-
-## Discipline pages
 - [VFX](/vfx): compositing, set extensions, tracking, simulations, stylised looks
-- [3D Animation](/animation): product visuals, cinematic shorts, motion systems
+- [3D Animation](/animation): product visuals, cinematic shorts, motion systems, stage worlds
 - [Live Visuals](/visuals): festival screens, DJ and artist visuals, reactive show content
 - [Interactive Design](/technology): art installations, educational devices, real-time experiences
 - [Drone Operator](/droneoperator): licensed UAV, aerial cinematics, event and location coverage
 - [Shop](/shop): presets, packs, motion templates, 3D asset bundles
 
 ## Get a quote
-- [Contact and brief form](/contact): what to send is listed on the page
+- [Contact and brief form](/contact)
 - [About the studio](/about)
 
 ## News
+- [WebGPU just went baseline across every browser](/news/webgpu-just-went-baseline-across-every-browser/): Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms.
 - [Does one studio really handle previz through delivery](/news/does-one-studio-really-handle-previz-through-delivery/): Some do, but the trend is toward specialists who know when to hand off. Here's how to tell the difference.
 - [Houdini 22 brings MCP agents into character rigging workflows](/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/): SideFX wired AI code generation into KineFX, letting riggers scaffold procedural setups faster without surrendering control.
 - [DJI Avata 360 shifts FPV from linear chase work to 360 capture](/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/): Eight-kilohertz 360-degree video and single-lens fallback mode open new options for spatial storytelling and post-production freedom.

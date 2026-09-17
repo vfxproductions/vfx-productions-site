@@ -1,41 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vfx.productions/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://vfx.productions/work</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vfx.productions/services</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vfx.productions/industries/product-technology</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/industries/architecture-spaces</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/industries/music-culture</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/industries/fashion-luxury</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/industries/film-commercial</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/cyberaware</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/ai-head</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/cyberphone</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/sea-and-shore</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/vr-driving-simulator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/catamaran</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/freight-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/hooiberg</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/dhg-logwise</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/fountain-fuel</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/carbon-neutral</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/broederliefde</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/flaire-maassilo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/tessaract</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/loro-piana-open-walk</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/cp-company-mask</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/ready-set-studios</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/work/street-takeover</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vfx.productions/about</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/vfx</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/animation</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/visuals</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/technology</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/droneoperator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/shop</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/jobs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vfx.productions/contact</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vfx.productions/vfx</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vfx.productions/animation</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vfx.productions/visuals</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vfx.productions/technology</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vfx.productions/droneoperator</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vfx.productions/shop</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://vfx.productions/jobs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://vfx.productions/news/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/</loc><lastmod>2026-09-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vfx.productions/news/does-one-studio-really-handle-previz-through-delivery/</loc><lastmod>2026-09-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vfx.productions/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vfx.productions/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>

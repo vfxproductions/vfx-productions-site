@@ -127,7 +127,6 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-top">
@@ -141,29 +140,21 @@
     <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
     <a href="/technology" data-nav class="drawer-sub">Technology</a>
     <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
-    <a href="/work" data-nav>Work</a>
-    <div class="drawer-section">By industry</div>
-    <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
-    <a href="/industries/architecture-spaces" data-nav class="drawer-sub">Architecture &amp; Spaces</a>
-    <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
-    <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
-    <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
-    <div class="drawer-section">Studio</div>
-    <a href="/about" data-nav class="drawer-sub">About</a>
-    <a href="/news" data-nav class="drawer-sub" aria-current="page">News</a>
-    <a href="/shop" data-nav class="drawer-sub">Shop</a>
-    <div class="drawer-section">Get in touch</div>
-    <a href="/contact" data-nav class="drawer-sub">Contact</a>
-    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
+    <a href="/news" data-nav>News</a>
+    <a href="/about" data-nav>About</a>
+    <a href="/shop" data-nav>Shop</a>
+    <a href="/jobs" data-nav>Jobs</a>
+    <a href="/contact" data-nav>Contact</a>
   </aside>
 
   <header>
     <nav class="nav" aria-label="Primary">
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
-      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
-        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+      <a class="brand" href="/">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" style="height:28px;object-fit:contain;" />
       </a>
       <div class="links" aria-label="Site links">
+        <a href="/">Home</a>
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
           <div class="nav-dropdown-menu">
@@ -174,39 +165,17 @@
             <a href="/droneoperator">Drone Operator</a>
           </div>
         </div>
-        <div class="nav-dropdown">
-          <a class="nav-dropdown-toggle" href="/work">Work <span class="nav-caret">&#9662;</span></a>
-          <div class="nav-dropdown-menu">
-            <a href="/work">All work</a>
-            <a href="/industries/product-technology">Product &amp; Technology</a>
-            <a href="/industries/architecture-spaces">Architecture &amp; Spaces</a>
-            <a href="/industries/music-culture">Music &amp; Culture</a>
-            <a href="/industries/fashion-luxury">Fashion &amp; Luxury</a>
-            <a href="/industries/film-commercial">Film &amp; Commercial</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a class="nav-dropdown-toggle" href="/about" aria-current="page">About <span class="nav-caret">&#9662;</span></a>
-          <div class="nav-dropdown-menu">
-            <a href="/about">About the studio</a>
-            <a href="/news" aria-current="page">News</a>
-            <a href="/shop">Shop</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a class="nav-dropdown-toggle" href="/contact">Contact <span class="nav-caret">&#9662;</span></a>
-          <div class="nav-dropdown-menu">
-            <a href="/contact">Get in touch</a>
-            <a href="/jobs">Jobs</a>
-          </div>
-        </div>
+        <a href="/news">News</a>
+        <a href="/about">About</a>
+        <a href="/shop">Shop</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/contact">Contact</a>
       </div>
-
       <div class="right"></div>
     </nav>
   </header>
 
-  <main id="main">
+  <main>
     <article class="post">
       <div class="post-hero">
         <img src="/news/img/iso-22028-5-sets-a-common-language-for-hdr-still-image-colour.webp" alt="HDR" />
@@ -232,7 +201,7 @@
       <p>The specification defines both baseline and extended colour encoding methods, mandates 10-bit minimum pipelines (12-bit recommended for master files), and requires embedded metadata that describes colour reproduction and content intent. For a studio shooting product visuals, creating composited imagery, or designing graphics for HDR display, this means one set of rules replaces the ad-hoc conversions that have dominated the work.</p>
       <h2>What actually shifted</h2>
       <p>The industry has been operating on fragments. Rec.2100 (BT.2100) handles HDR video, Rec.709 governs SDR stills, and working between them required custom LUTs and manual tone mapping. The new ISO standard bridges that gap for stills specifically, using Rec.2020 colour space and either PQ (perceptual quantizer) or HLG (hybrid log-gamma) transfer functions depending on whether the final destination is mastering-grade or broadcast.</p>
-      <p>Vision For Xperiences is following this closely, because <a href="/animation">product animation</a> and <a href="/vfx">compositing</a> increasingly have to land across both SDR and HDR destinations. A standard reference for still-image colour encoding would let metadata travel with the work, reducing the hand-off friction that otherwise means rebuilding colour instructions on delivery.</p>
+      <p>Vision For Xperiences works on <a href="/animation">product animation</a> and <a href="/vfx">compositing</a> that lands across both SDR and HDR destinations. A standard reference for still-image colour encoding means metadata can travel with the work, reducing the metadata hand-off friction that typically requires our team to rebuild colour instructions on delivery.</p>
       <h2>Single-stream workflows now have a standard</h2>
       <p>The standard enables single-stream delivery, where one HDR master serves both legacy SDR devices and HDR displays. This eliminates parallel rendering pipelines and halves the QA burden on deliverables. The metadata-driven approach means tone mapping adjustments can be applied downstream without re-grading, which matters when a campaign needs both cinema DCP and Instagram delivery from one source.</p>
       <p>For teams working in DaVinci Resolve or similar grading tools, ISO 22028-5 now defines what those tools should write to disk. Resolve has supported HDR10+ workflows since version 15, and this standard gives that work a normative foundation. When <a href="/technology">a studio handles interactive installations</a> or real-time graphics, HDR colour management becomes critical for public displays that increasingly support wide gamut and HDR output.</p>
@@ -268,7 +237,7 @@
         <div class="rail-grid"><a class="rail-card" href="/vfx"><span class="rail-name">VFX</span><span class="rail-desc">Compositing, set extensions, simulations</span></a><a class="rail-card" href="/animation"><span class="rail-name">3D Animation</span><span class="rail-desc">Product visuals, cinematic shorts, motion systems</span></a><a class="rail-card" href="/visuals"><span class="rail-name">Live Visuals</span><span class="rail-desc">Festival screens, DJ and artist show content</span></a><a class="rail-card" href="/technology"><span class="rail-name">Interactive</span><span class="rail-desc">Installations and real-time experiences</span></a><a class="rail-card" href="/droneoperator"><span class="rail-name">Drone Operator</span><span class="rail-desc">Licensed aerial capture and event coverage</span></a></div>
       </section>
 
-      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/does-one-studio-really-handle-previz-through-delivery/"><div class="news-card-thumb"><img src="/news/img/does-one-studio-really-handle-previz-through-delivery.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">16 September 2026</div><div class="news-card-title">Does one studio really handle previz through delivery</div></div></a><a class="news-card" href="/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/"><div class="news-card-thumb"><img src="/news/img/houdini-22-brings-mcp-agents-into-character-rigging-workflows.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">15 September 2026</div><div class="news-card-title">Houdini 22 brings MCP agents into character rigging workflows</div></div></a><a class="news-card" href="/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/"><div class="news-card-thumb"><img src="/news/img/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">14 September 2026</div><div class="news-card-title">DJI Avata 360 shifts FPV from linear chase work to 360 capture</div></div></a></div></section>
+      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/webgpu-just-went-baseline-across-every-browser/"><div class="news-card-thumb"><img src="/news/img/webgpu-just-went-baseline-across-every-browser.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">17 September 2026</div><div class="news-card-title">WebGPU just went baseline across every browser</div></div></a><a class="news-card" href="/news/does-one-studio-really-handle-previz-through-delivery/"><div class="news-card-thumb"><img src="/news/img/does-one-studio-really-handle-previz-through-delivery.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">16 September 2026</div><div class="news-card-title">Does one studio really handle previz through delivery</div></div></a><a class="news-card" href="/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/"><div class="news-card-thumb"><img src="/news/img/houdini-22-brings-mcp-agents-into-character-rigging-workflows.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">15 September 2026</div><div class="news-card-title">Houdini 22 brings MCP agents into character rigging workflows</div></div></a></div></section>
     </article>
   </main>
 
@@ -279,15 +248,13 @@
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="/">Home</a>
-        <a href="/work">Work</a>
-        <a href="/services">Services</a>
         <a href="/about">About</a>
-        <a href="/news">News</a>
         <a href="/vfx">VFX</a>
         <a href="/animation">Animation</a>
         <a href="/visuals">Visuals</a>
         <a href="/technology">Technology</a>
         <a href="/droneoperator">Drone Operator</a>
+        <a href="/news">News</a>
         <a href="/shop">Shop</a>
         <a href="/jobs">Jobs</a>
         <a href="/contact">Contact</a>
@@ -301,8 +268,8 @@
     const backdrop = document.getElementById("drawerBackdrop");
     const ham      = document.getElementById("hamburger");
     const close    = document.getElementById("drawerClose");
-    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); ham.setAttribute("aria-expanded","true"); }
-    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); ham.setAttribute("aria-expanded","false"); }
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); }
     ham.addEventListener("click", open);
     close.addEventListener("click", shut);
     backdrop.addEventListener("click", shut);
@@ -312,29 +279,22 @@
       var closeTimer=null;
       var btn=dd.querySelector('.nav-dropdown-toggle');
       var isHoverDevice=window.matchMedia('(hover:hover)').matches;
-      var isButton=btn.tagName==='BUTTON';
-      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
-      function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
+      function openDd(){ clearTimeout(closeTimer); dd.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      function closeDd(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
       if(isHoverDevice){
         dd.addEventListener('mouseenter', openDd);
         dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
-        dd.addEventListener('focusin', openDd);
-        dd.addEventListener('focusout',function(){ closeTimer=setTimeout(closeDd,120); });
-        if(isButton){ btn.addEventListener('click',function(e){ e.preventDefault(); }); }
-      } else {
-        btn.addEventListener('click',function(e){
-          if(dd.classList.contains('open') && !isButton) return; /* second tap follows the link */
-          e.preventDefault(); e.stopPropagation();
-          var opening=!dd.classList.contains('open');
-          document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
-          if(opening) openDd();
-        });
       }
+      btn.addEventListener('click',function(e){
+        if(isHoverDevice) return;
+        e.stopPropagation();
+        var opening=!dd.classList.contains('open');
+        document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); });
+        if(opening) openDd();
+      });
     });
-    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
+    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false'); }); });
   })();
   </script>
-  <script defer src="/js/header.js"></script>
-  <script defer src="/js/lightbox.js"></script>
 </body>
 </html>
