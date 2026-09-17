@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
   <title>WebGPU just went baseline across every browser — Vision For Xperiences</title>
-  <meta name="description" content="Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms." />
+  <meta name="description" content="Native-class 3D performance in the browser is no longer a future idea. The platform just changed." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/" />
   <link rel="icon" href="/assets/logo.png" />
@@ -13,12 +13,12 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Vision For Xperiences" />
   <meta property="og:title" content="WebGPU just went baseline across every browser — Vision For Xperiences" />
-  <meta property="og:description" content="Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms." />
+  <meta property="og:description" content="Native-class 3D performance in the browser is no longer a future idea. The platform just changed." />
   <meta property="og:url" content="https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/" />
   <meta property="og:image" content="https://vfx.productions/news/img/webgpu-just-went-baseline-across-every-browser.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WebGPU just went baseline across every browser — Vision For Xperiences" />
-  <meta name="twitter:description" content="Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms." />
+  <meta name="twitter:description" content="Native-class 3D performance in the browser is no longer a future idea. The platform just changed." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/webgpu-just-went-baseline-across-every-browser.webp" />
   <link rel="stylesheet" href="/css/site.css?v=056ce8ac76" />
   <script type="application/ld+json">
@@ -29,7 +29,7 @@
       "@type": "BlogPosting",
       "@id": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/#article",
       "headline": "WebGPU just went baseline across every browser",
-      "description": "Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms.",
+      "description": "Native-class 3D performance in the browser is no longer a future idea. The platform just changed.",
       "image": "https://vfx.productions/news/img/webgpu-just-went-baseline-across-every-browser.webp",
       "datePublished": "2026-09-17",
       "dateModified": "2026-09-17",
@@ -38,8 +38,8 @@
         "@type": "WebPage",
         "@id": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/"
       },
-      "keywords": "webgpu, 3d rendering, browser graphics, web standards, performance",
-      "wordCount": 463,
+      "keywords": "webgpu, 3d, browser, performance, real-time",
+      "wordCount": 669,
       "inLanguage": "en",
       "author": {
         "@type": "Organization",
@@ -213,31 +213,33 @@
       </div>
 
       <div class="post-head">
-        <div class="kicker">3D TECHNOLOGY</div>
+        <div class="kicker">WEB GRAPHICS</div>
         <h1>WebGPU just went baseline across every browser</h1>
-        <p class="post-dek">Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms.</p>
+        <p class="post-dek">Native-class 3D performance in the browser is no longer a future idea. The platform just changed.</p>
         <div class="post-meta">
           <time datetime="2026-09-17">17 September 2026</time>
           <span class="post-meta-sep">/</span>
           <span>Vision For Xperiences Studio Desk</span>
           <span class="post-meta-sep">/</span>
-          <span>3 min read</span>
+          <span>4 min read</span>
         </div>
-        <div class="post-tags"><span class="pill">webgpu</span><span class="pill">3d rendering</span><span class="pill">browser graphics</span><span class="pill">web standards</span><span class="pill">performance</span></div>
+        <div class="post-tags"><span class="pill">webgpu</span><span class="pill">3d</span><span class="pill">browser</span><span class="pill">performance</span><span class="pill">real-time</span></div>
       </div>
 
       <div class="post-body">
-      <h2>The baseline moment</h2>
       <p>WebGPU officially hit Baseline status in January 2026. Chrome, Edge, Firefox, and Safari now ship it stable by default across Windows, macOS, and iOS. This is the first time in 15 years that a high-performance graphics standard has shipped without fragmentation across major browsers.</p>
-      <p>Three.js and Babylon.js both support it out of the box. Three.js lets you swap `WebGLRenderer` for `WebGPURenderer` in one line and typically see 10× performance gains in particle-heavy work. Babylon.js 9.0, shipping in March 2026, added clustered lighting, volumetric lighting via compute shaders, and area lights. The shift from WebGL's state-machine API to WebGPU's low-level GPU control changed the performance floor overnight.</p>
-      <h2>What changed in practice</h2>
-      <p>The numbers are concrete. Nexara Labs runs 4K AR e-commerce on iPhone 15 at 58 FPS serving 3 million users. ChartGPU renders 1 million data points at 60 FPS. WebGPU compute shaders now handle work that used to require native backends: a particle system updating 100,000 particles runs in under 2ms, where CPU-only approaches need 30ms for 10,000.</p>
-      <p>For studios handling <a href="/technology">interactive design and real-time experiences</a>, this means the browser is now a legitimate target platform for work that would have required Unity or custom native code. Visualization work, AR try-ons, data dashboards, and parametric configurators all flip from "let's build this native" to "browser-first makes sense."</p>
-      <h2>The adoption curve</h2>
+      <p>Three.js and Babylon.js both support it out of the box. Three.js lets you swap `WebGLRenderer` for `WebGPURenderer` in one line and typically see 10x performance gains in particle-heavy work. Babylon.js 9.0, shipping in March 2026, added clustered lighting, volumetric lighting via compute shaders, and area lights. The shift from WebGL's state-machine API to WebGPU's low-level GPU control changed what you can ask a browser to do.</p>
+      <h2>What actually runs now</h2>
+      <p>Nexara Labs runs 4K AR e-commerce on iPhone 15 at 58 FPS serving 3 million users. ChartGPU renders 1 million data points at 60 FPS. WebGPU compute shaders now handle work that used to require shipping native code: a particle system updating 100,000 particles runs in under 2ms, where CPU-only approaches need 30ms for 10,000.</p>
+      <p>For studios handling <a href="/technology">interactive design and real-time experiences</a>, this means the browser is now a legitimate target platform for work that would have required Unity or custom native code. Visualization work, AR try-ons, data dashboards, and parametric configurators all flip from "let's build this native" to "browser-first makes sense." We have started steering clients who own their hosting toward WebGPU deployments instead of asking them to choose between a native app or a limited web version. The performance bar has moved.</p>
+      <h2>The adoption is real</h2>
       <p>The 2025 Web Almanac found WebGPU in 65 percent of new web apps shipping 3D content, up from around 8 percent two years ago. The jump is not hype. It is driven by framework support being there, fallback pathways being clear (Babylon.js ships both WGSL and GLSL versions of core shaders), and the performance gap versus native now sitting at 20 percent instead of 50.</p>
       <p>WebGL is not disappearing. But it is no longer the bottleneck for browser-based 3D work. A team choosing to build an interactive installation, a product visualization, or a festival screen experience in the browser now has the same real-time capabilities they would get from a traditional 3D engine.</p>
-      <h2>Where this lands for us</h2>
-      <p>Vision For Xperiences builds <a href="/technology">interactive installations</a> and <a href="/visuals">live visuals</a> that run in public spaces. Browser-based deployment means no OS-specific builds, simpler distribution, and direct audience metrics. We have started steering clients who own their hosting toward WebGPU deployments instead of asking them to choose between a native app or a limited web version. The performance bar has moved.</p>
+      <h2>Where the catch is</h2>
+      <p>WebGPU is stable, but deployment is still harder than native. Debugging compute shaders is raw. The ecosystem of asset pipelines is thinner than it is for Unity or Unreal. Memory budgets on mobile are tighter than specs suggest. And adoption in production is still small enough that you are often the first people at your studio to try something, which means you are the ones who hit the edges.</p>
+      <p>Vision For Xperiences builds <a href="/visuals">installations and live visuals</a> that run in public spaces and festival settings, where reliability and performance matter. Browser-based deployment means no OS-specific builds, simpler distribution, and direct audience metrics. The question now is not whether the browser can do this work. It is whether you want to be the studio that learns WebGPU's gotchas first, or wait for the examples to pile up.</p>
+      <h2>What we are watching for</h2>
+      <p>The real win for us is the gap between what we quote for a piece of <a href="/animation">VFX or 3D animation</a> and what a browser-native project costs. If WebGPU sticks, that gap narrows. A product visualization, a museum installation, a parametric brand experience, all the work that lives on the border between "too heavy for web, too light for a full pipeline" gets cheaper to scope and faster to iterate. The framework stability is there. The hardware support is there. What we are waiting to see is whether the talent side follows.</p>
       <p>For studios still deciding between browsers and native, the question is no longer "can the browser do this." It is "should we." Cost of iteration, audience reach, and control of the environment are the trade-offs now.</p>
       </div>
 
@@ -264,7 +266,7 @@
         <div class="rail-grid"><a class="rail-card" href="/vfx"><span class="rail-name">VFX</span><span class="rail-desc">Compositing, set extensions, simulations</span></a><a class="rail-card" href="/animation"><span class="rail-name">3D Animation</span><span class="rail-desc">Product visuals, cinematic shorts, motion systems</span></a><a class="rail-card" href="/visuals"><span class="rail-name">Live Visuals</span><span class="rail-desc">Festival screens, DJ and artist show content</span></a><a class="rail-card" href="/technology"><span class="rail-name">Interactive</span><span class="rail-desc">Installations and real-time experiences</span></a><a class="rail-card" href="/droneoperator"><span class="rail-name">Drone Operator</span><span class="rail-desc">Licensed aerial capture and event coverage</span></a></div>
       </section>
 
-      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/meshy-opens-the-text-to-physical-pipeline-at-ces-2026/"><div class="news-card-thumb"><img src="/news/img/meshy-opens-the-text-to-physical-pipeline-at-ces-2026.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">17 September 2026</div><div class="news-card-title">Meshy opens the text-to-physical pipeline at CES 2026</div></div></a><a class="news-card" href="/news/does-one-studio-really-handle-previz-through-delivery/"><div class="news-card-thumb"><img src="/news/img/does-one-studio-really-handle-previz-through-delivery.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">16 September 2026</div><div class="news-card-title">Does one studio really handle previz through delivery</div></div></a><a class="news-card" href="/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/"><div class="news-card-thumb"><img src="/news/img/houdini-22-brings-mcp-agents-into-character-rigging-workflows.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">15 September 2026</div><div class="news-card-title">Houdini 22 brings MCP agents into character rigging workflows</div></div></a></div></section>
+      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/meshy-opens-the-text-to-physical-pipeline-at-ces-2026/"><div class="news-card-thumb"><img src="/news/img/meshy-opens-the-text-to-physical-pipeline-at-ces-2026.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">17 September 2026</div><div class="news-card-title">Meshy opens the text-to-physical pipeline at CES 2026</div></div></a><a class="news-card" href="/news/does-one-studio-really-handle-previz-through-delivery/"><div class="news-card-thumb"><img src="/news/img/does-one-studio-really-handle-previz-through-delivery.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">16 September 2026</div><div class="news-card-title">One studio or many: when to hire specialists instead</div></div></a><a class="news-card" href="/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/"><div class="news-card-thumb"><img src="/news/img/houdini-22-brings-mcp-agents-into-character-rigging-workflows.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">15 September 2026</div><div class="news-card-title">Houdini 22 plugs AI agents into character rigging</div></div></a></div></section>
     </article>
   </main>
 
