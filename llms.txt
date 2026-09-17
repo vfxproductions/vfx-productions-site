@@ -22,6 +22,7 @@ Takes on work at budget levels most full-service houses decline.
 
 ## News
 - [WebGPU just went baseline across every browser](/news/webgpu-just-went-baseline-across-every-browser/): Native-class 3D performance in the browser is no longer a future idea. Studios building browser-based work need to think differently about target platforms.
+- [Meshy opens the text-to-physical pipeline at CES 2026](/news/meshy-opens-the-text-to-physical-pipeline-at-ces-2026/): An AI model generator that shapes output to real manufacturing constraints changes who can turn a render into an actual object.
 - [Does one studio really handle previz through delivery](/news/does-one-studio-really-handle-previz-through-delivery/): Some do, but the trend is toward specialists who know when to hand off. Here's how to tell the difference.
 - [Houdini 22 brings MCP agents into character rigging workflows](/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/): SideFX wired AI code generation into KineFX, letting riggers scaffold procedural setups faster without surrendering control.
 - [DJI Avata 360 shifts FPV from linear chase work to 360 capture](/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/): Eight-kilohertz 360-degree video and single-lens fallback mode open new options for spatial storytelling and post-production freedom.
