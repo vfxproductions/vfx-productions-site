@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
   <title>August broke open the Gaussian splatting toolkit — Vision For Xperiences</title>
-  <meta name="description" content="Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment." />
+  <meta name="description" content="Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/" />
   <link rel="icon" href="/assets/logo.png" />
@@ -13,12 +13,12 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Vision For Xperiences" />
   <meta property="og:title" content="August broke open the Gaussian splatting toolkit — Vision For Xperiences" />
-  <meta property="og:description" content="Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment." />
+  <meta property="og:description" content="Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment." />
   <meta property="og:url" content="https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/" />
   <meta property="og:image" content="https://vfx.productions/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="August broke open the Gaussian splatting toolkit — Vision For Xperiences" />
-  <meta name="twitter:description" content="Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment." />
+  <meta name="twitter:description" content="Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment." />
   <meta name="twitter:image" content="https://vfx.productions/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp" />
   <link rel="stylesheet" href="/css/site.css?v=056ce8ac76" />
   <script type="application/ld+json">
@@ -29,17 +29,17 @@
       "@type": "BlogPosting",
       "@id": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/#article",
       "headline": "August broke open the Gaussian splatting toolkit",
-      "description": "Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment.",
+      "description": "Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.",
       "image": "https://vfx.productions/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp",
       "datePublished": "2026-09-11",
-      "dateModified": "2026-09-11",
+      "dateModified": "2026-09-17",
       "url": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/"
       },
-      "keywords": "gaussian splatting, real-time 3d, vfx production, 3d capture, rendering",
-      "wordCount": 478,
+      "keywords": "gaussian splatting, 3d capture, vfx pipeline, real-time rendering, august 2026",
+      "wordCount": 648,
       "inLanguage": "en",
       "author": {
         "@type": "Organization",
@@ -213,26 +213,32 @@
       </div>
 
       <div class="post-head">
-        <div class="kicker">3D CAPTURE &amp; RENDERING</div>
+        <div class="kicker">PRODUCTION TOOLS</div>
         <h1>August broke open the Gaussian splatting toolkit</h1>
-        <p class="post-dek">Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment.</p>
+        <p class="post-dek">Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.</p>
         <div class="post-meta">
           <time datetime="2026-09-11">11 September 2026</time>
           <span class="post-meta-sep">/</span>
           <span>Vision For Xperiences Studio Desk</span>
           <span class="post-meta-sep">/</span>
-          <span>3 min read</span>
+          <span>4 min read</span>
         </div>
-        <div class="post-tags"><span class="pill">gaussian splatting</span><span class="pill">real-time 3d</span><span class="pill">vfx production</span><span class="pill">3d capture</span><span class="pill">rendering</span></div>
+        <div class="post-tags"><span class="pill">gaussian splatting</span><span class="pill">3d capture</span><span class="pill">vfx pipeline</span><span class="pill">real-time rendering</span><span class="pill">august 2026</span></div>
       </div>
 
       <div class="post-body">
       <p>In August 2026, Gaussian splatting crossed from research tool into production stack. Foundry shipped a native toolset in Nuke 17.1, Autodesk added splat snapping to Maya 2026, Houdini landed three new splat tools, and Blender saw four free add-ons released in five days. That convergence was not coincidence. It was the moment when VFX studios stopped asking whether splats were ready and started asking which pipeline to build around them.</p>
-      <p>Why now. Three.js merged a native Gaussian splat renderer in r186 and vis.gl shipped a GPU splat renderer in luma.gl 9.4.0 beta, both in August. That matters because it means web deployment and real-time applications are no longer bottlenecked at the render layer. The technology reached a stability threshold where vendors could commit. Nuke, Maya, Houdini, these are not experimental platforms. When they ship a toolset, it is because the inputs are stable and the outputs are predictable.</p>
-      <p>What changed for workflow. Before August, splat work felt like three separate jobs: capture the scene, process it in isolation, then awkwardly composite it back. Now it is vertical. You capture with Polycam or Nerfstudio, you import into <a href="/vfx">your compositing tool</a> with native splat nodes, you render depth passes and layer mattes alongside RGB. Native support removes a file handoff between packages that used to sit in the middle of every splat job, which is the part that matters most for a team like Vision For Xperiences that runs capture, compositing and interactive delivery under one roof rather than across three vendors. That is not a small efficiency gain on a 20-shot job.</p>
-      <p>Where splats actually win. Architectural visualization, product-in-environment shots, and location-based visual effects are faster with splats than with point clouds or mesh geometry. Splats hold photographic detail and render in real-time, which matters for client reviews and interactive <a href="/technology">visualization work</a>. But they are not a universal capture method. For measurement-dependent work, anything where geometry precision is critical, splats are supplementary. You still need survey data and structured models.</p>
-      <p>The rendering layer stabilized too. OctaneRender 2026 path-traces Gaussian splats natively. Foundry integrated the technique into Nuke's compositor. Arnold through Maya, V-Ray through every platform it supports, the major render engines now treat splats as a first-class primitive, not a workaround. That is the real shift. Splats stopped being a clever alternative and became a normal production input.</p>
-      <p>Where it goes. The August momentum carries real weight. Forty-nine industry articles, seventy-seven job listings, and one hundred and three research papers landed in a single month on the topic. That is not hype; that is hiring velocity. Studios are shipping projects with splats, not prototyping them. For teams working on <a href="/technology">interactive installations</a> or large-scale location capture, the choice between NeRF, Gaussian splats, and traditional geometry has moved from theoretical into practical. Pick the one that fits the budget and asset lifecycle. They are all in production now.</p>
+      <h2>The render layer stabilized</h2>
+      <p>Three.js merged a native Gaussian splat renderer in r186 and vis.gl shipped a GPU splat renderer in luma.gl 9.4.0 beta, both in August. That matters because it means web deployment and real-time applications are no longer bottlenecked at the render layer. The technology reached a stability threshold where vendors could commit. Nuke, Maya, Houdini, these are not experimental platforms. When they ship a toolset, it is because the inputs are stable and the outputs are predictable.</p>
+      <p>OctaneRender 2026 path-traces Gaussian splats natively. Foundry integrated the technique into Nuke's compositor. Arnold through Maya, V-Ray through every platform it supports, the major render engines now treat splats as a first-class primitive, not a workaround. That is the real shift. Splats stopped being a clever alternative and became a normal production input.</p>
+      <h2>Where the workflow changed</h2>
+      <p>Before August, splat work felt like three separate jobs: capture the scene, process it in isolation, then awkwardly composite it back. Now it is vertical. You capture with Polycam or Nerfstudio, you import into <a href="/vfx">your compositing setup</a> with native splat nodes, you render depth passes and layer mattes alongside RGB. Native support removes a file handoff between packages that used to sit in the middle of every splat job, which is the part that matters most for a studio like Vision For Xperiences that runs capture, compositing and interactive delivery under one roof rather than across three vendors. That efficiency win scales on location work.</p>
+      <h2>What splats actually win at</h2>
+      <p>Architectural visualization, product-in-environment shots, and location-based visual effects are faster with splats than with point clouds or mesh geometry. Splats hold photographic detail and render in real-time, which matters for client reviews and <a href="/technology">interactive visualization work</a>. We have built work that required dimensional accuracy and real-time interactivity together, and watching how this layer stabilizes is painful in the best way. If splat geometry holds up outside the demo reel and in front of a survey instrument, it changes how we would quote a job involving both live capture and <a href="/work">precise 3D environments</a>.</p>
+      <p>But splats are not a universal capture method. For measurement-dependent work, anything where geometry precision is critical, splats are supplementary. You still need survey data and structured models. That is the honest catch. Splats have not solved the constraint where accuracy and speed compete.</p>
+      <h2>The hiring velocity is real</h2>
+      <p>The August momentum carries weight. Forty-nine industry articles, seventy-seven job listings, and one hundred and three research papers landed in a single month on the topic. That is not hype; that is hiring velocity. Studios are shipping projects with splats, not prototyping them. For teams working on large-scale location capture or interactive installations, the choice between NeRF, Gaussian splats, and traditional geometry has moved from theoretical into practical. Pick the one that fits the budget and asset lifecycle. They are all in production now.</p>
+      <p>Vision For Xperiences is watching this one closely. The moment the rendering layer is stable enough and the toolset matures enough, splat capture becomes part of how we quote <a href="/technology">capture and delivery work</a>. Until then, we are waiting to see how it holds up when a client asks for modifications three weeks into production, or when the geometry has to hold together under lighting that was not in the original scan. Those questions will define whether this stays in the toolbox.</p>
       </div>
 
       <div class="post-body">

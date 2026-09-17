@@ -6,7 +6,7 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Sep 2026 10:54:11 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 10:58:37 +0000</lastBuildDate>
     <item>
       <title>WebGPU just went baseline across every browser</title>
       <link>https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/</link>
@@ -92,8 +92,8 @@
       <link>https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</link>
       <guid isPermaLink="true">https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</guid>
       <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Major VFX and 3D software shipped native splat support in five days, signalling production is no longer an experiment.</description>
-      <category>gaussian splatting</category><category>real-time 3d</category><category>vfx production</category><category>3d capture</category><category>rendering</category>
+      <description>Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.</description>
+      <category>gaussian splatting</category><category>3d capture</category><category>vfx pipeline</category><category>real-time rendering</category><category>august 2026</category>
     </item>
   </channel>
 </rss>
