@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Free AI rigging just removed the skeleton-building tax](/news/free-ai-rigging-just-removed-the-skeleton-building-tax/): Armature automates the repetitive part of character rigging and ships free, which changes the economics of projects where rigs matter but budgets don't.
 - [WebGPU just went baseline across every browser](/news/webgpu-just-went-baseline-across-every-browser/): Native-class 3D performance in the browser is no longer a future idea. The platform just changed.
 - [Meshy opens the text-to-physical pipeline at CES 2026](/news/meshy-opens-the-text-to-physical-pipeline-at-ces-2026/): An AI model generator that shapes output to real manufacturing constraints changes who can turn a render into an actual object.
 - [One studio or many: when to hire specialists instead](/news/does-one-studio-really-handle-previz-through-delivery/): A handful of studios do handle previz through delivery, but 2026's trend is smarter handoffs with specialists.
