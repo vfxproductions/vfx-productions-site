@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Meshy just plugged AI mesh generation into Claude and other coding assistants](/news/meshy-just-plugged-ai-mesh-generation-into-claude-and-other-coding/): When text-to-3D becomes a native capability of AI agents, the abstraction between describing something and building it dissolves.
 - [Free AI rigging just removed the skeleton-building tax](/news/free-ai-rigging-just-removed-the-skeleton-building-tax/): Armature automates the repetitive part of character rigging and ships free, which changes the economics of projects where rigs matter but budgets don't.
 - [WebGPU just went baseline across every browser](/news/webgpu-just-went-baseline-across-every-browser/): Native-class 3D performance in the browser is no longer a future idea. The platform just changed.
 - [Meshy opens the text-to-physical pipeline at CES 2026](/news/meshy-opens-the-text-to-physical-pipeline-at-ces-2026/): An AI model generator that shapes output to real manufacturing constraints changes who can turn a render into an actual object.
