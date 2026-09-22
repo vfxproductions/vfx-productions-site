@@ -268,7 +268,7 @@ function ctaBlock(kicker, headline, text, accent) {
         <p class="sub">${esc(text)}</p>
         <div class="actions">
           <a class="btn btn-accent" href="/contact">Start a project</a>
-          <a class="btn" href="mailto:${studio.email}">Email the studio</a>
+          <a class="btn" href="mailto:${studio.email}?subject=Project%20enquiry">Email the studio</a>
         </div>
       </div>
     </section>`;
