@@ -156,7 +156,7 @@ Two recurring self-inflicted bugs to watch for:
   creativity", "taking your vision to the next level", "passionate about pushing
   boundaries".
 - Branding is **70% shared / 30% targeted**: one stylesheet, one type scale, one grid.
-  Each industry varies only its `--accent` colour and pacing. No sub-brands.
+  Each of the six industries varies only its `--accent` colour and pacing. No sub-brands.
 
 ---
 
@@ -178,13 +178,14 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**20 published case studies, 1 coming soon** (offshore drilling platform), across five industries:
+**20 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
 
-- **Product & Technology** (9) — CYBERAWARE - Giving an AI a Face - Cyberphone -
-  Sea and Shore Services - Driving, Simulated - Clot Retrieval - Catamaran - Speedboat -
-  Freight Calculator
+- **Product & Technology** (5) — CYBERAWARE - Giving an AI a Face - Cyberphone -
+  Driving, Simulated - Clot Retrieval
 - **Architecture & Spaces** (4) — Hooiberg - DHG/Logwise - Fountain Fuel -
   Off To A Better Future
+- **Maritime & Offshore** (4) — Sea and Shore Services - Catamaran - Speedboat -
+  Freight Calculator (+ the offshore drilling platform draft)
 - **Music & Culture** (3) — Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
 - **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask
 - **Film & Commercial** (2) — Ready Set Studios - Street Takeover

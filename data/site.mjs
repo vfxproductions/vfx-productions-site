@@ -6,7 +6,7 @@
    ============================================================================= */
 
 /* ---------------------------------------------------------------------------
-   CATEGORIES - the five audiences. `accent` is the ONLY colour that changes
+   CATEGORIES - the six audiences. `accent` is the ONLY colour that changes
    between them; everything else (type, grid, buttons, spacing) stays shared.
    --------------------------------------------------------------------------- */
 export const categories = [
@@ -45,6 +45,24 @@ export const categories = [
     ],
     services: ['design-visualisation', '3d-animation', 'technical-visualisation', 'motion-design'],
     hero: { type: 'video', src: '/assets/animation.mp4' }
+  },
+  {
+    slug: 'maritime-offshore',
+    name: 'Maritime & Offshore',
+    short: 'Maritime',
+    accent: '#2EB8C4',
+    tone: 'cinematic',
+    headline: 'MADE<br>FOR<br>OPEN<br>WATER.',
+    message: 'We visualise boats, ships, and offshore structures on the water they were built for — for boat builders, shipping and logistics companies, and the offshore industry.',
+    intro: 'Anything built for the water is hard to show on land. A hull only makes sense at speed, a ship only at scale, and an offshore structure is somewhere almost nobody will ever stand. We build the vessel or the structure in 3D, put it in simulated water, and film it from angles a chase boat or a helicopter could not get.',
+    focus: [
+      ['Water that behaves', 'Bow waves, spray and wakes simulated around the hull, so the boat sits in the water correctly at every speed.'],
+      ['Every angle from one model', 'Waterline, bow-on, straight down from above, close on the deck — all from the same scene, before or after the first hull exists.'],
+      ['Scale', 'Ships, containers and platforms shown at the size they really are, with the brand holding up at 200 metres.'],
+      ['Beyond the render', 'The same scene can become a three.js web experience, so a buyer can turn the boat around in the browser.']
+    ],
+    services: ['3d-animation', 'design-visualisation', 'technical-visualisation', 'interactive-installations'],
+    hero: { type: 'video', src: '/assets/speedboat.mp4' }
   },
   {
     slug: 'music-culture',
@@ -120,7 +138,7 @@ export const services = [
       'Clean plates and isolated elements on request',
       'Stills pulled from the final render for press and web use'
     ],
-    industries: ['product-technology', 'architecture-spaces', 'fashion-luxury', 'film-commercial']
+    industries: ['product-technology', 'architecture-spaces', 'maritime-offshore', 'fashion-luxury', 'film-commercial']
   },
   {
     slug: 'technical-visualisation',
@@ -134,7 +152,7 @@ export const services = [
       'An annotated version and a clean version of each shot',
       'Turntables and colourway variants where the product has options'
     ],
-    industries: ['product-technology', 'architecture-spaces']
+    industries: ['product-technology', 'architecture-spaces', 'maritime-offshore']
   },
   {
     slug: 'vfx-compositing',
@@ -204,7 +222,7 @@ export const services = [
       'Daylight, evening and seasonal variants of the key views',
       'Material and finish studies as directly comparable stills'
     ],
-    industries: ['architecture-spaces', 'product-technology', 'fashion-luxury']
+    industries: ['architecture-spaces', 'product-technology', 'maritime-offshore', 'fashion-luxury']
   },
   {
     slug: 'aerial-capture',
@@ -313,7 +331,7 @@ export const projects = [
     slug: 'sea-and-shore',
     status: 'published',
     title: 'Sea and Shore Services',
-    category: 'product-technology',
+    category: 'maritime-offshore',
     year: '2022',
     client: 'Sea and Shore Services B.V.',
     summary: 'Brand identity worked out in 3D for a logistics company — putting the mark on container ships and container stacks to see how it actually behaves at scale.',
@@ -384,7 +402,7 @@ export const projects = [
   },
 
 
-  { slug: 'offshore-drilling-platform', status: 'draft', title: 'Offshore structures — drilling platform', category: 'product-technology',
+  { slug: 'offshore-drilling-platform', status: 'draft', title: 'Offshore structures — drilling platform', category: 'maritime-offshore',
     summary: '', description: '', challenge: '', approach: '', result: '', role: '', year: '', client: '',
     serviceSlugs: ['technical-visualisation', '3d-animation'], thumb: '/assets/spec_oil.jpg', gallery: [] },
 
@@ -392,7 +410,7 @@ export const projects = [
     slug: 'catamaran',
     status: 'published',
     title: 'Catamaran',
-    category: 'product-technology',
+    category: 'maritime-offshore',
     year: '2026',
     client: '',          /* no external client - the row is hidden when empty */
     summary: 'A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.',
@@ -415,7 +433,7 @@ export const projects = [
     slug: 'speedboat',
     status: 'published',
     title: 'Speedboat',
-    category: 'product-technology',
+    category: 'maritime-offshore',
     year: '2026',
     client: '',          /* no external client - the row is hidden when empty */
     summary: 'A black-hulled speedboat rendered at speed from every angle — the kind of imagery a boat builder needs long before the first hull leaves the mould.',
@@ -440,7 +458,7 @@ export const projects = [
     slug: 'freight-calculator',
     status: 'published',
     title: 'Freight Calculator',
-    category: 'product-technology',
+    category: 'maritime-offshore',
     year: '2025',
     client: 'Freight Calculator',
     summary: 'The login screen for a freight-rate app — a container ship coming straight at you, and the hull used as the brand surface.',
