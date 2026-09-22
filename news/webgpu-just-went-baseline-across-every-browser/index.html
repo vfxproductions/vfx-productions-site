@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>WebGPU just went baseline across every browser — Vision For Xperiences</title>
+  <meta name="description" content="Native-class 3D performance in the browser is no longer a future idea. The platform just changed." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/" />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="WebGPU just went baseline across every browser — Vision For Xperiences" />
+  <meta property="og:description" content="Native-class 3D performance in the browser is no longer a future idea. The platform just changed." />
+  <meta property="og:url" content="https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/" />
+  <meta property="og:image" content="https://vfx.productions/news/img/webgpu-just-went-baseline-across-every-browser.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WebGPU just went baseline across every browser — Vision For Xperiences" />
+  <meta name="twitter:description" content="Native-class 3D performance in the browser is no longer a future idea. The platform just changed." />
+  <meta name="twitter:image" content="https://vfx.productions/news/img/webgpu-just-went-baseline-across-every-browser.webp" />
+  <script src="/js/theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css?v=8f6392d807" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/#article",
+      "headline": "WebGPU just went baseline across every browser",
+      "description": "Native-class 3D performance in the browser is no longer a future idea. The platform just changed.",
+      "image": "https://vfx.productions/news/img/webgpu-just-went-baseline-across-every-browser.webp",
+      "datePublished": "2026-09-17",
+      "dateModified": "2026-09-17",
+      "url": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/"
+      },
+      "keywords": "webgpu, 3d, browser, performance, real-time",
+      "wordCount": 669,
+      "inLanguage": "en",
+      "author": {
+        "@type": "Organization",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vfx.productions/assets/logo.png"
+        }
+      },
+      "about": {
+        "@type": "ProfessionalService",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions",
+        "email": "studio@vfx.productions",
+        "serviceType": [
+          "VFX",
+          "3D Animation",
+          "Live Visuals",
+          "Interactive Design",
+          "Drone Operator"
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://vfx.productions"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "News",
+          "item": "https://vfx.productions/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "WebGPU just went baseline across every browser",
+          "item": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vfx.productions/news/webgpu-just-went-baseline-across-every-browser/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can we deploy an existing Three.js project with WebGPU?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Three.js r171 and later support WebGPURenderer as a drop-in replacement for WebGLRenderer. The codebase stays the same. Performance improvements scale with scene complexity. Most projects see at least 3× improvement for anything heavier than static geometry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What devices does WebGPU support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All major browsers on Windows, macOS, iOS, and Android as of September 2026. Safari on iOS requires iOS 26 or later, and Edge/Firefox versions from January 2026 onward. For older devices or browsers, fallbacks to WebGL still work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does WebGPU work for AR experiences?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, via WebXR integration. Nexara Labs' production AR e-commerce runs WebGPU at 58 FPS on iPhone 15, handling 4K capture and real-time rendering simultaneously. This is the real win for spatial computing in browsers."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/" data-nav>Home</a>
+    <div class="drawer-section">Xperiences</div>
+    <a href="/vfx" data-nav class="drawer-sub">VFX</a>
+    <a href="/animation" data-nav class="drawer-sub">Animation</a>
+    <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
+    <a href="/technology" data-nav class="drawer-sub">Technology</a>
+    <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
+    <a href="/work" data-nav>Work</a>
+    <div class="drawer-section">By industry</div>
+    <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
+    <a href="/industries/architecture-spaces" data-nav class="drawer-sub">Architecture &amp; Spaces</a>
+    <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
+    <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
+    <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
+    <div class="drawer-section">Studio</div>
+    <a href="/about" data-nav class="drawer-sub">About</a>
+    <a href="/news" data-nav class="drawer-sub">News</a>
+    <a href="/shop" data-nav class="drawer-sub">Shop</a>
+    <div class="drawer-section">Get in touch</div>
+    <a href="/contact" data-nav class="drawer-sub">Contact</a>
+    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
+      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="/vfx">VFX</a>
+            <a href="/animation">Animation</a>
+            <a href="/visuals">Visuals</a>
+            <a href="/technology">Technology</a>
+            <a href="/droneoperator">Drone Operator</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/work">Work <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/work">All work</a>
+            <a href="/industries/product-technology">Product &amp; Technology</a>
+            <a href="/industries/architecture-spaces">Architecture &amp; Spaces</a>
+            <a href="/industries/music-culture">Music &amp; Culture</a>
+            <a href="/industries/fashion-luxury">Fashion &amp; Luxury</a>
+            <a href="/industries/film-commercial">Film &amp; Commercial</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/about">About <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/about">About the studio</a>
+            <a href="/news">News</a>
+            <a href="/shop">Shop</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/contact">Contact <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/contact">Get in touch</a>
+            <a href="/jobs">Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article class="post">
+      <div class="post-hero">
+        <img src="/news/img/webgpu-just-went-baseline-across-every-browser.webp" alt="Sapphire ATI Radeon HD 4550 GPU" />
+        <div class="post-hero-fade"></div>
+      </div>
+
+      <div class="post-head">
+        <div class="kicker">WEB GRAPHICS</div>
+        <h1>WebGPU just went baseline across every browser</h1>
+        <p class="post-dek">Native-class 3D performance in the browser is no longer a future idea. The platform just changed.</p>
+        <div class="post-meta">
+          <time datetime="2026-09-17">17 September 2026</time>
+          <span class="post-meta-sep">/</span>
+          <span>Vision For Xperiences Studio Desk</span>
+          <span class="post-meta-sep">/</span>
+          <span>4 min read</span>
+        </div>
+        <div class="post-tags"><span class="pill">webgpu</span><span class="pill">3d</span><span class="pill">browser</span><span class="pill">performance</span><span class="pill">real-time</span></div>
+      </div>
+
+      <div class="post-body">
+      <p>WebGPU officially hit Baseline status in January 2026. Chrome, Edge, Firefox, and Safari now ship it stable by default across Windows, macOS, and iOS. This is the first time in 15 years that a high-performance graphics standard has shipped without fragmentation across major browsers.</p>
+      <p>Three.js and Babylon.js both support it out of the box. Three.js lets you swap `WebGLRenderer` for `WebGPURenderer` in one line and typically see 10x performance gains in particle-heavy work. Babylon.js 9.0, shipping in March 2026, added clustered lighting, volumetric lighting via compute shaders, and area lights. The shift from WebGL's state-machine API to WebGPU's low-level GPU control changed what you can ask a browser to do.</p>
+      <h2>What actually runs now</h2>
+      <p>Nexara Labs runs 4K AR e-commerce on iPhone 15 at 58 FPS serving 3 million users. ChartGPU renders 1 million data points at 60 FPS. WebGPU compute shaders now handle work that used to require shipping native code: a particle system updating 100,000 particles runs in under 2ms, where CPU-only approaches need 30ms for 10,000.</p>
+      <p>For studios handling <a href="/technology">interactive design and real-time experiences</a>, this means the browser is now a legitimate target platform for work that would have required Unity or custom native code. Visualization work, AR try-ons, data dashboards, and parametric configurators all flip from "let's build this native" to "browser-first makes sense." We have started steering clients who own their hosting toward WebGPU deployments instead of asking them to choose between a native app or a limited web version. The performance bar has moved.</p>
+      <h2>The adoption is real</h2>
+      <p>The 2025 Web Almanac found WebGPU in 65 percent of new web apps shipping 3D content, up from around 8 percent two years ago. The jump is not hype. It is driven by framework support being there, fallback pathways being clear (Babylon.js ships both WGSL and GLSL versions of core shaders), and the performance gap versus native now sitting at 20 percent instead of 50.</p>
+      <p>WebGL is not disappearing. But it is no longer the bottleneck for browser-based 3D work. A team choosing to build an interactive installation, a product visualization, or a festival screen experience in the browser now has the same real-time capabilities they would get from a traditional 3D engine.</p>
+      <h2>Where the catch is</h2>
+      <p>WebGPU is stable, but deployment is still harder than native. Debugging compute shaders is raw. The ecosystem of asset pipelines is thinner than it is for Unity or Unreal. Memory budgets on mobile are tighter than specs suggest. And adoption in production is still small enough that you are often the first people at your studio to try something, which means you are the ones who hit the edges.</p>
+      <p>Vision For Xperiences builds <a href="/visuals">installations and live visuals</a> that run in public spaces and festival settings, where reliability and performance matter. Browser-based deployment means no OS-specific builds, simpler distribution, and direct audience metrics. The question now is not whether the browser can do this work. It is whether you want to be the studio that learns WebGPU's gotchas first, or wait for the examples to pile up.</p>
+      <h2>What we are watching for</h2>
+      <p>The real win for us is the gap between what we quote for a piece of <a href="/animation">VFX or 3D animation</a> and what a browser-native project costs. If WebGPU sticks, that gap narrows. A product visualization, a museum installation, a parametric brand experience, all the work that lives on the border between "too heavy for web, too light for a full pipeline" gets cheaper to scope and faster to iterate. The framework stability is there. The hardware support is there. What we are waiting to see is whether the talent side follows.</p>
+      <p>For studios still deciding between browsers and native, the question is no longer "can the browser do this." It is "should we." Cost of iteration, audience reach, and control of the environment are the trade-offs now.</p>
+      </div>
+
+      <div class="post-body">
+      <section class="post-faq"><h2>Quick answers</h2><details class="faq-item"><summary>Can we deploy an existing Three.js project with WebGPU?</summary><p>Yes. Three.js r171 and later support WebGPURenderer as a drop-in replacement for WebGLRenderer. The codebase stays the same. Performance improvements scale with scene complexity. Most projects see at least 3× improvement for anything heavier than static geometry.</p></details><details class="faq-item"><summary>What devices does WebGPU support?</summary><p>All major browsers on Windows, macOS, iOS, and Android as of September 2026. Safari on iOS requires iOS 26 or later, and Edge/Firefox versions from January 2026 onward. For older devices or browsers, fallbacks to WebGL still work.</p></details><details class="faq-item"><summary>Does WebGPU work for AR experiences?</summary><p>Yes, via WebXR integration. Nexara Labs' production AR e-commerce runs WebGPU at 58 FPS on iPhone 15, handling 4K capture and real-time rendering simultaneously. This is the real win for spatial computing in browsers.</p></details></section>
+      <section class="post-sources"><h2>Referenced</h2><ul><li><a href="https://vr.org/articles/webgpu-baseline-2026-three-js-webxr-default" rel="noopener nofollow">WebGPU Just Hit Baseline in Every Major Browser. Three.js Is Already Shipping It and WebXR Is the Real Winner.</a></li><li><a href="https://byteiota.com/webgpu-2026-70-browser-support-15x-performance-gains/" rel="noopener nofollow">WebGPU 2026: 70% Browser Support, 15x Performance Gains</a></li><li><a href="https://www.web3d.org/news-story/future-web3d-standards-performance-and-immersive-experiences" rel="noopener nofollow">The Future of Web3D: Standards, Performance, and Immersive Experiences</a></li><li><a href="https://altersquare.io/blog/three-js-vs-webgpu-2026-large-scale-construction-viewers" rel="noopener nofollow">Three.js vs WebGPU in 2026: What Changed for Large-Scale Construction Viewers</a></li></ul></section>
+      <p class="post-credit">Image: &ldquo;Sapphire ATI Radeon HD 4550 GPU&rdquo; by <a href="https://www.flickr.com/photos/83542829@N00" rel="noopener nofollow">William Hook</a>, via <a href="https://www.flickr.com/photos/83542829@N00/3570060270" rel="noopener nofollow">source</a>. Licensed <a href="https://creativecommons.org/licenses/by-sa/2.0/" rel="license noopener">CC BY-SA 2.0</a>.</p>
+      </div>
+
+      <section class="post-cta">
+        <div class="kicker">Working on something like this</div>
+        <h2>Tell us what you are making.</h2>
+        <p>We cover VFX, 3D animation, live visuals, interactive installations and
+           licensed drone work under one roof, at budgets from small one-off jobs
+           upward. Send a brief and you get a real answer within 48 hours.</p>
+        <div class="actions">
+          <a class="btn" href="/contact">Start a brief</a>
+          <a class="btn" href="/about">About the studio</a>
+        </div>
+      </section>
+
+      <section class="post-rail">
+        <div class="kicker">Explore</div>
+        <div class="rail-grid"><a class="rail-card" href="/vfx"><span class="rail-name">VFX</span><span class="rail-desc">Compositing, set extensions, simulations</span></a><a class="rail-card" href="/animation"><span class="rail-name">3D Animation</span><span class="rail-desc">Product visuals, cinematic shorts, motion systems</span></a><a class="rail-card" href="/visuals"><span class="rail-name">Live Visuals</span><span class="rail-desc">Festival screens, DJ and artist show content</span></a><a class="rail-card" href="/technology"><span class="rail-name">Interactive</span><span class="rail-desc">Installations and real-time experiences</span></a><a class="rail-card" href="/droneoperator"><span class="rail-name">Drone Operator</span><span class="rail-desc">Licensed aerial capture and event coverage</span></a></div>
+      </section>
+
+      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/the-free-tools-finally-arrived-and-they-are-boring-now/"><div class="news-card-thumb"><img src="/news/img/studio/vfx-viewport-0.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">22 September 2026</div><div class="news-card-title">The free tools finally arrived, and they are boring now</div></div></a><a class="news-card" href="/news/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together/"><div class="news-card-thumb"><img src="/news/img/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">21 September 2026</div><div class="news-card-title">One studio or many: hiring for VFX, animation and live visuals together</div></div></a><a class="news-card" href="/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/"><div class="news-card-thumb"><img src="/news/img/real-world-nerf-is-finally-about-the-capture-not-just-the-math.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">20 September 2026</div><div class="news-card-title">Real-world NeRF is finally about the capture, not just the math</div></div></a></div></section>
+    </article>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/logo.png" alt="Vision For Xperiences" width="640" height="360" style="height:22px;width:auto;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="/about">About</a>
+        <a href="/news">News</a>
+        <a href="/vfx">VFX</a>
+        <a href="/animation">Animation</a>
+        <a href="/visuals">Visuals</a>
+        <a href="/technology">Technology</a>
+        <a href="/droneoperator">Drone Operator</a>
+        <a href="/shop">Shop</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var drawer   = document.getElementById("drawer");
+    var backdrop = document.getElementById("drawerBackdrop");
+    var ham      = document.getElementById("hamburger");
+    var closeBtn = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); ham.setAttribute("aria-expanded","true"); closeBtn.focus(); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); ham.setAttribute("aria-expanded","false"); }
+    ham.addEventListener("click", open);
+    closeBtn.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(function(a){ a.addEventListener("click", shut); });
+    window.addEventListener("keydown", function(e){ if(e.key==="Escape") shut(); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener("click", function(e){
+        var href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        var t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+      var closeTimer=null;
+      var btn=dd.querySelector('.nav-dropdown-toggle');
+      var isHoverDevice=window.matchMedia('(hover:hover)').matches;
+      var isButton=btn.tagName==='BUTTON';
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
+      if(isHoverDevice){
+        dd.addEventListener('mouseenter', openDd);
+        dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
+        dd.addEventListener('focusin', openDd);
+        dd.addEventListener('focusout',function(){ closeTimer=setTimeout(closeDd,120); });
+        if(isButton){ btn.addEventListener('click',function(e){ e.preventDefault(); }); }
+      } else {
+        btn.addEventListener('click',function(e){
+          if(dd.classList.contains('open') && !isButton) return; /* second tap follows the link */
+          e.preventDefault(); e.stopPropagation();
+          var opening=!dd.classList.contains('open');
+          document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
+          if(opening) openDd();
+        });
+      }
+    });
+    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
+  })();
+  </script>
+  <script defer src="/js/lazyvideo.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
+</body>
+</html>

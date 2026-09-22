@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>Real-world NeRF is finally about the capture, not just the math — Vision For Xperiences</title>
+  <meta name="description" content="The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/" />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="Real-world NeRF is finally about the capture, not just the math — Vision For Xperiences" />
+  <meta property="og:description" content="The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set." />
+  <meta property="og:url" content="https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/" />
+  <meta property="og:image" content="https://vfx.productions/news/img/real-world-nerf-is-finally-about-the-capture-not-just-the-math.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Real-world NeRF is finally about the capture, not just the math — Vision For Xperiences" />
+  <meta name="twitter:description" content="The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set." />
+  <meta name="twitter:image" content="https://vfx.productions/news/img/real-world-nerf-is-finally-about-the-capture-not-just-the-math.webp" />
+  <script src="/js/theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css?v=8f6392d807" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/#article",
+      "headline": "Real-world NeRF is finally about the capture, not just the math",
+      "description": "The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set.",
+      "image": "https://vfx.productions/news/img/real-world-nerf-is-finally-about-the-capture-not-just-the-math.webp",
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "url": "https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/"
+      },
+      "keywords": "nerf, 3d reconstruction, capture workflow, real-time rendering",
+      "wordCount": 730,
+      "inLanguage": "en",
+      "author": {
+        "@type": "Organization",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vfx.productions/assets/logo.png"
+        }
+      },
+      "about": {
+        "@type": "ProfessionalService",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions",
+        "email": "studio@vfx.productions",
+        "serviceType": [
+          "VFX",
+          "3D Animation",
+          "Live Visuals",
+          "Interactive Design",
+          "Drone Operator"
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://vfx.productions"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "News",
+          "item": "https://vfx.productions/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Real-world NeRF is finally about the capture, not just the math",
+          "item": "https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vfx.productions/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need special equipment to capture NeRF data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A smartphone or standard camera with overlapping angles works. The practical requirement is good lighting and a still subject. Handheld is now viable thanks to motion blur handling in recent techniques like MBS-NeRF."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to train a NeRF from photos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hours for high quality on standard hardware, minutes on professional GPU clusters. Real-time playback happens immediately after training, but quality improves with longer optimization."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can NeRF replace photogrammetry for geometry capture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not if you need polygon geometry for further modelling or animation. NeRF gives you a neural representation that renders well but cannot easily export to traditional 3D formats. For visual capture and interactive viewing, it is superior."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/" data-nav>Home</a>
+    <div class="drawer-section">Xperiences</div>
+    <a href="/vfx" data-nav class="drawer-sub">VFX</a>
+    <a href="/animation" data-nav class="drawer-sub">Animation</a>
+    <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
+    <a href="/technology" data-nav class="drawer-sub">Technology</a>
+    <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
+    <a href="/work" data-nav>Work</a>
+    <div class="drawer-section">By industry</div>
+    <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
+    <a href="/industries/architecture-spaces" data-nav class="drawer-sub">Architecture &amp; Spaces</a>
+    <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
+    <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
+    <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
+    <div class="drawer-section">Studio</div>
+    <a href="/about" data-nav class="drawer-sub">About</a>
+    <a href="/news" data-nav class="drawer-sub">News</a>
+    <a href="/shop" data-nav class="drawer-sub">Shop</a>
+    <div class="drawer-section">Get in touch</div>
+    <a href="/contact" data-nav class="drawer-sub">Contact</a>
+    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
+      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="/vfx">VFX</a>
+            <a href="/animation">Animation</a>
+            <a href="/visuals">Visuals</a>
+            <a href="/technology">Technology</a>
+            <a href="/droneoperator">Drone Operator</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/work">Work <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/work">All work</a>
+            <a href="/industries/product-technology">Product &amp; Technology</a>
+            <a href="/industries/architecture-spaces">Architecture &amp; Spaces</a>
+            <a href="/industries/music-culture">Music &amp; Culture</a>
+            <a href="/industries/fashion-luxury">Fashion &amp; Luxury</a>
+            <a href="/industries/film-commercial">Film &amp; Commercial</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/about">About <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/about">About the studio</a>
+            <a href="/news">News</a>
+            <a href="/shop">Shop</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/contact">Contact <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/contact">Get in touch</a>
+            <a href="/jobs">Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article class="post">
+      <div class="post-hero">
+        <img src="/news/img/real-world-nerf-is-finally-about-the-capture-not-just-the-math.webp" alt="Lidar" />
+        <div class="post-hero-fade"></div>
+      </div>
+
+      <div class="post-head">
+        <div class="kicker">3D CAPTURE</div>
+        <h1>Real-world NeRF is finally about the capture, not just the math</h1>
+        <p class="post-dek">The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set.</p>
+        <div class="post-meta">
+          <time datetime="2026-09-20">20 September 2026</time>
+          <span class="post-meta-sep">/</span>
+          <span>Vision For Xperiences Studio Desk</span>
+          <span class="post-meta-sep">/</span>
+          <span>4 min read</span>
+        </div>
+        <div class="post-tags"><span class="pill">nerf</span><span class="pill">3d reconstruction</span><span class="pill">capture workflow</span><span class="pill">real-time rendering</span></div>
+      </div>
+
+      <div class="post-body">
+      <p>A fresh survey on neural radiance fields for real-world scenes dropped in January 2026, and it marks a shift. NeRF has spent five years optimizing theory. Now the focus has swung to what you actually do on a shoot when you have 30 minutes and moving light.</p>
+      <p>The practical problem NeRF solves is this: feed a neural network overlapping photographs from different angles, and it learns to synthesise any view in between. No mesh, no manual reconstruction. Just images and math. That is genuinely useful for <a href="/animation">3D animation and product visuals</a>, especially when a client wants the exact shine of a real material or the exact geometry of something intricate.</p>
+      <p>But getting there has always had a catch: capture has to be meticulous. Move the camera too fast between shots, you get motion blur. Move it too slow, you need 100+ images. Light has to be constant. Objects can't move. In other words, the technique demanded a studio and time and precision, which is fine for a beauty shot of a shoe, but not for a lot of real-world work.</p>
+      <h2>Motion blur, solved</h2>
+      <p>MBS-NeRF, introduced last year, flips the script on that constraint. It reconstructs sharp NeRF from motion-blurred sparse images, which means you can actually shoot faster and handheld. The network learns to separate what is blur from actual geometry. That is a genuine workflow difference, the kind that changes how you quote a job. You are no longer buying a 4-hour, carefully lit, perfectly still shooting day. You could work with something closer to documentary cinematography and pull geometry from it.</p>
+      <p>The catch is real: you still need good lighting and no dynamic elements (people walking through the scene will poison the result). But handheld capture of a still object or an architectural space fundamentally changes the cost equation. Vision For Xperiences has built <a href="/animation">3D animation and cinematic visuals</a> for everything from product launches to brand films, and if this holds up on real sets, it opens a class of work that used to require laser scanning or photogrammetry crews. The training time is not instant, but it is closing the gap.</p>
+      <h2>Real-time rendering, actually real</h2>
+      <p>The other shift is speed. NeRFlex and similar techniques segment scenes into adaptive detail levels, rendering on mobile hardware at 35 frames per second. That sounds like a demo statistic until you realise it means: you shoot the scene, train overnight, ship an interactive experience to a client by morning. No mesh, no baking, no per-frame rendering passes. That is remarkable.</p>
+      <p>For <a href="/technology">live visuals and interactive installations</a>, which we build for festivals and performance spaces, real-time NeRF opens a strange new tool. You could capture a location or a sculptural set piece, train it, and play it back interactively, with camera movement that feels volumetric and continuous. The quality is not photorealistic in the way you might think, but it is directional and flexible in ways a pre-rendered animation is not.</p>
+      <h2>Where it still breaks</h2>
+      <p>The honest part: NeRF is still not great at transparent objects, reflective surfaces, or thin geometry like fabric. If you are shooting something that is mostly mirror or glass, the networks hallucinate. Moving backgrounds, moving people in the frame, exposure changes between shots: all of these poison the result. And the training time for high quality is still hours, not minutes.</p>
+      <p>Also, you do not get a mesh you can hand to a game engine or a CAD software. You get a neural representation that renders beautifully but exists only as a black box inside the network. If you need polygonal geometry for further animation work, you have to extract it, and that extraction step can lose fine detail.</p>
+      <h2>What changes now</h2>
+      <p>The thing that actually matters is that the practical floor for NeRF has risen. Two years ago, this was a research curiosity with a very narrow application range. Now it is a capture tool that functions closer to how cinematography actually works: fast, handheld, lit well enough but not perfectly, and producing something useful within hours rather than days.</p>
+      <p>Vision For Xperiences <a href="/droneoperator">handles aerial capture</a> and location-based interactive work, and watching NeRF mature is like watching a tool you built half a decade ago finally become boring enough to use. We are not there yet. But the gap is closing.</p>
+      </div>
+
+      <div class="post-body">
+      <section class="post-faq"><h2>Quick answers</h2><details class="faq-item"><summary>Do I need special equipment to capture NeRF data?</summary><p>No. A smartphone or standard camera with overlapping angles works. The practical requirement is good lighting and a still subject. Handheld is now viable thanks to motion blur handling in recent techniques like MBS-NeRF.</p></details><details class="faq-item"><summary>How long does it take to train a NeRF from photos?</summary><p>Hours for high quality on standard hardware, minutes on professional GPU clusters. Real-time playback happens immediately after training, but quality improves with longer optimization.</p></details><details class="faq-item"><summary>Can NeRF replace photogrammetry for geometry capture?</summary><p>Not if you need polygon geometry for further modelling or animation. NeRF gives you a neural representation that renders well but cannot easily export to traditional 3D formats. For visual capture and interactive viewing, it is superior.</p></details></section>
+      <section class="post-sources"><h2>Referenced</h2><ul><li><a href="https://arxiv.org/abs/2501.13104" rel="noopener nofollow">Neural Radiance Fields for the Real World: A Survey</a></li><li><a href="https://www.nature.com/articles/s41598-025-88614-z" rel="noopener nofollow">MBS-NeRF: reconstruction of sharp neural radiance fields from motion-blurred sparse images</a></li><li><a href="https://www.tripo3d.ai/blog/nerf-to-3d-model-workflow" rel="noopener nofollow">NeRF to 3D Model: Complete Workflow Guide (2026)</a></li></ul></section>
+      <p class="post-credit">Image: &ldquo;Lidar&rdquo; by <a href="https://commons.wikimedia.org/wiki/User:David.Monniaux" rel="noopener nofollow">David Monniaux</a>, via <a href="https://commons.wikimedia.org/w/index.php?curid=1730946" rel="noopener nofollow">source</a>. Licensed <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license noopener">CC BY-SA 3.0</a>.</p>
+      </div>
+
+      <section class="post-cta">
+        <div class="kicker">Working on something like this</div>
+        <h2>Tell us what you are making.</h2>
+        <p>We cover VFX, 3D animation, live visuals, interactive installations and
+           licensed drone work under one roof, at budgets from small one-off jobs
+           upward. Send a brief and you get a real answer within 48 hours.</p>
+        <div class="actions">
+          <a class="btn" href="/contact">Start a brief</a>
+          <a class="btn" href="/about">About the studio</a>
+        </div>
+      </section>
+
+      <section class="post-rail">
+        <div class="kicker">Explore</div>
+        <div class="rail-grid"><a class="rail-card" href="/vfx"><span class="rail-name">VFX</span><span class="rail-desc">Compositing, set extensions, simulations</span></a><a class="rail-card" href="/animation"><span class="rail-name">3D Animation</span><span class="rail-desc">Product visuals, cinematic shorts, motion systems</span></a><a class="rail-card" href="/visuals"><span class="rail-name">Live Visuals</span><span class="rail-desc">Festival screens, DJ and artist show content</span></a><a class="rail-card" href="/technology"><span class="rail-name">Interactive</span><span class="rail-desc">Installations and real-time experiences</span></a><a class="rail-card" href="/droneoperator"><span class="rail-name">Drone Operator</span><span class="rail-desc">Licensed aerial capture and event coverage</span></a></div>
+      </section>
+
+      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/the-free-tools-finally-arrived-and-they-are-boring-now/"><div class="news-card-thumb"><img src="/news/img/studio/vfx-viewport-0.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">22 September 2026</div><div class="news-card-title">The free tools finally arrived, and they are boring now</div></div></a><a class="news-card" href="/news/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together/"><div class="news-card-thumb"><img src="/news/img/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">21 September 2026</div><div class="news-card-title">One studio or many: hiring for VFX, animation and live visuals together</div></div></a><a class="news-card" href="/news/meshy-just-plugged-ai-mesh-generation-into-claude-and-other-coding/"><div class="news-card-thumb"><img src="/news/img/meshy-just-plugged-ai-mesh-generation-into-claude-and-other-coding.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">19 September 2026</div><div class="news-card-title">Meshy just plugged AI mesh generation into Claude and other coding assistants</div></div></a></div></section>
+    </article>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/logo.png" alt="Vision For Xperiences" width="640" height="360" style="height:22px;width:auto;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="/about">About</a>
+        <a href="/news">News</a>
+        <a href="/vfx">VFX</a>
+        <a href="/animation">Animation</a>
+        <a href="/visuals">Visuals</a>
+        <a href="/technology">Technology</a>
+        <a href="/droneoperator">Drone Operator</a>
+        <a href="/shop">Shop</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var drawer   = document.getElementById("drawer");
+    var backdrop = document.getElementById("drawerBackdrop");
+    var ham      = document.getElementById("hamburger");
+    var closeBtn = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); ham.setAttribute("aria-expanded","true"); closeBtn.focus(); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); ham.setAttribute("aria-expanded","false"); }
+    ham.addEventListener("click", open);
+    closeBtn.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(function(a){ a.addEventListener("click", shut); });
+    window.addEventListener("keydown", function(e){ if(e.key==="Escape") shut(); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener("click", function(e){
+        var href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        var t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+      var closeTimer=null;
+      var btn=dd.querySelector('.nav-dropdown-toggle');
+      var isHoverDevice=window.matchMedia('(hover:hover)').matches;
+      var isButton=btn.tagName==='BUTTON';
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
+      if(isHoverDevice){
+        dd.addEventListener('mouseenter', openDd);
+        dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
+        dd.addEventListener('focusin', openDd);
+        dd.addEventListener('focusout',function(){ closeTimer=setTimeout(closeDd,120); });
+        if(isButton){ btn.addEventListener('click',function(e){ e.preventDefault(); }); }
+      } else {
+        btn.addEventListener('click',function(e){
+          if(dd.classList.contains('open') && !isButton) return; /* second tap follows the link */
+          e.preventDefault(); e.stopPropagation();
+          var opening=!dd.classList.contains('open');
+          document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
+          if(opening) openDd();
+        });
+      }
+    });
+    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
+  })();
+  </script>
+  <script defer src="/js/lazyvideo.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
+</body>
+</html>

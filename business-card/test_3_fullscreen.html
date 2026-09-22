@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>VFX · Test 3 — MindAR fullscreen (feed should fill screen)</title>
+<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<style>
+  /* The fix under test: make html/body/scene fill the viewport so MindAR sizes
+     the camera to COVER the whole screen (no white/black margins). NO position:fixed
+     on the scene — that broke the video layering before. */
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  a-scene { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <a-scene
+    mindar-image="imageTargetSrc: ./assets/targets.mind; uiScanning: yes; uiError: no"
+    color-space="sRGB" embedded
+    renderer="colorManagement: true; physicallyCorrectLights: true"
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-camera position="0 0 0" look-controls="false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0"></a-entity>
+  </a-scene>
+</body>
+</html>

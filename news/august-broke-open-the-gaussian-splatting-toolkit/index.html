@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>August broke open the Gaussian splatting toolkit — Vision For Xperiences</title>
+  <meta name="description" content="Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/" />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Vision For Xperiences" />
+  <meta property="og:title" content="August broke open the Gaussian splatting toolkit — Vision For Xperiences" />
+  <meta property="og:description" content="Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment." />
+  <meta property="og:url" content="https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/" />
+  <meta property="og:image" content="https://vfx.productions/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="August broke open the Gaussian splatting toolkit — Vision For Xperiences" />
+  <meta name="twitter:description" content="Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment." />
+  <meta name="twitter:image" content="https://vfx.productions/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp" />
+  <script src="/js/theme.js"></script>
+  <link rel="stylesheet" href="/css/site.css?v=8f6392d807" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/#article",
+      "headline": "August broke open the Gaussian splatting toolkit",
+      "description": "Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.",
+      "image": "https://vfx.productions/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp",
+      "datePublished": "2026-09-11",
+      "dateModified": "2026-09-17",
+      "url": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/"
+      },
+      "keywords": "gaussian splatting, 3d capture, vfx pipeline, real-time rendering, august 2026",
+      "wordCount": 648,
+      "inLanguage": "en",
+      "author": {
+        "@type": "Organization",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vfx.productions/assets/logo.png"
+        }
+      },
+      "about": {
+        "@type": "ProfessionalService",
+        "name": "Vision For Xperiences",
+        "url": "https://vfx.productions",
+        "email": "studio@vfx.productions",
+        "serviceType": [
+          "VFX",
+          "3D Animation",
+          "Live Visuals",
+          "Interactive Design",
+          "Drone Operator"
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://vfx.productions"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "News",
+          "item": "https://vfx.productions/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "August broke open the Gaussian splatting toolkit",
+          "item": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are Gaussian splats production-ready for our VFX work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For visual-first work like set extensions and environment realism, yes—tools are stable and render pipelines are integrated. For jobs that require geometric precision or measurement data, splats work best as part of a hybrid approach, supplemented by geometry or survey data. Check your asset pipeline requirements first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which software should we learn splat workflows in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nuke 17.1 and Maya 2026 now have native toolsets. If you are in Houdini or Blender, several free add-ons ship splat support. Start with the software you already use; the core concepts transfer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need specialized hardware to render Gaussian splats?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GPU acceleration is standard for real-time work. Most current workstations handle splat rendering without issue. For cloud deployment or large-scale scenes, GPU compute instances are cost-effective relative to traditional render farms."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="drawer-title">Navigation</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/" data-nav>Home</a>
+    <div class="drawer-section">Xperiences</div>
+    <a href="/vfx" data-nav class="drawer-sub">VFX</a>
+    <a href="/animation" data-nav class="drawer-sub">Animation</a>
+    <a href="/visuals" data-nav class="drawer-sub">Visuals</a>
+    <a href="/technology" data-nav class="drawer-sub">Technology</a>
+    <a href="/droneoperator" data-nav class="drawer-sub">Drone Operator</a>
+    <a href="/work" data-nav>Work</a>
+    <div class="drawer-section">By industry</div>
+    <a href="/industries/product-technology" data-nav class="drawer-sub">Product &amp; Technology</a>
+    <a href="/industries/architecture-spaces" data-nav class="drawer-sub">Architecture &amp; Spaces</a>
+    <a href="/industries/music-culture" data-nav class="drawer-sub">Music &amp; Culture</a>
+    <a href="/industries/fashion-luxury" data-nav class="drawer-sub">Fashion &amp; Luxury</a>
+    <a href="/industries/film-commercial" data-nav class="drawer-sub">Film &amp; Commercial</a>
+    <div class="drawer-section">Studio</div>
+    <a href="/about" data-nav class="drawer-sub">About</a>
+    <a href="/news" data-nav class="drawer-sub">News</a>
+    <a href="/shop" data-nav class="drawer-sub">Shop</a>
+    <div class="drawer-section">Get in touch</div>
+    <a href="/contact" data-nav class="drawer-sub">Contact</a>
+    <a href="/jobs" data-nav class="drawer-sub">Jobs</a>
+  </aside>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span></button>
+      <a class="brand" href="/" title="Home" aria-label="Vision For Xperiences — home">
+        <img src="/assets/logo.png" alt="Vision For Xperiences logo" width="640" height="360" />
+      </a>
+      <div class="links" aria-label="Site links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Xperiences <span class="nav-caret">&#9662;</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="/vfx">VFX</a>
+            <a href="/animation">Animation</a>
+            <a href="/visuals">Visuals</a>
+            <a href="/technology">Technology</a>
+            <a href="/droneoperator">Drone Operator</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/work">Work <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/work">All work</a>
+            <a href="/industries/product-technology">Product &amp; Technology</a>
+            <a href="/industries/architecture-spaces">Architecture &amp; Spaces</a>
+            <a href="/industries/music-culture">Music &amp; Culture</a>
+            <a href="/industries/fashion-luxury">Fashion &amp; Luxury</a>
+            <a href="/industries/film-commercial">Film &amp; Commercial</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/about">About <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/about">About the studio</a>
+            <a href="/news">News</a>
+            <a href="/shop">Shop</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-toggle" href="/contact">Contact <span class="nav-caret">&#9662;</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/contact">Get in touch</a>
+            <a href="/jobs">Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article class="post">
+      <div class="post-hero">
+        <img src="/news/img/august-broke-open-the-gaussian-splatting-toolkit.webp" alt="Polycam gaussian splatting exemplo" />
+        <div class="post-hero-fade"></div>
+      </div>
+
+      <div class="post-head">
+        <div class="kicker">PRODUCTION TOOLS</div>
+        <h1>August broke open the Gaussian splatting toolkit</h1>
+        <p class="post-dek">Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.</p>
+        <div class="post-meta">
+          <time datetime="2026-09-11">11 September 2026</time>
+          <span class="post-meta-sep">/</span>
+          <span>Vision For Xperiences Studio Desk</span>
+          <span class="post-meta-sep">/</span>
+          <span>4 min read</span>
+        </div>
+        <div class="post-tags"><span class="pill">gaussian splatting</span><span class="pill">3d capture</span><span class="pill">vfx pipeline</span><span class="pill">real-time rendering</span><span class="pill">august 2026</span></div>
+      </div>
+
+      <div class="post-body">
+      <p>In August 2026, Gaussian splatting crossed from research tool into production stack. Foundry shipped a native toolset in Nuke 17.1, Autodesk added splat snapping to Maya 2026, Houdini landed three new splat tools, and Blender saw four free add-ons released in five days. That convergence was not coincidence. It was the moment when VFX studios stopped asking whether splats were ready and started asking which pipeline to build around them.</p>
+      <h2>The render layer stabilized</h2>
+      <p>Three.js merged a native Gaussian splat renderer in r186 and vis.gl shipped a GPU splat renderer in luma.gl 9.4.0 beta, both in August. That matters because it means web deployment and real-time applications are no longer bottlenecked at the render layer. The technology reached a stability threshold where vendors could commit. Nuke, Maya, Houdini, these are not experimental platforms. When they ship a toolset, it is because the inputs are stable and the outputs are predictable.</p>
+      <p>OctaneRender 2026 path-traces Gaussian splats natively. Foundry integrated the technique into Nuke's compositor. Arnold through Maya, V-Ray through every platform it supports, the major render engines now treat splats as a first-class primitive, not a workaround. That is the real shift. Splats stopped being a clever alternative and became a normal production input.</p>
+      <h2>Where the workflow changed</h2>
+      <p>Before August, splat work felt like three separate jobs: capture the scene, process it in isolation, then awkwardly composite it back. Now it is vertical. You capture with Polycam or Nerfstudio, you import into <a href="/vfx">your compositing setup</a> with native splat nodes, you render depth passes and layer mattes alongside RGB. Native support removes a file handoff between packages that used to sit in the middle of every splat job, which is the part that matters most for a studio like Vision For Xperiences that runs capture, compositing and interactive delivery under one roof rather than across three vendors. That efficiency win scales on location work.</p>
+      <h2>What splats actually win at</h2>
+      <p>Architectural visualization, product-in-environment shots, and location-based visual effects are faster with splats than with point clouds or mesh geometry. Splats hold photographic detail and render in real-time, which matters for client reviews and <a href="/technology">interactive visualization work</a>. We have built work that required dimensional accuracy and real-time interactivity together, and watching how this layer stabilizes is painful in the best way. If splat geometry holds up outside the demo reel and in front of a survey instrument, it changes how we would quote a job involving both live capture and <a href="/work">precise 3D environments</a>.</p>
+      <p>But splats are not a universal capture method. For measurement-dependent work, anything where geometry precision is critical, splats are supplementary. You still need survey data and structured models. That is the honest catch. Splats have not solved the constraint where accuracy and speed compete.</p>
+      <h2>The hiring velocity is real</h2>
+      <p>The August momentum carries weight. Forty-nine industry articles, seventy-seven job listings, and one hundred and three research papers landed in a single month on the topic. That is not hype; that is hiring velocity. Studios are shipping projects with splats, not prototyping them. For teams working on large-scale location capture or interactive installations, the choice between NeRF, Gaussian splats, and traditional geometry has moved from theoretical into practical. Pick the one that fits the budget and asset lifecycle. They are all in production now.</p>
+      <p>Vision For Xperiences is watching this one closely. The moment the rendering layer is stable enough and the toolset matures enough, splat capture becomes part of how we quote <a href="/technology">capture and delivery work</a>. Until then, we are waiting to see how it holds up when a client asks for modifications three weeks into production, or when the geometry has to hold together under lighting that was not in the original scan. Those questions will define whether this stays in the toolbox.</p>
+      </div>
+
+      <div class="post-body">
+      <section class="post-faq"><h2>Quick answers</h2><details class="faq-item"><summary>Are Gaussian splats production-ready for our VFX work?</summary><p>For visual-first work like set extensions and environment realism, yes—tools are stable and render pipelines are integrated. For jobs that require geometric precision or measurement data, splats work best as part of a hybrid approach, supplemented by geometry or survey data. Check your asset pipeline requirements first.</p></details><details class="faq-item"><summary>Which software should we learn splat workflows in?</summary><p>Nuke 17.1 and Maya 2026 now have native toolsets. If you are in Houdini or Blender, several free add-ons ship splat support. Start with the software you already use; the core concepts transfer.</p></details><details class="faq-item"><summary>Do we need specialized hardware to render Gaussian splats?</summary><p>GPU acceleration is standard for real-time work. Most current workstations handle splat rendering without issue. For cloud deployment or large-scale scenes, GPU compute instances are cost-effective relative to traditional render farms.</p></details></section>
+      <section class="post-sources"><h2>Referenced</h2><ul><li><a href="https://radiancefields.substack.com/p/gaussian-splatting-in-august-2026" rel="noopener nofollow">Gaussian Splatting in August 2026</a></li><li><a href="https://blog.4dpipeline.com/unreal-engine-and-gaussian-splatting-what-production-teams-need-to-know-in-2026" rel="noopener nofollow">Unreal Engine and Gaussian Splatting: What Production Teams Need to Know in 2026</a></li><li><a href="https://radiancefields.com/octanerender-2026-released-and-2027-roadmap-announced" rel="noopener nofollow">OctaneRender 2026 Released and 2027 Roadmap Announced</a></li><li><a href="https://amplifiedcreations.com/journal/gaussian-splatting-production-ready-2026" rel="noopener nofollow">Is 3D Gaussian splatting production-ready in 2026? An honest field report</a></li></ul></section>
+      <p class="post-credit">Image: &ldquo;Polycam gaussian splatting exemplo&rdquo; by <a href="https://commons.wikimedia.org/w/index.php?title=User:%C3%93scar_Mir%C3%A1s&amp;action=edit&amp;redlink=1" rel="noopener nofollow">Óscar Mirás</a>, via <a href="https://commons.wikimedia.org/w/index.php?curid=152159179" rel="noopener nofollow">source</a>. Licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener">CC BY-SA 4.0</a>.</p>
+      </div>
+
+      <section class="post-cta">
+        <div class="kicker">Working on something like this</div>
+        <h2>Tell us what you are making.</h2>
+        <p>We cover VFX, 3D animation, live visuals, interactive installations and
+           licensed drone work under one roof, at budgets from small one-off jobs
+           upward. Send a brief and you get a real answer within 48 hours.</p>
+        <div class="actions">
+          <a class="btn" href="/contact">Start a brief</a>
+          <a class="btn" href="/about">About the studio</a>
+        </div>
+      </section>
+
+      <section class="post-rail">
+        <div class="kicker">Explore</div>
+        <div class="rail-grid"><a class="rail-card" href="/vfx"><span class="rail-name">VFX</span><span class="rail-desc">Compositing, set extensions, simulations</span></a><a class="rail-card" href="/animation"><span class="rail-name">3D Animation</span><span class="rail-desc">Product visuals, cinematic shorts, motion systems</span></a><a class="rail-card" href="/visuals"><span class="rail-name">Live Visuals</span><span class="rail-desc">Festival screens, DJ and artist show content</span></a><a class="rail-card" href="/technology"><span class="rail-name">Interactive</span><span class="rail-desc">Installations and real-time experiences</span></a><a class="rail-card" href="/droneoperator"><span class="rail-name">Drone Operator</span><span class="rail-desc">Licensed aerial capture and event coverage</span></a></div>
+      </section>
+
+      <section class="post-related"><div class="kicker">Keep reading</div><div class="news-grid"><a class="news-card" href="/news/the-free-tools-finally-arrived-and-they-are-boring-now/"><div class="news-card-thumb"><img src="/news/img/studio/vfx-viewport-0.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">22 September 2026</div><div class="news-card-title">The free tools finally arrived, and they are boring now</div></div></a><a class="news-card" href="/news/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together/"><div class="news-card-thumb"><img src="/news/img/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">21 September 2026</div><div class="news-card-title">One studio or many: hiring for VFX, animation and live visuals together</div></div></a><a class="news-card" href="/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/"><div class="news-card-thumb"><img src="/news/img/real-world-nerf-is-finally-about-the-capture-not-just-the-math.webp" alt="" loading="lazy" /></div><div class="news-card-body"><div class="news-card-meta">20 September 2026</div><div class="news-card-title">Real-world NeRF is finally about the capture, not just the math</div></div></a></div></section>
+    </article>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/logo.png" alt="Vision For Xperiences" width="640" height="360" style="height:22px;width:auto;object-fit:contain;opacity:.7;" />
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/work">Work</a>
+        <a href="/services">Services</a>
+        <a href="/about">About</a>
+        <a href="/news">News</a>
+        <a href="/vfx">VFX</a>
+        <a href="/animation">Animation</a>
+        <a href="/visuals">Visuals</a>
+        <a href="/technology">Technology</a>
+        <a href="/droneoperator">Drone Operator</a>
+        <a href="/shop">Shop</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Vision For Xperiences &mdash; All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var drawer   = document.getElementById("drawer");
+    var backdrop = document.getElementById("drawerBackdrop");
+    var ham      = document.getElementById("hamburger");
+    var closeBtn = document.getElementById("drawerClose");
+    function open(){ drawer.classList.add("open"); backdrop.classList.add("open"); drawer.setAttribute("aria-hidden","false"); backdrop.setAttribute("aria-hidden","false"); ham.setAttribute("aria-expanded","true"); closeBtn.focus(); }
+    function shut(){ drawer.classList.remove("open"); backdrop.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); backdrop.setAttribute("aria-hidden","true"); ham.setAttribute("aria-expanded","false"); }
+    ham.addEventListener("click", open);
+    closeBtn.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+    drawer.querySelectorAll("[data-nav]").forEach(function(a){ a.addEventListener("click", shut); });
+    window.addEventListener("keydown", function(e){ if(e.key==="Escape") shut(); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener("click", function(e){
+        var href = a.getAttribute("href");
+        if (!href || href==="#") return;
+        var t = document.querySelector(href);
+        if(t){ e.preventDefault(); history.pushState(null,"",href); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+    });
+
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+      var closeTimer=null;
+      var btn=dd.querySelector('.nav-dropdown-toggle');
+      var isHoverDevice=window.matchMedia('(hover:hover)').matches;
+      var isButton=btn.tagName==='BUTTON';
+      function openDd(){ clearTimeout(closeTimer); document.querySelectorAll('.nav-dropdown.open').forEach(function(o){ if(o!==dd){ o.classList.remove('open'); var ot=o.querySelector('.nav-dropdown-toggle'); if(ot&&ot.tagName==='BUTTON') ot.setAttribute('aria-expanded','false'); } }); dd.classList.add('open'); if(isButton) btn.setAttribute('aria-expanded','true'); }
+      function closeDd(){ dd.classList.remove('open'); if(isButton) btn.setAttribute('aria-expanded','false'); }
+      if(isHoverDevice){
+        dd.addEventListener('mouseenter', openDd);
+        dd.addEventListener('mouseleave',function(){ closeTimer=setTimeout(closeDd,120); });
+        dd.addEventListener('focusin', openDd);
+        dd.addEventListener('focusout',function(){ closeTimer=setTimeout(closeDd,120); });
+        if(isButton){ btn.addEventListener('click',function(e){ e.preventDefault(); }); }
+      } else {
+        btn.addEventListener('click',function(e){
+          if(dd.classList.contains('open') && !isButton) return; /* second tap follows the link */
+          e.preventDefault(); e.stopPropagation();
+          var opening=!dd.classList.contains('open');
+          document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
+          if(opening) openDd();
+        });
+      }
+    });
+    document.addEventListener('click',function(){ document.querySelectorAll('.nav-dropdown.open').forEach(function(d){ d.classList.remove('open'); }); });
+  })();
+  </script>
+  <script defer src="/js/lazyvideo.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/lightbox.js"></script>
+</body>
+</html>

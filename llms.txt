@@ -1,0 +1,61 @@
+# Vision For Xperiences (vfx.productions)
+
+> Multidisciplinary creative studio in the Netherlands. VFX, 3D animation,
+> live and festival visuals, interactive art installations, and licensed drone
+> cinematography, delivered by one team from previz through final delivery.
+
+Contact: studio@vfx.productions (briefs answered within 48 hours).
+Budget bands: under EUR 1,000 / EUR 1,000-5,000 / EUR 5,000-15,000 / EUR 15,000+.
+Takes on work at budget levels most full-service houses decline.
+
+## Services
+- [VFX](/vfx): compositing, set extensions, tracking, simulations, stylised looks
+- [3D Animation](/animation): product visuals, cinematic shorts, motion systems, stage worlds
+- [Live Visuals](/visuals): festival screens, DJ and artist visuals, reactive show content
+- [Interactive Design](/technology): art installations, educational devices, real-time experiences
+- [Drone Operator](/droneoperator): licensed UAV, aerial cinematics, event and location coverage
+- [Shop](/shop): presets, packs, motion templates, 3D asset bundles
+
+## Get a quote
+- [Contact and brief form](/contact)
+- [About the studio](/about)
+
+## Case studies
+- [CYBERAWARE](/work/cyberaware): An interactive cybersecurity awareness installation that turns an abstract threat into something visitors operate with their hands.
+- [Giving an AI a Face](/work/ai-head): A concept render for an AI art piece — a glass head with an LED cube suspended inside it, standing on a dock you can talk to.
+- [Cyberphone](/work/cyberphone): A concept phone drawn in the Tesla Cybertruck’s design language — flat planes, hard folds, exposed stainless, and a flip.
+- [Sea and Shore Services](/work/sea-and-shore): Brand identity worked out in 3D for a logistics company — putting the mark on container ships and container stacks to see how it actually behaves at scale.
+- [Driving, Simulated](/work/vr-driving-simulator): A brand commercial for a VR driving-simulator startup, built around the moment the real car and the simulated one turn out to be the same thing.
+- [Clot Retrieval](/work/clot-retrieval): A stent retriever at work inside a narrowed blood vessel — a medical procedure made precise enough for a surgeon and clear enough for everyone else.
+- [Catamaran](/work/catamaran): A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.
+- [Speedboat](/work/speedboat): A black-hulled speedboat rendered at speed from every angle — the kind of imagery a boat builder needs long before the first hull leaves the mould.
+- [Freight Calculator](/work/freight-calculator): The login screen for a freight-rate app — a container ship coming straight at you, and the hull used as the brand surface.
+- [Hooiberg](/work/hooiberg): An architectural animation of a house that borrows its structure from the Dutch hooiberg — the hay barn whose roof rides on masts — and rebuilds it as a modern home.
+- [DHG — Logwise](/work/dhg-logwise): Visualisation for a portfolio of Logwise distribution centres — a film for the flagship site plus site models for individual locations.
+- [Fountain Fuel — Brand Movie](/work/fountain-fuel): A brand film for a Dutch hydrogen and fast-charging network, built around a station that mostly did not exist yet.
+- [Off To A Better Future](/work/carbon-neutral): A brand film for five companies building a carbon-neutral logistics centre together — solar in, hydrogen out, trucks running on it.
+- [Broederliefde × AFAS Live](/work/broederliefde): Show visuals for Broederliefde’s set at the FunX Music Awards — content built for the arena’s main LED wall and run live behind the group for the whole set.
+- [FLAIRE × Maassilo](/work/flaire-maassilo): A show package for FLAIRE built around a rendered Rotterdam skyline, made for the big screens at the Maassilo.
+- [Tessaract](/work/tessaract): An infinite mirror room — a reflective real-time environment built as a loop for screens and installations.
+- [Loro Piana — Open Walk](/work/loro-piana-open-walk): A commercial rebuilding the Loro Piana Open Walk in black suede, down to the crest stamped into the footbed — made to prove an existing product can be recreated in full CG.
+- [C.P. Company — Integrated Mask](/work/cp-company-mask): A concept study from the COVID period: a face mask built into the garment itself, clipped on and off, in the language of C.P. Company.
+- [Ready Set Studios](/work/ready-set-studios): A dimensioned 3D model of a film studio, built from the architectural drawings so clients could judge the space before booking it.
+- [Street Takeover](/work/street-takeover): A real Heineken truck on a real street, with the bottle printed on its side pulled out of the livery and made physical — VFX, CG and Houdini liquid on an otherwise ordinary shot.
+
+## News
+- [The free tools finally arrived, and they are boring now](/news/the-free-tools-finally-arrived-and-they-are-boring-now/): The gap between open source and commercial software is not a talking point anymore. It is just the landscape.
+- [One studio or many: hiring for VFX, animation and live visuals together](/news/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together/): Boutique houses with multiple disciplines cost more than specialists but keep files and clients in one place. Here's what to look for and who actually does this work.
+- [Real-world NeRF is finally about the capture, not just the math](/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/): The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set.
+- [Meshy just plugged AI mesh generation into Claude and other coding assistants](/news/meshy-just-plugged-ai-mesh-generation-into-claude-and-other-coding/): When text-to-3D becomes a native capability of AI agents, the abstraction between describing something and building it dissolves.
+- [Free AI rigging just removed the skeleton-building tax](/news/free-ai-rigging-just-removed-the-skeleton-building-tax/): Armature automates the repetitive part of character rigging and ships free, which changes the economics of projects where rigs matter but budgets don't.
+- [WebGPU just went baseline across every browser](/news/webgpu-just-went-baseline-across-every-browser/): Native-class 3D performance in the browser is no longer a future idea. The platform just changed.
+- [Meshy opens the text-to-physical pipeline at CES 2026](/news/meshy-opens-the-text-to-physical-pipeline-at-ces-2026/): An AI model generator that shapes output to real manufacturing constraints changes who can turn a render into an actual object.
+- [One studio or many: when to hire specialists instead](/news/does-one-studio-really-handle-previz-through-delivery/): A handful of studios do handle previz through delivery, but 2026's trend is smarter handoffs with specialists.
+- [Houdini 22 plugs AI agents into character rigging](/news/houdini-22-brings-mcp-agents-into-character-rigging-workflows/): SideFX wired MCP code generation into KineFX, letting riggers scaffold procedural setups faster without losing control.
+- [DJI Avata 360 turns FPV from a directional choice into a spatial capture tool](/news/dji-avata-360-shifts-fpv-from-linear-chase-work-to-360-capture/): 360-degree eight-kilohertz video means pilots can now shoot the whole moment and choose the angle in post.
+- [ISO 22028-5 finally gives HDR stills a shared language](/news/iso-22028-5-sets-a-common-language-for-hdr-still-image-colour/): A new standard published in May defines how to encode and store HDR photographs with colour you can trust across devices.
+- [Vicon acquires face capture firm, closing the pipeline gap](/news/vicon-acquires-face-capture-firm-closing-the-pipeline-gap/): Facial and body performance capture have always come from different vendors. That just changed.
+- [Vendor lock-in is now the top reason studios pick open tools](/news/open-source-flips-the-commercial-3d-software-economics/): Clients increasingly demand ownership of their pipelines. That changes how studios pitch and what they budget for.
+- [How to pick a studio for a 3D product animation](/news/how-to-pick-a-studio-for-a-3d-product-animation/): A minute of product animation costs 5k to 25k USD. The gap is real, and it matters where you land.
+- [Museum exhibits that actually respond in real time](/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/): Finding the right studio to build hands-on installations that listen to visitors and react.
+- [August broke open the Gaussian splatting toolkit](/news/august-broke-open-the-gaussian-splatting-toolkit/): Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.

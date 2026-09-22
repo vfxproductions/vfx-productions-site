@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>VFX · Test 1 — raw camera (no AR)</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden;
+    font-family:system-ui,-apple-system,sans-serif;color:#fff}
+  /* Full-screen camera feed, nothing else on top. */
+  #v{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;background:#000;display:block}
+  #status{position:fixed;left:12px;right:12px;bottom:16px;text-align:center;font-size:13px;
+    text-shadow:0 1px 6px #000;line-height:1.5}
+  #start{position:fixed;inset:0;display:flex;flex-direction:column;gap:18px;
+    align-items:center;justify-content:center;background:#000}
+  button{font:inherit;font-size:15px;padding:16px 28px;border-radius:40px;
+    border:1px solid #fff;background:#000;color:#fff}
+</style>
+</head>
+<body>
+  <video id="v" autoplay muted playsinline></video>
+  <div id="status">Tap “Start camera”.</div>
+  <div id="start"><div>TEST 1 · raw camera, no AR, no overlay</div><button id="b">Start camera</button></div>
+
+  <script>
+    const v = document.getElementById('v');
+    const status = document.getElementById('status');
+    const start = document.getElementById('start');
+
+    document.getElementById('b').addEventListener('click', async () => {
+      status.textContent = 'Requesting camera…';
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: 'environment' } }, audio: false
+        });
+        v.srcObject = stream;
+        await v.play().catch(() => {});
+        start.style.display = 'none';
+        const t = stream.getVideoTracks()[0];
+        const s = t ? t.getSettings() : {};
+        status.textContent = '✓ Live feed — ' + (s.width || '?') + '×' + (s.height || '?') +
+          ' (' + (s.facingMode || 'camera') + '). If you SEE the feed, the camera + positioning work.';
+      } catch (e) {
+        status.textContent = '✗ ' + (e.name || 'Error') + ': ' + (e.message || e);
+      }
+    });
+  </script>
+</body>
+</html>
