@@ -20,29 +20,8 @@ Takes on work at budget levels most full-service houses decline.
 - [Contact and brief form](/contact)
 - [About the studio](/about)
 
-## Case studies
-- [CYBERAWARE](/work/cyberaware): An interactive cybersecurity awareness installation that turns an abstract threat into something visitors operate with their hands.
-- [Giving an AI a Face](/work/ai-head): A concept render for an AI art piece — a glass head with an LED cube suspended inside it, standing on a dock you can talk to.
-- [Cyberphone](/work/cyberphone): A concept phone drawn in the Tesla Cybertruck’s design language — flat planes, hard folds, exposed stainless, and a flip.
-- [Sea and Shore Services](/work/sea-and-shore): Brand identity worked out in 3D for a logistics company — putting the mark on container ships and container stacks to see how it actually behaves at scale.
-- [Driving, Simulated](/work/vr-driving-simulator): A brand commercial for a VR driving-simulator startup, built around the moment the real car and the simulated one turn out to be the same thing.
-- [Clot Retrieval](/work/clot-retrieval): A stent retriever at work inside a narrowed blood vessel — a medical procedure made precise enough for a surgeon and clear enough for everyone else.
-- [Catamaran](/work/catamaran): A commercial for a performance sailing catamaran, built to see whether a hull can be sold the way a car is.
-- [Speedboat](/work/speedboat): A black-hulled speedboat rendered at speed from every angle — the kind of imagery a boat builder needs long before the first hull leaves the mould.
-- [Freight Calculator](/work/freight-calculator): The login screen for a freight-rate app — a container ship coming straight at you, and the hull used as the brand surface.
-- [Hooiberg](/work/hooiberg): An architectural animation of a house that borrows its structure from the Dutch hooiberg — the hay barn whose roof rides on masts — and rebuilds it as a modern home.
-- [DHG — Logwise](/work/dhg-logwise): Visualisation for a portfolio of Logwise distribution centres — a film for the flagship site plus site models for individual locations.
-- [Fountain Fuel — Brand Movie](/work/fountain-fuel): A brand film for a Dutch hydrogen and fast-charging network, built around a station that mostly did not exist yet.
-- [Off To A Better Future](/work/carbon-neutral): A brand film for five companies building a carbon-neutral logistics centre together — solar in, hydrogen out, trucks running on it.
-- [Broederliefde × AFAS Live](/work/broederliefde): Show visuals for Broederliefde’s set at the FunX Music Awards — content built for the arena’s main LED wall and run live behind the group for the whole set.
-- [FLAIRE × Maassilo](/work/flaire-maassilo): A show package for FLAIRE built around a rendered Rotterdam skyline, made for the big screens at the Maassilo.
-- [Tessaract](/work/tessaract): An infinite mirror room — a reflective real-time environment built as a loop for screens and installations.
-- [Loro Piana — Open Walk](/work/loro-piana-open-walk): A commercial rebuilding the Loro Piana Open Walk in black suede, down to the crest stamped into the footbed — made to prove an existing product can be recreated in full CG.
-- [C.P. Company — Integrated Mask](/work/cp-company-mask): A concept study from the COVID period: a face mask built into the garment itself, clipped on and off, in the language of C.P. Company.
-- [Ready Set Studios](/work/ready-set-studios): A dimensioned 3D model of a film studio, built from the architectural drawings so clients could judge the space before booking it.
-- [Street Takeover](/work/street-takeover): A real Heineken truck on a real street, with the bottle printed on its side pulled out of the livery and made physical — VFX, CG and Houdini liquid on an otherwise ordinary shot.
-
 ## News
+- [Nodi just made node graphs codeable, and the loop closed](/news/nodi-just-made-node-graphs-codeable-and-the-loop-closed/): Drive a node graph from your code editor. No more hand-wiring the procedural workflow.
 - [The free tools finally arrived, and they are boring now](/news/the-free-tools-finally-arrived-and-they-are-boring-now/): The gap between open source and commercial software is not a talking point anymore. It is just the landscape.
 - [One studio or many: hiring for VFX, animation and live visuals together](/news/one-studio-or-many-hiring-for-vfx-animation-and-live-visuals-together/): Boutique houses with multiple disciplines cost more than specialists but keep files and clients in one place. Here's what to look for and who actually does this work.
 - [Real-world NeRF is finally about the capture, not just the math](/news/real-world-nerf-is-finally-about-the-capture-not-just-the-math/): The latest neural reconstruction work solves motion blur and sparse input. That changes what you actually shoot on set.

@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 22 Sep 2026 07:43:25 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 07:06:03 +0000</lastBuildDate>
+    <item>
+      <title>Nodi just made node graphs codeable, and the loop closed</title>
+      <link>https://vfx.productions/news/nodi-just-made-node-graphs-codeable-and-the-loop-closed/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/nodi-just-made-node-graphs-codeable-and-the-loop-closed/</guid>
+      <pubDate>Wed, 23 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Drive a node graph from your code editor. No more hand-wiring the procedural workflow.</description>
+      <category>procedural</category><category>node-based</category><category>ai-assisted</category><category>workflow</category><category>modeling</category>
+    </item>
     <item>
       <title>The free tools finally arrived, and they are boring now</title>
       <link>https://vfx.productions/news/the-free-tools-finally-arrived-and-they-are-boring-now/</link>
