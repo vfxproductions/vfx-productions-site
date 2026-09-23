@@ -26,6 +26,29 @@
   <link rel="alternate" type="application/rss+xml" title="Vision For Xperiences News" href="/news/feed.xml" />
   <script src="/js/theme.js"></script>
   <link rel="stylesheet" href="/css/site.css?v=8f6392d807" />
+  <style>
+    /* Client logo strip under the hero CTAs (homepage only, so it lives here). */
+    .clients{ margin-top: 36px; max-width: 600px; contain: inline-size; } /* contain: the track must not widen .copy */
+    .clients .kicker{ margin-bottom: 14px; }
+    .clients-track{
+      display:flex; overflow:hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .clients-list{
+      display:flex; align-items:center; gap: 56px; flex-shrink:0;
+      margin:0; padding:0 56px 0 0; list-style:none;
+      animation: clients-scroll 45s linear infinite;
+    }
+    .clients-track{ touch-action: pan-y; -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; }
+    .clients-list img{ -webkit-user-drag:none; pointer-events:none; }
+    .clients-list li{ display:flex; align-items:center; gap: 12px; flex-shrink:0; }
+    .clients-list img{ display:block; opacity:.85; }
+    .clients-list span{ font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color: var(--fg80); white-space:nowrap; }
+    @keyframes clients-scroll{ to{ transform: translateX(-100%); } }
+    @media (max-width: 640px){ .clients-list{ gap: 36px; padding-right: 36px; } .clients-list img{ zoom:.8; } }
+    @media (prefers-reduced-motion: reduce){ .clients-list{ animation:none; } .clients-track{ overflow-x:auto; } }
+  </style>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -179,6 +202,61 @@
             <a class="btn" href="/work">See the work</a>
             <a class="btn btn-ghost" href="/contact">Get in touch</a>
           </div>
+          <div class="clients">
+            <div class="kicker">Worked with</div>
+            <div class="clients-track">
+              <ul class="clients-list">
+<li><img src="/assets/clients/hku.png" alt="HKU" width="115" height="36" /></li>
+            <li><img src="/assets/clients/ddw.png" alt="" width="69" height="56" /><span>Dutch Design Week</span></li>
+            <li><img src="/assets/clients/manifestations.png" alt="Manifestations" width="204" height="22" /></li>
+            <li><img src="/assets/clients/astrolads.png" alt="Astrolads" width="162" height="26" /></li>
+            <li><img src="/assets/clients/logwise.png" alt="Logwise" width="168" height="24" /></li>
+            <li><img src="/assets/clients/seaandshore.png" alt="Sea and Shore Services" width="81" height="51" /></li>
+            <li><img src="/assets/clients/freightcalculator_alt.png" alt="Freight Calculator" width="59" height="56" /></li>
+            <li><img src="/assets/clients/llokaal.png" alt="Llokaal" width="137" height="31" /></li>
+            <li><img src="/assets/clients/broederliefde.png" alt="Broederliefde" width="75" height="56" /></li>
+            <li><img src="/assets/clients/funx-music-awards.png" alt="FunX Music Awards" width="53" height="56" /></li>
+            <li><img src="/assets/clients/maassilo.png" alt="Maassilo" width="97" height="44" /></li>
+            <li><img src="/assets/clients/hoogcatharijne.png" alt="Hoog Catharijne" width="253" height="22" /></li>
+            <li><img src="/assets/clients/fountainfuel.png" alt="Fountain Fuel" width="174" height="25" /></li>
+            <li><img src="/assets/clients/npo.png" alt="NPO" width="56" height="56" /></li>
+            <li><img src="/assets/clients/summaryzer.png" alt="" width="47" height="56" /><span>Summaryzer</span></li>
+            <li><img src="/assets/clients/heineken.png" alt="Heineken" width="155" height="27" /></li>
+              </ul>
+              <ul class="clients-list" aria-hidden="true">
+            <li><img src="/assets/clients/hku.png" alt="" width="115" height="36" /></li>
+            <li><img src="/assets/clients/ddw.png" alt="" width="69" height="56" /><span>Dutch Design Week</span></li>
+            <li><img src="/assets/clients/manifestations.png" alt="" width="204" height="22" /></li>
+            <li><img src="/assets/clients/astrolads.png" alt="" width="162" height="26" /></li>
+            <li><img src="/assets/clients/logwise.png" alt="" width="168" height="24" /></li>
+            <li><img src="/assets/clients/seaandshore.png" alt="" width="81" height="51" /></li>
+            <li><img src="/assets/clients/freightcalculator_alt.png" alt="" width="59" height="56" /></li>
+            <li><img src="/assets/clients/llokaal.png" alt="" width="137" height="31" /></li>
+            <li><img src="/assets/clients/broederliefde.png" alt="" width="75" height="56" /></li>
+            <li><img src="/assets/clients/funx-music-awards.png" alt="" width="53" height="56" /></li>
+            <li><img src="/assets/clients/maassilo.png" alt="" width="97" height="44" /></li>
+            <li><img src="/assets/clients/hoogcatharijne.png" alt="" width="253" height="22" /></li>
+            <li><img src="/assets/clients/fountainfuel.png" alt="" width="174" height="25" /></li>
+            <li><img src="/assets/clients/npo.png" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/clients/summaryzer.png" alt="" width="47" height="56" /><span>Summaryzer</span></li>
+            <li><img src="/assets/clients/heineken.png" alt="" width="155" height="27" /></li>
+              </ul>
+            </div>
+          </div>
+          <script>
+            /* Hover (or hold a finger on) the strip to slow it down. Changing the
+               playback rate keeps the current position, so it never jumps. */
+            (function () {
+              var track = document.querySelector('.clients-track');
+              if (!track || !track.getAnimations) return;
+              function rate(r) {
+                track.getAnimations({ subtree: true }).forEach(function (a) { a.playbackRate = r; });
+              }
+              track.addEventListener('pointerenter', function () { rate(0.3); });
+              track.addEventListener('pointerleave', function () { rate(1); });
+              track.addEventListener('pointercancel', function () { rate(1); });
+            })();
+          </script>
         </div>
       </div>
       <a class="down" href="#about" aria-label="Scroll to next section">
