@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Luxury brands now shoot nothing: the rise of pure CGI campaigns](/news/luxury-brands-now-shoot-nothing-the-rise-of-pure-cgi-campaigns/): Major fashion houses are abandoning photoshoots entirely for controlled, perfect 3D renders. Here's what that means for everyone making product visuals.
 - [Three.js made the WebGPU swap a one-liner, and adoption jumped to 65 percent](/news/three-js-made-the-webgpu-swap-a-one-liner-and-adoption-jumped-to-65/): When the most-used 3D library for web work lets you swap renderers in one line, adoption stops being theoretical. Here's what changed for people building in the browser.
 - [Nodi just made node graphs codeable, and the loop closed](/news/nodi-just-made-node-graphs-codeable-and-the-loop-closed/): Drive a node graph from your code editor. No more hand-wiring the procedural workflow.
 - [The free tools finally arrived, and they are boring now](/news/the-free-tools-finally-arrived-and-they-are-boring-now/): The gap between open source and commercial software is not a talking point anymore. It is just the landscape.

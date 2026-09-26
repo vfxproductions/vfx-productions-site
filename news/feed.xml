@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Sep 2026 17:28:31 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2026 07:24:09 +0000</lastBuildDate>
+    <item>
+      <title>Luxury brands now shoot nothing: the rise of pure CGI campaigns</title>
+      <link>https://vfx.productions/news/luxury-brands-now-shoot-nothing-the-rise-of-pure-cgi-campaigns/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/luxury-brands-now-shoot-nothing-the-rise-of-pure-cgi-campaigns/</guid>
+      <pubDate>Sat, 26 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Major fashion houses are abandoning photoshoots entirely for controlled, perfect 3D renders. Here&#x27;s what that means for everyone making product visuals.</description>
+      <category>luxury</category><category>3d</category><category>cgi</category><category>fashion</category><category>product</category>
+    </item>
     <item>
       <title>Three.js made the WebGPU swap a one-liner, and adoption jumped to 65 percent</title>
       <link>https://vfx.productions/news/three-js-made-the-webgpu-swap-a-one-liner-and-adoption-jumped-to-65/</link>
