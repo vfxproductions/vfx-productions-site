@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 26 Sep 2026 07:24:09 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 07:03:47 +0000</lastBuildDate>
+    <item>
+      <title>ComfyUI added inpaint canvas, and masking just got faster</title>
+      <link>https://vfx.productions/news/comfyui-added-inpaint-canvas-and-masking-just-got-faster/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/comfyui-added-inpaint-canvas-and-masking-just-got-faster/</guid>
+      <pubDate>Sun, 27 Sep 2026 09:00:00 +0000</pubDate>
+      <description>A new custom node turns ComfyUI into a layered paint program. It cuts the friction between generation and refinement.</description>
+      <category>comfyui</category><category>masking</category><category>inpainting</category><category>compositing</category><category>nodes</category>
+    </item>
     <item>
       <title>Luxury brands now shoot nothing: the rise of pure CGI campaigns</title>
       <link>https://vfx.productions/news/luxury-brands-now-shoot-nothing-the-rise-of-pure-cgi-campaigns/</link>
