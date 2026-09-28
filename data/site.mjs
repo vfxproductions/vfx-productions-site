@@ -62,7 +62,7 @@ export const categories = [
       ['Beyond the render', 'The same scene can become a three.js web experience, so a buyer can turn the boat around in the browser.']
     ],
     services: ['3d-animation', 'design-visualisation', 'technical-visualisation', 'interactive-installations'],
-    hero: { type: 'video', src: '/assets/speedboat.mp4' }
+    hero: { type: 'video', src: '/assets/speedboat_360.mp4', poster: '/assets/speedboat_360_poster.jpg' }
   },
   {
     slug: 'music-culture',
@@ -450,7 +450,8 @@ export const projects = [
       { src: '/assets/speedboat_4.jpg', alt: 'Straight down from above, the wake opening behind the boat' },
       { src: '/assets/speedboat_3.jpg', alt: 'Low along the waterline, spray coming off the hull at speed' },
       { src: '/assets/speedboat_6.jpg', alt: 'Close on the cockpit and teak deck from above' },
-      { src: '/assets/speedboat_5.jpg', alt: 'The boat running past a dolphin breaking the surface' }
+      { src: '/assets/speedboat_5.jpg', alt: 'The boat running past a dolphin breaking the surface' },
+      { type: 'video', src: '/assets/speedboat.mp4', poster: '/assets/speedboat_1.jpg', alt: 'Straight out of the Blender viewport: the boat running through the scene while it was being built' }
     ]
   },
 
