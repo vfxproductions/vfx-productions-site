@@ -178,13 +178,13 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**20 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
+**21 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
 
 - **Product & Technology** (5) — CYBERAWARE - Giving an AI a Face - Cyberphone -
   Driving, Simulated - Clot Retrieval
 - **Architecture & Spaces** (4) — Hooiberg - DHG/Logwise - Fountain Fuel -
   Off To A Better Future
-- **Maritime & Offshore** (4) — Sea and Shore Services - Catamaran - Speedboat -
+- **Maritime & Offshore** (5) — Sea and Shore Services - Catamaran - Speedboat - Pod Drive, Exploded -
   Freight Calculator (+ the offshore drilling platform draft)
 - **Music & Culture** (3) — Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
 - **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask

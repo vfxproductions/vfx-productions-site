@@ -455,6 +455,33 @@ export const projects = [
   },
 
   {
+    slug: 'pod-drive-exploded-view',
+    status: 'published',
+    title: 'Pod Drive, Exploded',
+    category: 'maritime-offshore',
+    year: '2026',
+    client: '',          /* in-house piece - the row is hidden when empty */
+    summary: 'An exploded-view animation of an electric pod drive, taken apart piece by piece below the waterline.',
+    hero: { type: 'video', src: '/assets/podrive_explode.mp4', poster: '/assets/podrive_explode_poster.jpg' },
+    heroFit: 'contain',
+    thumb: '/assets/podrive_explode_poster.jpg',
+    description: 'A fictional electric pod drive, the propulsion unit that hangs below a hull and pushes the boat with a propeller, designed from scratch and then pulled apart along the axes it was assembled on: propeller and hub cap, propeller shaft, electric motor, gear housing with its skeg, and the water intake. All of it filmed underwater, from the seabed and along the hull.',
+    challenge: 'The most interesting machinery on a boat is the hardest to film. A drive unit spends its working life under the hull and under the waterline, usually in murky water. You cannot put a camera inside it, and you cannot take it apart while it runs. A dive team, a dry dock and a patient engineer still would not get most of these shots.',
+    approach: 'Every part is its own piece of geometry, so the assembly can separate cleanly along the shaft and the camera can go anywhere: close on the motor windings, low on the seabed looking up, or drifting along the hull with light breaking through the surface. The water, light shafts and caustics are part of the scene, so every angle sits in the same sea.',
+    result: 'A set of shots that explain how the drive is built in seconds, from a full exploded view down to close-ups of the propeller, motor, gear housing and intake. With your CAD or 3D files we can do the same for a real product, and revisions to lighting, materials or timing can be sped up with local AI models, or done fully by hand if you prefer no AI in the pipeline.',
+    role: 'Design, modelling, materials, animation, underwater environment, lighting, camera and rendering.',
+    serviceSlugs: ['technical-visualisation', '3d-animation'],
+    gallery: [
+      { type: 'video', src: '/assets/podrive_propeller.mp4', poster: '/assets/podrive_propeller_poster.jpg', alt: 'The propeller and hub cap come off the shaft, with the fixing bolts backing out', fit: 'contain' },
+      { type: 'video', src: '/assets/podrive_motor.mp4', poster: '/assets/podrive_motor_poster.jpg', alt: 'Close on the electric motor: stator windings and rotor sliding apart along the shaft', fit: 'contain' },
+      { type: 'video', src: '/assets/podrive_gearcase.mp4', poster: '/assets/podrive_gearcase_poster.jpg', alt: 'The gear housing and skeg, lit by light coming down through the water', fit: 'contain' },
+      { type: 'video', src: '/assets/podrive_intake.mp4', poster: '/assets/podrive_intake_poster.jpg', alt: 'The intake ring in the foreground, with the drive unit behind it', fit: 'contain' },
+      { type: 'video', src: '/assets/podrive_hull.mp4', poster: '/assets/podrive_hull_poster.jpg', alt: 'Look-development pass from below the waterline, the camera travelling along the hull', fit: 'contain' },
+      { type: 'video', src: '/assets/podrive_assembled.mp4', poster: '/assets/podrive_assembled_poster.jpg', alt: 'The drive reassembled, suspended above the seabed', fit: 'contain' }
+    ]
+  },
+
+  {
     slug: 'freight-calculator',
     status: 'published',
     title: 'Freight Calculator',
