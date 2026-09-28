@@ -437,7 +437,7 @@ export const projects = [
     year: '2026',
     client: '',          /* no external client - the row is hidden when empty */
     summary: 'A black-hulled speedboat rendered at speed from every angle — the kind of imagery a boat builder needs long before the first hull leaves the mould.',
-    hero: { type: 'video', src: '/assets/speedboat.mp4', poster: '/assets/speedboat_1.jpg' },
+    hero: { type: 'video', src: '/assets/speedboat_360.mp4', poster: '/assets/speedboat_360_poster.jpg' },
     thumb: '/assets/speedboat_1.jpg',
     description: 'A low, faceted speedboat running across open water in late sun: dark gloss hull, teak deck, spray off the chine and a wake that behaves like a wake. Built to show boat builders and marine start-ups what their boat can look like before it exists, and how much better it can look than a brochure photo once it does.',
     challenge: 'A new boat has to sell before it is built. Investors, dealers and first buyers are asked to commit on the strength of drawings and a spec sheet, and even once a hull exists, a real shoot at speed means a chase boat, a camera crew, the right weather and a very large invoice. Most builders end up with a handful of flat photos that do not show what makes their design different.',
