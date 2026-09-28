@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [The largest LED volume just opened, and the math changed for everyone](/news/the-largest-led-volume-just-opened-and-the-math-changed-for-everyone/): A 50-meter curved wall in China marks the scale where virtual production stops being niche. For smaller studios, that means the rental market is about to shift.
 - [ComfyUI added inpaint canvas, and masking just got faster](/news/comfyui-added-inpaint-canvas-and-masking-just-got-faster/): A new custom node turns ComfyUI into a layered paint program. It cuts the friction between generation and refinement.
 - [Luxury brands now shoot nothing: the rise of pure CGI campaigns](/news/luxury-brands-now-shoot-nothing-the-rise-of-pure-cgi-campaigns/): Major fashion houses are abandoning photoshoots entirely for controlled, perfect 3D renders. Here's what that means for everyone making product visuals.
 - [Three.js made the WebGPU swap a one-liner, and adoption jumped to 65 percent](/news/three-js-made-the-webgpu-swap-a-one-liner-and-adoption-jumped-to-65/): When the most-used 3D library for web work lets you swap renderers in one line, adoption stops being theoretical. Here's what changed for people building in the browser.
