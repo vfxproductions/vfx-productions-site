@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Sep 2026 07:30:19 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Exploding a boat drive underwater: animating the parts nobody can reach</title>
+      <link>https://vfx.productions/news/exploding-a-boat-drive-underwater-animating-the-parts-nobody-can-reach/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/exploding-a-boat-drive-underwater-animating-the-parts-nobody-can-reach/</guid>
+      <pubDate>Mon, 28 Sep 2026 12:00:00 +0000</pubDate>
+      <description>We built an exploded-view animation of a fictional electric pod drive, filmed from below the waterline. Here is why that kind of shot is easier to make in 3D than anywhere else.</description>
+      <category>exploded-view</category><category>product-animation</category><category>maritime</category><category>cad-to-animation</category><category>local-ai</category>
+    </item>
     <item>
       <title>The largest LED volume just opened, and the math changed for everyone</title>
       <link>https://vfx.productions/news/the-largest-led-volume-just-opened-and-the-math-changed-for-everyone/</link>
