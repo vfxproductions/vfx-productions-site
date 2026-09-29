@@ -123,6 +123,11 @@ several attempts here came out larger than the JPEG/H.264 they replaced.
 
 Also: strip spaces and personal names from filenames before they become URLs.
 
+**Every video on the site carries a burned-in watermark** (the logo in its original colours plus
+`https://vfx.productions`, bottom right, 50% opacity, sized from `min(W, H*16/9)`). After a
+new video is compressed into `assets/`, run `bash tools/watermark.sh <name>.mp4`. It keeps the
+clean copy in `assets/_orig/clean/` and always re-renders from that, so re-running is safe.
+
 ---
 
 ## Validation — run before declaring anything done
