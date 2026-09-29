@@ -129,9 +129,11 @@ content gets it, until he decides otherwise — it is there so a lifted frame in
 says where it came from, without changing how the work is experienced. No logo, not in a corner,
 not 50% — all tried: corners get cropped by cover-fit tiles, and heavier marks looked awkward
 behind the homepage overlays. After new media lands in `assets/`, run
-`bash tools/watermark.sh <file>` (mp4/webm/jpg/png/webp). It keeps the clean copy in
-`assets/_orig/clean/` and always re-renders from that, so re-running is safe. Not marked: `logo.png`,
-`kees_portrait.jpg`, the `layer*.webp` parallax layers, `clients/`. News images are bot-owned.
+`bash tools/watermark.sh <file>` (mp4/webm/jpg/png/webp; a bare name means `assets/`, anything
+with a slash is relative to the repo root). It keeps the clean copy in `assets/_orig/clean/` and
+always re-renders from that, so re-running is safe. Only logos are left unmarked (`logo.png`,
+`clients/`, business-card logo) plus the transparent parallax layers `layer1-3.webp`. **News images
+are marked too, but VFXBot writes new ones unmarked** — run the tool on `news/img/**` after new posts.
 
 ---
 
