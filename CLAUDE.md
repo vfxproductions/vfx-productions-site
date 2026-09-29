@@ -124,8 +124,11 @@ several attempts here came out larger than the JPEG/H.264 they replaced.
 Also: strip spaces and personal names from filenames before they become URLs.
 
 **Every video and content image carries a burned-in watermark**: just `https://vfx.productions`,
-bottom centre, 50% opacity, sized from `min(W, H*16/9)`. No logo, and not in a corner — both were
-tried and got cropped by cover-fit tiles. After new media lands in `assets/`, run
+bottom centre, **10% opacity** (15% of `min(W, H*16/9)` wide, 2% margin). The owner's rule: all new
+content gets it, until he decides otherwise — it is there so a lifted frame in someone's deck still
+says where it came from, without changing how the work is experienced. No logo, not in a corner,
+not 50% — all tried: corners get cropped by cover-fit tiles, and heavier marks looked awkward
+behind the homepage overlays. After new media lands in `assets/`, run
 `bash tools/watermark.sh <file>` (mp4/webm/jpg/png/webp). It keeps the clean copy in
 `assets/_orig/clean/` and always re-renders from that, so re-running is safe. Not marked: `logo.png`,
 `kees_portrait.jpg`, the `layer*.webp` parallax layers, `clients/`. News images are bot-owned.
