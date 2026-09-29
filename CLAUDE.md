@@ -123,10 +123,12 @@ several attempts here came out larger than the JPEG/H.264 they replaced.
 
 Also: strip spaces and personal names from filenames before they become URLs.
 
-**Every video on the site carries a burned-in watermark** (the logo in its original colours plus
-`https://vfx.productions`, bottom right, 50% opacity, sized from `min(W, H*16/9)`). After a
-new video is compressed into `assets/`, run `bash tools/watermark.sh <name>.mp4`. It keeps the
-clean copy in `assets/_orig/clean/` and always re-renders from that, so re-running is safe.
+**Every video and content image carries a burned-in watermark**: just `https://vfx.productions`,
+bottom centre, 50% opacity, sized from `min(W, H*16/9)`. No logo, and not in a corner — both were
+tried and got cropped by cover-fit tiles. After new media lands in `assets/`, run
+`bash tools/watermark.sh <file>` (mp4/webm/jpg/png/webp). It keeps the clean copy in
+`assets/_orig/clean/` and always re-renders from that, so re-running is safe. Not marked: `logo.png`,
+`kees_portrait.jpg`, the `layer*.webp` parallax layers, `clients/`. News images are bot-owned.
 
 ---
 
