@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Maxon Redshift just plugged into Vectorworks, and the handoff vanished](/news/maxon-redshift-just-plugged-into-vectorworks-and-the-handoff-vanished/): Architects can now move from real-time preview to production render inside the same app. Here is what changes when the file doesn't leave the house.
 - [Finding a drone operator who is actually licensed and insured](/news/finding-a-drone-operator-who-is-actually-licensed-and-insured/): One license covers 30 countries. Insurance is mandatory for work. Here is how to check.
 - [The largest LED volume just opened, and the math changed for everyone](/news/the-largest-led-volume-just-opened-and-the-math-changed-for-everyone/): A 50-meter curved wall in China marks the scale where virtual production stops being niche. For smaller studios, that means the rental market is about to shift.
 - [ComfyUI added inpaint canvas, and masking just got faster](/news/comfyui-added-inpaint-canvas-and-masking-just-got-faster/): A new custom node turns ComfyUI into a layered paint program. It cuts the friction between generation and refinement.

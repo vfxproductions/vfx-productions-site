@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Sep 2026 07:33:57 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 07:17:30 +0000</lastBuildDate>
+    <item>
+      <title>Maxon Redshift just plugged into Vectorworks, and the handoff vanished</title>
+      <link>https://vfx.productions/news/maxon-redshift-just-plugged-into-vectorworks-and-the-handoff-vanished/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/maxon-redshift-just-plugged-into-vectorworks-and-the-handoff-vanished/</guid>
+      <pubDate>Wed, 30 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Architects can now move from real-time preview to production render inside the same app. Here is what changes when the file doesn&#x27;t leave the house.</description>
+      <category>rendering</category><category>vectorworks</category><category>workflow</category><category>real-time</category><category>archicad</category>
+    </item>
     <item>
       <title>Finding a drone operator who is actually licensed and insured</title>
       <link>https://vfx.productions/news/finding-a-drone-operator-who-is-actually-licensed-and-insured/</link>
