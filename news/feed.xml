@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Sep 2026 07:17:30 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 07:31:05 +0000</lastBuildDate>
+    <item>
+      <title>Markerless mocap just became free, and the stage disappeared</title>
+      <link>https://vfx.productions/news/markerless-mocap-just-became-free-and-the-stage-disappeared/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/markerless-mocap-just-became-free-and-the-stage-disappeared/</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Epic and Move AI shipped better video-based motion capture this summer. The tools are fast enough that a phone camera in a room becomes the whole rig.</description>
+      <category>animation</category><category>mocap</category><category>markerless</category><category>video capture</category><category>real-time</category>
+    </item>
     <item>
       <title>Maxon Redshift just plugged into Vectorworks, and the handoff vanished</title>
       <link>https://vfx.productions/news/maxon-redshift-just-plugged-into-vectorworks-and-the-handoff-vanished/</link>
