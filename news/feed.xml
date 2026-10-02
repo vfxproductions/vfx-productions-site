@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Oct 2026 07:31:05 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 07:23:42 +0000</lastBuildDate>
+    <item>
+      <title>MAPP_MTL turned Montreal into a projection canvas, and the tooling caught up</title>
+      <link>https://vfx.productions/news/mapp-mtl-turned-montreal-into-a-projection-canvas-and-the-tooling/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/mapp-mtl-turned-montreal-into-a-projection-canvas-and-the-tooling/</guid>
+      <pubDate>Fri, 02 Oct 2026 09:00:00 +0000</pubDate>
+      <description>AI is automating the hardest part of building for curved façades. Here is what changed for large-scale mapping.</description>
+      <category>installation</category><category>projection-mapping</category><category>ai-workflow</category><category>festival</category><category>large-scale</category>
+    </item>
     <item>
       <title>Markerless mocap just became free, and the stage disappeared</title>
       <link>https://vfx.productions/news/markerless-mocap-just-became-free-and-the-stage-disappeared/</link>

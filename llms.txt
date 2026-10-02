@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [MAPP_MTL turned Montreal into a projection canvas, and the tooling caught up](/news/mapp-mtl-turned-montreal-into-a-projection-canvas-and-the-tooling/): AI is automating the hardest part of building for curved façades. Here is what changed for large-scale mapping.
 - [Markerless mocap just became free, and the stage disappeared](/news/markerless-mocap-just-became-free-and-the-stage-disappeared/): Epic and Move AI shipped better video-based motion capture this summer. The tools are fast enough that a phone camera in a room becomes the whole rig.
 - [Maxon Redshift just plugged into Vectorworks, and the handoff vanished](/news/maxon-redshift-just-plugged-into-vectorworks-and-the-handoff-vanished/): Architects can now move from real-time preview to production render inside the same app. Here is what changes when the file doesn't leave the house.
 - [Finding a drone operator who is actually licensed and insured](/news/finding-a-drone-operator-who-is-actually-licensed-and-insured/): One license covers 30 countries. Insurance is mandatory for work. Here is how to check.
