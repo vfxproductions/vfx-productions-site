@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 03 Oct 2026 07:20:10 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 07:04:40 +0000</lastBuildDate>
+    <item>
+      <title>Adobe and ChatGPT just automated industrial product visualization</title>
+      <link>https://vfx.productions/news/adobe-and-chatgpt-just-automated-industrial-product-visualization/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/adobe-and-chatgpt-just-automated-industrial-product-visualization/</guid>
+      <pubDate>Sun, 04 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Conversational image generation for industrial marketing moved from science fiction to October 1st, and the workflow math changed.</description>
+      <category>ai-generated imagery</category><category>product visualization</category><category>industrial marketing</category><category>batch rendering</category><category>design automation</category>
+    </item>
     <item>
       <title>EEVEE Next closes the realism gap, and real-time just got serious</title>
       <link>https://vfx.productions/news/eevee-next-closes-the-realism-gap-and-real-time-just-got-serious/</link>
