@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 04 Oct 2026 07:04:40 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 07:12:14 +0000</lastBuildDate>
+    <item>
+      <title>Blender 5.3 ships animation chains that stop fighting back</title>
+      <link>https://vfx.productions/news/blender-5-3-ships-animation-chains-that-stop-fighting-back/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/blender-5-3-ships-animation-chains-that-stop-fighting-back/</guid>
+      <pubDate>Mon, 05 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Forward compatibility for spline IK and better pose workflows mean less time wrestling rigs and more time shipping.</description>
+      <category>blender</category><category>animation</category><category>rigging</category><category>workflow</category><category>performance</category>
+    </item>
     <item>
       <title>Adobe and ChatGPT just automated industrial product visualization</title>
       <link>https://vfx.productions/news/adobe-and-chatgpt-just-automated-industrial-product-visualization/</link>
