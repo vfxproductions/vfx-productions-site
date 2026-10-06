@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Oct 2026 07:12:14 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 07:05:21 +0000</lastBuildDate>
+    <item>
+      <title>When your editor can handle VFX and when you actually need a studio</title>
+      <link>https://vfx.productions/news/when-your-editor-can-handle-vfx-and-when-you-actually-need-a-studio/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/when-your-editor-can-handle-vfx-and-when-you-actually-need-a-studio/</guid>
+      <pubDate>Tue, 06 Oct 2026 09:00:00 +0000</pubDate>
+      <description>It depends on the shot, the timeline, the software cost, and whether you can afford to go back and redo it.</description>
+      <category>compositing</category><category>budgeting</category><category>post-production</category><category>vfx</category><category>when-to-outsource</category>
+    </item>
     <item>
       <title>Blender 5.3 ships animation chains that stop fighting back</title>
       <link>https://vfx.productions/news/blender-5-3-ships-animation-chains-that-stop-fighting-back/</link>
