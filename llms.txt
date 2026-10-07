@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Mesh generation just stopped being a bottleneck](/news/mesh-generation-just-stopped-being-a-bottleneck/): Meshy 7.1 launched this September with geometry that holds up at 4K resolution. What changes when the hardest part of 3D work becomes instant.
 - [When your editor can handle VFX and when you actually need a studio](/news/when-your-editor-can-handle-vfx-and-when-you-actually-need-a-studio/): It depends on the shot, the timeline, the software cost, and whether you can afford to go back and redo it.
 - [Blender 5.3 ships animation chains that stop fighting back](/news/blender-5-3-ships-animation-chains-that-stop-fighting-back/): Forward compatibility for spline IK and better pose workflows mean less time wrestling rigs and more time shipping.
 - [Adobe and ChatGPT just automated industrial product visualization](/news/adobe-and-chatgpt-just-automated-industrial-product-visualization/): Conversational image generation for industrial marketing moved from science fiction to October 1st, and the workflow math changed.

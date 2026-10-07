@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 06 Oct 2026 07:05:21 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 07:17:53 +0000</lastBuildDate>
+    <item>
+      <title>Mesh generation just stopped being a bottleneck</title>
+      <link>https://vfx.productions/news/mesh-generation-just-stopped-being-a-bottleneck/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/mesh-generation-just-stopped-being-a-bottleneck/</guid>
+      <pubDate>Wed, 07 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Meshy 7.1 launched this September with geometry that holds up at 4K resolution. What changes when the hardest part of 3D work becomes instant.</description>
+      <category>mesh generation</category><category>3d asset creation</category><category>ai workflows</category><category>production bottleneck</category>
+    </item>
     <item>
       <title>When your editor can handle VFX and when you actually need a studio</title>
       <link>https://vfx.productions/news/when-your-editor-can-handle-vfx-and-when-you-actually-need-a-studio/</link>
