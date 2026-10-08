@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Oct 2026 07:17:53 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 07:07:47 +0000</lastBuildDate>
+    <item>
+      <title>Vicon just bought markerless facial capture, and the integration matters</title>
+      <link>https://vfx.productions/news/vicon-just-bought-markerless-facial-capture-and-the-integration/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/vicon-just-bought-markerless-facial-capture-and-the-integration/</guid>
+      <pubDate>Thu, 08 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Head-mounted cameras for facial performance capture are now part of a full-body mocap pipeline. Here is what that changes.</description>
+      <category>motion capture</category><category>digital humans</category><category>facial animation</category><category>production workflow</category><category>mocap</category>
+    </item>
     <item>
       <title>Mesh generation just stopped being a bottleneck</title>
       <link>https://vfx.productions/news/mesh-generation-just-stopped-being-a-bottleneck/</link>
@@ -238,14 +246,6 @@
       <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
       <description>Finding the right studio to build hands-on installations that listen to visitors and react.</description>
       <category>interactive</category><category>museums</category><category>installations</category><category>real-time</category><category>technology</category>
-    </item>
-    <item>
-      <title>August broke open the Gaussian splatting toolkit</title>
-      <link>https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</link>
-      <guid isPermaLink="true">https://vfx.productions/news/august-broke-open-the-gaussian-splatting-toolkit/</guid>
-      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Five major VFX platforms shipped native splat support in five days, signalling production is no longer an experiment.</description>
-      <category>gaussian splatting</category><category>3d capture</category><category>vfx pipeline</category><category>real-time rendering</category><category>august 2026</category>
     </item>
   </channel>
 </rss>

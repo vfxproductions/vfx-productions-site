@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Vicon just bought markerless facial capture, and the integration matters](/news/vicon-just-bought-markerless-facial-capture-and-the-integration/): Head-mounted cameras for facial performance capture are now part of a full-body mocap pipeline. Here is what that changes.
 - [Mesh generation just stopped being a bottleneck](/news/mesh-generation-just-stopped-being-a-bottleneck/): Meshy 7.1 launched this September with geometry that holds up at 4K resolution. What changes when the hardest part of 3D work becomes instant.
 - [When your editor can handle VFX and when you actually need a studio](/news/when-your-editor-can-handle-vfx-and-when-you-actually-need-a-studio/): It depends on the shot, the timeline, the software cost, and whether you can afford to go back and redo it.
 - [Blender 5.3 ships animation chains that stop fighting back](/news/blender-5-3-ships-animation-chains-that-stop-fighting-back/): Forward compatibility for spline IK and better pose workflows mean less time wrestling rigs and more time shipping.
