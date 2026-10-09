@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 08 Oct 2026 07:07:47 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2026 07:17:17 +0000</lastBuildDate>
+    <item>
+      <title>Blender agents just learned to write cleaner geometry than humans</title>
+      <link>https://vfx.productions/news/blender-agents-just-learned-to-write-cleaner-geometry-than-humans/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/blender-agents-just-learned-to-write-cleaner-geometry-than-humans/</guid>
+      <pubDate>Fri, 09 Oct 2026 09:00:00 +0000</pubDate>
+      <description>3D-Agent shipped a standalone app in September that rewrites its own scripts for quad topology. Agentic workflows just stopped being a side project.</description>
+      <category>blender</category><category>ai-agents</category><category>3d-modeling</category><category>workflow</category><category>procedural</category>
+    </item>
     <item>
       <title>Vicon just bought markerless facial capture, and the integration matters</title>
       <link>https://vfx.productions/news/vicon-just-bought-markerless-facial-capture-and-the-integration/</link>
@@ -238,14 +246,6 @@
       <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
       <description>A minute of product animation costs 5k to 25k USD. The gap is real, and it matters where you land.</description>
       <category>3d animation</category><category>product visualization</category><category>studio selection</category><category>pricing</category><category>scope</category>
-    </item>
-    <item>
-      <title>Museum exhibits that actually respond in real time</title>
-      <link>https://vfx.productions/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/</link>
-      <guid isPermaLink="true">https://vfx.productions/news/building-real-time-interactive-experiences-for-museums-and-exhibitions/</guid>
-      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Finding the right studio to build hands-on installations that listen to visitors and react.</description>
-      <category>interactive</category><category>museums</category><category>installations</category><category>real-time</category><category>technology</category>
     </item>
   </channel>
 </rss>
