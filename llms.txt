@@ -21,6 +21,7 @@ Takes on work at budget levels most full-service houses decline.
 - [About the studio](/about)
 
 ## News
+- [Generative 3D just learned to think like a printer](/news/generative-3d-just-learned-to-think-like-a-printer/): Meshy AI's print-ready pipeline turns prompts into physical objects, and the tooling finally matches the speed of digital design.
 - [Blender agents just learned to write cleaner geometry than humans](/news/blender-agents-just-learned-to-write-cleaner-geometry-than-humans/): 3D-Agent shipped a standalone app in September that rewrites its own scripts for quad topology. Agentic workflows just stopped being a side project.
 - [Vicon just bought markerless facial capture, and the integration matters](/news/vicon-just-bought-markerless-facial-capture-and-the-integration/): Head-mounted cameras for facial performance capture are now part of a full-body mocap pipeline. Here is what that changes.
 - [Mesh generation just stopped being a bottleneck](/news/mesh-generation-just-stopped-being-a-bottleneck/): Meshy 7.1 launched this September with geometry that holds up at 4K resolution. What changes when the hardest part of 3D work becomes instant.
