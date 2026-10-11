@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 10 Oct 2026 07:19:44 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 07:27:23 +0000</lastBuildDate>
+    <item>
+      <title>Text prompts just learned to direct festival visuals in real time</title>
+      <link>https://vfx.productions/news/text-prompts-just-learned-to-direct-festival-visuals-in-real-time/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/text-prompts-just-learned-to-direct-festival-visuals-in-real-time/</guid>
+      <pubDate>Sun, 11 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Real-time graphics that respond to language input are moving from research demos to touring shows, collapsing the gap between live control and cinematic polish.</description>
+      <category>real-time graphics</category><category>festival tech</category><category>ai-assisted production</category><category>live control</category><category>touring visuals</category>
+    </item>
     <item>
       <title>Generative 3D just learned to think like a printer</title>
       <link>https://vfx.productions/news/generative-3d-just-learned-to-think-like-a-printer/</link>
@@ -238,14 +246,6 @@
       <pubDate>Sat, 12 Sep 2026 09:00:00 +0000</pubDate>
       <description>Facial and body performance capture have always come from different vendors. That just changed.</description>
       <category>vicon</category><category>facial capture</category><category>performance capture</category><category>captive devices</category><category>motion capture</category>
-    </item>
-    <item>
-      <title>Vendor lock-in is now the top reason studios pick open tools</title>
-      <link>https://vfx.productions/news/open-source-flips-the-commercial-3d-software-economics/</link>
-      <guid isPermaLink="true">https://vfx.productions/news/open-source-flips-the-commercial-3d-software-economics/</guid>
-      <pubDate>Fri, 11 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Clients increasingly demand ownership of their pipelines. That changes how studios pitch and what they budget for.</description>
-      <category>open source</category><category>blender</category><category>production infrastructure</category><category>software economics</category><category>vendor lock-in</category>
     </item>
   </channel>
 </rss>
