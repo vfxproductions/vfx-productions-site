@@ -6,7 +6,15 @@
     <atom:link href="https://vfx.productions/news/feed.xml" rel="self" type="application/rss+xml" />
     <description>VFX, 3D animation, live visuals, interactive installations and drone work, from the Vision For Xperiences studio desk.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Oct 2026 07:27:23 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2026 07:18:06 +0000</lastBuildDate>
+    <item>
+      <title>Luxury brands are betting on digital avatars and virtual try-on at scale</title>
+      <link>https://vfx.productions/news/luxury-brands-are-betting-on-digital-avatars-and-virtual-try-on-at/</link>
+      <guid isPermaLink="true">https://vfx.productions/news/luxury-brands-are-betting-on-digital-avatars-and-virtual-try-on-at/</guid>
+      <pubDate>Mon, 12 Oct 2026 09:00:00 +0000</pubDate>
+      <description>When Victoria Beckham and OTB Group launched AI try-on tools in 2026, it became clear that rendered shopping is no longer a gimmick.</description>
+      <category>3d fashion</category><category>virtual try-on</category><category>luxury retail</category><category>digital avatars</category><category>e-commerce</category>
+    </item>
     <item>
       <title>Text prompts just learned to direct festival visuals in real time</title>
       <link>https://vfx.productions/news/text-prompts-just-learned-to-direct-festival-visuals-in-real-time/</link>
@@ -238,14 +246,6 @@
       <pubDate>Sun, 13 Sep 2026 09:00:00 +0000</pubDate>
       <description>A new standard published in May defines how to encode and store HDR photographs with colour you can trust across devices.</description>
       <category>hdr</category><category>colour-encoding</category><category>standards</category><category>workflow</category>
-    </item>
-    <item>
-      <title>Vicon acquires face capture firm, closing the pipeline gap</title>
-      <link>https://vfx.productions/news/vicon-acquires-face-capture-firm-closing-the-pipeline-gap/</link>
-      <guid isPermaLink="true">https://vfx.productions/news/vicon-acquires-face-capture-firm-closing-the-pipeline-gap/</guid>
-      <pubDate>Sat, 12 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Facial and body performance capture have always come from different vendors. That just changed.</description>
-      <category>vicon</category><category>facial capture</category><category>performance capture</category><category>captive devices</category><category>motion capture</category>
     </item>
   </channel>
 </rss>
