@@ -640,8 +640,13 @@ export const projects = [
       { type: 'video', src: '/assets/reflections_viewport.mp4', poster: '/assets/reflections_viewport_poster.jpg', alt: 'Viewport capture of the full loop before rendering', fit: 'wide' },
       { type: 'video', src: '/assets/reflections_vertical.mp4', poster: '/assets/reflections_vertical_poster.jpg', alt: 'Vertical cut of the factory loop', fit: 'tall' },
       { type: 'video', src: '/assets/reflections_belt.mp4', poster: '/assets/reflections_belt_poster.jpg', alt: 'Vertical cut following the conveyor belt', fit: 'tall' },
-      { type: 'video', src: '/assets/reflections_stack.mp4', poster: '/assets/reflections_stack_poster.jpg', alt: 'Vertical cut stacking three views of the hall', fit: 'tall' },
-      { src: '/assets/reflections_clay.jpg', alt: 'The factory hall without materials, showing the full 3D build', fit: 'tall' }
+      { type: 'video', src: '/assets/reflections_stack.mp4', poster: '/assets/reflections_stack_poster.jpg', alt: 'Vertical cut stacking three views of the hall', fit: 'tall' }
+    ],
+    /* drag-to-compare sliders: same angle, viewport (before) against the render (after) */
+    compare: [
+      { before: '/assets/reflections_clay.jpg',   after: '/assets/reflections_angle_a.jpg', alt: 'Overhead view down the factory hall' },
+      { before: '/assets/reflections_clay_b.jpg', alt: 'Low angle along the conveyor', after: '/assets/reflections_angle_b.jpg' },
+      { before: '/assets/reflections_clay_c.jpg', alt: 'Side view across the factory floor', after: '/assets/reflections_angle_c.jpg' }
     ],
     deepLink: { href: '/visuals', label: 'Live visuals' }
   },

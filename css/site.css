@@ -1530,6 +1530,25 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .cs-shot.wide video,
 .cs-shot.wide.is-video video{ aspect-ratio: 21/9; object-fit: cover; }
 
+/* Before/after slider (viewport against final render). touch-action:pan-y lets a
+   phone still scroll the page vertically while a sideways drag moves the line. */
+.cs-compare{ display:grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr)); gap: var(--gap); }
+.cs-compare-hint{ margin: 0 0 14px; color: var(--fg60); font-size: .9rem; }
+.cmp{ position:relative; margin:0; aspect-ratio: 9/16; border-radius:12px; overflow:hidden; border:1px solid var(--fg10);
+  background: var(--media-bg); cursor: ew-resize; touch-action: pan-y; user-select:none; -webkit-user-select:none; }
+.cmp img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
+.cmp .cmp-before{ clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.cmp-handle{ position:absolute; top:0; bottom:0; left: var(--pos); width:2px; margin-left:-1px; background:#fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.35); pointer-events:none; }
+.cmp-handle::after{ content:"\2039\00a0\203A"; position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+  width:44px; height:44px; border-radius:50%; background:#fff; color:#000; display:grid; place-items:center;
+  font: 700 18px/1 system-ui, sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.45); }
+.cmp-tag{ position:absolute; top:12px; padding:5px 9px; border-radius:999px; background: rgba(0,0,0,.6); color:#fff;
+  font: 700 .62rem/1 system-ui, sans-serif; letter-spacing:.1em; text-transform:uppercase; pointer-events:none; }
+.cmp-tag-a{ left:12px; } .cmp-tag-b{ right:12px; }
+.cmp input{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; pointer-events:none; }
+.cmp:focus-within{ outline: 2px solid var(--accent-text, var(--accent)); outline-offset: 2px; }
+
 /* Graphic plates (site models, diagrams with text) must not be cover-cropped. */
 .cs-shot.contain img,
 .cs-shot.contain video,

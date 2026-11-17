@@ -82,6 +82,8 @@ Everything lives in one object in `data/site.mjs`:
   calling the work "spec" in the body copy, which the owner has ruled out.
 - `client:` renders only when non-empty. A piece with no external client leaves it
   blank rather than announcing itself as spec on every page.
+- `compare: [{before, after, alt}]` adds a "Viewport vs final" section of drag-to-compare sliders
+  (portrait tiles; mouse, touch and keyboard). Both images must be the same framing.
 - Gallery items can be `type: 'video'` (`{type,src,poster,alt}`) as well as stills.
   Video tiles render as muted `data-lazyvideo` loops so they only load on scroll.
 - The hero is **automatically repeated as the first gallery tile** (skipped if the same

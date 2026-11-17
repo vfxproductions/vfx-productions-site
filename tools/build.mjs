@@ -517,6 +517,46 @@ ${galleryItems.map(galleryTile).join('\n')}
       </section>`
     : '';
 
+  /* Before/after sliders: `compare: [{ before, after, alt }]` on a project.
+     Pointer events do the dragging (mouse and touch); the hidden range input
+     keeps it usable from the keyboard. */
+  const compare =
+    p.compare && p.compare.length
+      ? `
+      <section class="page-wrap band">
+        <div class="kicker accent">Viewport vs final</div>
+        <p class="cs-compare-hint">Drag the line to compare.</p>
+        <div class="cs-compare">
+${p.compare
+  .map(
+    (c) => `          <figure class="cmp" style="--pos:50%">
+            <img src="${c.after}" alt="${esc(c.alt)}, final render" loading="lazy" draggable="false" />
+            <img class="cmp-before" src="${c.before}" alt="${esc(c.alt)}, viewport" loading="lazy" draggable="false" />
+            <span class="cmp-tag cmp-tag-a" aria-hidden="true">Viewport</span><span class="cmp-tag cmp-tag-b" aria-hidden="true">Final</span>
+            <span class="cmp-handle" aria-hidden="true"></span>
+            <input type="range" min="0" max="100" value="50" aria-label="Compare viewport and final render: ${esc(c.alt)}" />
+          </figure>`
+  )
+  .join('\n')}
+        </div>
+        <script>
+        document.querySelectorAll('.cmp').forEach(function (c) {
+          var r = c.querySelector('input'), sx, sy, on;
+          function set(v) { v = Math.max(0, Math.min(100, v)); c.style.setProperty('--pos', v + '%'); r.value = v; }
+          function at(e) { var b = c.getBoundingClientRect(); set(((e.clientX - b.left) / b.width) * 100); }
+          /* a finger on the tile may be starting a page scroll: a touch only takes the line once it clearly moves sideways */
+          c.addEventListener('pointerdown', function (e) { sx = e.clientX; sy = e.clientY; on = e.pointerType === 'mouse'; c.setPointerCapture(e.pointerId); if (on) at(e); });
+          c.addEventListener('pointermove', function (e) {
+            if (!c.hasPointerCapture(e.pointerId)) return;
+            if (!on) { var dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy); if (dx < 6 || dx < dy) return; on = true; }
+            at(e);
+          });
+          r.addEventListener('input', function () { set(+r.value); });
+        });
+        </script>
+      </section>`
+      : '';
+
   const watch = p.watch
     ? `
       <section class="page-wrap band">
@@ -610,6 +650,7 @@ ${meta
 ${intro}
 ${challengeApproach}
 ${gallery}
+${compare}
 ${watch}
 ${resultRole}
 ${notice}
