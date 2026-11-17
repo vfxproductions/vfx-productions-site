@@ -1524,6 +1524,12 @@ a.card-deep:hover{ text-decoration:underline; text-underline-offset:4px; }
 .cs-shot.tall video,
 .cs-shot.tall.is-video video{ aspect-ratio: 9/16; object-fit: cover; }
 
+/* Ultra-wide sources (festival LED formats) take the whole row at their own shape. */
+.cs-shot.wide{ grid-column: 1 / -1; }
+.cs-shot.wide img,
+.cs-shot.wide video,
+.cs-shot.wide.is-video video{ aspect-ratio: 21/9; object-fit: cover; }
+
 /* Graphic plates (site models, diagrams with text) must not be cover-cropped. */
 .cs-shot.contain img,
 .cs-shot.contain video,

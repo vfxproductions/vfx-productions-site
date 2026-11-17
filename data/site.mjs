@@ -66,8 +66,8 @@ export const categories = [
   },
   {
     slug: 'music-culture',
-    name: 'Music & Culture',
-    short: 'Music & Live',
+    name: 'Music & Visuals',
+    short: 'Music & Visuals',
     accent: '#FF3D7F',
     tone: 'energetic',
     headline: 'VISUAL<br>WORLDS<br>FOR THE<br>STAGE.',
@@ -613,7 +613,39 @@ export const projects = [
     watch: { src: '/assets/carbonneutral_film.mp4', poster: '/assets/cn_poster.jpg', label: 'The film' }
   },
 
-  /* ---- Music & Culture ------------------------------------------------------ */
+  /* ---- Music & Visuals ------------------------------------------------------ */
+  {
+    slug: 'reflections',
+    status: 'published',
+    title: 'Reflections',
+    category: 'music-culture',
+    year: '2026',
+    client: '',          /* no external client - the row is hidden when empty */
+    notice: true,        /* names artists the piece was not commissioned by */
+    summary: 'A festival visual built around “Reflection” by Charlotte de Witte and Enrico Sangiuliano: a factory that makes mirrors, looping in time with the track.',
+    hero: { type: 'video', src: '/assets/reflections_loop.mp4', poster: '/assets/reflections_hall.jpg' },
+    thumb: '/assets/reflections_hall.jpg',
+    heroFit: 'wide',     /* the loop runs full width above the portrait tiles */
+    description: 'A lot of what plays behind techno today is interchangeable: a creature, a robot, something exploding, lasers from the eyes. It looks expensive and says nothing about who is on stage. We want visuals that carry the artist’s own story or interests, made together with the artist rather than picked from a pack. Anyma comes closest to that, and is a big inspiration to us. What we are after is the same level of collaboration, built on stories that sit closer to the artist than ancient mythology does. We are looking for artists with a story of their own to build worlds like this with.',
+    challenge: 'The track is called “Reflection”, so we built the place reflections come from. A complete factory hall in 3D: kilns down both walls, robot arms lifting sheets of mirror off a central conveyor, and turbines in the walls chopping the light into beams. The camera travels the length of the hall and arrives back where it started, so the visual loops without a seam for as long as the track plays.',
+    approach: 'Start from the track, not from a look. The title gave the idea and the tempo gave the edit: “Reflection” runs at 134 BPM, so the loop is exactly 32 beats long and everything that moves repeats inside it. The light beams through the wall turbines fire on the beat, and the rollers, fans and kiln fire all return to their starting position at the loop point. Built and rendered in Blender at 4K width for festival LED, with vertical cuts of the same scene for phones.',
+    result: '',          /* EDIT */
+    role: 'Concept, 3D environment, animation, lighting, beat-synced loop and render.',
+    serviceSlugs: ['live-visuals', '3d-animation'],
+    gallery: [
+      { src: '/assets/reflections_stage1.jpg', alt: 'First clay render: the hall, the conveyor and the robot arms without materials' },
+      { src: '/assets/reflections_stage2.jpg', alt: 'First materials and kiln glow on the factory floor' },
+      { src: '/assets/reflections_stage3.jpg', alt: 'Lighting pass: the hall goes dark and the conveyor becomes the light source' },
+      { src: '/assets/reflections_stage4.jpg', alt: 'Fire and embers tested in the kilns' },
+      { type: 'video', src: '/assets/reflections_viewport.mp4', poster: '/assets/reflections_viewport_poster.jpg', alt: 'Viewport capture of the full loop before rendering', fit: 'wide' },
+      { type: 'video', src: '/assets/reflections_vertical.mp4', poster: '/assets/reflections_vertical_poster.jpg', alt: 'Vertical cut of the factory loop', fit: 'tall' },
+      { type: 'video', src: '/assets/reflections_belt.mp4', poster: '/assets/reflections_belt_poster.jpg', alt: 'Vertical cut following the conveyor belt', fit: 'tall' },
+      { type: 'video', src: '/assets/reflections_stack.mp4', poster: '/assets/reflections_stack_poster.jpg', alt: 'Vertical cut stacking three views of the hall', fit: 'tall' },
+      { src: '/assets/reflections_clay.jpg', alt: 'The factory hall without materials, showing the full 3D build', fit: 'tall' }
+    ],
+    deepLink: { href: '/visuals', label: 'Live visuals' }
+  },
+
   {
     slug: 'broederliefde',
     status: 'published',

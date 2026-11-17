@@ -341,15 +341,18 @@ function buildWork() {
   const desc =
     'Selected projects across product and technology, architecture and spaces, music and culture, fashion and luxury, and film and commercial work.';
 
+  /* Music leads on /work only; everywhere else keeps the data order. */
+  const workCats = [...categories].sort((a, b) => (b.slug === 'music-culture') - (a.slug === 'music-culture'));
+
   const filters = [
     `<button class="filter is-on" data-filter="all" aria-pressed="true">All</button>`,
-    ...categories.map(
+    ...workCats.map(
       (c) =>
         `<button class="filter" data-filter="${c.slug}" aria-pressed="false" style="--accent:${c.accent};">${esc(c.short)}</button>`
     )
   ].join('\n            ');
 
-  const grouped = categories
+  const grouped = workCats
     .map((c) => {
       const items = projects.filter((p) => p.category === c.slug);
       if (!items.length) return '';

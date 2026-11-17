@@ -74,7 +74,7 @@ Everything lives in one object in `data/site.mjs`:
 - `fit` on a gallery item becomes a CSS class on the tile, so new shapes need no code:
   `'contain'` stops cover-cropping anything with text in it (site models, film frames
   with burnt-in copy, annotated technical views); `'tall'` gives a 9:16 portrait tile
-  for phone-shaped sources. `heroFit` on the project applies the same class to the
+  for phone-shaped sources; `'wide'` gives an ultra-wide source the whole row at 21:9. `heroFit` on the project applies the same class to the
   auto-prepended hero tile.
 - `notice: true` prints a non-affiliation line under the case study. Set it on any
   project that names a brand it was not commissioned by (Street Takeover, Loro Piana,
@@ -135,6 +135,10 @@ always re-renders from that, so re-running is safe. Only logos are left unmarked
 `clients/`, business-card logo) plus the transparent parallax layers `layer1-3.webp`. **News images
 are marked too, but VFXBot writes new ones unmarked** — run the tool on `news/img/**` after new posts.
 
+One exception, asked for by the owner: the Reflections festival loop (`reflections_loop.mp4`) carries the mark
+lower right at 35% so the full visual is harder to lift. Re-render it with
+`bash tools/watermark.sh reflections_loop.mp4 br 0.35`; a plain re-run puts the faint centred mark back.
+
 ---
 
 ## Validation — run before declaring anything done
@@ -190,7 +194,7 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**21 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
+**22 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
 
 - **Product & Technology** (5) — CYBERAWARE - Giving an AI a Face - Cyberphone -
   Driving, Simulated - Clot Retrieval
@@ -198,11 +202,11 @@ Don't try to scrape project media from it — the owner drops files into `assets
   Off To A Better Future
 - **Maritime & Offshore** (5) — Sea and Shore Services - Catamaran - Speedboat - Pod Drive, Exploded -
   Freight Calculator (+ the offshore drilling platform draft)
-- **Music & Culture** (3) — Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
+- **Music & Visuals** (4, slug still `music-culture`, listed first on /work) — Reflections - Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
 - **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask
 - **Film & Commercial** (2) — Ready Set Studios - Street Takeover
 
-46 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
+47 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
 Contact as hover dropdowns (News/Shop, Jobs). The logo is the way home; there is no
 HOME item. `llms.txt` case-study list and `sitemap.xml` are both generated — edit
 the data, not those files.
