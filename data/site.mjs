@@ -764,6 +764,41 @@ export const projects = [
   },
 
   {
+    slug: 'rocketcontainer',
+    /* a string replaces the standard line: this one has a client, but shows a rocket and tower that are not theirs or ours */
+    notice: 'Made for containerbooking.com. Not affiliated with or endorsed by SpaceX. Starship, the launch tower and all related trademarks and designs are the property of their respective owners and are referenced here only to describe the work.',
+    status: 'published',
+    title: 'Rocket Container',
+    category: 'film-commercial',
+    year: '2026',
+    client: 'containerbooking.com',
+    summary: 'A promotional VFX film for containerbooking.com: the Starship tower catch that went viral, with the rocket swapped for a 40-foot shipping container.',
+    hero: { type: 'video', src: '/assets/rocketcontainer_film.mp4', poster: '/assets/rocketcontainer_poster.jpg' },
+    heroFit: 'tall',     /* the film is 9:16 - keep the gallery tile portrait too */
+    thumb: '/assets/rocketcontainer_poster.jpg',
+    description: 'A promotional VFX film we made for containerbooking.com. They move a lot of freight, and we wanted to translate that into the clip everyone was sharing at the time: SpaceX’s Starship dropping out of the sky and being caught by the arms of its launch tower. So the rocket became a container. Same descent, same flame, same catch, but what comes down between the arms is an orange 40-footer with their name on the side. It was a lot of fun to work on.',
+    challenge: 'Everyone has seen the original, so the swap only works if nothing else in the shot changes. The container has to fall, tilt and settle exactly the way the rocket did, on handheld footage that shakes and zooms, and it has to end up between tower arms that were filmed closing around something much thinner. A box is also less forgiving than a round hull: it has flat sides and hard corners, so any slip in the track shows straight away.',
+    approach: 'First the camera: every frame is registered to the tower, which does not move, so the shake of the original footage can be taken out and put back. Then the rocket itself is tracked in 3D by fitting a simple hull shape to its outline against the sky on all 417 frames, with the fine movement taken from the hull surface, and the result checked against the real pixels for slip. That track drives a Blender scene, where a proxy box was swapped for the full container: corrugated sides, the containerbooking.com logo, and a rocket engine firing out through the open doors at the base. It is lit with an overcast sky to match the plate and rendered in Cycles. The catch arms were rebuilt as geometry so they close around a box instead of a rocket, and the engine flame from the original footage was keyed and laid back over the render.',
+    result: '',          /* EDIT: where the film ran and how it did */
+    role: 'Concept, camera and object tracking, 3D modelling, look-dev, lighting, rendering and compositing.',
+    serviceSlugs: ['vfx-compositing', '3d-animation'],
+    gallery: [
+      { src: '/assets/rocketcontainer_plate.jpg', alt: 'The original footage: Starship coming down between the arms of the launch tower', fit: 'tall' },
+      { type: 'video', src: '/assets/rocketcontainer_track.mp4', poster: '/assets/rocketcontainer_track_poster.jpg', alt: 'Tracking check: a proxy box locked to the rocket through the whole descent', fit: 'tall' },
+      { src: '/assets/rocketcontainer_wire.jpg', alt: 'Wireframe of the container and the rebuilt catch arms over the footage', fit: 'tall' },
+      { type: 'video', src: '/assets/rocketcontainer_viewport.mp4', poster: '/assets/rocketcontainer_viewport_poster.jpg', alt: 'Viewport capture of the tracked container before rendering', fit: 'tall' },
+      { src: '/assets/rocketcontainer_scene.jpg', alt: 'The Blender scene from the side: the container, its engine and the catch arms', fit: 'contain' }
+    ],
+    /* drag-to-compare sliders: shot camera, viewport (before) against the final frame (after) */
+    compare: [
+      { before: '/assets/rocketcontainer_vp_a.jpg', after: '/assets/rocketcontainer_final_a.jpg', alt: 'The container on its way down' },
+      { before: '/assets/rocketcontainer_vp_b.jpg', after: '/assets/rocketcontainer_final_b.jpg', alt: 'Lining up between the tower arms' },
+      { before: '/assets/rocketcontainer_vp_c.jpg', after: '/assets/rocketcontainer_final_c.jpg', alt: 'Caught by the arms' }
+    ],
+    watch: { src: '/assets/rocketcontainer_film.mp4', poster: '/assets/rocketcontainer_poster.jpg', label: 'The film, with sound' }
+  },
+
+  {
     slug: 'ready-set-studios',
     status: 'published',
     title: 'Ready Set Studios',

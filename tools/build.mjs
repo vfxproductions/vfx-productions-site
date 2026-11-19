@@ -575,7 +575,7 @@ ${p.compare
   const notice = p.notice
     ? `
       <section class="page-wrap">
-        <p class="cs-notice">Concept work. Not commissioned by, affiliated with or endorsed by the brands shown. All trademarks, brand names and product designs are the property of their respective owners and are referenced here only to describe the work.</p>
+        <p class="cs-notice">${typeof p.notice === 'string' ? esc(p.notice) : 'Concept work. Not commissioned by, affiliated with or endorsed by the brands shown. All trademarks, brand names and product designs are the property of their respective owners and are referenced here only to describe the work.'}</p>
       </section>`
     : '';
 
