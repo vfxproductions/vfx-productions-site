@@ -795,7 +795,7 @@ export const projects = [
       { before: '/assets/rocketcontainer_vp_b.jpg', after: '/assets/rocketcontainer_final_b.jpg', alt: 'Lining up between the tower arms' },
       { before: '/assets/rocketcontainer_vp_c.jpg', after: '/assets/rocketcontainer_final_c.jpg', alt: 'Caught by the arms' }
     ],
-    watch: { src: '/assets/rocketcontainer_film.mp4', poster: '/assets/rocketcontainer_poster.jpg', label: 'The film, with sound' }
+    watch: { src: '/assets/rocketcontainer_film.mp4', poster: '/assets/rocketcontainer_poster.jpg', label: 'The final film' }
   },
 
   {
