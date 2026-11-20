@@ -687,6 +687,73 @@ export const projects = [
   },
 
   {
+    slug: 'domtoren-dimension',
+    status: 'published',
+    title: 'Domtoren Dimension',
+    category: 'music-culture',
+    year: '2025',
+    client: 'I Light U',
+    summary: 'Animations for the I Light U light festival in Utrecht, on the LED screens of Hoog Catharijne: the lantern of the Dom Tower repeated in every direction into an endless corridor of gothic stone and light.',
+    hero: { type: 'video', src: '/assets/ilightu2_film.mp4', poster: '/assets/ilightu2_poster.jpg' },
+    thumb: '/assets/ilightu2_poster.jpg',
+    heroFit: 'wide',     /* NEO is 2674 x 964 - give it the whole row */
+    description: 'After The HKU Garage we were back at I Light U. “Domtoren Dimension” takes the best-known building in Utrecht and folds it into itself: the camera drifts through a space where the tower repeats in every direction, above, below and on both sides, with light catching on the stonework. It was made in two versions, each a different journey through the same structure.',
+    challenge: 'This time the work had to run on more than one screen. Hoog Catharijne has LED surfaces in very different shapes, from the wide NEO front above the entrance to tall pillars and almost square screens inside, and the same idea had to hold on all of them. It also plays in between regular advertising, a few seconds at a time, so it has to be recognisable at once.',
+    approach: 'The corridor is built from one piece of a detailed 3D model of the Dom Tower: the eight-sided lantern at the top. That single section is repeated with array modifiers and geometry nodes into long rows, and the rows are placed above, below and beside the camera path, so a tower becomes a tunnel. A slow camera move and a moving sun do the rest: highlights travel along thousands of windows and pinnacles. Rendered in Blender Cycles at 60 frames per second for NEO (2674 x 964 pixels), then exported for six more screen formats in the mall.',
+    result: 'Shown during I Light U on the NEO screen and on the screens inside Hoog Catharijne.',
+    role: 'Concept, scene build, procedural modelling, animation, lighting, rendering and delivery in seven screen formats.',
+    serviceSlugs: ['3d-animation', 'live-visuals'],
+    gallery: [
+      { type: 'video', src: '/assets/ilightu2_lantern_orbit.mp4', poster: '/assets/ilightu2_lantern_orbit_poster.jpg', alt: 'Viewport orbit: the single lantern section of the Dom Tower that everything is built from' },
+      { type: 'video', src: '/assets/ilightu2_array_orbit.mp4', poster: '/assets/ilightu2_array_orbit_poster.jpg', alt: 'Viewport orbit: the same section repeated into four long rows around the camera path' },
+      { src: '/assets/ilightu2_clay_a.jpg', alt: 'Viewport, shot camera: early in the move, close to the stonework' },
+      { src: '/assets/ilightu2_clay_c.jpg', alt: 'Viewport, shot camera: late in the move, windows on every side' },
+      { src: '/assets/ilightu2_clay_b.jpg', alt: 'Viewport, shot camera: looking down the corridor without materials', fit: 'wide' },
+      { type: 'video', src: '/assets/ilightu2_film_b.mp4', poster: '/assets/ilightu2_film_b_poster.jpg', alt: 'Domtoren Dimension, second version', fit: 'wide' },
+      { type: 'video', src: '/assets/ilightu2_emerald.mp4', poster: '/assets/ilightu2_emerald_poster.jpg', alt: 'The same piece in portrait format for one of the screens inside the mall', fit: 'tall' }
+    ],
+    watch: { src: '/assets/ilightu2_onsite.mp4', poster: '/assets/ilightu2_onsite_poster.jpg', label: 'On the screens at Hoog Catharijne' },
+    deepLink: { href: '/visuals', label: 'Live visuals' }
+  },
+
+  {
+    slug: 'the-hku-garage',
+    status: 'published',
+    title: 'The HKU Garage',
+    category: 'music-culture',
+    year: '2023',
+    client: 'I Light U',
+    summary: 'A 3D animation for the I Light U light festival in Utrecht, shown on the NEO screen above the entrance of Hoog Catharijne: a roller door in a painted wall opens onto a 3D-scanned garage, lit by the festival logo in neon.',
+    hero: { type: 'video', src: '/assets/ilightu_film.mp4', poster: '/assets/ilightu_poster.jpg' },
+    thumb: '/assets/ilightu_poster.jpg',
+    heroFit: 'wide',     /* NEO is 2674 x 964 - give it the whole row */
+    description: 'I Light U is the light festival of Utrecht, and one of its canvases is NEO, the LED screen across the front of Hoog Catharijne. The festival asked for an animation about light. We made “The HKU Garage”: ten seconds in which a familiar wall turns out to have something behind it. The roller door with the HKU lettering rolls up, and inside is a cluttered garage with a fridge, a bike up on the wall, and the I Light U logo glowing as a neon sign, which is the message the piece ends on.',
+    challenge: 'The idea started with a door. Kees Moolenaar, our CEO, studied at the HKU, and one of its locations at the Pastoe Fabriek has a roller door in a painted wall that stayed with him long after: the kind of door you walk past every day and wonder about. The brief was light, and the screen is not a normal format. NEO is very wide and low, 2674 by 964 pixels, and it is part of the glass front above a busy square, so the picture has to read in a second from far away. That asks for a simple idea: one wall, one door, one surprise.',
+    approach: 'Almost everything in the shot is real, just not from the same place. The wall and the door were photographed and scanned in 3D, so the mural has real depth when the light changes. What is behind the door comes from somewhere else entirely: a 3D scan of his grandfather’s garage, clutter and all, made a few weeks earlier. Putting the two together just made sense: a door everyone knows, and a room nobody expects, placed behind the wall as if it had always been there. A fridge and an old bike were added as props. The I Light U logo was redrawn as curves and turned into animated neon tubes that light the whole room, and the door is one surface that rolls up along a curve. Rendered in Blender Cycles at 60 frames per second. A viewport preview and two reference stills went to the festival before the final render.',
+    result: 'Shown on NEO at Hoog Catharijne during I Light U, announced on the screen as “The HKU Garage”.',
+    role: 'Concept, 3D scanning, scene build, animation, lighting and rendering.',
+    serviceSlugs: ['3d-animation', 'live-visuals'],
+    gallery: [
+      { type: 'video', src: '/assets/ilightu_scan_orbit.mp4', poster: '/assets/ilightu_scan_orbit_poster.jpg', alt: 'Viewport orbit: the 3D-scanned garage sitting behind the scanned wall while the door opens' },
+      { src: '/assets/ilightu_scan_front.jpg', alt: 'Viewport: the wall from the front, with the top of the garage scan showing behind it' },
+      { src: '/assets/ilightu_scan_tex.jpg', alt: 'Viewport: the garage scan from above, with the wall and door in front of it' },
+      { src: '/assets/ilightu_scan_clay.jpg', alt: 'The same view without textures: the raw geometry of the scans' },
+      { src: '/assets/ilightu_ref.jpg', alt: 'Reference still sent to the festival: door open, neon on', fit: 'wide' },
+      { type: 'video', src: '/assets/ilightu_viewport.mp4', poster: '/assets/ilightu_viewport_poster.jpg', alt: 'Viewport preview of the animation, sent before the final render', fit: 'contain' },
+      { src: '/assets/ilightu_door.jpg', alt: 'The real roller door with the HKU lettering, photographed as reference and texture', fit: 'tall' },
+      { src: '/assets/ilightu_titlecard.jpg', alt: 'The title card on the NEO screen at Hoog Catharijne', fit: 'tall' }
+    ],
+    /* drag-to-compare sliders: three different angles on the scene, viewport (before) against a Cycles render (after) */
+    compare: [
+      { before: '/assets/ilightu_vp_a.jpg', after: '/assets/ilightu_final_a.jpg', alt: 'From the street, left of the door' },
+      { before: '/assets/ilightu_vp_b.jpg', after: '/assets/ilightu_final_b.jpg', alt: 'Inside the garage, looking out past the neon' },
+      { before: '/assets/ilightu_vp_c.jpg', after: '/assets/ilightu_final_c.jpg', alt: 'From the street, right of the door' }
+    ],
+    watch: { src: '/assets/ilightu_onsite.mp4', poster: '/assets/ilightu_onsite_poster.jpg', label: 'On the NEO screen at Hoog Catharijne' },
+    deepLink: { href: '/visuals', label: 'Live visuals' }
+  },
+
+  {
     slug: 'broederliefde',
     status: 'published',
     title: 'Broederliefde × AFAS Live',
@@ -724,26 +791,6 @@ export const projects = [
     result: '',          /* EDIT */
     role: '3D environment, type design, look-dev, lighting and render for the venue screens.',
     serviceSlugs: ['live-visuals', 'motion-design', '3d-animation'],
-    gallery: [],
-    deepLink: { href: '/visuals', label: 'Live visuals' }
-  },
-
-  {
-    slug: 'tessaract',
-    status: 'published',
-    title: 'Tessaract',
-    category: 'music-culture',
-    year: '2026',
-    client: '',          /* no external client - the row is hidden when empty */
-    summary: 'An infinite mirror room — a reflective real-time environment built as a loop for screens and installations.',
-    hero: { type: 'video', src: '/assets/tessaract.mp4', poster: '/assets/tessaract_room.jpg' },
-    thumb: '/assets/tessaract_room.jpg',
-    description: 'A reflective environment that folds back into itself, built to loop seamlessly and to run on a screen or inside an installation rather than play once as a film. Everything in frame is geometry and light — no plate, no set — so the room can be re-lit and re-cut for whatever it is playing behind.',
-    challenge: '',       /* EDIT */
-    approach: '',        /* EDIT */
-    result: '',          /* EDIT */
-    role: 'Concept, environment build, shading, lighting and the loop itself.',
-    serviceSlugs: ['live-visuals', '3d-animation'],
     gallery: [],
     deepLink: { href: '/visuals', label: 'Live visuals' }
   },

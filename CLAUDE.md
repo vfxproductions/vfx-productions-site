@@ -197,7 +197,7 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**24 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
+**25 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
 
 - **Product & Technology** (5) — CYBERAWARE - Giving an AI a Face - Cyberphone -
   Driving, Simulated - Clot Retrieval
@@ -205,11 +205,11 @@ Don't try to scrape project media from it — the owner drops files into `assets
   Off To A Better Future
 - **Maritime & Offshore** (5) — Sea and Shore Services - Catamaran - Speedboat - Pod Drive, Exploded -
   Freight Calculator (+ the offshore drilling platform draft)
-- **Music & Visuals** (5, slug still `music-culture`, listed first on /work) — Reflections - SMIB Car Emblem - Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
+- **Music & Visuals** (6, slug still `music-culture`, listed first on /work) — Reflections - SMIB Car Emblem - Domtoren Dimension - The HKU Garage - Broederliefde x AFAS Live - FLAIRE x Maassilo
 - **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask
 - **Film & Commercial** (3) — Rocket Container - Ready Set Studios - Street Takeover
 
-49 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
+50 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
 Contact as hover dropdowns (News/Shop, Jobs). The logo is the way home; there is no
 HOME item. `llms.txt` case-study list and `sitemap.xml` are both generated — edit
 the data, not those files.
@@ -217,6 +217,10 @@ the data, not those files.
 ### Things the owner has decided, so don't undo them
 
 - **Llokaal Expeditie was removed** entirely; it did not fit the site.
+- **The Tessaract post was removed**: Domtoren Dimension covers the same idea. `tessaract.mp4` stays,
+  other pages use it as a background.
+- **The I Light U paintings-wall animation is not shown** (second-year piece with the three framed
+  paintings). Only the Domtoren renders represent that edition. No source is credited for the Dom Tower model.
 - **Ready Set Studios sits in Film & Commercial**, not Architecture — films and
   commercials are shot on that stage.
 - **Don't label work as spec.** These pages exist to show capability; repeating
@@ -236,7 +240,7 @@ the data, not those files.
 - **Names still missing:** the VR/AI startup behind "Giving an AI a Face" -
   Hooiberg's client or architect
 - Empty `result:` on several projects (Logwise, Cyberphone, CP, Sea and Shore, RSS,
-  El Eternauta, Catamaran); `challenge`/`approach`/`result` on Hooiberg, FLAIRE, Tessaract
+  El Eternauta, Catamaran); `challenge`/`approach`/`result` on Hooiberg, FLAIRE
 - Two generic drafts remain: "Live visuals — other shows", "Animation and VFX work"
 - `digitalitems.mp4` is the Shop hero but is actually the old Hooiberg animation
 - `interactive_intro.mp4` (21.5 MB) and `technology.mp4` are tracked but unreferenced
