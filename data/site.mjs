@@ -652,6 +652,41 @@ export const projects = [
   },
 
   {
+    slug: 'smib-car-emblem',
+    status: 'published',
+    title: 'SMIB Car Emblem',
+    category: 'music-culture',
+    year: '2026',
+    client: 'SMIB',
+    summary: 'VFX for a SMIB music video: a custom hood ornament of the SMIB logo, modelled in Blender and added to a night-time driving shot, with the hood rebuilt so the emblem reflects in the paint.',
+    hero: { type: 'video', src: '/assets/smib_final.mp4', poster: '/assets/smib_poster.jpg' },
+    thumb: '/assets/smib_poster.jpg',
+    description: 'For a SMIB music video we put a hood ornament on a car that never had one. The shot looks out over the hood while the car drives through the city at night, and the emblem had to stand there as if it came with the car: metal picking up the street around it, and its own reflection lying in the paint underneath.',
+    challenge: 'An emblem on a hood is only believable if the hood knows it is there. Dark car paint works like a mirror, so placing an object on top of the footage is not enough: the reflection of the emblem has to sit in the hood, bend with its curve, and live between the street lights that slide across it. The logo also changed along the way. The first version was the SMIB Worldwide globe on test footage; the final uses the graffiti SMIB logo on new footage.',
+    approach: 'The logo came in as a flat vector file. In Blender it was turned into curves, extruded into a metal emblem and put on a stand with weld seams around the base. Instead of tracking the emblem onto the shot, the shot was rebuilt around the emblem. The hood holds still in frame, so one virtual camera could be matched to the real one, and the footage is projected from it onto two pieces of geometry: a curved surface in the shape of the hood, and a large dome around the whole scene. The dome gives the emblem the real street to reflect, frame by frame. The projected hood is reflective, so it picks up the emblem the way the real paint would. Rendered in Cycles with depth of field matched to the lens, and delivered as a linear EXR sequence for the grade. The whole build was recorded as a timelapse.',
+    result: '',          /* EDIT: the track and release, once it can be named */
+    role: 'Logo to 3D, modelling, camera match, camera projection, look-dev, lighting, rendering and the process timelapse.',
+    serviceSlugs: ['vfx-compositing', '3d-animation'],
+    gallery: [
+      { type: 'video', src: '/assets/smib_draft.mp4', poster: '/assets/smib_draft_poster.jpg', alt: 'First version: the SMIB Worldwide globe emblem on the test footage' },
+      { type: 'video', src: '/assets/smib_draft_road.mp4', poster: '/assets/smib_draft_road_poster.jpg', alt: 'The first version on a second shot of the drive' },
+      { type: 'video', src: '/assets/smib_viewport.mp4', poster: '/assets/smib_viewport_poster.jpg', alt: 'Blender viewport capture of the first version, with the footage projected onto the hood' },
+      { type: 'video', src: '/assets/smib_bts.mp4', poster: '/assets/smib_bts_poster.jpg', alt: 'Behind the scenes, short cut: timelapse of the build', fit: 'tall' },
+      { type: 'video', src: '/assets/smib_breakdown.mp4', poster: '/assets/smib_breakdown_poster.jpg', alt: 'Breakdown: viewport, raw plate, first draft, CG setup and final render', fit: 'tall' },
+      { type: 'video', src: '/assets/smib_emblem_orbit.mp4', poster: '/assets/smib_emblem_orbit_poster.jpg', alt: 'Orbit around the emblem in the Blender viewport, clay and material preview', fit: 'tall' },
+      { type: 'video', src: '/assets/smib_rig_orbit.mp4', poster: '/assets/smib_rig_orbit_poster.jpg', alt: 'Orbit around the rig: hood, camera and projection dome', fit: 'tall' }
+    ],
+    /* drag-to-compare sliders: the footage as shot (before) against the final render (after) */
+    compareBefore: 'Plate',
+    compare: [
+      { before: '/assets/smib_plate_a.jpg', after: '/assets/smib_final_a.jpg', alt: 'Driving over a crossing' },
+      { before: '/assets/smib_plate_b.jpg', after: '/assets/smib_final_b.jpg', alt: 'Along the tram rails' },
+      { before: '/assets/smib_plate_c.jpg', after: '/assets/smib_final_c.jpg', alt: 'Pulling up at the graffiti wall' }
+    ],
+    watch: { src: '/assets/smib_process.mp4', poster: '/assets/smib_process_poster.jpg', label: 'The process, from logo to final shot' }
+  },
+
+  {
     slug: 'broederliefde',
     status: 'published',
     title: 'Broederliefde × AFAS Live',

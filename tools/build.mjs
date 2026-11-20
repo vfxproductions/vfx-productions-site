@@ -520,21 +520,22 @@ ${galleryItems.map(galleryTile).join('\n')}
   /* Before/after sliders: `compare: [{ before, after, alt }]` on a project.
      Pointer events do the dragging (mouse and touch); the hidden range input
      keeps it usable from the keyboard. */
+  const cb = p.compareBefore || 'Viewport';   /* what the left-hand image is: 'Viewport' unless the project says e.g. 'Plate' */
   const compare =
     p.compare && p.compare.length
       ? `
       <section class="page-wrap band">
-        <div class="kicker accent">Viewport vs final</div>
+        <div class="kicker accent">${cb} vs final</div>
         <p class="cs-compare-hint">Drag the line to compare.</p>
         <div class="cs-compare">
 ${p.compare
   .map(
     (c) => `          <figure class="cmp" style="--pos:50%">
             <img src="${c.after}" alt="${esc(c.alt)}, final render" loading="lazy" draggable="false" />
-            <img class="cmp-before" src="${c.before}" alt="${esc(c.alt)}, viewport" loading="lazy" draggable="false" />
-            <span class="cmp-tag cmp-tag-a" aria-hidden="true">Viewport</span><span class="cmp-tag cmp-tag-b" aria-hidden="true">Final</span>
+            <img class="cmp-before" src="${c.before}" alt="${esc(c.alt)}, ${cb.toLowerCase()}" loading="lazy" draggable="false" />
+            <span class="cmp-tag cmp-tag-a" aria-hidden="true">${cb}</span><span class="cmp-tag cmp-tag-b" aria-hidden="true">Final</span>
             <span class="cmp-handle" aria-hidden="true"></span>
-            <input type="range" min="0" max="100" value="50" aria-label="Compare viewport and final render: ${esc(c.alt)}" />
+            <input type="range" min="0" max="100" value="50" aria-label="Compare ${cb.toLowerCase()} and final render: ${esc(c.alt)}" />
           </figure>`
   )
   .join('\n')}

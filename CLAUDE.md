@@ -84,6 +84,7 @@ Everything lives in one object in `data/site.mjs`:
   blank rather than announcing itself as spec on every page.
 - `compare: [{before, after, alt}]` adds a "Viewport vs final" section of drag-to-compare sliders
   (portrait tiles; mouse, touch and keyboard). Both images must be the same framing.
+  `compareBefore: 'Plate'` relabels the left image when it is footage rather than a viewport.
 - Gallery items can be `type: 'video'` (`{type,src,poster,alt}`) as well as stills.
   Video tiles render as muted `data-lazyvideo` loops so they only load on scroll.
 - The hero is **automatically repeated as the first gallery tile** (skipped if the same
@@ -196,7 +197,7 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**22 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
+**24 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
 
 - **Product & Technology** (5) — CYBERAWARE - Giving an AI a Face - Cyberphone -
   Driving, Simulated - Clot Retrieval
@@ -204,11 +205,11 @@ Don't try to scrape project media from it — the owner drops files into `assets
   Off To A Better Future
 - **Maritime & Offshore** (5) — Sea and Shore Services - Catamaran - Speedboat - Pod Drive, Exploded -
   Freight Calculator (+ the offshore drilling platform draft)
-- **Music & Visuals** (4, slug still `music-culture`, listed first on /work) — Reflections - Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
+- **Music & Visuals** (5, slug still `music-culture`, listed first on /work) — Reflections - SMIB Car Emblem - Broederliefde x AFAS Live - FLAIRE x Maassilo - Tessaract
 - **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask
-- **Film & Commercial** (2) — Ready Set Studios - Street Takeover
+- **Film & Commercial** (3) — Rocket Container - Ready Set Studios - Street Takeover
 
-47 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
+49 pages. Nav is **[logo] Work - Services - News - About - Contact**, with About and
 Contact as hover dropdowns (News/Shop, Jobs). The logo is the way home; there is no
 HOME item. `llms.txt` case-study list and `sitemap.xml` are both generated — edit
 the data, not those files.
