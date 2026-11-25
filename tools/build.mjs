@@ -475,9 +475,10 @@ ${[left, right].filter(Boolean).join(String.fromCharCode(10))}
 
   /* The hero only plays at the top of the page, so repeat it in the gallery -
      otherwise the best asset on a case study vanishes as soon as you scroll.
-     Skipped when the same file is already listed below. */
+     Skipped when the same file is already listed below, or when `watch` already
+     plays the same film further down (`heroInGallery: false`). */
   const heroInGallery =
-    p.hero && !p.gallery.some((g) => g.src === p.hero.src)
+    p.hero && p.heroInGallery !== false && !p.gallery.some((g) => g.src === p.hero.src)
       ? [
           p.hero.type === 'video'
             ? { type: 'video', src: p.hero.src, poster: p.hero.poster, alt: `${p.title} in motion`, fit: p.heroFit }

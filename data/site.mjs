@@ -615,6 +615,48 @@ export const projects = [
 
   /* ---- Music & Visuals ------------------------------------------------------ */
   {
+    slug: 'deltaworks',
+    status: 'published',
+    title: 'Deltaworks',
+    category: 'music-culture',
+    year: '2026',
+    client: '',          /* own piece - the row is hidden when empty */
+    notice: true,        /* names Underworld, who did not commission it */
+    summary: 'An audio-reactive Blender scene: the Oosterscheldekering under construction at night, fully modelled and textured, with every work light driven by the drums of “Born Slippy (Nuxx)” by Underworld.',
+    hero: { type: 'video', src: '/assets/deltaworks_film.mp4', poster: '/assets/deltaworks_film_poster.jpg' },
+    thumb: '/assets/deltaworks_film_poster.jpg',
+    heroInGallery: false, /* the same film plays with sound under `watch` */
+    description: 'Old photos of the Delta Works under construction look like something from science fiction. Huge concrete piers stand in rows on a dry building site, with cranes beside them and tiny people at their feet, as if a spaceship is being built rather than a storm surge barrier. Most people only know the finished dam, half under water. We modelled the piers as they stood during construction to show what they used to look like, and lit the site the way a building site is lit at night: work lights, cranes and fog.',
+    challenge: 'The lights had to play the track, not just flash along with it. A single volume curve makes every lamp pulse at once, which reads as a strobe rather than as music. Each part of the beat needed its own place on the site, so the drums can be followed with the eyes.',
+    approach: 'It started with the archive: photos of the Oosterscheldekering under construction were the reference for every pier. One pier was modelled and textured in Substance Painter at 4K, then repeated with geometry nodes into two long rows on a gravel building site, dressed with cranes, scaffolding, generators and work lights, and filled with volumetric fog. Underworld’s “Born Slippy (Nuxx)” was split into kick, snare, claps and hats, and each one drives the lights on a different side of the dam. The hits are turned into keyframes on the area lights and on the lamps of the work lights, so the scene renders exactly in time with the audio. Rendered in Blender Cycles.',
+    result: '',          /* EDIT */
+    role: 'Concept, modelling from archive photos, texturing, set dressing, audio-reactive lighting, animation and rendering.',
+    serviceSlugs: ['live-visuals', '3d-animation'],
+    gallery: [
+      /* reference first, then the build: set layout, the textured pier, the lights on the beat */
+      { src: '/assets/deltaworks_archive_1.jpg', alt: 'Reference: the piers of the Oosterscheldekering in rows on the dry building site' },
+      { src: '/assets/deltaworks_archive_2.jpg', alt: 'Reference: a pier seen from its base, with a crane alongside' },
+      { src: '/assets/deltaworks_archive_3.jpg', alt: 'Reference: visitors in hard hats at the foot of a pier' },
+      { src: '/assets/deltaworks_archive_4.jpg', alt: 'Reference: the row of piers under a dark sky' },
+      { src: '/assets/deltaworks_archive_5.jpg', alt: 'Reference: a single pier against a blue sky, a car at its foot for scale' },
+      { src: '/assets/deltaworks_archive_6.jpg', alt: 'Reference: construction of the Oosterscheldekering in black and white' },
+      { src: '/assets/deltaworks_archive_7.jpg', alt: 'Reference: the piers in low sun, cars parked at their feet (photo: L. Crommelin)' },
+      { src: '/assets/deltaworks_archive_8.jpg', alt: 'Reference: a row of finished piers with cranes behind them' },
+      { type: 'video', src: '/assets/deltaworks_orbit.mp4', poster: '/assets/deltaworks_orbit_poster.jpg', alt: 'Viewport, clay: an orbit around the whole set, two rows of piers with cranes, scaffolding and work lights', fit: 'wide' },
+      { type: 'video', src: '/assets/deltaworks_turntable.mp4', poster: '/assets/deltaworks_turntable_poster.jpg', alt: '360 of a single pier: the clay model next to the Substance Painter textures', fit: 'wide' },
+      { type: 'video', src: '/assets/deltaworks_viewport.mp4', poster: '/assets/deltaworks_viewport_poster.jpg', alt: 'Viewport playblast from the shot camera: the lights firing on the beat before the final render', fit: 'wide' }
+    ],
+    /* drag-to-compare sliders: new angles on the same scene, clay viewport (before) against the Cycles render (after) */
+    compare: [
+      { before: '/assets/deltaworks_clay_a.jpg', after: '/assets/deltaworks_final_a.jpg', alt: 'At the foot of a pier, next to a light tower' },
+      { before: '/assets/deltaworks_clay_b.jpg', after: '/assets/deltaworks_final_b.jpg', alt: 'The cranes at the end of the row' },
+      { before: '/assets/deltaworks_clay_c.jpg', after: '/assets/deltaworks_final_c.jpg', alt: 'Down the corridor between the two rows of piers' }
+    ],
+    watch: { src: '/assets/deltaworks_film_sound.mp4', poster: '/assets/deltaworks_film_poster.jpg', label: 'The film, with sound' },
+    deepLink: { href: '/visuals', label: 'Live visuals' }
+  },
+
+  {
     slug: 'reflections',
     status: 'published',
     title: 'Reflections',

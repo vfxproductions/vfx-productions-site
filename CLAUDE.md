@@ -88,7 +88,8 @@ Everything lives in one object in `data/site.mjs`:
 - Gallery items can be `type: 'video'` (`{type,src,poster,alt}`) as well as stills.
   Video tiles render as muted `data-lazyvideo` loops so they only load on scroll.
 - The hero is **automatically repeated as the first gallery tile** (skipped if the same
-  src is already listed). Do not add it to `gallery` by hand.
+  src is already listed). Do not add it to `gallery` by hand. Set `heroInGallery: false` when
+  `watch` plays the same film with sound, so it doesn't show three times.
 - Every tile, image or video, is a `<button class="zoom">`. `/js/lightbox.js` builds a
   native `<dialog>` gallery viewer on demand: arrows, wrap-around, `n / total` counter,
   caption, ArrowLeft/Right, Esc, backdrop click, and horizontal swipe on touch. Videos
@@ -197,7 +198,7 @@ Don't try to scrape project media from it — the owner drops files into `assets
 
 ## Current state
 
-**25 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
+**26 published case studies, 1 coming soon** (offshore drilling platform), across six industries:
 
 - **Product & Technology** (5) — CYBERAWARE - Giving an AI a Face - Cyberphone -
   Driving, Simulated - Clot Retrieval
@@ -205,7 +206,7 @@ Don't try to scrape project media from it — the owner drops files into `assets
   Off To A Better Future
 - **Maritime & Offshore** (5) — Sea and Shore Services - Catamaran - Speedboat - Pod Drive, Exploded -
   Freight Calculator (+ the offshore drilling platform draft)
-- **Music & Visuals** (6, slug still `music-culture`, listed first on /work) — Reflections - SMIB Car Emblem - Domtoren Dimension - The HKU Garage - Broederliefde x AFAS Live - FLAIRE x Maassilo
+- **Music & Visuals** (7, slug still `music-culture`, listed first on /work) — Deltaworks - Reflections - SMIB Car Emblem - Domtoren Dimension - The HKU Garage - Broederliefde x AFAS Live - FLAIRE x Maassilo
 - **Fashion & Luxury** (2) — Loro Piana Open Walk - C.P. Company Integrated Mask
 - **Film & Commercial** (3) — Rocket Container - Ready Set Studios - Street Takeover
 
